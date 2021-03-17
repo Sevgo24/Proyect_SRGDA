@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_REC_VUM" targetNamespace="http://tempuri.org/DS_REC_VUM.xsd" xmlns:mstns="http://tempuri.org/DS_REC_VUM.xsd" xmlns="http://tempuri.org/DS_REC_VUM.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_REC_VUM" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_REC_VUM" msprop:Generator_UserDSName="DS_REC_VUM">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListarVUM" msprop:Generator_TableClassName="ListarVUMDataTable" msprop:Generator_TableVarName="tableListarVUM" msprop:Generator_TablePropName="ListarVUM" msprop:Generator_RowDeletingName="ListarVUMRowDeleting" msprop:Generator_RowChangingName="ListarVUMRowChanging" msprop:Generator_RowEvHandlerName="ListarVUMRowChangeEventHandler" msprop:Generator_RowDeletedName="ListarVUMRowDeleted" msprop:Generator_UserTableName="ListarVUM" msprop:Generator_RowChangedName="ListarVUMRowChanged" msprop:Generator_RowEvArgName="ListarVUMRowChangeEvent" msprop:Generator_RowClassName="ListarVUMRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OWNER" msprop:Generator_ColumnVarNameInTable="columnOWNER" msprop:Generator_ColumnPropNameInRow="OWNER" msprop:Generator_ColumnPropNameInTable="OWNERColumn" msprop:Generator_UserColumnName="OWNER" type="xs:string" minOccurs="0" />
+              <xs:element name="VUM_ID" msprop:Generator_ColumnVarNameInTable="columnVUM_ID" msprop:Generator_ColumnPropNameInRow="VUM_ID" msprop:Generator_ColumnPropNameInTable="VUM_IDColumn" msprop:Generator_UserColumnName="VUM_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="VUM_VAL" msprop:Generator_ColumnVarNameInTable="columnVUM_VAL" msprop:Generator_ColumnPropNameInRow="VUM_VAL" msprop:Generator_ColumnPropNameInTable="VUM_VALColumn" msprop:Generator_UserColumnName="VUM_VAL" type="xs:string" minOccurs="0" />
+              <xs:element name="START" msprop:Generator_ColumnVarNameInTable="columnSTART" msprop:Generator_ColumnPropNameInRow="START" msprop:Generator_ColumnPropNameInTable="STARTColumn" msprop:Generator_UserColumnName="START" type="xs:string" minOccurs="0" />
+              <xs:element name="ENDS" msprop:Generator_ColumnVarNameInTable="columnENDS" msprop:Generator_ColumnPropNameInRow="ENDS" msprop:Generator_ColumnPropNameInTable="ENDSColumn" msprop:Generator_UserColumnName="ENDS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

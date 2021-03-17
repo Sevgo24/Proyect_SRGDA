@@ -1,0 +1,56 @@
+﻿<div>  
+       <table style="width: 100%;" border="0">
+            <tr>
+                @*<td>
+                    <div>
+                        <img src="~/Images/botones/add.png" class="addDivisionDDL" height="30">
+                    </div>
+                    <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addDivisionDDL">Agregar División Administrativa</a></div>
+                    <hr />
+                </td>*@
+            </tr>
+            <tr>
+                <td>
+                    @*<input type="hidden" id="hidIdOficinaDiv" value="0" />*@
+                    <div id="gridLicDivisionAdm"></div>
+                </td>
+            </tr>                                       
+        </table>         
+    @*<select id="ddlLicDivision"></select>*@
+</div>
+
+<div title="Seleccionar División" id="mvLicDivision">
+    <table width='100%' border='0' id='FiltroTablaPopObs'>
+        <tr>
+            <input type="hidden" id="hidAccionMvObs" />
+            <input type="hidden" id="hidEdicionObs" />
+            <td style="width: 210px">División Administrativa : &nbsp&nbsp&nbsp
+                <select id="ddlLicDivision"></select>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div title="Seleccionar Agente por Division" id="mvLicDivisionAgenteObligatorio">
+    <table width='100%' border='0' id='FiltroTablaPopObs'>
+        <tr>
+            <input type="hidden" id="hidAgenteRecaudo" />
+            <td style="width: 210px">
+               Agentes de Recaudo :
+            </td>
+            <td><input type="text" id="txtAgenteObli"></td>
+        </tr>
+        <tr><td align="center" colspan="2"><button id="btnBuscarAgenteObli"> <img src="../Images/botones/buscar2.png" width="16px"> Buscar </button></td></tr>
+        <tr>
+            <td colspan="2">
+                <div id="gridAgenteObligatorio"></div>
+            </td>
+            </tr>
+
+    </table>
+</div>
+
+
+
+
+

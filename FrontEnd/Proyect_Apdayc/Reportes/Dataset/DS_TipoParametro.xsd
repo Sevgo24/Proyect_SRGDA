@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_TipoParametro" targetNamespace="http://tempuri.org/DS_TipoParametro.xsd" xmlns:mstns="http://tempuri.org/DS_TipoParametro.xsd" xmlns="http://tempuri.org/DS_TipoParametro.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_TipoParametro" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_TipoParametro" msprop:Generator_UserDSName="DS_TipoParametro">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListaTipoParametros" msprop:Generator_TableClassName="ListaTipoParametrosDataTable" msprop:Generator_TableVarName="tableListaTipoParametros" msprop:Generator_TablePropName="ListaTipoParametros" msprop:Generator_RowDeletingName="ListaTipoParametrosRowDeleting" msprop:Generator_RowChangingName="ListaTipoParametrosRowChanging" msprop:Generator_RowEvHandlerName="ListaTipoParametrosRowChangeEventHandler" msprop:Generator_RowDeletedName="ListaTipoParametrosRowDeleted" msprop:Generator_UserTableName="ListaTipoParametros" msprop:Generator_RowChangedName="ListaTipoParametrosRowChanged" msprop:Generator_RowEvArgName="ListaTipoParametrosRowChangeEvent" msprop:Generator_RowClassName="ListaTipoParametrosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PAR_DESC" msprop:Generator_ColumnVarNameInTable="columnPAR_DESC" msprop:Generator_ColumnPropNameInRow="PAR_DESC" msprop:Generator_ColumnPropNameInTable="PAR_DESCColumn" msprop:Generator_UserColumnName="PAR_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="PAR_OBSERV" msprop:Generator_ColumnVarNameInTable="columnPAR_OBSERV" msprop:Generator_ColumnPropNameInRow="PAR_OBSERV" msprop:Generator_ColumnPropNameInTable="PAR_OBSERVColumn" msprop:Generator_UserColumnName="PAR_OBSERV" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_ROLES" targetNamespace="http://tempuri.org/DS_ROLES.xsd" xmlns:mstns="http://tempuri.org/DS_ROLES.xsd" xmlns="http://tempuri.org/DS_ROLES.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_ROLES" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_ROLES" msprop:Generator_UserDSName="DS_ROLES">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="usp_listar_Roles" msprop:Generator_TableClassName="usp_listar_RolesDataTable" msprop:Generator_TableVarName="tableusp_listar_Roles" msprop:Generator_TablePropName="usp_listar_Roles" msprop:Generator_RowDeletingName="usp_listar_RolesRowDeleting" msprop:Generator_RowChangingName="usp_listar_RolesRowChanging" msprop:Generator_RowEvHandlerName="usp_listar_RolesRowChangeEventHandler" msprop:Generator_RowDeletedName="usp_listar_RolesRowDeleted" msprop:Generator_UserTableName="usp_listar_Roles" msprop:Generator_RowChangedName="usp_listar_RolesRowChanged" msprop:Generator_RowEvArgName="usp_listar_RolesRowChangeEvent" msprop:Generator_RowClassName="usp_listar_RolesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ROL_ICODIGO_ROL" msprop:Generator_ColumnVarNameInTable="columnROL_ICODIGO_ROL" msprop:Generator_ColumnPropNameInRow="ROL_ICODIGO_ROL" msprop:Generator_ColumnPropNameInTable="ROL_ICODIGO_ROLColumn" msprop:Generator_UserColumnName="ROL_ICODIGO_ROL" type="xs:string" minOccurs="0" />
+              <xs:element name="ROL_VNOMBRE_ROL" msprop:Generator_ColumnVarNameInTable="columnROL_VNOMBRE_ROL" msprop:Generator_ColumnPropNameInRow="ROL_VNOMBRE_ROL" msprop:Generator_ColumnPropNameInTable="ROL_VNOMBRE_ROLColumn" msprop:Generator_UserColumnName="ROL_VNOMBRE_ROL" type="xs:string" minOccurs="0" />
+              <xs:element name="ROL_VDESCRIPCION_ROL" msprop:Generator_ColumnVarNameInTable="columnROL_VDESCRIPCION_ROL" msprop:Generator_ColumnPropNameInRow="ROL_VDESCRIPCION_ROL" msprop:Generator_ColumnPropNameInTable="ROL_VDESCRIPCION_ROLColumn" msprop:Generator_UserColumnName="ROL_VDESCRIPCION_ROL" type="xs:string" minOccurs="0" />
+              <xs:element name="ROL_CACTIVO_ROL" msprop:Generator_ColumnVarNameInTable="columnROL_CACTIVO_ROL" msprop:Generator_ColumnPropNameInRow="ROL_CACTIVO_ROL" msprop:Generator_ColumnPropNameInTable="ROL_CACTIVO_ROLColumn" msprop:Generator_UserColumnName="ROL_CACTIVO_ROL" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_DATE_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_DATE_CREATColumn" msprop:Generator_UserColumnName="LOG_DATE_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_DATE_UPDATEColumn" msprop:Generator_UserColumnName="LOG_DATE_UPDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_USER_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_USER_CREATColumn" msprop:Generator_UserColumnName="LOG_USER_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_USER_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_USER_UPDATEColumn" msprop:Generator_UserColumnName="LOG_USER_UPDATE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

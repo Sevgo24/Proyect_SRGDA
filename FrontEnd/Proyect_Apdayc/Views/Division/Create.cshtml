@@ -1,0 +1,45 @@
+﻿<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/styles/kendo.metro.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+
+<link href="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.pack.js")"></script>
+<script src="@Url.Content("~/Scripts/Base/modModal.js")"></script>
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+<script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.division.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+
+<fieldset>
+    <legend id="legend">@Html.ActionLink("Division", "Index", new { }, new { style = "text-decoration:none;" })</legend>
+    <button id="btnNuevo" class="btn btn-success">Guardar</button>
+    <a href="@Url.Action("Index", "Division")" id="btncancel" class="btn btn-success">Descartar</a><br />
+</fieldset>
+<br />
+
+@*<div title="Registrar Nuevo Usuario" id="ModalNeo">*@
+
+    <label>División</label><br />
+    <select name="ddlDivision" id="ddlDivision"></select><br />
+
+    <label>Subtipo división</label><br />
+    <select name="ddlSubdivision" id="ddlSubdivision"></select><br />
+
+    <label>Código</label><br />
+    <input type="text" id="txtCodigo" name="txtcodigo" class="requerido" style="width: 80px" /><br />
+
+    <label>Descripción</label><br />
+    <input type="text" id="txtDescripcion" name="txtDescripcion" class="requerido" style="width: 200px" /><br />
+
+    <label>Dependencia</label><br />
+    <select name="ddlDependencia" id="ddlDependencia"></select>
+
+    <input hidden="hidden" id="hidOpcionEdit" />
+    <div id="aviso"></div>
+@*</div>*@

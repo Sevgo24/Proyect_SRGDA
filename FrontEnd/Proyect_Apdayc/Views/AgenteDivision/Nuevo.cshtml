@@ -1,0 +1,291 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: AGENTE DIVISIÓN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Agentes de Recaudo</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.agentedivision.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.gestor.recaudo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <div id="ContenedormvOficina"></div>
+        <div id="ContenedormvBuscarSocio"></div>
+        <div id="ContenedormvBuscarRecaudador"></div>        
+        <div id="divDireccion"></div>
+
+        <table border="0" style="width: 100%">
+            <tr>
+                <td>
+                    <input type="hidden" id="hidIdAgenteRecaudo" />
+                    @*<input type="hidden" id="hidOpcionEdit" />                    
+                    <input type="hidden" id="hidDivisionId" />
+                    <input type="hidden" id="hidBPSid" />*@
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <table style="width: 98%" border="0" id="FiltroTablaPop">
+
+                        <tr>
+                            <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+
+                                <table width='100%' border='0' id='FiltroTabla'>
+                                    <tr>
+                                        <td style="width: 500px; text-align: left;">
+                                            <div id="divTituloPerfil">Agentes de Recaudo - Nuevo</div>
+                                        </td>
+                                        <td colspan="1">
+
+                                            <button id='btnVolver' class="boton" name='btnVolver'>
+                                                Volver 
+                                    <img src="@Url.Content("~/Images/botones/back.png")" width="24px" />
+                                            </button>
+
+                                            &nbsp;
+                                <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                    Nuevo
+                                    <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" />
+                                </button>
+                                            &nbsp;
+                                <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                    Grabar
+                                    <img src="@Url.Content("~/Images/botones/save.png")" width="24px" />
+                                </button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="contenedor" id="divCabeceraOfi">
+                                    <table border="0">
+
+                                        <tr>
+                                            <td>Agencia de Recaudo :
+                                            </td>
+                                            <td>
+                                                <table border="0" style="border-collapse: collapse;">
+                                                    <tr>
+                                                        <td>
+                                                            <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Agencia de Recaudo"/>
+                                                        </td>
+                                                        <td colspan="6">
+                                                            <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Agencia de Recaudo" title="Búsqueda de Oficina">Seleccione una agencia de recaudo.</label>
+                                                        </td>
+                                                        <input type="hidden" id="hidOficina" value="0" />
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>División Administrativa :</td>
+                                            <td>
+                                                <select id="ddlDivision" class="requeridoLst"></select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="width: 160px">Agente de Recaudo :</td>
+                                            <td>
+                                                <table border="0" style="border-collapse: collapse;">
+                                                    <tr>
+                                                        <td>
+                                                            <img src="@Url.Content("~/Images/botones/buscar.png")" id="bntAgenteRecaudo" style="cursor: pointer;" alt="Búsqueda de Agente de Recaudo" title="Búsqueda de Agente de Recaudo"/>
+                                                        </td>
+                                                        <td colspan="6">
+                                                            <label id="lblAgenteRecaudo" style="cursor: pointer;" alt="Búsqueda de Agente de Recaudo" title="Búsqueda de Agente de Recaudo">Seleccione un agente de recaudo.</label>
+                                                        </td>
+                                                        <input type="hidden" id="hidAgenteRecaudo" value="0" />
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rol :</td>
+                                            <td>
+                                                <select id="ddlRol" class="requeridoLst"></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fecha Inicio :</td>
+                                            <td>
+                                                <input type="text" id="txtFecInicial" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fecha Final :</td>
+                                            <td>
+                                                <input type="text" id="txtFecFinal" />
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                <div id="tabs">
+                                    <ul>                                        
+                                        <li><a href="#tabs-1">Dirección</a></li>
+                                        <li><a href="#tabs-2">Documento</a></li>
+                                        <li><a href="#tabs-3">Observación</a></li>
+                                        <li><a href="#tabs-4">Parametros</a></li>
+                                    </ul>
+                                                                          
+                                    
+                               <div id="tabs-1">
+                                  <table style=" width:100%;" border="0">
+                                      <tr>
+                                          <td>
+                                              <table>
+                                                  <tr>
+                                                       <td style="width:150px">
+                                                            <div><img src="~/Images/botones/add.png" class="addDireccion cssTabReadOnly" height="30"></div>
+                                                            <div style=" margin-top:-30px; margin-left:30px;"><a href="#" class="addDireccion cssTabReadOnly">Agregar Dirección  </a></div>
+                                                       </td>                                                   
+                                                  </tr>
+                                              </table>
+                                               <hr />
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td> 
+                                              <div id="gridDireccion"></div>
+                                          </td>
+                                      </tr>
+                                  </table>   
+                              </div>                                     
+                                    
+                               <div id="tabs-2">
+                                    <label>Documento</label>
+                                </div>
+                                        
+                               <div id="tabs-3">
+                                    <table style="width: 100%;" border="0">
+                                        <tr>
+
+                                            <td>
+                                                <div>
+                                                    <img src="~/Images/botones/add.png" class="addObservacion" height="30">
+                                                </div>
+                                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addObservacion">Agregar Observación  </a></div>
+                                                <hr />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="gridObservacion"></div>
+
+                                            </td>
+                                        </tr>       
+                                    </table>
+                                </div>
+
+                               <div id="tabs-4">
+                                    <table style="width: 100%;" border="0">
+                                        <tr>
+
+                                            <td>
+                                                <div>
+                                                    <img src="~/Images/botones/add.png" class="addParametro" height="30">
+                                                </div>
+                                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addParametro">Agregar Parámetro  </a></div>
+                                                <hr />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="gridParametro"></div>
+                                            </td>
+                                        </tr>                                    
+                                    </table>
+                                </div>    
+               
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <center> <div id="aviso"></div> </center>
+</body>
+</html>
+  
+    <div title="Agregar Observación" id="mvObservacion">
+        <input  type="hidden" id="hidIdObservacion" />
+        <table>
+            <tr>
+                <td style="width: 90px">Tipo: </td>
+                <td>
+                    <select id="ddlTipoObservacion" name="ddlTipoObservacion"></select></td>
+            </tr>
+            <tr>
+                <td style="vertical-align: text-top;">Descripción :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtObs" name="txtObs" rows="7" cols="90" placeholder="Ingrese Observación"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="Agregar Parámetro" id="mvParametro">
+        <table width='100%' border='0' id='FiltroTablaPopPar'>
+            <input type="hidden" id="hidIdParametro" />
+
+            <tr>
+                <td style="width: 190px">Tipo de Parámetro :</td>
+                <td>                                        
+                    <select name="ddlTipoParametro" id="ddlTipoParametro"></select>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 190px">Descripción del Parámetro :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtDesParam" name="txtDesParam" rows="4" cols="53" maxlength="60" placeholder="Ingrese descripción" style="width: 447px; height: 70px"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+

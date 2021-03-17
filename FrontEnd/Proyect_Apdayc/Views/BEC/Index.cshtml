@@ -1,0 +1,214 @@
+﻿@{
+    ViewBag.Title = "COBROS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>COBROS</title>
+    @*        
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>    
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/recaudacion.bec.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+    @*BUSQUEDA GENERAL*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.recibo.js")"></script>
+    @*<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />  CAMBIA SALTO DE LINEA*@
+    @*<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>*@
+    @*<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>*@
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+
+    <style>
+        html .k-grid tr:hover {
+            background: transparent;
+        }
+
+        html .k-grid tr.k-alt:hover {
+            /*background: #f1f1f1;*/    
+            background: #DFEFFC;                
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarCorrelativoSerieBec"></div>
+        <div id="ContenedormvBuscarSocio"></div>
+
+        <table style="width: 98%">
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="divTitulo">Cobros</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:100%; padding-left:30px" id="FiltroTabla"  border="0">
+                            <tr>
+                                <td>RECIBO :</td>
+                                <td>
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativoBec" style="cursor:pointer;"  alt="Búsqueda de Serie" title="Búsqueda de Serie"/>
+                                    <input type="hidden" id="hidCorrelativoBec" value="0"/> 
+                                    <input type="hidden" id="hidSerieBec" value="0"/> 
+                                    <input type="hidden" id="hidActualBec" value="0"/> 
+                                    <label id="lbCorrelativoBec" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie" >
+                                        Seleccione una Recibo.
+                                    </label>   
+                                </td>
+                                <td>Nª RECIBO :</td>
+                                <td><input type="text" id="txtNumRecibo" style="width:60px"/></td>
+                                <td>ID Cobro :</td>
+                                <td><input type="text" id="txtIdCobro" style="width:60px"/></td>                         
+                                                          
+
+                                <td style="text-align:right">                                
+                                    <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                                    &nbsp;
+                                    <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                                </td>
+                            </tr> 
+                               
+                            <tr>
+                                <td>
+                                    Banco:
+                                </td>
+                               <td>
+                                   <select id="ddlBanco"></select>
+                                </td>
+                                <td>
+                                    Cuenta :
+                                </td>
+                                <td>
+                                    @*<select id="ddlSucursal"></select>*@
+                                    <select id="ddlCuenta"></select>
+                                 </td> 
+                                
+                                 <td style="width:100px">
+                                    Código de depósito:
+                                </td>
+                                         <td>
+                                   <input type="text" id="txtVoucher"></input>
+                               </td>                       
+                              
+                            </tr>      
+                                   
+                             <tr>
+                                    <td>
+                                       Con Fecha de Creación
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkConFecha" />
+                                    </td>
+                                    <td>
+                                        Cliente :
+                                        </td>
+                                     <td>
+                                          <table border="0" style="border-collapse: collapse;" title="Socio de Negocio">
+                                                <tr>
+                                                    <td>
+                                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"/>
+                                                    </td>
+                                                    <td colspan="6">
+                                                        <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"> Seleccione un socio.</label>                                
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="hidAccionMvEnt" />
+                                                        <input type="hidden" id="hidEdicionEnt" value="0"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    <td>
+                                        Estado de Recibo
+                                    </td>
+                                    <td><select id="ddlEstadoMultirecibo"> </select> 
+                                    </td>
+
+                                     
+                          
+                            </tr>
+
+                            <tr>
+                                <td style="width:150px;">
+                                    Desde :
+                                </td>
+                               <td>
+                                    <input type="text" id="txtFechaIni"  class="requerido" readonly/>
+                               </td>
+                                <td style="width:150px">
+                                    Hasta :
+                                </td>
+                               <td>
+                                   <input type="text" id="txtFechaFin"  class="requerido" readonly />
+                               </td>
+                                <td>Estado de Confirmación</td>
+                               <td><select id="ddlEstadoConfirmacion"> </select> </td>
+                               
+                                <td></td>
+                                <td style='height: 40px; vertical-align: bottom;'>
+                                <div style="float: right;">
+                                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo tarifa." title="Registrar nuevo tarifa." id="btnNuevo"/>
+                                </div>
+                                </td>
+                            </tr>                                   
+                            <tr>
+                                <td>
+                                    Estado Cobro:
+                                </td>
+                                <td>
+                                    <select id="ddlestadoCobro">
+                                        <option value="0">TODOS</option>
+                                        <option value="1">ACTIVO</option>
+                                        <option value="2">INACTIVO</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </center>
+                </td>
+            </tr>
+            
+            <tr><td></td></tr><tr><td></td></tr>
+
+    @*        <tr>
+                <td style='height: 40px; vertical-align: bottom;'>
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo tarifa." title="Registrar nuevo tarifa." id="btnNuevo"/>
+                    </div>
+            </tr>*@
+
+
+            <tr>
+                <td>
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>

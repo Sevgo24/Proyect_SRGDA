@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title> MODULO REQUERIMIENTOS  </title>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.Requerimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE ADMINISTRACION DE REQUERIMIENTOS</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td>CODIGO DE REQUERIMIENTO :</td>
+                        <td><input type="text" id="txtidreq"></td>
+                        <td align="left" style="width:200px">FECHA  CREACION:</td>
+                        <td><input type="checkbox" id="chkConFechaCrea" /></td>
+                        <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                        <td><input type="text" id="txtFecCreaInicial" /></td>
+                        <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                        <td><input type="text" id="txtFecCreaFinal" /></td>
+                    </tr>
+                    <tr>
+                        <td>TIPO DE REQUERIMIENTO</td>
+                        <td><select id="ddltiporequerimiento"></select></td>
+                        <td>ESTADO DE REQUERIMIENTO</td>
+                        <td>
+                            <select id="ddlestadoAprobacion">
+                                <option value="-1">SELECCIONE</option>
+                                <option value="0">PENDIENTE</option>
+                                <option value="1">APROBADO</option>
+                                <option value="2">RECHAZADO</option>
+                            </select>
+                        </td>
+                        <td>CODIGO DE LICENCIA :</td>
+                        <td><input type="text" id="txtlic"></td>
+                        <td>CODIGO DE DOCUMENTO :</td>
+                        <td><input type="text" id="txtdoc"></td>
+                    </tr>
+                    <tr>
+                        <td>Oficina recaudo :</td>
+                        <td><input id="hidOficina" value="10081" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">OFICINA TI</label></td>
+                        <td>CODIGO DE ESTABLECIMIENTO :</td>
+                        <td><input type="text" id="txtestid"></td>
+                        <td>CODIGO DE BEC :</td>
+                        <td><input type="text" id="txtbec"></td>
+                        <td>
+                            Tipo de Inactivacion
+                        </td>
+                        <td>
+                            <select id="ddltipoInactConsult"></select>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="center">
+
+                <button id='btnBuscar' class="boton" name='btnBuscar'>
+                    Buscar
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                    Limpiar
+                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                LISTA REQUERIMIENTOS
+                <div id="grid"></div>
+            </td>
+        </tr>
+    </table>
+    <div title="Solicitud de Aprobacion de Requerimiento" id="mvSolicitudReque">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidId" />
+            <input type="hidden" id="hidIdDoc" />
+            <input type="hidden" id="hidSocioId" />
+            <input type="hidden" id="hidBecId" />
+            <input type="hidden" id="hidRecId" />
+            <tr>
+                <td>Tipo de Solicitud:</td>
+                <td>
+                    <label id="lblltiporequerimiento" style="cursor: pointer; font-weight:bold;" alt="Tipo de SOlicitud" title="Tipo de SOlicitud">
+                        Tipo de Solicitud
+                    </label>
+                </td>
+            </tr>
+            <tr id="trdocumento">
+                <td> Documento</td>
+                <td>
+                    <label id="lblserie" style="cursor: pointer; font-weight:bold;">
+                        Serie
+                    </label>
+                    <label id="lblnumero" style="cursor: pointer; font-weight:bold;">
+                        Numero
+                    </label>
+                    <label id="lblmontoactual" style="cursor: pointer; font-weight:bold;">
+                        MONTO ACTUAL
+                    </label>
+                    <label id="lblfechaactual" style="cursor: pointer; font-weight:bold;">
+                        FECHA ACTUAL
+                    </label>
+                </td>
+            </tr>
+            <tr id="trdocumento2">
+                <td> DOCUMENTO CON DATOS ACTUALIZADOS</td>
+                <td>
+                    <label id="lblmontomod" style="cursor: pointer; font-weight:bold;">
+                        MONTO  MODIFICADO
+                    </label>
+                    <label id="lblfechamod" style="cursor: pointer; font-weight:bold;">
+                        FECHA MODIFICADA
+                    </label>
+
+                </td>
+            </tr>
+
+            <tr id="trlicencia">
+                <td>
+                    Licencia
+                </td>
+                <td>
+                    <label id="lbllicid" style="cursor: pointer; font-weight:bold;">
+                        CODIGO LICENCIA
+                    </label>
+                    <label id="lbllicname" style="cursor: pointer; font-weight:bold;">
+                        NOMBRE LICENCIA
+                    </label>
+                </td>
+            </tr>
+            <tr id="trlicencia2">
+                <td>
+                    Tipo de Inactivacion
+                </td>
+                <td>
+                    <select id="ddltipoInact"></select>
+                </td>
+            </tr>
+            <tr id="trestablecimiento">
+                <td>
+                    ESTABLECIMIENTO
+                </td>
+                <td>
+                    <label id="lblestid" style="cursor: pointer; font-weight:bold;">
+                        CODIGO ESTABLECIMIENTO
+                    </label>
+                    <label id="lblestname" style="cursor: pointer; font-weight:bold;">
+                        NOMBRE ESTABLECIMIENTO
+                    </label>
+                </td>
+            </tr>
+            <tr id="trsocio">
+                <td>
+                    SOCIO :
+                </td>
+                <td>
+                    <label id="lblsocio" style="cursor: pointer; font-weight:bold;" onclick="VerSocio()">
+                        Descripcion
+                    </label>
+                    <label id="lbldocumento" style="cursor: pointer; font-weight:bold;" onclick="VerSocio()">
+                        Documento
+                    </label>
+                </td>
+            </tr>
+            <tr id="trbec">
+                <td>
+                    BEC :
+                </td>
+                <td>
+                    <label id="lblbec" style="cursor: pointer; font-weight:bold;" onclick="VerBec()">
+                        Descripcion
+                    </label>
+                    @*<label id="lbldocumento" style="cursor: pointer; font-weight:bold;" onclick="VerBec()">
+                        Documento
+                    </label>*@
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 210px">Descripción del Requerimiento :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtAprobacionDesc" name="txtAprobacionDesc" readonly rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="255"></textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td>APROBACION:</td>
+                <td>
+                    <select id='ddltipoAprobacionResp' name="ddltipoAprobacionResp" style="width: 270px">
+                        <option value="0" selected="selected">PENDIENTE</option>
+                        <option value="1">APROBADO</option>
+                        <option value="2">RECHAZADO </option>
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
+                <td style="width: 210px">Descripción del Rechazo :</td>
+            </tr>
+            <tr id="trrechazo">
+                <td colspan="2">
+                    <textarea id="txtAprobacionDescResp" name="txtAprobacionDescResp" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="255"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+
+

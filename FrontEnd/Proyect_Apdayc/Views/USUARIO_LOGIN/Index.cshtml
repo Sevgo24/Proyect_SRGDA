@@ -1,0 +1,195 @@
+﻿@{
+    ViewBag.Title = "Index";
+    }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css"  />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+@*<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.min.css")" rel="stylesheet" />*@
+<link href=" @Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+
+    <style>
+    #navi {  
+	list-style:none;
+	margin:0px;
+	padding:0px;
+    font-weight:bold;
+    color:blue;
+    pointer-events:none;
+	}
+    #navi2 {  
+	list-style:none;
+	margin:0px;
+	padding:0px;
+    font-weight:normal;
+    pointer-events:visible;
+    color:black;
+	}
+ 
+#navi li {
+	margin:2px;
+	padding:2px;
+	border: 1px solid #CCC;
+	border-bottom-right-radius:5px;
+    border-top-right-radius:5px;
+	color:#2e6e9e;
+	background-color:#fff;
+	border-left:5px solid white;
+} 
+ 
+
+#navi li a {
+	display:block;
+   	width:100%;
+	padding:2px 0;
+	text-decoration:none;
+	text-align:left;
+	font-size:11px;
+	color:#808080;
+	background-color: white;
+	border-left:10px solid #1984c8;  /*//Agrego un borde ancho a la izquierda*/
+}
+#navi li a:hover {
+	color:#1d5987;
+    font-weight:bold;
+	background-color:#dfeffc ;
+	border-left-color:#dbdbde; /*//Luego le cambio el color al borde en el evento hover.*/
+}
+
+        .menuTop {
+            text-align: center;
+            -moz-box-shadow: 0 -1px #5FACEB, 0 3px 0 #2a74b1,0 6px 4px #999999;
+            -webkit-box-shadow: 0 -1px #5FACEB, 0 3px 0 #2a74b1,0 6px 4px #999999;
+            box-shadow: 0 -1px #5FACEB, 0 3px 0 #2a74b1,0 6px 4px #999999;
+            background-color: #5FACEB;
+            background-image: -o-linear-gradient(-90deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            background-image: -moz-linear-gradient(-90deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            background-image: linear-gradient(180deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            background-image: -webkit-linear-gradient(-90deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            border-width: 0 0 2px 0;
+            border-style: solid;
+            border-color: #2b86ca;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr=#002CA0CA,endColorstr=#20000000);
+             height:45px;
+            vertical-align:middle;
+        }
+
+        .enlaceTop {
+            color:white;
+        }
+           .enlaceTop a:hover {
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menuTop">
+         @*class="navbar navbar-inverses" role="navigationw"*@
+        <div>
+            <ul class="nav navbar-nav">
+              <li class="@TempData["active"]"><a href="#" onclick="irAReferencia();" class="enlaceTop">Administración/Refencias</a></li>
+              <li class="@TempData["active4"]"><a href="#" onclick="irASocios();" class="enlaceTop">Socios de Negocio / Establecimientos</a></li>
+              <li class="@TempData["active2"]"><a href="#" onclick="irATarifa();" class="enlaceTop">Tarifas</a></li>
+              @*<li class="@TempData["active3"]"><a href="#" onclick="irAAgente();" class="enlaceTop">Agente de Recaudados</a></li>*@
+              <li class="@TempData["active5"]"><a href="#" onclick="irALicencias();" class="enlaceTop">Licencias</a></li>
+              <li class="@TempData["active6"]"><a href="#" onclick="irARecaudacion();" class="enlaceTop">Recaudación</a></li>
+              <li><a></a></li> <li><a></a></li> <li><a></a></li> <li><a></a></li> <li><a></a></li>
+              <li><a href="#" id="btnInicio"  class="enlaceTop" style=" margin-top:-4px;">
+                  <img src="~/Images/botones/homeblue.png" width="28" /> &nbsp;Inicio</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle enlaceTop" data-toggle="dropdown"   >Cuenta<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-header">Usuarios</li>
+                    <li><a href="#">Configuración</a></li>
+                    <li><a href="#" onclick="CerrarSesión();">Cerrar Sesión</a></li>
+                  </ul>
+              </li>   
+            </ul>
+         </div>
+    </div>
+     
+    <br />
+    <br />
+
+     <div id="Izquierda_Menu">
+        <p>@Html.Raw(TempData["menu"])</p>
+     </div>
+
+     <div id="Derecha">
+        <iframe  id="abc_frame" src="@Url.Action("Principal", "USUARIO_LOGIN")" width="100%" height="100%" frameborder="0" name="C"></iframe>
+     </div> 
+</body>
+</html>
+
+<script type="text/javascript">
+    function irAlIndice() {
+@*        if (confirm("¿Está seguro de regresar al Inicio?")) {
+            document.location.href = '@Url.Action("Index", "Home", new {id=1,id2=1})';
+        }*@
+        document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=1,id2=1})';
+    }
+    function irAReferencia() {
+        //if (confirm("¿Está seguro de cambiar de opción?")) {
+        //    document.location.href = 'Index';
+
+        //}
+        document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=1,id2=1})';
+    }
+    function irATarifa() {
+@*        if (confirm("¿Está seguro de cambiar de opción?")) {
+            document.location.href = '@Url.Action("Index", "Home", new {id=2,id2=48})';
+        }*@
+        document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=2,id2=48})';
+    }
+    function irAAgente() {
+        @* if (confirm("¿Está seguro de cambiar de opción?")) {
+            document.location.href = '@Url.Action("Index", "Home", new {id=3,id2=53})';
+        }*@
+        document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=3,id2=53})';
+    }
+    function irASocios() {
+        @*        if (confirm("¿Está seguro de cambiar de opción?")) {
+            document.location.href = '@Url.Action("Index", "Home", new {id=4,id2=75})';
+        }*@
+        document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=4,id2=75})';
+    }
+    function irALicencias() {
+        @*        if (confirm("¿Está seguro de cambiar de opción?")) {
+            document.location.href = '@Url.Action("Index", "Home", new {id=5,id2=91})';
+        }*@
+        document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=5,id2=91})';
+    }
+
+    function irARecaudacion() {
+        @*        if (confirm("¿Está seguro de cambiar de opción?")) {
+            document.location.href = '@Url.Action("Index", "Home", new {id=6,id2=110})';
+        }*@
+        document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=6,id2=110})';
+    }
+
+    function CerrarSesión() {
+            document.location.href = '@Url.Action("Logout", "Login")';
+        }
+
+    $(function () {
+        $("#btnInicio").click(function () {
+            bootbox.confirm("Seguro  que desea ir al Inicio?", function (result) {
+                if (result == true) {
+                    document.location.href = '@Url.Action("Index", "USUARIO_LOGIN", new {id=1,id2=1})';
+                }
+             }).find("div.modal-content").addClass("confirmWidth");
+        });
+    });
+</script>

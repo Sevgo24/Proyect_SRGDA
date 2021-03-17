@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: Reporte Informe Control";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>REPORTE BECS ESPECIALES</title>
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Reporte/mantenimiento.reporte.becs.especiales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+</head>
+<body>
+    <div>
+        <center>
+            <table style="width:98% " border='0' cellspacing='0' cellpadding='0'>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id='divTitulo'>REPORTE DE bECS ESPECIALES</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <center>
+                            <div class="contenedor">
+                                <table style="border-style: none;width:100%; padding-left:30px" id="FiltroTabla" border="0">
+                                    <tr>
+                                        <td style="width:250px" >
+                                            AÑO CIERRE :
+                                            <select id="ddlAnioCierre"></select>
+                                        </td>
+                                        <td style="width:250px" id="tdMesCierre" >
+                                            MES CIERRE :
+                                            <select id="ddlMesCierre"></select>
+                                        </td>
+                                        @*<td style="width:120px" id="tdCantMesCierre">
+                                            CANTIDAD DE MESES :                                            
+                                        </td>*@
+                                        @*<td style="width:50px" id="tdtxtCantMesCierre" >
+                                        <input type="text" id="txtCantMeses" style="width:50px"/>
+                                        </td>*@                                      
+
+                                        <td style="width:150px" align="right" colspan="2">
+                                            <button id='btnPdf' class="boton" name='btnPdf'>
+                                                Rep. PDF
+                                                <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                                            </button>
+                                            &nbsp;
+                                            <button id='btnExcel' class="boton" name='btnExcel'>
+                                                Rep. EXCEL
+                                                <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td id="tdRadioButton">
+                                            <form name="frmTIPO">
+                                                <input type="radio" name="tipo" value="D" checked> DETALLADO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" name="tipo" value="R"> RESUMEN
+                                            </form>
+                                        </td>                                      
+                                        @*<td align="left" id="tdRadioButton">
+                                            <input name="tipo" type="radio" value="D"/> DETALLADO
+                                        </td>
+                                        <td align="left" id="tdRadioButton2">
+                                            <input name="tipo"  type="radio" value="R"/> RESUMEN
+                                        </td>*@
+                                   </tr>
+                                </table>
+                            </div>
+                        </center>
+                    </td>
+                </tr>
+                <tr><td><br /></td></tr>
+                <tr>
+                    <td style="vertical-align:central;text-align:center">
+                        <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style='height: 30px;'>
+                        <center>
+                            <div id='error' style="width:100% ; vertical-align:middle;">
+                            </div>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+</body>
+</html>
+

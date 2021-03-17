@@ -1,0 +1,35 @@
+﻿@model SGRDA.Entities.BEREC_UNLICENSE_REASONS
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+    
+         <p>
+            <input type="hidden" id="UNL_ID" name="UNL_ID" value="@Html.DisplayFor(model => model.UNL_ID)"/>
+        </p>        
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

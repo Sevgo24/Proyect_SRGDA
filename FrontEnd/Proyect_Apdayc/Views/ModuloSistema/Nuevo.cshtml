@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: MODULO DE SISTEMA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Módulos</title>
+
+   <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.modulo.sistema.nuevo.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+
+ul.ui-autocomplete {
+    z-index: 1100;
+}
+  </style>
+</head>
+<body>
+    <div>
+    <br />
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+    <tr>
+        <td style=" vertical-align:bottom;">
+
+            <input id="hidOpcionEdit" type="hidden"/>
+            <input id="hidBpsId" type="hidden"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                         <td  colspan="3" style="  text-align:right; "  class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                            <table border="0" style=" width:100%;">
+                                <tr>
+                                    <td>
+                                         <div id='divTituloPerfil' style="  text-align:left">
+                                            Módulos Sistemas - Nuevo
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="float:right;">
+                                         <button id="btnVolver"  class="boton" name="btnVolver">Volver 
+                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24" /></button> 
+                            
+                                         &nbsp;
+                                        <button id="btnNuevo"  class="boton" name="btnNuevo">Nuevo  
+                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24" /></button>
+
+                                         &nbsp;
+                                        <button id="btnEditar"  class="boton" name="btnEditar">Editar  
+                                        <img src="@Url.Content("~/Images/botones/editb.png")" width="24" /></button>
+
+                                         &nbsp;
+                                         <button id="btnDescartar"  class="boton">
+                                             <span style=" color:#000; font-weight:200;">Descartar </span> 
+                                              <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                                         </button> 
+                                        &nbsp;
+                                        <button id="btnGrabar"  class="boton" name="btnGrabar">Grabar  
+                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24" /></button>  
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label id="lblid">ID:</label></td>
+                        <td ><input type='text' id='txtid' name='txtid' style="width:20px"/></td>
+                    </tr>
+                    <tr>  
+                        <td style="width:150px"> Descripción :</td>
+                        <td ><input type='text' id='txtDescripcion'   class="requerido"  name='txtDescripcion' maxlength="40" size="50" /></td>
+                    </tr>
+                    <tr>  
+                        <td> Etiqueta del Módulo :</td>
+                        <td><input type='text' id='txtEtiqueta'   class="requerido"  name='txtEtiqueta' maxlength="40" size="50" /></td>
+                    </tr>
+                    <tr>  
+                        <td> Desc. Corta :</td>
+                        <td><input type='text' id='txtApi'  name='txtApi' maxlength="40" size="50" /></td>
+                    </tr>
+                    <tr>  
+                        <td> Sentencia del Proceso :</td>
+                        <td><textarea id="txtSentencia" maxlength="512" rows="4" cols="70" ></textarea></td>
+                    </tr>
+                </table>
+            </center>       
+        </td>
+    </tr>
+       <tr>
+          <td style='height: 30px;'>
+            <center>
+                <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+                </div>
+            </center>
+            </td>
+       </tr>
+</table> 
+</div>
+</body>
+</html>
+

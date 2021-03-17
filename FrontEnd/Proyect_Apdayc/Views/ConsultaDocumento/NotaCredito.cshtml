@@ -1,0 +1,387 @@
+﻿
+@{
+    ViewBag.Title = "Consulta Nota de Crédito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/consulta.documento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacionconsulta.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacion.aprobacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.nota.credito.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.notacredito2.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+
+    @*Busqueda General*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.empresarial.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.subdivisiones.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.notacredito.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.agentecomercial.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.txtNumLiccss")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        #tblFacturaMasiva {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+
+    <style>
+        #tblDetalleFactura {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+    <style>
+        #tblDetalleFactura2 {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarSocio"></div>
+        <div id="ContenedormvBuscarGrupoFacuracion"></div>
+        <div id="ContenedormvBuscarCorrelativo"></div>
+        <div id="ContenedormvBuscarCorrelativoNC"></div>
+
+        <div id="ContenedormvBuscarAgenteComercial"></div>
+        <div id="ContenedormvModalidad"></div>
+        <div id="ContenedormvLicencia"></div>
+        <div id="ContenedormvOficina"></div>
+        <div id="ContenedormvNotaCredito"></div>
+        <div id="ContenedormvDevolucion"></div>
+        <div id="ContenedormvSubDivision"></div>
+        <div id="ContenedorMvSocioEmpresarial"></div>
+        
+        <center>
+            <table style="width: 98%" border="0">
+                <tr>
+                    <td>
+                        <div id="divTitulo">Recaudación - Nota de Crédito</div>
+                    </td>
+                </tr>
+                <tr>
+                    <hr />
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <center>
+                            <table style="width:100%; padding-left:30px" id="FiltroTabla" border="0">
+                                @*<tr><td></td></tr>*@
+                                <tr>
+                                    <td>
+                                        Serie:
+                                    </td>
+                                    <td>
+                                        @*<img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie" />
+                                        <input type="hidden" id="hidCorrelativo" value="0" />
+                                        <input type="hidden" id="hidSerie" value="0" />
+                                        <input type="hidden" id="hidActual" value="0" />
+                                        <input type="hidden" id="hidIdFactura" value="0" />
+                                        <input type="hidden" id="hidIdDetalleFactura" value="0" />
+                                        <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie">
+                                            Seleccione una Serie.
+                                        </label>*@
+                                        <input type="text" id="hidSerie" maxlength="20" style="width:90px" />
+
+                                    </td>
+                                    <td>
+                                        N° Factura :
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtNumFact" maxlength="20" style="width:90px" />
+                                    </td>
+
+
+                                    <td>
+                                        ID Factura :
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtIdFact" maxlength="20" style="width:90px" />
+                                    </td>
+
+
+                                    @*<td style="width:100px">
+                                        Tipo Licencia:
+                                    </td>
+                                    <td>
+                                        <select id="dllTipoLicencia"></select>
+                                    </td>*@
+                                </tr>
+
+
+
+                                <tr>
+                                    <td>
+                                        Fecha Inicial : &nbsp; <input type="checkbox" id="chkConFecha" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtFecInicial" readonly="false" class="requerido" />
+                                    </td>
+                                    <td>
+                                        Fecha Final :
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtFecFinal" readonly="false" class="requerido" />
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        Oficina recaudo :
+                                    </td>
+                                    <td>
+                                        <input type="hidden" id="hidOficina" value="0" />
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina" />
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">Seleccione una oficina.</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </center>
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td style="padding-left:30px">
+                        <span style="font-size:small;font-weight:bold"> Total de Registros: </span>
+                        <span style="font-size:small;font-weight:bold"><label id="CantidadRegistros2">0</label></span>
+                    </td>
+                    <td style="text-align: right; padding-right: 20px">
+
+                        @*<button id='btnPdf' class="boton" name='btnPdf'>
+                            Rep. PDF
+                            <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                        </button>
+                        &nbsp;
+                        <button id='btnExcel' class="boton" name='btnExcel'>
+                            Rep. EXCEL
+                            <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                        </button>
+
+                        <button id='btnEnviarAprobacion' class="boton" name='btnEnviarAprobacion'>
+                            SOLICITAR APROBACION
+                            <img src="@Url.Content("~/Images/botones/new32.png")" width="24px" />
+                        </button>*@
+                        <button id='btnNotaCredito2' class="boton" name='btnNotaCredito2'>
+                            NOTA DE CRÉDITO
+                            <img src="@Url.Content("~/Images/botones/new32.png")" width="24px" />
+                        </button>
+                        &nbsp;
+
+                        @*<button id='btnEnviarManuales' class="boton" name='btnEnviarManuales'>
+                            Reenviar DOc Manuales
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" />
+                        </button>
+                        <img id='btnImprimir' alt="Reenviar Comprobantes Anulados" title="Reenviar Comprobantes Anulados" />
+
+                        &nbsp;
+                        <button id='btnReenviarAnulado' class="boton" name='btnReenviarAnulado'>
+                            Reenviar DOc Anulados
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" />
+                        </button>
+                        &nbsp;
+                        <button id='btnReenviarSunatLocTrans' class="boton" name='btnReenviarSunatLocTrans'>
+                            Reenviar Docs Masivos
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" />
+                        </button>
+                        &nbsp;
+                        <button id='btnReenviarSunat' class="boton" name='btnReenviarSunat'>
+                            Reenviar Doc Sin Procesar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" />
+                        </button>
+                        &nbsp;*@
+                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                            Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" />
+                        </button>
+                        &nbsp; &nbsp;
+                        <button id='btnBuscarDemo2' class="boton" name='btnBuscarDemo2'>
+                            Buscar
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="24px" />
+                        </button>
+
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2 ">
+
+                        <div id="grid2"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:central;text-align:center" colspan="2">
+                        <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
+
+    <div title="Anulación de la Factura" id="mvAnulacion">
+        <table width='100%' border='0' id='FiltroTablaPopAnu'>
+            <input type="hidden" id="hidIdFactA" />
+            <input type="hidden" id="hidTipoF" />
+            <input type="hidden" id="hidTipoDoc" />
+            <tr>
+                <td style="width: 210px">Descripción de la Anulación :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtDescripcion" name="txtDescripcion" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div title="Mandar a quiebra la Factura" id="mvQuiebra">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidIdFact" />
+            @*<tr>
+                    <td>Tipo de Nota de Crédito :</td>
+                    <td><select id='ddlTipoNotaCredito' name="ddlTipoNotaCredito" style="width: 270px"></select></td>
+                </tr>*@
+            <tr>
+                <td style="width: 210px">Descripción de la Quiebra :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtQuiebra" name="txtQuiebra" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div title="Anulación de la Factura" id="mvObservacion">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidIdFact" />
+            <tr>
+                <td>Tipo de Nota de Crédito :</td>
+                <td><select id='ddlTipoNotaCredito' name="ddlTipoNotaCredito" style="width: 270px"></select></td>
+            </tr>
+            <tr>
+                <td style="width: 210px">Descripción de la Anulación :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtObservacion" name="txtObservacion" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+
+    <div title="Solicitud de Aprobacion de Documento" id="mvSolicitud">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidIdFact" />
+            <tr>
+                <td>Tipo de Solicitud:</td>
+                <td>
+                    <select id='ddltipoAprobacion' name="ddltipoAprobacion" style="width: 270px">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 210px">Descripción de la Aprobacion :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtAprobacionDescSo" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div title="Solicitud de Aprobacion de Requerimiento" id="mvSolicitudRequeDoc">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr>
+                <td>Tipo de Solicitud:</td>
+                <td><select id="ddltiporequerimiento"></select></td>
+            </tr>
+            <tr>
+                <td> Documento</td>
+                <td>
+                    <input type="hidden" id="hidCodigoDocumento">
+                    <label id="lblinvid" style="cursor: pointer; font-weight:bold;">
+                        CODIGO DOCUMENTO
+                    </label>
+                </td>
+            </tr>
+            <tr id="trmonto">
+                <td>
+                    MONTO
+                </td>
+                <td><input type="text" id="txtmonto"></td>
+            </tr>
+            <tr id="trfecha">
+                <td>
+                    FECHA
+                </td>
+                <td><input type="text" id="txtfechadocumento"></td>
+            </tr>
+
+            <tr>
+                <td style="width: 210px">Descripción del Requerimiento :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtAprobacionDesc" name="txtAprobacionDesc" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
+
+

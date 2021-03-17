@@ -1,0 +1,435 @@
+﻿
+
+@{
+    ViewBag.Title = "Recaudación - Facturación Manual";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@{
+    Layout = null;
+}*@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Facturación Manual</title>
+
+    @*Javascript*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacionmanual.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.tasa.cambio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+    @*Busqueda General*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.licencia.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        #tblPeriodos, #tblFacturaBorador, #tblFacturaMasiva {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+
+        #tblPlaneamientoFactura {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+            #tblPlaneamientoFactura td {
+                border: 1px solid black;
+            }
+        /*html {
+            overflow: -moz-scrollbars-vertical;
+        }*/
+    </style>
+
+</head>
+<body>
+    <div id="ContenedormvLicencia"></div>
+    <div id="ContenedormvBuscarCorrelativo"></div>
+
+
+    <div id="divFM">
+        <input type="hidden" id="hidMoneda" />
+        <input type="hidden" id="hidCodigoGrupoEmpresarial" />
+        <input type="hidden" id="hidGrupoFacturacion" />
+        <br />
+        <center>
+        <table style="width: 98%">
+            <tr>
+                            <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                <table  width='100%' border='0' id='FiltroTabla'>
+		                            <tr>
+			                            <td style="width:500px;text-align:left;">
+				                            <div id='divTituloPerfil'>Recaudación - Facturación Manual - PASO 1</div>
+			                            </td>
+				                        <td  colspan="1">
+
+                                            <button id='btnSolicitarRequerimiento' name='btnSolicitarRequerimiento' title="Solicita un Requerimiento al Area encargada">
+                                                Solicitar Requerimiento
+                                            </button>
+                                            <button id='btnLimpiar'   name='btnLimpiar' title="Limpiar criterios de búsqueda">
+                                               Limpiar
+                                            </button>
+ 
+                                            <button id='btnBuscar'  name='btnBuscar' title="Realizar búsqueda">
+                                                Buscar
+                                            </button>
+                                            <button id='btnSiguiente'  name='btnSiguiente' title="Continuar la facturación manual">
+                                                Siguiente 
+                                            </button>
+				                        </td>   
+		                            </tr>
+	                            </table>
+                            </td>
+            </tr>
+            <tr><td><br /></td></tr>
+            <tr>
+                <td>
+                    <center>
+                        <div class="contenedor">
+                            <table style="width:100%; padding-left:30px"  border="0">
+                                <tr>
+                                    <td>Licencia :</td>
+                                    <td>
+                                        <input type="hidden" id="hidLicencia" value="0" />
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarLic" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia"/>
+                                                </td>
+                                                <td colspan="6" style="vertical-align:middle">
+                                                    &nbsp
+                                                    <label id="lblLicencia" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia">Seleccione una licencia.</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>Moneda : &nbsp 
+                                        <select id="ddlMoneda"></select> 
+                                    </td>
+                                    
+                                    <td>
+                                        Fecha Inicial : &nbsp 
+                                        <input type="text" id="txtFecInicial" readonly="false" class="requerido"/>
+                                    </td>
+                                    <td>
+                                        Fecha Final :   &nbsp 
+                                       <input type="text" id="txtFecFinal" readonly="false" class="requerido"/>
+                                    </td>
+                                    <td style='cursor:pointer;' title='Considerar tarifa del periodo seleccionado.'>
+                                        Tarifas Historicas : &nbsp
+                                        <input type="checkbox" id="chkHistorico" />
+                                    </td>
+                                </tr>                             
+                            </table>
+                        </div>
+                    </center>
+                </td>
+            </tr>
+            <tr><td><br /></td></tr>         
+            <tr>
+                <td>
+                    <center>
+                        <div id="gridFacturaManual"></div>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        </center>
+    </div>
+
+    <div id="divBorrador">
+        <br />
+        <center>
+        <table style="width: 98%">
+            <tr>
+                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                    <table  width='100%' border='0' id='FiltroTabla'>
+		                <tr>
+			                <td style="width:500px;text-align:left;">
+				                <div id='divTituloPerfil'>Recaudación - Facturación Manual -  PASO 2</div>
+			                </td>
+				            <td  colspan="1">
+                                <button id='btnVolverBorrador'   name='btnVolverBorrador' title="Volver al paso 1">
+                                    Volver
+                                </button> 
+                                <button id='btnSiguienteBorrador'   name='btnSiguienteBorrador' title="Generar Factura">
+                                    Facturar
+                               </button>
+                               <button id='btnPreView'   name='btnPreView' title="Vista previa de la Factura">
+                                    Vista Previa
+                               </button>
+				            </td>   
+		                </tr>
+	                </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:100%; padding-left:7px" id="FiltroTabla"  border="0">    
+                            <tr>
+                                <td style="text-align:right;">
+                                    Tipo  : 
+                                </td>
+                                <td >
+                                    &nbsp&nbsp&nbsp
+                                    <select id="ddlTipoFacturacionIndividual"></select>
+                                    @*<input type="hidden" id="hidEdicionPaso2" value="0" />*@
+                                </td>
+                                <td style="text-align:right;width:10%;">
+                                    Tipo Facturación :  @*antes*@
+                                </td>
+                                <td>
+                                    &nbsp&nbsp&nbsp
+                                    <select id="ddlTipoFacturacion"></select>
+                                    <input type="hidden" id="hidEdicionPaso2" value="0" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;">
+                                    Serie:
+                                </td>
+                                         @*&nbsp&nbsp&nbsp*@
+                                <td style="width:20%">
+                                    &nbsp&nbsp&nbsp
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie" />
+                                    <input type="hidden" id="hidCorrelativo" value="0" />
+                                    <input type="hidden" id="hidSerie" value="0" />
+                                    <input type="hidden" id="hidActual" value="0" />
+                                    <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie">
+                                        Seleccione una Serie.
+                                    </label>
+                                </td> 
+                                 
+                                <td style="text-align:right;width:10%;" class="tdOcultar">
+                                    N° : 
+                                </td>   
+                                <td class="tdOcultar">
+                                    &nbsp&nbsp&nbsp
+                                    <input type="text" id="txtNumeroDoc" style="width:75px" />
+                                </td>         
+                                <td style="text-align:right;" class="tdOcultar">
+                                    &nbsp&nbsp&nbsp
+                                    Fecha : 
+                                </td>
+                                <td class="tdOcultar">
+                                    <input type="text" id="txtFechaDoc" readonly="false" />
+                                </td>
+
+                                @*<td colspan="10">
+                                    <table border="0" id="tblTmpFM">
+                                        <tr>
+                                           <td style="text-align:right;width:10%;" >
+                                                N° :
+                                            </td>
+                                            <td >
+                                                &nbsp&nbsp&nbsp
+                                                <input type="text" id="txtNumeroDoc" style="width:75px" />
+                                            </td>
+                                            <td style="text-align:right;">
+                                                &nbsp&nbsp&nbsp
+                                                Fecha :
+                                            </td>
+                                            <td>
+                                                <input type="text" id="txtFechaDoc" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>*@
+                            </tr>  
+
+                            <tr>
+                                <td style="text-align:right; width:7%;vertical-align:text-top">
+                                    @*Agregar detalle
+                                    Factura manual*@
+                                    <input type="checkbox" id="chkDetalleReporte" /> Glosa :                                    
+                                </td>
+                                <td colspan="10" style="vertical-align:text-top">
+                                    &nbsp&nbsp&nbsp
+                                    <textarea id="txtDetalleReporte" maxlength="2048" rows="1" cols="60"></textarea>
+                                </td>
+                            </tr>
+                            @*style="text-align:left; width:20%"*@        
+                        </table>
+                    </center>
+                </td>
+            </tr>
+            
+            <tr><td><br /></td></tr>
+
+            <tr>
+                <td>
+                    <input type="hidden" id="hidIdFactura" value="0" />
+                    <b>DATOS DE SOCIO</b>
+                        <div id="gridBorrador"></div>
+                </td>               
+            </tr
+            <tr>
+                <td>
+                    <br />
+                    <b>DATOS PRINCIPALES DE LA FACTURA</b>
+                    <center>                        
+                        <div id="gridBorradorLicencia"></div>
+                    </center>
+                </td
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                    <b>DETALLE DE FACTURA</b>                    
+                        <div id="gridBorradorDetalle"></div>
+                </td
+            </tr>
+
+        </table>
+        </center>
+    </div>
+
+    <div id="divConsulta" style="display: none">
+        <center>
+        <table style="width: 98%">
+             <tr>
+                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                    <table  width='100%' border='0' id='FiltroTabla'>
+		                <tr>
+			                <td style="width:500px;text-align:left;">
+				                <div id='divTituloPerfil'>Recaudación - Facturación Manual -  PASO 3</div>
+			                </td>
+                               <td  colspan="1">
+                               <button id='btnEliminarFactura'   name='btnEliminarFactura' title="Anular Factura">
+                                    Anular Factura
+                               </button>
+                                <button id='btnNuevafactura'   name='btnNuevafactura' title="Nueva Factura">
+                                    Nueva Factura
+                               </button>
+                                <button id='btnRealizarImpresion'   name='btnRealizarImpresion' title="Realizar Impresion">
+                                    Realizar Impresión
+                               </button>
+                                <button id='btnVistaPrevia'  style="display: none" name='btnVistaPrevia' title="Vista previa de la Factura">
+                                    Vista Previa
+                               </button>
+				            </td>  
+		                </tr>
+	                </table>
+                </td>
+            </tr>
+
+            <tr><td><br /></td></tr>
+   
+
+            <tr>
+                <td>
+                    <div class="contenedor">
+                        <table width="100%">
+                              <tr>
+                                  <td>
+                                      Tipo de Impresión : 
+                                      &nbsp &nbsp
+                                      <select id="ddlTipoImpresion"></select>
+                                  </td>
+                              </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+
+
+
+             <tr>
+                <td>
+                    <b>DATOS DE SOCIO</b>
+                        <div id="gridConsulta"></div>
+                </td>               
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                    <b>DATOS PRINCIPALES DE LA FACTURA</b>
+                    <center>                        
+                        <div id="gridConsultaLicencia"></div>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                    <b>DETALLE DE FACTURA</b>                    
+                        <div id="gridConsultaDetalle"></div>
+                </td>
+            </tr>
+
+        </table>
+        </center>
+    </div>
+
+    <div title="Anulación de la Factura" id="mvAnulacion">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidIdFactA" />
+            <tr>
+                <td style="width: 210px">Descripción de la Anulación :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtDescripcion" name="txtDescripcion" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <br />
+
+    <div style="text-align: right; padding-right: 30px">
+        <button id='btnSalir' class="boton" name='btnSalir'>
+            Salir
+            <img src="@Url.Content("~/Images/botones/cancelar.png")" width="24px" />
+        </button>
+    </div>
+
+</body>
+<div title="Solicitud de Aprobacion de Requerimiento" id="mvSolicitudRequeFactIndiv">
+    <table width='100%' border='0' id='FiltroTablaPopObs'>
+        <tr>
+            <td>Tipo de Solicitud:</td>
+            <td><select id="ddltiporequerimiento"></select></td>
+        </tr>
+        <tr id="trlicencia">
+            <td>
+                Licencia
+            </td>
+            <td>
+                <label id="lbllicid" style="cursor: pointer; font-weight:bold;">
+                    CODIGO LICENCIA
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 210px">Descripción del Requerimiento :</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="txtAprobacionDescFact" name="txtAprobacionDescFact" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</html>

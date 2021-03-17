@@ -1,0 +1,181 @@
+﻿<div title="Agregar Reporte" id="mvReporte">
+    <table style='width: 100%;' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td>
+                <span id="lblAutorizacionRep">Autorización</span>
+            </td>
+
+            <td>
+                <select id="ddlAutorizacionRep" class="requeridoLst"></select></td>
+        </tr>
+        <tr>
+            <td><span id="lblShowRep">Shows</span> </td>
+            <td>
+                <select id="ddlShowRep" class="requeridoLst"></select></td>
+        </tr>
+        <tr>
+            <td><span id="lblArtistaRep">Artista</span> </td>
+            <td>
+                <select id="ddlArtistaRep" class="requeridoLst"></select></td>
+
+        </tr>
+        <tr>
+            <td style="width:20px;padding-left:10px">Tipo Planilla</td>
+            <td>
+                <select id="ddlTipoRep" class="requeridoLst"></select></td>
+        </tr>
+        <tr>
+
+            <td style="width:20px;padding-left:10px">
+                <input type="hidden" id="hidAccionMvRep" />
+                <input type="hidden" id="hidEdicionRep" />
+                Descripción</td>
+            <td>
+                <input type="text" id="txtDescPlanilla" class="requerido" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width:20px;padding-left:10px">Territorio</td>
+            <td>
+                <select id="ddlTerritorio" class="requeridoLst" style="width:90px"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:20px;padding-left:10px""><span id="lblReporteFecPlan">Periodo Planif</span></td>
+            <td>
+                <select id="ddlReporteFecPlan" class="requeridoLst"></select>
+            </td>
+        </tr>
+        @*-------------------------------------cambio para planillas*@
+        <tr>
+            <td id="title" style="width:20px;padding-left:10px">
+                Serie
+            </td>
+            <td style="width: 10px">
+                <select id="ddlSerie" class="requeridoLst"></select>
+                <input type="hidden" id="hidIdLic"/>
+                <input type="hidden" id="hidIdSerie"/>
+                <input type="hidden" id="hidIdReport"/>
+            </td>
+        </tr>
+        @*-------------------------------------*@
+        
+        <tr>
+            <td style="width:20px;padding-left:10px">
+                N° referencia
+            </td>
+            <td>
+                <input type="text" id="txtNumReferenciaReporte"  style="width:70px"/>   (Planillas pre- impresas)
+            </td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <center><div id="avisoReporte" style="width: 100% ; vertical-align:  middle; "></div></center>
+            </td>
+        </tr>
+ 
+    </table>
+</div>
+
+<div title="Agregar Detalle al Reporte" id="mvReporteDeta">
+    <table style='width: 100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td>Título de Show</td>
+            <td>
+                <input type="text" id="txtShowRepDeta" class="requerido" style="width: 250px;" maxlength="200" />
+            </td>
+
+        </tr>
+        <tr>
+            <td style="width: 100px;">
+                <input type="hidden" id="hidIdRepCab" />
+                <input type="hidden" id="hidAccionMvRepDeta" />
+                <input type="hidden" id="hidEdicionRepDeta" />
+                Título de Obra</td>
+            <td>
+                <input type="text" id="txtTituloObraRepDeta" class="requerido" style="width: 250px;" maxlength="100" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Autor 1</td>
+            <td>
+                <input type="text" id="txtAuto1RepDeta" class="requerido" style="width: 250px;" maxlength="100" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>Autor 2</td>
+            <td>
+                <input type="text" id="txtAuto2RepDeta" style="width: 250px;" maxlength="100" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>Total detalle</td>
+            <td>
+                <table border="0" style='width: 84%;'>
+                    <tr>
+                        <td>
+                            <input type="text" id="txtTotalDetaRepDeta" class="requerido" onkeypress="return solonumeros(event);" style="width: 50px;" maxlength="6" /></td>
+                        <td style="width: 100px;">Total Ejecución</td>
+                        <td style="float: right;">
+                            <input type="text" id="txtTotalEjecRepDeta" class="requerido" style="width: 50px;" maxlength="6" onkeypress="return solonumeros(event);" /></td>
+                    </tr>
+
+                </table>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>Fecha Emisión</td>
+            <td>
+                @*   <table  style='width: 100%;' >
+            <tr><td>*@<input type="text" id="txtFecEmisionRepDeta" class="requerido" style='width: 250px;' />
+
+                @*    </td>
+               </tr>
+
+        </table>*@
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>Duración: </td>
+            <td colspan="1">
+                <table style='width: 100%;'>
+                    <tr>
+                        <td>@*<input type="text" id="txtHoraEmision" class="requerido"  style='width: 50px;'/>*@
+
+                            <label for="rdMin">Min</label>
+                            <input type="radio" name="rdbDuracion" checked="checked" id="rdMin" value="min" />
+                            <label for="rdSeg">Seg</label>
+                            <input type="radio" name="rdbDuracion" id="rdSeg" value="seg" />
+                            &nbsp;<input type="text" id="txtDuracion" class="requerido" maxlength="4" style='width: 50px;' />
+                            &nbsp;&nbsp;Total Seg<input type="text" id="txtTotalSeg" disabled="disabled" style='width: 50px;' />
+                        </td>
+                    </tr>
+
+                </table>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>Moneda</td>
+            <td>
+                <select id="ddMonedaRepDeta" class="requeridoLst" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <center><div id="avisoReporteDeta" style=" width: 100% ; vertical-align:  middle; "></div></center>
+            </td>
+        </tr>
+    </table>
+
+</div>

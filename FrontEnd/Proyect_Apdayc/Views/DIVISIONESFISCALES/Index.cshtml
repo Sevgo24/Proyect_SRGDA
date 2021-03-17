@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: DIVISIONES FISCALES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+<script src="@Url.Content("~/Scripts/base/modBusquedaDivisionesFiscales.js")"></script>
+
+
+<br />
+<table style="width: 100%">
+    <tr>
+        <td>
+            <div id='divTitulo'>Divisiones Fiscales</div>           
+        </td
+    </tr>
+    
+    <tr>
+        <td style="vertical-align: top; height: 10px !important;"></td>
+    </tr>
+    <tr>
+        <td>
+            <center>
+               <table width='98%' border='0' id='FiltroTabla'   >
+                    <tr>
+                        <td style="width:15%;padding-left:2%" nowrap> Ingrese División Fiscal:</td>
+                        <td>
+                             <input type="text" id="txtBusqueda" placeholder="Ingrese el dato de busqueda." class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:15%;padding-left:2%" nowrap> Estado :</td>
+                        <td>
+                            <select name="ddlEstado" id="ddlEstado">
+                            </select>
+                        </td>
+                        <td>
+                            <div style=" text-align:center;">
+                                    <button id="btnBusqueda" class="boton"  >
+                                         <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                        &nbsp;Buscar</button> &nbsp;
+                            <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding-right: 3%">
+
+            <div style="float: right;">
+                <div class="btn-group">
+                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span>&nbsp;</span>
+
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" id="btnsuprimir">Suprimir</a></li>
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("../DIVISIONESFISCALES/DownloadReport", "DIVISIONESFISCALES", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                    <li><a href="@Url.Action("../DIVISIONESFISCALES/DownloadReport", "DIVISIONESFISCALES", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>               
+                </ul>
+            </div>
+
+
+                <a  href="@Url.Action("Create", "DIVISIONESFISCALES")" class="btn">
+                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva división fiscal." title="Registrar nueva división fiscal."  />
+                </a>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div id="listado"></div>
+        </td>
+    </tr>
+
+
+</table>
+

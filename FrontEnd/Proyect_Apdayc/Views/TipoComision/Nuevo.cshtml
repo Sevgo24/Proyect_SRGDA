@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tipo comisión </title>
+
+    
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.tipo.comision.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div title="Nuevo Tipo comisión">
+
+              <table width='100%' border="0" cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom">
+                    <input type="hidden" id="hidCodigo" />
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <div id='divTituloPerfil'>Tipo comisión - Nuevo</div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <center>
+
+                           <table width='98%' border="0"  id='FiltroTablaPop'>
+                                <tr>
+                                    <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                            
+                                                        <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                            Volver 
+                                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                        &nbsp;
+                                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                            Nuevo 
+                                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                        &nbsp;
+                                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                            Grabar 
+                                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>                                        
+                                    
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td></td>        
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <table>
+                                              <tr>
+                                                <td style="padding-left:30px;width:90px">
+                                                   <label id="lblcodigo">Código :</label> 
+                                                </td>
+                                                <td style="width:150px">
+                                                    <input type="text" id="txtCodigo" style="width:120px" maxlength="3" placeholder="Ingrese Código"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:30px;width:90px">
+                                                    Descripción :
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="txtDescripcion"  style="width:300px" maxlength="40" placeholder="Ingrese descripción" class="requerido" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                </td>    
+                                </tr>
+                            </table>
+
+                    </center>
+
+                </td>
+            </tr>
+
+                   <tr>
+                <td colspan="4" style="text-align: center">
+                    <div id='aviso'></div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+</html>

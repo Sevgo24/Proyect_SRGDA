@@ -1,0 +1,490 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: Tarifa Regla";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reglas de Calculo de las Tarifas - Nuevo</title>
+
+    @*    <style>
+        #tblCaracteristica {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>*@
+
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Tarifa/tarifa.regla.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+       <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="ContenedormvBuscarSocio"></div>
+        <br />
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom;" colspan="10">
+
+                    <input id="hidId" type="hidden" />
+                    <input id="hidOpcionEdit" type="hidden" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                         <td  colspan="10" style="  text-align:right; "  class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">                              
+                        <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                   Regla de Cálculo - Nuevo
+                                 </div>
+                            </td>
+                            <td>
+                                <div style="float:right;">                              
+                                <button id="btnRegresar" style="vertical-align:middle;"  class="boton" name="btnRegresar">Volver 
+                                <img src="@Url.Content("~/Images/botones/back.png")" width="14" /></button>                            
+                                 &nbsp;
+                                 <button id="btnGrabar"  class="boton" name="btnGrabar">Grabar 
+                                <img src="@Url.Content("~/Images/botones/save.png")" width="14" /></button> 
+                                </div>
+                            </td>
+                            </tr>
+                         </table>
+                         </td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td colspan="10">
+                            <div class="contenedor">                                
+                                <center>
+                                    <table border="0" style="width:98%;">                             
+                                
+                                <tr id="trId">
+                                    <td style="width:160px">                                         
+                                        Id:
+                                    </td>
+                                    <td colspan="2">
+                                        <input type="text" id="txtId" readonly/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td >
+                                        Descripción :
+                                    </td>                                    
+                                    <td colspan="2">        
+                                        
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" id="txtDescripcion" class="requerido" style="width:500px"  maxlength="100"></input>
+                                                </td>
+                                                <td>                                                    
+                                                    <div id="divResultValidacionDescripcion"></div> 
+                                                </td>
+                                            </tr>
+                                        </table>                                 
+                                        
+                                    </td>
+                                  
+                                     <td style="width:160px">                                         
+                                        Fecha de Vigencia :
+                                    </td>
+                                    <td colspan="2">
+                                        <input type="text" id="txtFecha" class="requerido" readonly/>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                   
+                                </tr>
+                                <tr>
+                                    <td style="width:100px">                                         
+                                        Moneda :
+                                    </td>
+                                    <td colspan="2">
+                                        <select  id="ddlMoneda" class="requeridoLst" style="text-transform:uppercase"></select>
+                                    </td>
+                                    <td style="width:100px">
+                                        Observación :                                        
+                                    </td>
+                                    <td rowspan="5" >
+                                        <textarea id="txtObservacion" rows="3" cols="40" ></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100px">                                         
+                                        Periodocidad :
+                                    </td>
+                                    <td colspan="2">
+                                        <select  id="ddlPeriodocidad" class="requeridoLst"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100px">                                         
+                                        Plantilla Tarifa :
+                                    </td>
+                                    <td colspan="2">
+                                        <select id="dllPlantilla" class="requeridoLst"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        N° de Variables :
+                                    </td>        
+                                    <td >
+                                        <input type="text" id="numVariable" value="0" style="width:40px"  readonly/>
+                                    </td>
+                                    <td>
+                                        <div id="divResultNumCar"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                                </center>
+                            </div>
+                        </td>                                        
+                      </tr>
+
+                    <tr><td></td></tr>
+
+                    <tr>
+                     <td style="text-align:right; color:blue">
+                         <input type="checkbox" id="chkAjustar" />
+                     </td>
+                     <td>
+                         Ajustar Unidades
+                     </td>
+
+                     <td style="text-align:right; color:blue">
+                         <input type="checkbox" id="chkAcumular" />
+                     </td>
+                       <td>
+                        Acumular Tramos
+                     </td>
+
+                 </tr>
+                     <tr><td></td></tr>
+
+                 <tr>
+                        <td colspan="10" ">
+                            <center>
+                                  <table class='FiltroTabla' border=0 width='95%;' class='ui-jqgrid-titlebar ui-widget-header ui-corner-top ui-helper-clearfix' id='FiltroTabla'>
+                                <thead>
+                                    <tr>
+                                        <th class='ui-jqgrid-titlebar ui-widget-header ui-corner-top ui-helper-clearfix'></th>
+                                        <th class='ui-jqgrid-titlebar ui-widget-header ui-corner-top ui-helper-clearfix'>Formula</th>
+                                        <th class='ui-jqgrid-titlebar ui-widget-header ui-corner-top ui-helper-clearfix'>Formato</th>
+                                        <th class='ui-jqgrid-titlebar ui-widget-header ui-corner-top ui-helper-clearfix'>Decimales</th>
+                                        <th class='ui-jqgrid-titlebar ui-widget-header ui-corner-top ui-helper-clearfix'>Incremento</th>
+                                  </tr>
+                                </thead>
+                                   <tr>
+                                        <td>REGLA</td>
+                                       <td style="text-align:center"> <input type="text" id="txtFormulaRegla" readonly class="requerido"  style="width:200px"/>  <input type="button" id="btnRegla" value="Ingresar" /> </td>
+                                       <td style="text-align:center"> <select id="ddlFormatoRegla" class="requeridoLst">    </select> </td>
+                                       <td style="text-align:center"> <input type="text" id="txtDecimalesRegla" class="requerido" maxlength="1" style="width:40px"/> </td>
+                                       <td style="text-align:center"> <input type="checkbox" id="chkReglaIncremento"  style="width:40px"/> </td>
+                                   </tr>
+                                   <tr>
+                                       <td>MINIMO</td>
+                                       <td style="text-align:center"> <input type="text" id="txtFormulaMinimo" readonly class="requerido" style="width:200px"/> <input type="button" id="btnMinimo" value="Ingresar"/> </td>
+                                       <td style="text-align:center"> <select id="ddlFormatoMinimo" class="requeridoLst"></select></td>
+                                       <td style="text-align:center"> <input type="text" id="txtDecimalesMinimo" class="requerido" maxlength="1" style="width:40px"/> </td>
+                                       <td style="text-align:center"> <input type="checkbox" id="chkMinimoIncremento"  style="width:40px"/> </td>
+                                   </tr>
+                                
+                                </table>
+                            </center>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td  colspan="10" >
+                            <div id="tabs">
+                                  <ul>
+                                    <li><a href="#tabs-8" id="tabObs">Lista de Caracteristica</a></li>
+                                    <li><a href="#tabs-2" id="tabVar">Lista de Variables</a></li>
+                                    <li><a href="#tabs-3" id="tabmatriz">Matriz</a></li>
+
+                                  </ul>
+
+                                 <div id="tabs-8">
+                                    <table style="width: 100%;" border="0"> 
+                                        <tr>
+                                            <td id="tdBoton">
+                                               <div id="imgCaracteristicaRemove">                                                    
+                                                    <img src="~/Images/botones/add.png" class="addCaracteristica" height="30" >
+                                                </div>
+                                                <div id="imgCaracteristica">                                                    
+                                                    <img src="~/Images/botones/add.png" class="addCaracteristica" height="30" >
+                                                </div>
+                                                <div id="hrefCaracteristica" style="margin-top: -30px; margin-left: 30px;" ><a href="#" class="addCaracteristica">Agregar Caracteristica  </a></div>
+
+                                                <hr />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="gridCaracteristica"></div>
+                                            </td>
+                                        </tr>
+                                        
+
+                                    </table>
+                                </div>
+
+                                 <div id="tabs-2">
+                                    <table style="width: 100%;" border="0"> 
+                                        <tr>
+
+@*                                            <td style="text-align:center">
+                                               Caracteristica : 
+                                                &nbsp
+                                                <select id="ddlCaracteristica>"></select>
+                                            </td>*@
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="gridValor"></div>
+                                            </td>
+                                        </tr>     
+                                    </table>
+                                </div>
+
+                                 <div id="tabs-3">
+                                    <table style="width: 100%;" border="0"> 
+                                        <tr>
+                                            <td id="tdBoton">
+                                                <div id="imgLimpiar">
+                                                    <img src="~/Images/botones/clear.png" class="addLimpiar" height="30"                                                         
+                                                </div>
+                                                <div id="hrefLimpiar" style="margin-top: -30px; margin-left: 30px;" ><a href="#" class="addLimpiar">Limpiar valores</a></div>
+                                                <hr />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="gridMatriz"></div>
+                                            </td>
+                                        </tr>     
+                                    </table>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                 
+
+               
+                    
+
+                </table>
+
+            </center>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 30px;'>
+                    <center>                       
+                        <div id='aviso' style=" width: 100% ; vertical-align:  middle; "></div>
+                     </center>
+                </td>
+            </tr>
+        </table>
+
+
+
+    </div>
+
+
+
+    <div title="Agregar Caracteristica" id="mvObservacion">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr>
+                <td style="width: 210px">Caracteristica :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvObs" />
+                    <input type="hidden" id="hidEdicionObs" />
+                    <select id="ddlTipoCaracteristica">
+                    </select>
+                </td>
+            </tr>
+            <tr hidden>
+                <td>Tramo :
+                </td>
+                <td>
+                    <input type="checkbox" id="chkTramo" />
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div title="Generar Formula" id="mvFormula">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>            
+            <tr>               
+                <td>Formula :</td>
+                <td colspan="2">
+                    <input type="hidden" id="hidFormula" />
+                    <input type="text" id="txtFormulaPopUp"  maxlength="100" value="Limpiar" style="width:280px" />
+                    <input type="button" id="btnLimpiarPopup" value="Limpiar"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Valores :</td>
+                <td>
+                    <table>
+                        <td>
+                            <input type="button" id="numA" value="A" />
+                            <input type="button" id="numB" value="B" />
+                            <input type="button" id="numC" value="C" />
+                            <input type="button" id="numD" value="D" />
+                            <input type="button" id="numE" value="E" />
+                             | 
+                            <input type="button" id="numR" value="R" />
+                            &nbsp
+                            <input type="button" id="numBack" value="<-" />
+                        </td>
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td>Operadores :</td>
+               
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align:center">
+                    <table id="FiltroTabla">
+                        <tr>
+                            <td>
+                                <input type="button" id="num7" value="7" />
+                            </td>
+                            <td>
+                                <input type="button" id="num8" value="8" style="width:40px"/>
+                            </td>
+                            <td>
+                                <input type="button" id="num9" value="9" />
+                            </td>
+                            <td>
+                                <input type="button" id="numDivisor" value="/" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" id="num4" value="4" />
+                            </td>
+                            <td>
+                                <input type="button" id="num5" value="5" style="width:40px"/>
+                            </td>
+                            <td>
+                                <input type="button" id="num6" value="6" />
+                            </td>
+                            <td>
+                                <input type="button" id="numMultiplicador" value="*" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" id="num1" value="1" />
+                            </td>
+                            <td>
+                                <input type="button" id="num2" value="2" style="width:40px" />
+                            </td>
+                            <td>
+                                <input type="button" id="num3" value="3" />
+                            </td>
+                            <td>
+                                <input type="button" id="numResta" value="-" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" id="num0" value="0" />
+                            </td>
+                            <td>
+                                <input type="button" id="numPabierto" value="(" style="width:10px"/>
+                                <input type="button" id="numPcerrado" value=")" style="width:10px"/>
+                            </td>
+                            <td>
+                                <input type="button" id="numPunto" value="." />
+                            </td>
+                            <td>
+                                <input type="button" id="numSuma" value="+" />
+                            </td>
+                        </tr>
+                    </table>
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div title="Agregar Valor" id="mvValor">
+        <table width='100%' border='0' id='FiltroTablaPopVal'>
+
+            <tr>
+                <td>
+                    <input type="hidden" id="hidAccionMvVal" />
+                    <input type="hidden" id="hidEdicionValCar" />
+                    <input type="hidden" id="hidEdicionVal" />
+                    Descripción :
+                </td>
+                <td>
+                    <input type="text" id="txtDescVal" maxlength="40" style="width: 250px" />
+                </td>
+            </tr>
+            <tr>
+                <td>Desde :</td>
+                <td>
+                    <input type="text" id="txtValDesde" maxlength="16" style="width: 60px" />
+                </td>
+            </tr>
+            <tr class="trValHasta">
+                <td style="width: 110px">Hasta :</td>
+                <td>
+                    <input type="text" id="txtValHasta" maxlength="16" style="width: 60px" />
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+
+
+
+
+</body>
+</html>
+

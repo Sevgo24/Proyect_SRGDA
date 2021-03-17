@@ -1,0 +1,278 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: Reporte Facturacion Mensual";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    @*LIMPIAR CACHE CON F5*@
+    @*<link rel="stylesheet" type="text/css" href="css/site.css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SGRDA/Reporte/RefreshCache.js")"></script>*@
+    @*---*@
+
+    @* NO guardar cache *@
+    <meta http-equiv="expires" content="0">
+
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    @*---------------------------------*@
+
+    <meta name="viewport" content="width=device-width" />
+    <title>REPORTE DE FACTURACION MENSUAL</title>
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.division.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Reporte/mantenimiento.reporte.reporte.facturacion.mensual.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+    <style>
+        html .k-grid tr:hover {
+            background: #DFEFFC;
+        }
+
+        html .k-grid tr.k-alt:hover {
+            /*background: #f1f1f1;*/
+            background: #DFEFFC;
+        }
+        /*customClass
+        {
+            font-size:30px;
+        }*/
+    </style>
+
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+        * we use height instead, but this forces the menu to always be this tall
+        */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div>
+        <center>
+            <table style="width:98% " border='0' cellspacing='0' cellpadding='0'>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id='divTitulo'>REPORTE DE FACTURACION MENSUAL</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <center>
+                            <div class="contenedor">
+                                <table style="border-style: none;width:100%; padding-left:30px; padding-right:30px" id="FiltroTabla" frame="void" border="0">
+                                    <tr>
+                                        <td  width="50px" align="left">Fecha Emision : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="checkbox" id="chekFechaEmi" /></td>
+                                        &nbsp;
+                                        
+                                        <td style="width:18%">
+                                            <input type="text" id="txtFecInicial" readonly="false" class="requerido" />
+                                        </td>
+                                        <td style="width:12%">
+                                            <input type="text" id="txtFecFinal" readonly="false" class="requerido" />
+                                        </td>
+                                        <td style="width:30%" id="tddllOficina">Oficina:&nbsp&nbsp&nbsp<select id="dllOficina"></select></td>
+                                        <td style="width:18%" align="right" colspan="2">
+                                            <button id='btnPdf' class="boton" name='btnPdf'>
+                                                Rep. PDF
+                                                <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                                            </button>
+                                            &nbsp;
+                                            <button id='btnExcel' class="boton" name='btnExcel'>
+                                                Rep. EXCEL
+                                                <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50px" align="left"> Fecha Cancelacion : &nbsp <input type="checkbox" id="chekFechaCan" /></td>
+                                        <td style="width:18%">
+                                            <input type="text" id="txtFecInicialCancel" readonly="false" class="requerido" />
+                                        </td>
+                                        <td style="width:12%">
+                                            <input type="text" id="txtFecFinalCancel" readonly="false" class="requerido" />
+                                        </td>
+                                        <td id="tddllTipoEnvio" style="width:100px">
+                                            TipoEnvio:
+                                            <select id="dllTipoEnvio"></select>
+                                        </td>
+                                    </tr>
+                                    <tr>                                    
+                                        <td width="50px" align="left"> Fecha Confirmacion : &nbsp<input type="checkbox" id="chekFechaCon" /></td>
+                                        <td style="width:18%">
+                                            <input type="text" id="txtFecIniConfirmacion" readonly="false" class="requerido" />
+                                        </td>
+                                        <td style="width:12%">
+                                            <input type="text" id="txtFecFinConfirmacion" readonly="false" class="requerido" />
+                                        </td>
+                                        <td>
+                                            <br />
+                                            <br />
+                                        </td>
+                                    <tr>
+                                        @*<td>
+                                           
+                                            TIPO DOCUMENTO :
+                                        </td>*@
+                                    @*</tr>
+                                    <tr>*@
+                                        @*<td style="width:40%" colspan="2">
+                                            <label>Tipo Documento:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                                            <select id="divTipDoc" style="30px">
+                                                <option value=0 selected="selected">--TODOS--</option>
+                                                <option value=1>FACTURA</option>
+                                                <option value=2>BOLETA</option>
+                                                <option value=3>NOTA DE CREDITO</option>
+                                            </select>*@
+                                        <td  colspan="10" align="left">
+                                            <div id="gridTipoDoc" style="color:black">
+                                            </div>
+                                        </td>
+                                   </tr>
+                                   <tr>
+                                       @*<td >
+                                         
+                                           ESTADO :
+                                       </td>*@
+                                   @*</tr>
+                                    <tr>*@
+                                        <td  colspan="10" align="left">
+                                            <div id="gridEstado" style="color:black">
+                                            </div>
+                                        </td>
+                                        @*<td style="width:40%">
+                                            Estado: &nbsp
+                                            <select id="divEstado">
+                                                <option value=0 selected="selected">--TODOS--</option>
+                                                <option value=1>CANCELADO</option>
+                                                <option value=2>PENDIENTE</option>
+                                                <option value=3>PARCIALMENTE CANCELADO</option>
+                                                <option value=4>ANULADO</option>
+                                            </select>
+                                        </td>*@
+                                       
+                                        @*<td id="tddllTipoEnvio" style="width:100px" colspan="2">
+                                            TipoEnvio:
+                                            <select id="dllTipoEnvio"></select>
+                                        </td>*@
+                                    </tr>
+                                    <tr>
+                                        <td width="50px"id="TddRubro">
+                                           RUBRO:
+                                        </td>
+                                    @*</tr>
+                                    <tr>*@
+                                        <td  padding-left:40px; padding-right:30px" colspan="15" align="left">
+                                            <div id="gridModalidad" style="color:black">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:10px" colspan="10">
+                                            <hr style="color: black; background-color: black;height:1px;" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50px" >División Geografica</td>
+                                        <td colspan="5">
+                                            <select id="ddlDivision"></select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50px">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        @*<td>Departamento</td>*@
+                                        <td width="50px"><label id="lblSubTipo1"></label><input type="hidden" id="hidSubTipo1" /></td>
+                                        <td><select id="ddlSubTipo1" style="width:200px"></select> </td>
+
+                                        @*<td>Provincia</td>*@
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <label id="lblSubTipo2"></label><input type="hidden" id="hidSubTipo2" />
+                                            <select id="ddlSubTipo2" style="width:200px"></select>
+                                        </td>
+
+                                        @*<td>Distrito</td>*@
+                                        <td><label id="lblSubTipo3"></label><input type="hidden" id="hidSubTipo3" /></td>
+                                        <td><select id="ddlSubTipo3" style="width:200px"></select> </td>
+                                    </tr>
+                               
+                                </table>
+                            </div>
+                        </center>
+                    </td>
+                </tr>
+                <tr><td><br /></td></tr>
+                <tr>
+                    <td style="vertical-align:central;text-align:center">
+                        <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style='height: 30px;'>
+                        <center>
+                            <div id='error' style=" width 100% ; vertical-align middle; ">
+                            </div>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </center>
+        @*           ESTO ES PARA EL IFRAME*@
+
+        @*<div id ="contenedor"style="display:none"><iframe src="" width ="1555" height="900" id="externo"></iframe></div>*@
+        @*<div id ="contenedor" style="display:none"><iframe src="" width ="90%" height="900"  id="externo"></iframe></div>*@
+
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,6 @@
+﻿td {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
+
+.selected {
+    background-color: #c1edef;
+    color: #FFF;
+}

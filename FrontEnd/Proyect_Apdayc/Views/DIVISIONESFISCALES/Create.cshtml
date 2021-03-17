@@ -1,0 +1,123 @@
+﻿@model SGRDA.Entities.BEREF_TAX_DIVISION
+
+@{
+    ViewBag.Title = "APDAYC :: DIVISIONES FISCALES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+    });
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "DIVISIONESFISCALES", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+     <div id='divTituloPerfil' style="margin-top: 22px;">
+        Division Fiscal - Nuevo
+    </div>
+    <br />
+    
+    <center>
+    <table border="0" style="width: 98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+        <tr>
+            <td colspan="2" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                <div style="float: right;">
+                    <div class="botonLink" style="width: 80px;">
+                        <a href="@Url.Action("../DIVISIONESFISCALES/", "DIVISIONESFISCALES")"   >
+                            <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                            </div>
+                        </a>
+                    </div>
+                    &nbsp;
+                        <button id="btnSave" class="boton">
+                            <span style="color: #000; font-weight: 200;">Grabar </span>
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>
+                </div>
+            </td>
+        </tr>
+
+        <tr><td><br /></td></tr>
+
+          <tr>            
+            <td style="width:170px;padding-left:2% " >
+                Nombre :
+                </td>
+            <td>
+                @Html.TextBoxFor(p => p.DESCRIPTION, htmlAttributes: new { style = "width:350px;" , maxLength = "40" })
+            </td>
+        </tr>  
+
+        <tr>            
+            <td style="width:170px;padding-left:2% " >
+                Territorio :
+                </td>
+            <td>
+                @if (ViewData.ContainsKey("Lista_TipoTerritorio"))
+                {
+                    @Html.DropDownList("Lista_TipoTerritorio", ViewData["Lista_TipoTerritorio"] as List<SelectListItem>, new { style = "width:250px", id = "TIS_N" }) 
+                }
+            </td>
+        </tr>   
+      
+
+        
+       
+
+        <tr><td><br /></td></tr>
+    </table>
+    </center>
+    
+    
+    
+
+
+     
+  
+      
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+        })
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

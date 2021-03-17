@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_REF_SOCIETY_TYPE" targetNamespace="http://tempuri.org/DS_REF_SOCIETY_TYPE.xsd" xmlns:mstns="http://tempuri.org/DS_REF_SOCIETY_TYPE.xsd" xmlns="http://tempuri.org/DS_REF_SOCIETY_TYPE.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_REF_SOCIETY_TYPE" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_REF_SOCIETY_TYPE" msprop:Generator_UserDSName="DS_REF_SOCIETY_TYPE">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="usp_listar_tipoderecho" msprop:Generator_TableClassName="usp_listar_tipoderechoDataTable" msprop:Generator_TableVarName="tableusp_listar_tipoderecho" msprop:Generator_RowChangedName="usp_listar_tipoderechoRowChanged" msprop:Generator_TablePropName="usp_listar_tipoderecho" msprop:Generator_RowDeletingName="usp_listar_tipoderechoRowDeleting" msprop:Generator_RowChangingName="usp_listar_tipoderechoRowChanging" msprop:Generator_RowEvHandlerName="usp_listar_tipoderechoRowChangeEventHandler" msprop:Generator_RowDeletedName="usp_listar_tipoderechoRowDeleted" msprop:Generator_RowClassName="usp_listar_tipoderechoRow" msprop:Generator_UserTableName="usp_listar_tipoderecho" msprop:Generator_RowEvArgName="usp_listar_tipoderechoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SOC_TYPE" msprop:Generator_ColumnVarNameInTable="columnSOC_TYPE" msprop:Generator_ColumnPropNameInRow="SOC_TYPE" msprop:Generator_ColumnPropNameInTable="SOC_TYPEColumn" msprop:Generator_UserColumnName="SOC_TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="SOC_DESC" msprop:Generator_ColumnVarNameInTable="columnSOC_DESC" msprop:Generator_ColumnPropNameInRow="SOC_DESC" msprop:Generator_ColumnPropNameInTable="SOC_DESCColumn" msprop:Generator_UserColumnName="SOC_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_DATE_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_DATE_CREATColumn" msprop:Generator_UserColumnName="LOG_DATE_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_DATE_UPDATEColumn" msprop:Generator_UserColumnName="LOG_DATE_UPDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_USER_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_USER_CREATColumn" msprop:Generator_UserColumnName="LOG_USER_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_USER_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_USER_UPDATEColumn" msprop:Generator_UserColumnName="LOG_USER_UPDATE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

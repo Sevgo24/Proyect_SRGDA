@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: TIPOS DE DIVISIONES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tipos de Divisiones - Nuevo</title>
+
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.tipo.divisiones.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+</head>
+<body>
+    <br />
+    <table width='100%' border="0" cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style="vertical-align: bottom">
+                <input id="hidOpcionEdit" type="hidden" />
+                <input id="hidCodigo" type="hidden" />
+                <input id="hidaccion" type="hidden" />
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <center>
+                           <table width='98%' border="0"  id='FiltroTablaPop'>
+                                <tr>
+                                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                       <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                 Tipos de Divisiones - Nuevo
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">                         
+                                        <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                        Volver 
+                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                &nbsp;
+                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                        Nuevo 
+                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                &nbsp;
+                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                        Grabar 
+                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>
+                                </div>     </td>
+                            </tr></table>
+                            </tr>
+
+                                <tr>
+                                    <td></td>        
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <table border="0"> 
+                                            <tr>
+                                         <td>
+                                             Código :    
+                                        </td>
+                                            <td>
+                                                <input type="text" id="txtCodigo" maxlength="3" style="width:250px" class="requerido"/>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                         <td>
+                                             Tipo de división :    
+                                        </td>
+                                            <td>
+                                                <input type="text" id="txtDivision" maxlength="40" style="width:250px" class="requerido"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                             <td>
+                                                 Territorio :    
+                                            </td>
+                                            <td>
+                                                <select id="ddlTerritorio" style="width:260px"></select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                        <td style="vertical-align:super">                 
+                                            Observación :            
+                                        </td>
+                                            <td>
+                                                <textarea id="txtObservacion" rows="4" maxlength="1024" style="width:255px" class="requerido"></textarea>
+                                            </td>
+          
+                                        </tr>
+                                        </table>
+                                </td>    
+                                </tr>
+                            </table>
+                    </center>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: center">
+                <div id='aviso'></div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

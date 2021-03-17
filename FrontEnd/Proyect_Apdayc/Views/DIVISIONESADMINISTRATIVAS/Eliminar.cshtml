@@ -1,0 +1,35 @@
+﻿@model SGRDA.Entities.BEREF_DIVISIONES
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+    
+    <p>
+        <input type="hidden" id="DAD_ID" name="DAD_ID" value="@Html.DisplayFor(model => model.DAD_ID)"/>
+    </p>  
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

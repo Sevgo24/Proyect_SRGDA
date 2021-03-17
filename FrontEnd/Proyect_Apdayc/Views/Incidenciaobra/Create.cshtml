@@ -1,0 +1,143 @@
+﻿@model SGRDA.Entities.BEREC_MOD_IMPACT
+@{
+    ViewBag.Title = "APDAYC :: INCIDENCIAS DE LA OBRA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+        $("#MOD_INCID").focus();
+    });
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "Incidenciaobra", FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+        
+    <br />
+    
+    <center>
+          <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+            <tr>
+                <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+                      <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                   <div id="divTituloPerfil">  Incidencias de la Obra - Nuevo</div>
+
+                            </td>
+                            <td> 
+                                 <div style="float:right;">
+                        <div class="botonLink"  style="width:80px;">
+                        <a href="@Url.Action("../Incidenciaobra/", "Incidenciaobra")"   >
+                            <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                            <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                        </a>
+                            </div>
+                             &nbsp;
+                               <button id="btnSave"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Grabar </span> 
+                                  <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                               </button> 
+                                                             </div>
+                                </td></tr></table>
+                </td>
+
+            </tr>
+             <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+            <tr>            
+            <td style="width:13%; padding-left:2%">
+                Id :
+            </td>
+             <td>
+                @Html.TextBoxFor(model => model.MOD_INCID, htmlAttributes: new { id = "MOD_INCID", style = "width:60px;", MaxLength = "3" })
+         
+            </td>
+            </tr>
+             
+            <tr>   
+            <td style="width:13%; padding-left:2%">
+                Descripción :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.MOD_IDESC, htmlAttributes: new { id = "MOD_IDESC", MaxLength = "40", style = "width:200px;" })
+        
+
+            </td>
+            </tr>
+
+            <tr>   
+            <td style="width:13%; padding-left:2%">
+                Detalle :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.MOD_IDET, htmlAttributes: new { id = "MOD_IDET", MaxLength = "512", style = "width:400px;" })
+        
+
+            </td>
+            </tr>
+              
+            <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+            </tr>
+
+        </table>
+    </center>
+
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>     
+}
+
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+
+
+        })
+    };
+
+    if ('@TempData["flag"]' == "1") {
+        alert("Grabado correctamente.");
+        location.href = "../Incidenciaobra"
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

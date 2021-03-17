@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: TRASLADO AGENTE RECAUDO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Traslado Agentes de recaudo</title>
+ @*   <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.trasladoagente.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+
+        ul.ui-autocomplete {
+            z-index: 1100;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        
+        <div id="ContenedormvBuscarSocio"></div>
+        <table width='100%' border='0' cellspacing='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+
+                    <div id='divTitulo'>Traslado Agente Recaudo</div>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input type="hidden" id="hidCodigoBPS" />
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTabla'>
+                            
+                            @*<tr>
+                                <td>
+                                    <table border="0">
+
+                                    <tr>                                       
+                                         <td>Tipo de Identificación</td>
+                                         <td><select name="ddlTipoIdentificacion" id="ddlTipoIdentificacion" style="width: 160px"></select></td>
+	                                     <td>  </td>                                           
+                                    </tr>
+
+                                    <tr>
+                                         <td>Nro. Identificación</td>
+                                         <td> <input type="text" id="txtNroIdentificacion" style="width: 148px" class="requerido"/>
+                                              <input type="hidden" id="hidCantNumValidar" />
+                                              <input type="hidden" id="hidExitoValNumero" />   
+                                         </td>
+                                        
+
+                                         <td><div id="divResultValidarDoc"></div></td>
+                                    </tr>
+
+                                    <tr>                                        
+                                         <td>Apellidos y Nombres</td>
+                                         <td><input type="text" id="txtNombre" style="width: 300px" class="requerido">
+                                             <input type="hidden" id="hidCodigoBPS">
+                                             <button id='btnBuscar'  class="boton">Buscar 
+                                             <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                                         </td>
+                                         <td> </td>                    
+                                    </tr>
+                                    </table>
+
+                                </td>
+                              </tr>*@
+
+                            <tr>
+                                <td style="width: 7%">Agente Recaudo</td>
+                                <td colspan="5">
+                                    <table border="0" style="border-collapse: collapse;">
+                                        <tr>
+                                            <td>
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Agente" title="Búsqueda de Agente"/>
+
+                                            </td>
+                                            <td colspan="6">
+                                                <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Agente" title="Búsqueda de Agente">Seleccione</label>
+                                            </td>
+
+                                            <td><div id="divResultValidarDoc"></div></td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <td>
+                                    
+                                         <center><div id="divValidacion"></div></center>
+                                </td>
+
+                                <td style="text-align:right">
+                    <button id='btnBuscar' class="boton" name='btnBuscar'>
+                        Buscar 
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                    &nbsp;
+                                                <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                                                    Limpiar 
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                    <br />
+                </td>
+                            </tr>
+
+                             <table  width='98%' border='0' id=''>
+
+                                 <tr>
+                                     <td style='height: 40px; vertical-align: bottom;'>
+                                    <div style="float: right;">                    
+                                         <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo traslado." title="Registrar nuevo traslado." id="btnNuevo"/>
+                     
+                                    
+                                    </div>
+                                 </td>    
+                                 </tr>
+                                 <tr>
+                                     <td>                                         
+                                         <div id="gridAgenteRecaudo"></div>
+                                     </td>
+                                 </tr>
+                            </table>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

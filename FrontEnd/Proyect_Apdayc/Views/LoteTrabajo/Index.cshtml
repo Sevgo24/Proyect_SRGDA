@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: LOTES DE TABAJO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lotes de Trabajo</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Campania/mantenimiento.lote.trabajo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarSocio"></div>
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="text-align: left" colspan="2">
+                    <div id="divTitulo">Lotes de Trabajo</div>
+                    <input type="hidden" id="hidOpcionEdit" />
+                    <input type="hidden" id="hidResponsable" />
+                    <br />
+                </td>
+            </tr>
+
+            <table border="0" style="width: 98%" class="contenedor">
+                <tr>
+                    <td style="width: 8px">Fecha Inicial</td>
+                    <td style="width: 30px">
+                        <input type="text" id="txtFechaIni" />
+                    </td>
+
+                    <td style="width: 50px"></td>
+
+                    <td style="width: 80px">Fecha Final</td>
+                    <td>
+                        <input type="text" id="txtFechaFin" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width: 8%">Agente Recaudo</td>
+                    <td colspan="6">
+                        <table border="0" style="border-collapse: collapse;">
+                            <tr>
+                                <td>
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Agente" title="Búsqueda de Agente"/>
+
+                                </td>
+                                <td colspan="6">
+                                    <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Agente" title="Búsqueda de Agente">Seleccione</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Estado :</td>
+                    <td>
+                        <select id="ddlEstado" style="width: 130px"></select></td>
+                </tr>
+
+
+                <tr>
+                    <td style="text-align: right;" colspan="5">
+                        <button id='btnBuscar' class="boton" name='btnBuscar'>
+                            Buscar
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                        &nbsp;
+                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                            Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                        <br />
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" style="width: 98%">
+                <tr>
+                    <td style='height: 20px; vertical-align: bottom;' colspan="20">
+                        <div style="float: right;">
+                            <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva uso repertorio." title="Registrar nueva uso repertorio." id="btnNuevo"/>&nbsp;
+                                        <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de uso repertorio." title="Inactivar datos de uso repertorio."  id="btnEliminar"/>
+                            &nbsp; 
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <tr>
+                <td>
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

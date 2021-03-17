@@ -1,0 +1,249 @@
+﻿<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/styles/kendo.metro.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+
+<link href="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.pack.js")"></script>
+<script src="@Url.Content("~/Scripts/Base/modModal.js")"></script>
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+<script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.division.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+<script>
+    $(function () {
+
+        var code = GetQueryStringParams('code');
+        // alert(xSondaje)
+        if ($.trim(code) != "") {
+
+            $.ajax({
+                url: 'Obtiene',
+                type: 'POST',
+                data: { id: code },
+                beforeSend: function () { },
+                success: function (response) {
+                    var dato = response;
+                    if (dato.result == 1) {
+                        var division = dato.data.Data;
+                        if (division != null) {
+                            $("#txtDadid").val(division.DADV_ID);
+                            $("#txtDivision").val(division.DAD_NAME);
+                            $("#txtSubdivision").val(division.DAD_SNAME);
+                            $("#txtCodigo").val(division.DAD_VCODE);
+                            $("#txtDescripcion").val(division.DAD_VNAME);
+                            $("#txtDependencia").val(division.DAD_BELONGS);
+                            loadDivisiones(division.DAD_ID);
+                        }
+                    } else {
+                        alert(dato.message);
+                    }
+                }
+            });
+            
+        } else {
+            alert("No se pudo obtener el codigo del sondaje seleccionado.");
+        }
+
+
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        //combos
+        $("#ddlDivision").hide();
+        $("#ddlSubdivision").hide();
+        $("#ddlDependencia").hide();
+
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#btnedit").hide();
+
+            $("#txtDivision").hide();
+            $("#txtSubdivision").hide();
+            $("#txtDependencia").hide();
+
+            $("#ddlDivision").show();
+            $("#ddlSubdivision").show();
+            $("#ddlDependencia").show();         
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+
+            $("#nombre").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            $("#ddlDivision").hide();
+            $("#ddlSubdivision").hide();
+            $("#ddlDependencia").hide();
+
+            $("txtDivision").show();
+            $("txtSubdivision").show();
+            $("txtDependencia").show();
+            location.reload();
+        })
+    });
+
+    function GetQueryStringParams(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+
+
+    function loadDependecia(ddlPadre, valEdit) {
+        $('#ddlDependencia option').remove();
+        $('#ddlDependencia').append($("<option />", { value: 0, text: '<--Seleccione-->' }));
+        $.ajax({
+            url: '../General/ListaDependencia',
+            type: 'POST',
+            data: { dSubTipoDivision: ddlPadre },
+            beforeSend: function () { },
+            success: function (response) {
+                var dato = response;
+                if (dato.result == 1) {
+                    var datos = dato.data.Data;
+                    $.each(datos, function (indice, valor) {
+                        if (valor.Value == valEdit)
+                            $('#ddlDependencia').append($("<option />", { value: valor.Value, text: valor.Text, selected: true }));
+                        else
+                            $('#ddlDependencia').append($("<option />", { value: valor.Value, text: valor.Text }));
+                    });
+                } else {
+                    alert(dato.message);
+                }
+            }
+        });
+    }
+
+    function loadSubDivisiones(ddlDivision, valEdit) {
+        $('#ddlSubdivision option').remove();
+        $('#ddlSubdivision').append($("<option />", { value: 0, text: '<--Seleccione-->' }));
+        $.ajax({
+            url: '../General/ListaSubDivisiones',
+            type: 'POST',
+            data: { dDivision: ddlDivision },
+            beforeSend: function () { },
+            success: function (response) {
+                var dato = response;
+                if (dato.result == 1) {
+                    var datos = dato.data.Data;
+                    $.each(datos, function (indice, valor) {
+                        if (valor.Value == valEdit)
+                            $('#ddlSubdivision').append($("<option />", { value: valor.Value, text: valor.Text, selected: true }));
+                        else
+                            $('#ddlSubdivision').append($("<option />", { value: valor.Value, text: valor.Text }));
+                    });
+                } else {
+                    alert(dato.message);
+                }
+            }
+        });
+    }
+
+    function loadDivisiones(tipo) {
+        $('#ddlDivision option').remove();
+        $('#ddlDivision').append($("<option />", { value: 0, text: '<--Seleccione-->' }));
+        $.ajax({
+            url: '../General/ListaDivisiones',
+            type: 'POST',
+            beforeSend: function () { },
+            success: function (response) {
+                var dato = response;
+                if (dato.result == 1) {
+                    var datos = dato.data.Data;
+
+                    $.each(datos, function (indice, valor) {
+                        if (valor.Value == tipo)
+                            $('#ddlDivision').append($("<option />", { value: valor.Value, text: valor.Text, selected: true }));
+                        else
+                            $('#ddlDivision').append($("<option />", { value: valor.Value, text: valor.Text }));
+                    });
+                } else {
+                    alert(dato.message);
+                }
+            }
+        });
+    }
+
+</script>
+
+
+<fieldset>
+    <legend id="legend">@Html.ActionLink("Division", "Index", new { }, new { style = "text-decoration:none;" }) </legend>
+    <div class="popUp-content">
+        <br />
+        <div>
+            <a href="@Url.Action("Create", "Division")" id="btnnuevo" class="btn btn-success">Nuevo</a>
+            <button id="btnSave" class="btn btn-success">Guardar</button>
+            <a href="#" id="btncancel" class="btn btn-success">Descartar</a>
+            <a href="#" id="btnedit" class="btn btn-success">Editar</a>
+        </div>
+    </div>
+</fieldset>
+<br />
+
+@*<div title="Registrar Nuevo Usuario" id="ModalNeo">*@
+
+<label>División</label><br />
+
+<input type="hidden" id="txtDadid" name="txtDADV_ID"/>
+
+<input type="text" id="txtDivision" name="txtDivision" class="requerido" style="width: 300px" ,htmlAttributes: new { disabled = "disabled"} />
+<select name="ddlDivision" id="ddlDivision"></select><br />
+
+<label>Subtipo división</label><br />
+<input type="text" id="txtSubdivision" name="txtSubdivision" class="requerido" style="width: 200px" ,htmlAttributes: new { disabled = "disabled"} />
+<select name="ddlSubdivision" id="ddlSubdivision"></select><br />
+
+<label>Código</label><br />
+<input type="text" id="txtCodigo" name="txtcodigo" class="requerido" style="width: 80px" ,htmlAttributes: new { disabled = "disabled"} /><br />
+
+<label>Descripción</label><br />
+<input type="text" id="txtDescripcion" name="txtDescripcion" class="requerido" style="width: 200px" ,htmlAttributes: new { disabled = "disabled"} /><br />
+
+<label>Dependencia</label><br />
+<input type="text" id="txtDependencia" name="txtDependencia" class="requerido" style="width: 200px" ,htmlAttributes: new { disabled = "disabled"} />
+<select name="ddlDependencia" id="ddlDependencia"></select>
+
+<input hidden="hidden" id="hidOpcionEdit" />
+<div id="aviso"></div>
+@*</div>*@
+
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("txtCodigo").disabled = false;
+        document.getElementById("txtDescripcion").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("txtCodigo").disabled = true;
+        document.getElementById("txtDescripcion").disabled = false;
+    })
+</script>

@@ -1,0 +1,212 @@
+﻿@{
+	ViewBag.Title = "Workflow - Mapa de Acciones de Transición";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Workflow - Estado de Procesos</title>
+
+	<script src="@Url.Content("~/Scripts/SGRDA/WorkFlow/mantenimiento.mapping.nuevo.js")"></script>
+	<script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+	<script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+	<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.accion.js")"></script>
+	<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.workflow.objects.js")"></script>
+
+	<script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/swfobject.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/jquery.uploadify.v2.1.4.min.js")"></script>
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/Extensiones/_scripts/uploadify.css")" />
+
+	<link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+	<link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+	<script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Style/Stylefont.css")" />
+
+	<style>
+		li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="ContenedormvBuscarAccion"></div>
+	<div id="ContenedormvBuscarObjects"></div>
+
+	<div>
+		<table style="width: 100%" border="0">
+			<tr>
+				<td>
+					<input id="hidOpcionEdit" type="hidden" />
+					<input id="hidAccion" type="hidden" />
+					<input id="hidObjects" type="hidden" />
+					<input id="hidProcMod" type="hidden" />
+					<input id="hidTransicion" type="hidden" />
+					<input id="hidAccionMapping" type="hidden" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<center>
+						<table style="width:98%" border="0" id="FiltroTablaPop">
+							<tr>
+								<td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">                                      
+									
+										<table  width='100%' border='0' id='FiltroTabla'>
+									   <tr>
+										   <td style="width:500px;text-align:left;">
+											   <div id="divTituloPerfil">Workflow- Estado de Procesos</div>
+										   </td>
+											<td  colspan="1">
+													@*<button id='btnDescartar' class="boton" name='btnDescartar'>
+														Volver 
+														<img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+												&nbsp;
+														<button id='btnNuevo' class="boton" name='btnNuevo'>
+														Nuevo 
+														<img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+											   &nbsp;*@
+														<button id='btnGrabar' class="boton" name='btnGrabar'>
+														Grabar 
+														<img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>
+											</td>   
+									   </tr>
+								   </table>   
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<div class="contenedor">
+										<table  border="0">  
+										<tr>
+											<td style="width: 20%">WorkFlow :</td>
+											<td colspan="6">
+												<input type="hidden" id="hidAccionMvT" />
+												<input type="hidden" id="hidEdicionT" />   
+												<input type="hidden" id="hidEstado" />   
+												<input type="hidden" id="hidWrkf" />   
+												<select id="dllWorkFlow" style="width: 250px;"></select>                           
+											</td>
+										</tr>  
+										@*<tr>
+											<td style="width: 20%;">Tipo Estado :</td>
+											<td colspan="6">                                               
+												<select id="dllEstadoTipo" style="width: 180px"></select>                           
+											</td>
+										</tr>*@
+										<tr>
+											<td style="width: 20%">Estado :</td>
+											<td colspan="6">                                               
+												<select id="dllEstado" style="width: 250px;"></select>                           
+											</td>
+										</tr>                    
+							</table>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<table style="width: 100%" border="0">
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<div id="grid"></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<div id="tabs">
+					<ul>
+						<li><a href="#tabs-1">Action Mappings</a></li>
+					</ul>
+					<div id="tabs-1">
+						<table style="width: 100%" border="0">
+							<tr>
+								<td>
+									<div>
+										<img src="~/Images/botones/add.png" class="addActionMappings" height="30">
+									</div>
+									<div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addActionMappings">Agregar</a></div>
+									<hr />
+								</td>
+							</tr>
+							<tr>
+                                <center>
+          						<td>
+									<div id="gridAcctionMappings"></div>
+
+								</td>
+                                </center>
+
+							</tr>
+
+						</table>
+
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<center> <div id="aviso"></div> </center>
+
+	<div title="WORKFLOW - PARAMETROS" id="mvWorkflowParametros">
+		<center>
+			<table style="width: 100%" border="0">
+				<tr>
+					<td style="text-align:right">Objeto :</td>
+					<td><input type="text" id="txtObjeto" style="width: 500px;" readonly="true"/></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<div>
+							<img src="~/Images/botones/add.png" class="addParametro" height="30"></div>
+						<div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addParametro">Agregar</a></div>
+						<hr />
+					</td>
+				</tr>					    
+			</table>
+
+            <div id="gridObjetoParametro"></div>
+		</center>
+	</div>
+
+
+    <div title="WORKFLOW - PARAMETROS TRANSICIÓN" id="mvWorkflowParametrosTransicion">
+		<center>
+			<table style="width: 100%" border="0">
+				<tr>
+					<td style="width:60px">Tabla :</td>
+					<td><select id="ddlTabla" style="width:180px" class="requerido"></select></td>
+				</tr>
+                <tr>
+					<td style="width:60px">Where :</td>
+					<td><select id="ddlWhere" style="width:180px" class="requerido"></select></td>
+				</tr>
+                <tr>
+					<td style="width:60px">Update :</td>
+					<td><select id="ddlUpdate" style="width:180px" class="requerido"></select></td>
+				</tr>
+				@*<tr>
+					<td colspan="3">
+						<div> <img src="~/Images/botones/add.png" class="addParametroTra" height="30"></div>
+						<div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addParametroTra">Grabar</a></div>
+						<hr />
+					</td>
+				</tr>	*@				    
+			</table>
+		</center>
+	</div>
+</body>
+</html>

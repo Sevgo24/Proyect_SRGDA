@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>ADMINISTRACION CANCELACION DIRECTA </title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.cancelacion.directa.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>
+
+    @* Busqueda General Factura *@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.bec.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.entidad.js")"></script>
+    @*busqueda de socio en en el PoPup de factura*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    @*busqueda de socio en grupo de facturaciòn*@
+    @*VERIFICAR EL USO*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.agentecomercial.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>
+    <div id="ContenedormvBuscarSocio"></div>
+    <div id="ContenedormvBuscarCorrelativo"></div>
+    <div id="ContenedormvBuscarConsultaFacuraBec"></div>
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE ADMINISTRACION  CANCELACION DIRECTA</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td>CODIGO DOCUMENTO :</td><td><input type="text" id="txtcoddoc" /></td>
+                        <td>SERIE :</td>
+                        <td>
+                            <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie" />
+                            <input type="hidden" id="hidCorrelativo" value="0" />
+                            <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie">
+                                Seleccione una Serie.
+                            </label>
+                        </td>
+                        <td align="left" style="width:200px">NUMERO:</td>
+                        <td><input type="text" id="txtnum"></td>
+                    </tr>
+                    <tr>
+                        <td>SOCIO :</td>
+                        <td>
+                            <table border="0" style="border-collapse: collapse;">
+                                <tr>
+                                    <td>
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                                    </td>
+                                    <td>
+                                        <input type="hidden" id="hidResponsable" />
+                                        <lable id="lblResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>OFICINA RECAUDO :</td>
+                        <td><input id="hidOficina" value="0" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">SELECCIONE OFICINA</label></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="width:200px">FECHA REGISTRO:</td>
+                        <td><input type="checkbox" id="chkConFechaReg" class="custom-control-input" /></td>
+                        <td align="left" style="width:200px">FECHA DE INICIO:</td>
+                        <td><input type="text" id="txtFecRegInicial" /></td>
+                        <td align="left" style="width:200px">FECHA DE FIN:</td>
+                        <td><input type="text" id="txtFecRegFinal" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" align="center">
+                            <button id='btnBuscarCancelacionDirecta' class="boton" name='btnBuscarCancelacionDirecta'>
+                                Buscar
+                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                            </button>
+                            <button id='btnLimpiarCancelacionDirecta' class="boton" name='btnLimpiarCancelacionDirecta'>
+                                Limpiar
+                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                            </button>
+                            <div style="float: right;">
+                                <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva Cancelacion Directa" title="Registrar nueva Cancelacion Directa" id="btnregistrarCancelacionDirecta" />&nbsp;
+                                &nbsp;
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr id="trListaCancelacionDirecta">
+                        <td colspan="8">
+                            LISTA DE CANCELACIONES DIRECTA
+                            <div id="grid"></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div title="Registrar Cancelacion Directa" id="mvAgregarCancelacionDirecta">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr>
+                <td> Tipo de Cancelacion:  </td>
+                <td> <select id="lstListarTipoCancelacion"></select></td>
+            </tr>
+            <tr>
+                
+                <td>Seleccionar Factura</td>
+                <td >
+                <input type="hidden" id="iddocumento"/>
+                <input type="hidden" id="idValorDocumento" />
+                    <a href="#" onclick="AbrirPoPupAddFactura();">
+                        <img src="../Images/botones/invoice_more.png" title="Agregar factura." border="0">
+                    </a>
+                <label id="lbldoc">DOCUMENTO..</label></td>
+            </tr>
+            <tr>
+                <td>Monto Aplicar:</td>
+                <td><input type="text" id="txtMontoAplicar"/></td>
+            </tr>
+            <tr>
+                <td>Oficina Recaudo</td>
+                <td><select id="dllOficina"></select></td>
+
+            </tr>
+            <tr>
+                <td>Oficina Responsable</td>
+                <td><select id="dllOficinaRes"></select></td>
+
+            </tr>
+            <tr>
+                <td>Fecha Memo:</td>
+                <td><input type="text" id="txtFechaMemo"/></td>
+            </tr>
+            <tr>
+                <td>
+                    Abrev Oficina Memo:
+                </td>   
+                <td><input id="txtabrev" /></td>
+            </tr>
+            <tr>
+                <td>
+                    Numero Memo:
+                </td>
+                <td><input id="txtnummemo" /></td>
+            </tr>
+            <tr>
+                <td>
+                    Adjuntar Memo:
+                </td>
+                <td>
+                    <div id="fuFiles"></div>
+                    <input type="file" id="file_upload" name="file_upload">
+                    <div id="uploaded"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Control Interno :</td>
+                <td><select id="lstcontrol"></select></td>
+            </tr>
+            <tr>
+                <td>Concepto</td>
+                <td colspan="2"><textarea id="txtareaconcepto"></textarea></td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

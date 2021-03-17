@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/styles/kendo.metro.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+<script src="@Url.Content("~/Scripts/base/modBusquedaNiveleslAgenteRecaudadores.js")"></script>
+
+<link href="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.pack.js")"></script>
+<script src="@Url.Content("~/Scripts/Base/modModal.js")"></script>
+    
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+<h2>NIVEL AGENTES RECAUDADORES</h2>
+
+<table style="width: 100%">
+    <tr>
+        <td>&nbsp;<a href="@Url.Action("Create", "NIVELAGENTESRECAUDADORES")" class="btn btn-success">Nuevo</a>
+        </td>
+        <td>&nbsp;</td>
+
+        <td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span>&nbsp;</span>
+
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" id="btnsuprimir">Suprimir</a></li>
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("DownloadReport", "NIVELAGENTESRECAUDADORES", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                    <li><a href="@Url.Action("DownloadReport", "NIVELAGENTESRECAUDADORES", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>               
+                </ul>
+            </div>
+
+        </td>
+        <td>
+            <div class="input-group">
+                <input type="text" id="txtBusqueda" placeholder="Ingrese el dato de busqueda." class="form-control" />
+
+                <span class="input-group-btn">
+                    <button id="btnBusqueda" class="btn btn-success" type="button"><i class="glyphicon glyphicon-search"></i>&nbsp;Buscar</button>
+                </span>
+            </div>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<br />
+<br />
+<div id="listado"></div>

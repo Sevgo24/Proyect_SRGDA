@@ -1,0 +1,158 @@
+﻿@model SGRDA.Entities.BEREF_DIVISIONES
+
+@{
+    ViewBag.Title = "APDAYC :: DIVISIONES ADMINISTRATIVAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+
+        $("#DAD_TNAMED").show();
+        $("#DAD_SNAMED").show();
+    });
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "DIVISIONESADMINISTRATIVAS", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    
+    
+    <div id='divTituloPerfil' style="margin-top: 22px;">
+        Divisiones Administrativas - Nuevo
+    </div>
+    <br />
+    
+    <center>
+    <table border="0" style="width: 98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+        <tr>
+            <td colspan="2" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                <div style="float: right;">
+                    <div class="botonLink" style="width: 80px;">
+                        <a href="@Url.Action("../DIVISIONESADMINISTRATIVAS/", "DIVISIONESADMINISTRATIVAS")"   >
+                            <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                            </div>
+                        </a>
+                    </div>
+                    &nbsp;
+                        <button id="btnSave" class="boton">
+                            <span style="color: #000; font-weight: 200;">Grabar </span>
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>
+                </div>
+            </td>
+        </tr>
+
+        <tr><td><br /></td></tr>
+
+        <tr>            
+            <td style="width:15% ;padding-left:2% " >
+           @* <div class="editor-label">
+            @Html.LabelFor(model => model.OWNER)<br />
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OWNER, htmlAttributes: new { id = "OWNER", style = "width:60px;" })
+            @Html.ValidationMessageFor(model => model.OWNER)
+        </div>*@
+            @Html.LabelFor(model => model.DAD_CODE) :
+            </td>
+            <td>
+                 @Html.TextBoxFor(model => model.DAD_CODE, htmlAttributes: new { id = "DAD_CODE", style = "width:130px;" })
+            @Html.ValidationMessageFor(model => model.DAD_CODE)
+            </td>
+        </tr>   
+
+           <tr>            
+            <td style="width:15% ;padding-left:2% " >
+            @Html.LabelFor(model => model.DAD_NAME) :
+            </td>
+            <td>
+                 @Html.TextBoxFor(model => model.DAD_NAME, htmlAttributes: new { id = "DAD_NAME", style = "width:250px;" })
+            @Html.ValidationMessageFor(model => model.DAD_NAME)
+            </td>
+        </tr>  
+        
+         <tr>            
+            <td style="width:20% ;padding-left:2% " >
+            @Html.LabelFor(model => model.DAD_TNAME) :
+            </td>
+            <td>
+                  @if (ViewData.ContainsKey("Lista_TiposDivisiones"))
+            {
+                @Html.DropDownList("Lista_TiposDivisiones", ViewData["Lista_TiposDivisiones"] as List<SelectListItem>, new { style = "width:250px", id = "DAD_TNAMED" }) 
+            }
+            </td>
+        </tr>  
+
+       
+
+        @*<div class="editor-field">
+            @Html.LabelFor(model => model.DAD_SNAME)<br />
+            @if (ViewData.ContainsKey("Lista_SubTiposDivisiones"))
+            {
+                @Html.DropDownList("Lista_SubTiposDivisiones", ViewData["Lista_SubTiposDivisiones"] as List<SelectListItem>, new { style = "width:250px", id = "DAD_SNAMED" }) 
+            }
+        </div>*@
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.DAD_BELONGS)<br />
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DAD_BELONGS, htmlAttributes: new { id = "DAD_BELONGS", style = "width:100px;" })
+            @Html.ValidationMessageFor(model => model.DAD_BELONGS)
+        </div>*@
+
+
+        <tr><td><br /></td></tr>
+    </table>
+    </center>
+    
+
+
+
+    
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+        })
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

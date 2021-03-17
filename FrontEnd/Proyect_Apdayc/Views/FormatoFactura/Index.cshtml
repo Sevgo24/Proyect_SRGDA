@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: FORMATOS DE FACTURAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Formato Factura</title>
+
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.formato.factura.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+  </style>
+</head>
+<body>
+    <div>
+      
+<br />       
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+    <tr>
+        <td style=" vertical-align:bottom;">
+
+            <div id='divTitulo'>Formatos de Facturas</div>
+            <input id="hidOpcionEdit" type="hidden"/>
+            <input id="hidBpsId" type="hidden"/>
+        </td>
+    </tr>
+    <tr><td style="vertical-align: top; height: 10px !important;"></td></tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td>Descripción :</td>
+                        <td> 
+                            <input type='text' id='txtDescripcion' placeholder="Ingrese la descripción." style=" width:400px;"   /> 
+                            <input type='hidden' id="hidCodigoBPS" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Estado :</td>
+                        <td>
+                            <select name="ddlEstado" id="ddlEstado">
+                            </select>
+                        </td>
+                        <td style="text-align:right">
+                            <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px" /></button> 
+                        &nbsp;
+                            <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="20px" /></button> 
+                        </td>
+                    </tr>
+                </table>
+            </center>       
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-right: 3%">
+
+            <div style="float: right;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span>&nbsp;</span>
+
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" id="btnEliminar">Suprimir</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("../FormatoFactura/DownloadReport", "FormatoFactura", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                        <li><a href="@Url.Action("../FormatoFactura/DownloadReport", "FormatoFactura", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>
+                        <!--<li><a href="#">Vista Previa EXCEL</a></li>-->
+                        <!-- <li><a id='single_2' href='ROLES/ReportViewer' target="_blank" class="popUp">Vista Previa</a></li>-->
+                    </ul>
+                </div>  
+                <span>&nbsp;</span><span>&nbsp;</span>
+
+                <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar medio difusión." title="Registrar medio difusión." id="btnNuevo"/>
+            </div>
+        </td>
+    </tr>
+    <tr><td>
+
+            <center>
+               <div id="grid"></div>
+
+            </center> 
+    </td></tr>
+       <tr><td style='height: 30px;'>
+    <center>
+            <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+            </div>
+    </center>
+        </td></tr>
+</table>
+    </div>
+</body>
+</html>
+

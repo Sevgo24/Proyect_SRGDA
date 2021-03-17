@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />*@
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>ADMINISTRACION NOTIFICACION DE EVENTOS </title>
+    @*<script src="js/jquery.min.js"></script>
+        <script src="js/kendo.all.min.js"></script>*@
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.notificacion.licencias.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.establecimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>
+    <div id="ContenedormvBuscarSocio"></div>
+    <div id="ContenedormvBuscarModalidad"></div>
+    <div id="ContenedormvEstablecimiento"></div>
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>ADMINISTRACION NOTIFICACION DE EVENTOS</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            @*<td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>*@
+                        <td align="center">
+                            <table width='98%' border='0' id='FiltroTabla'>
+                                <tr>
+                                    <td align="left" style="width:200px">CODIGO DE LICENCIA :</td>
+                                    <td><input type="text" id="txtcodlic" /></td>
+                                    <td>OFICINA RECAUDO :</td>
+                                    <td><input id="hidOficina" value="0" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">SELECCIONE OFICINA</label></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">FECHA  CREACION:</td>
+                                    <td><input type="checkbox" id="chkConFechaCrea" class="custom-control-input" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                                    <td><input type="text" id="txtFecCreaInicial" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                                    <td><input type="text" id="txtFecCreaFinal" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">NOMBRE EVENTO:</td>
+                                    <td><input type="text" id="txtnomlic" /></td>
+                                    <td align="left" style="width:200px">NOMBRE ESTABLECIMIENTO:</td>
+                                    <td><input type="text" id="txtnomest" /></td>
+                                    <td align="left" style="width:200px">ESTADO:</td>
+                                    <td>
+                                        <select id="ddlEstadoLic">
+                                            <option value="0"> TODOS</option>
+                                            <option value="1">MODIFICADO CORRECTAMENTE</option>
+                                            <option value="2">FALTA MODIFICAR</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" align="center">
+                            <button id='btnBuscarNotificacion' class="boton" name='btnBuscar'>
+                                Buscar
+                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                            </button>
+                            <button id='btnLimpiarNotificacion' class="boton" name='btnLimpiar'>
+                                Limpiar
+                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8">
+                            <div id="grid"></div>
+                        </td>
+                    </tr>
+
+                @*</table>*@
+
+            @*</td>
+        </tr>*@
+    </table>
+    <div title="Modificar Notificacion de Evento" id="mvNotificacionEvento">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidIdLic" />
+            <tr>
+                <td>Seleccionar Modalidad:</td>
+                <td>
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarMOD" style="cursor:pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad" />
+                            </td>
+                            <td>
+                                <input type="hidden" id="hidModalidad" />
+                                <lable id="lbModalidad" style="cursor:pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad">Todos</lable>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr >
+                <td>
+                    Seleccione Tarifa
+                </td>
+                <td>
+                    <select id="ddTarifaAsociada" style=" width:300px;"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Seleccione Socio
+                </td>
+                <td>
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                            </td>
+                            <td>
+                                <input type="hidden" id="hidResponsable" />
+                                <lable id="lbResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Seleccione Establecimiento
+                </td>
+                <td>
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarEstablecimiento" style="cursor:pointer;" alt="Búsqueda de Establecimiento" title="Búsqueda de Establecimiento" />
+                                <input type="hidden" id="hidEstablecimiento" />
+                            </td>
+                            <td colspan="6"> <label id="lblEstablecimiento" style="cursor:pointer;" alt="Búsqueda de Establecimiento" title="Búsqueda de Establecimiento">Todos</label> </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+

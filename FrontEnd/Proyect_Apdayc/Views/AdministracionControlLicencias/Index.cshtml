@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />*@
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>ADMINISTRACION CONTROL DE LICENCIAS </title>
+    @*<script src="js/jquery.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>*@
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.control.licencias.js")"></script>
+
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>   
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>ADMINISTRACION DE CONTROL DE LICENCIAS</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+                            <table width='98%' border='0' id='FiltroTabla'>
+                                <tr>
+                                    <td align="left" style="width:200px">CODIGO DE LICENCIA :</td>
+                                    <td><input type="text" id="txtcodlic" /></td>
+                                    <td>OFICINA RECAUDO :</td>
+                                    <td><input id="hidOficina" value="0" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">SELECCIONE OFICINA</label></td>
+                                </tr>
+                                <tr>
+                                        <td align="left" style="width:200px">FECHA  CREACION:</td>
+                                        <td><input type="checkbox" id="chkConFechaCrea" class="custom-control-input" /></td>
+                                        <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                                        <td><input type="text" id="txtFecCreaInicial" /></td>
+                                        <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                                        <td><input type="text" id="txtFecCreaFinal" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Estado de Licencia</td>
+                                    <td><select id="dllestadolicencia">
+                                        <option value="-1" selected>Seleccione</option>
+                                        <option value="0">Pendiente</option>
+                                        <option value="1">Aprobado</option>
+                                        <option value="2">Rechazado</option>
+
+                                        </select></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" align="center">
+                            <button id='btnBuscarSolicitud' class="boton" name='btnBuscar'>
+                                Buscar
+                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                            </button>
+                            <button id='btnLimpiarSolicitud' class="boton" name='btnLimpiar'>
+                                Limpiar
+                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8">
+                            <div id="grid"></div>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+

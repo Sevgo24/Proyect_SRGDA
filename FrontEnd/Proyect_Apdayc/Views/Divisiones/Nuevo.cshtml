@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: DIVISIONES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Divisiones - Nuevo</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.divisiones.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <br />
+    <div>
+        <table border="0" style="width: 100%">
+            <tr>
+                <td style="vertical-align: bottom">
+                    <input id="hidId" type="hidden" />
+                    <input id="hidOpcionEdit" type="hidden" />
+                  
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+
+                           <table width='98%' border="0"  id='FiltroTablaPop'>
+                                <tr>
+                                    <td colspan="2" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                               <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                  Divisiones - Nuevo
+                                     </div>
+
+                            </td>
+                            <td>
+                                 <div style="float:right;">
+                    
+                                                        <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                            Volver 
+                                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                        &nbsp;
+                                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                            Nuevo 
+                                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                        &nbsp;
+                                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                            Grabar 
+                                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>                                        
+                                    </div>
+                                  
+                                 </td>
+                            </tr></table>
+                                  </td>
+                                </tr>
+
+                               <tr >
+
+                               </tr>
+                               <tr>
+                                   <td> Tipo :                                   </td>
+                                     <td>
+                                       <select id="ddlDivision" class="requeridoLst"></select>
+                                   </td>
+                               </tr>
+                                <tr>
+                                    <td style="width:90px">Nombre : </td>
+                                    <td >
+                                        <input type="text" id="txtSubdivision"  style="width:300px ;text-transform:uppercase;" class="requerido" maxlength="40"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:90px">Ident. Corta :</td>
+                                    <td>
+                                        <input type="text" id="txtCorta"  style="width:150px; text-transform:uppercase;" class="requerido" maxlength="9"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td style="vertical-align:super; width:90px">Descripción :</td>
+                                    <td>
+                                        <textarea id="txtDescripcion" rows="4" style="width:305px; text-transform:uppercase;" class="requerido" maxlength="1024"> </textarea>
+                                    </td>
+                                </tr>
+                            </table>
+
+                    </center>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" style="text-align: center">
+                    <div id='aviso'></div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+</html>

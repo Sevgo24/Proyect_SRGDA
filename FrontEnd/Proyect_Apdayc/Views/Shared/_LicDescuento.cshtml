@@ -1,0 +1,129 @@
+﻿   <div id="divPeriodoDescuentoLst">
+    <table style=" width:100%;" border="0" cellspacing="0" cellpadding="0" >
+          <tr>
+
+              @*<td  class="cssToolBarTab">*@
+               <td  > 
+                  <div id="divplanifi" class="cssTabBtnFiltrar" title="seleccione un periodo"><div> Periodo Planificación&nbsp;<select id="ddlPerPlanFacDesc" class="requeridoLst"></select>  &nbsp;</div></div>
+                  <div style="text-align:right">
+                     @*<button id='btnCalculoTTDescuento'   class="boton"  title="Utilizar esta opción para obtener el monto que se desea facturar.">Cálculo Manual</button>   *@
+                    <button id='btnGrabarCaractDsc'  class="boton" title="Guardar información" > Grabar Dsc Tarifa </button>  
+                  </div>
+                  <div id="divBtnAddDscto" class="cssTabBtnAgregar addDescuento" title="agregar descuento a la licencia." style="margin-top:-10px;">
+                    <div>Agregar Descuento</div>
+                  </div>
+                   <div style="  width:100%;  margin-top:-35px;    text-align:center;  float:inherit; ">
+                            <div id="avisoTabDescuento"  />
+                       </div>
+                           
+                          
+                              </td>
+                        </tr>
+              
+                 
+                <tr>
+                      <td>
+                          <div id ="gridDescuentoTarifa"><//div>
+                      </td>
+                </tr>
+                    <tr>
+                      <td> 
+                          <div id="gridDescuento"></div>
+                      </td>
+                  </tr>
+                    <tr>
+                        <td> 
+                        <div id="gridDescuentoSoc">
+
+                        </div>
+
+                      </td>
+                        </tr>
+             <tr>
+
+                     @* <td> 
+                          <hr />
+
+                      </td>*@
+                  </tr>
+  @*  <tr>
+
+                      <td> 
+                          <div id="gridImpuesto"></div>
+
+                      </td>
+     </tr>*@
+         <tr>
+
+                    @*  <td> 
+                          <hr />
+
+                      </td>*@
+                  </tr>
+    <tr id="trMostrarText">
+
+                      <td> 
+                          <table  border=0  class='k-grid k-widget' style='border-collapse: collapse;width:100%;'>
+                              <thead><tr class='k-header'>
+                                  <th>TARIFA</th>
+                                  <th>DESCUENTO X LICENCIA</th>
+                                  <th>CARGOS</th>
+                                  <th>IMPUESTOS</th>
+                                  <th>TOTAL</th>
+                                  <th></th>
+
+                              </tr></thead> 
+                                <tr>
+                                  <td><input type="text" id="txtTarifaDesc" disabled="disabled" style='text-align:right; width:80px;' /></td>
+                                  <td><input type="text" id="txtDescuentoDesc" disabled="disabled" style='text-align:right; width:80px;' /></td>
+                                  <td><input type="text" id="txtCargoDesc" disabled="disabled" style='text-align:right; width:80px;'/></td>
+                                  <td><input type="text" id="txtImpuestoDesc"  disabled="disabled" style='text-align:right; width:80px;' /></td>
+                                  <td><input type="text" id="txtTotalDesc" disabled="disabled"  style='text-align:right; width:80px;' />
+
+                                      <input type="hidden" id="hidTotalImpVal"  />
+                                      <input type="hidden" id="hidTotalImpPer"  />
+
+                                  </td>
+                                  <td><button id="btnDsctoTest" style="display:none;"><b>TEST</b>  <img src="@Url.Content("~/Images/iconos/testing.png")"  /></button></td>
+
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+
+              </table>
+             <div title="Actualiza Descuento de Licencia" id="mvActualizaDescuento">
+                 <table width='100%' border='0' id='FiltroTablaPop'>
+                     <tr>
+                         <td>Actualiza Monto de Descuento</td>
+                         <td><input hidden id="hidLicDisc"></td>
+                         <td><input hidden id="hidLicDiscEstado"></td>
+                         <td><input hidden id="hidiLicDiscType"></td>
+                     </tr>
+                     <tr>
+                         <td>
+                             Nombre Descuento:
+                         </td>
+                         <td>
+                             <input type="text" id="txtNomDesc" readonly>
+                         </td>
+<tr>
+                         <td>
+                             Monto :
+                         </td>
+                         <td>
+                             <input type="text" id="txtmontoDesc">
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>Observacion</td>
+
+                       <td> <textarea id="txtObsResp" rows="2"  readonly style=" width:90%;  height:40px;"></textarea></td>
+                     </tr>
+
+                 </table>
+             </div>
+
+
+</div>
+

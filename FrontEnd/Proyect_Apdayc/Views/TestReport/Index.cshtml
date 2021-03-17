@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "REPORTES :: PRUEBAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test Report</title>
+</head>
+<body>
+    <div>  
+        <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/TestReport/Test.Report.js")"></script>
+    </div>
+
+    <h2><div id="" style="margin-top:9px; text-align:left">TEST REPORT</div></h2>
+
+    <div style="text-align:center">
+        <table id="FiltroTabla" style="width:98%"; border="0">
+            <tr>
+                <td style="padding-right:90%">
+                    <button id="btnBuscarReporte1" class="boton" style="width:200px"> Bailes Espectáculos                    
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px"</button>
+                </td>
+            </tr>
+            @*<tr>
+                <td style="padding-right:90%">
+                    <button id="btnBuscarReporte2" class="boton" style="width:200px"> Contrato Locales Permanentes                
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px"</button>
+                </td>
+            </tr>*@
+            <tr>
+                <td style="padding-right:90%">
+                    <button id="btnBuscarReporte3" class="boton" style="width:200px"> Ficha Inscripción                    
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px"</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-right:90%">
+                    <button id="btnBuscarReporte4" class="boton" style="width:200px"> Verificación obras musicales                    
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px"</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-right:90%">
+                    <button id="btnBuscarReporte5" class="boton" style="width:200px"> Reiterativa obras musicales                    
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px"</button>
+                </td>
+            </tr> 
+
+             <tr>
+                <td style="padding-right:90%">
+                    <button id="btnBuscarReporte6" class="boton" style="width:200px"> Ficha Levantamiento Inf                   
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px"</button>
+                </td>
+            </tr> 
+
+            @*@{
+                ViewBag.Title = "PDFDisplay";
+            }
+
+            <h2>PDFDisplay</h2>
+            <li>@Html.ActionLink("Viw Temp PDF Method1", "DisplayPDF")</li> *@
+
+          
+        </table>
+    </div>
+
+@*      <div id="detailID" style="overflow:scroll">
+      <iframe src="@Url.Action("DisplayPDF","Formatos")"></iframe></div>*@
+
+    
+@*<div id="mvPDF" style="overflow:scroll">
+    <iframe style="width: 100%; height: 100%;" id="ifContenedor" marginheight="0" marginwidth="0" noresize scrolling="No" frameborder="0"></iframe>
+</div>
+
+    <div class="botonLink" style="width: 80px;">
+                        <a href="@Url.Action("DisplayPDF", "Formatos")"   >
+                            <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                Mostrar PDF prueba
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")"  width="24"  />
+                            </div>
+                        </a>
+                    </div>*@
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "APDAYC :: Modalidad de Uso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script src="@Url.Content("~/Scripts/base/m.js")"></script>
+    <link href="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.pack.js")"></script>
+    <script src="@Url.Content("~/Scripts/Base/modModal.js")"></script>    
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>   
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+
+</head>
+<body>
+    <br />
+    <div>        
+        <div id="ContenedormvModUso"></div>
+
+        <table style="width: 100%" border="0" cellspacing='0' cellpadding='0'>
+            <tr>
+                <td>
+                    <div id="divTitulo">Modalidad de Uso</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:98%" id="FiltroTabla" border="0">
+                            <tr><td></td></tr>
+                            <tr>
+                                <td style="padding-left:2%">                                    
+                                        Tipo de Creaciones
+                                </td>                                                        
+                                <td>
+                                    <select id="ddlTipCre">                                    </select>
+                                </td>
+
+                                <td style="padding-left:2%">
+                                        Tipo de Derecho  
+                                 </td>
+                                <td>
+                                    <select id="ddlTipDer" name="ddlTipDer" style="width:200px">                                    </select>    
+                                </td>
+                                  <td>
+                                    <button id="btnBuscar" name="btnBuscar" class="boton"  >
+                                        Buscar <img src=@Url.Content( "~/Images/botones/buscar2.png") style="width:16px" />
+                                    </button>                                    
+                                </td>
+
+                          @*      <td>
+                                    <button id="btnBusca" name="btnBuscar" class="boton"  >
+                                        Consulta <img src=@Url.Content( "~/Images/botones/buscar2.png") style="width:16px" />
+                                    </button>                                    
+                                </td>*@
+                            </tr>
+                            <tr>
+                                 <td style="padding-left:2%">
+                                    Origen de Mod. Uso                                
+                                </td>
+                                <td>
+                                    <select id="ddlOriMod">                                  </select>
+                                </td>
+                                <td style="padding-left:2%">
+                                    Nivel de Incidencia   
+                                </td>
+                                <td>
+                                    <select id="ddlNivInc"></select>
+                                </td>                              
+                            </tr>
+                            <tr>
+                                 <td style="padding-left:2%">
+                                    Grupo Modalidad                               
+                                </td>
+                                <td>
+                                    <select id="dllGruMod"></select>
+                                </td>
+                                <td style="padding-left:2%">
+                                    Tipo de Uso de Obra 
+                                </td>
+                                <td>
+                                    <select id="ddlTipUsoRep"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                 <td style="width:200px ; padding-left:2%" >
+                                    Tipo Sociedad                               
+                                </td>
+                                <td>
+                                    <select id="ddlTipSoc"></select>
+                                </td>
+                                <td style="width:260px ; padding-left:2%" >
+                                    Modulo de Uso de Repertorio 
+                                </td>
+                                <td>
+                                    <select id="ddlModUsoRep"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:2%">Descripción :</td>
+                                <td> 
+                                    <input type='text' id='txtDescripcion' placeholder="Ingrese la descripción." style=" width:400px;"   /> 
+                                    <input type='hidden' id="hidCodigoBPS" />
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+            <tr><td style='height: 40px; padding-right:1%'  >
+                    <div style="float: right;">             
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span>&nbsp;</span>
+
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" id="btnsuprimir">Suprimir</a></li>
+                                <li class="divider"></li>                                
+                                <li><a id="repPDF" href="@Url.Action("../ModalidadUso/DownloadReport", "ModalidadUso", new { format = "PDF"  })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>                                
+                                <li><a id="repEXCEL" href="@Url.Action("../ModalidadUso/DownloadReport", "ModalidadUso", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>               
+                            </ul>
+                        </div> 
+                         &nbsp; 
+                         <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo Oficina." title="Registrar nuevo Oficina." id="btnNuevo"/>&nbsp;
+                          &nbsp; 
+                         <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de Oficina." title="Inactivar datos de Oficina."  id="btnEliminar"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                     
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+    <div id="grid" ></div>
+</body>
+</html>

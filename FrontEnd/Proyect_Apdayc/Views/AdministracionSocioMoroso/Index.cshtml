@@ -1,0 +1,215 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>SOCIO RENUENTE </title>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.licencia.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.socio.moroso.js")"></script>
+</head>
+<body>
+    <div id="ContenedormvBuscarSocio"></div>
+    <div id="ContenedormvBuscarSocio2"></div>
+    <div id="ContenedormvLicencia"></div>
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <input type="hidden" id="hidCodigoGrupoEmpresarial" />
+        <input type="hidden" id="hidGrupoFacturacion" />
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE ADMINISTRACION DE SOCIOS RENUENTES</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        
+                        <td>
+                            <table border="0" style="border-collapse: collapse;">
+                                <tr>
+                                    <td>
+                                        TIPO SOCIO
+                                    </td> 
+                                    <td>
+                                        <select id="dlltiposocio">
+                                            <option value="0"> SELECCIONE</option>
+                                            <option value="1">SOCIO</option>
+                                            <option value="2">REPRESENTANTE LEGAL</option>
+                                        </select>
+                                    </td> 
+                                    <td>
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                                        <input type="hidden" id="hidResponsable" />
+                                        <lable id="lbResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                                    </td>
+                                    <td>
+                                        Estado de Usuario :
+                                    </td>
+                                    <td>
+                                        <select id="ddlestadosocio">
+                                            <option value="-1"> SELECCIONE</option>
+                                            <option value="0">RENUENTE</option>
+                                            <option value="1">USUARIO PAGO</option>
+                                            <option value="2">TRANSACCION DE PAGO</option>
+                                            <option value="3">GEREC</option>
+                                        </select>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">FECHA  CREACION:</td>
+                                    <td><input type="checkbox" id="chkConFechaCrea" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                                    <td><input type="text" id="txtFecCreaInicial" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                                    <td><input type="text" id="txtFecCreaFinal" /></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="center">
+                <button id='btnBuscarSocioMoroso' class="boton" name='btnBuscarSocioMoroso'>
+                    Buscar
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                    Limpiar
+                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                </button>
+                <div style="float: right;">
+                    <button id='btnPdf' class="boton" name='btnPdf'>
+                        Rep. PDF
+                        <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                    </button>
+                    &nbsp;
+                    <button id='btnExcel' class="boton" name='btnExcel'>
+                        Rep. EXCEL
+                        <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                    </button>
+                    <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de usuario." title="Inactivar datos de usuario." id="btnEliminarLic" />
+                    &nbsp;
+                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo usuario." title="Registrar nuevo usuario." id="btnNuevoSocioMoroso" />&nbsp;
+                    &nbsp;
+                </div>
+            </td>
+        </tr>
+
+        <tr id="trListaSocioMoroso">
+            <td colspan="8">
+                LISTA DE SOCIOS
+                <div id="grid"></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:central;text-align:center">
+                <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+            </td>
+        </tr>
+    </table>
+    <div title="Registrar Socio Renuente" id="mvAgregarSocioMoroso">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            @*<input type="hidden" id="hidId" />*@
+            
+            
+            <tr>
+                <td> SOCIO:  </Td><td>  
+                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarRegBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                    <input type="hidden" id="hidResponsableMoroso" />
+                    <lable id="lbResponsableMoroso" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                </td>
+            </tr>
+            <tr>
+                <td>Licencia :</td>
+                <td>
+                    <input type="hidden" id="hidLicencia" value="0" />
+                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarLic" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia" />
+                    <label id="lblLicencia" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia">Licencia.</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Descripción:@*</td>*@
+            @*</tr>*@
+            @*<tr id="trrechazo">*@
+                @*<td colspan="2">*@
+                    <textarea id="txtDescUsuMoroso" name="txtDescUsuMoroso" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 200px; height: 118px" maxlength="255"></textarea>
+                </td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div title="Modificar Socio Renuente" id="mvModificaSocio">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidIdSocioMoroso" />
+            <tr>
+                <td>
+                    SOCIO:
+                </td>
+                <td> 
+                    <lable id="lblsocioMoroso">...........</lable>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    LICENCIA
+                </td>
+                <td>
+                    <lable id="lbllicenciasocioMoroso">...........</lable>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Descripción:@*</td>*@
+                    @*</tr>*@
+                    @*<tr id="trrechazo">*@
+                    @*<td colspan="2">*@
+                    <textarea id="txtDescResUsuMoroso" name="txtDescResUsuMoroso" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 200px; height: 118px" maxlength="255"></textarea>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    Estado
+                </td>
+                <td>
+                    <select id="ddlestadoSocioMoroso">
+                        <option value="0" selected="selected">RENUENTE</option>
+                        <option value="1">USUARIO PAGO</option>
+                        <option value="2">TRANSACCION DE PAGO</option>
+                        <option value="3">GEREC</option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+</html>
+

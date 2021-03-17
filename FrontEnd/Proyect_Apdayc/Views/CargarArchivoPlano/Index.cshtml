@@ -1,0 +1,140 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cargar Archivo Plano</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/BancosPagos/cargar.archivo.plano.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>*@
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+</head>
+    <body>
+@*@using (Html.BeginForm("Index", "CargarArchivoPlano", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{*@     
+
+        
+        
+          
+                <table style="width:98%;" border="0">
+                    <tr>   
+                        <td>   
+                        <center>
+                            <div class="contenedor">
+                                <table style="width:97%;" border="0" >
+
+                                    <tr>
+                                        <td>
+                                            <div id='divTitulo'>CARGAR ARCHIVO </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <hr />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table style="width:98%;" border="0" >
+                                              
+                                                <tr>
+                                                    <td width="120px" align="right">
+                                                       SELECCIONE BANCO :&nbsp;&nbsp;
+                                                    </td>
+                                                    <td width="170px" align="left">
+                                                        <select id="ddlBancos" style="width:150px"></select>
+                                                    </td>
+                                                    <td align="left" >
+                                                        <form id="frmFormulario" enctype="multipart/form-data">
+                                                            <input type="file" name="archivoTXT">
+                                                            <button type="submit" name="submit" >VISUALIZAR DATOS</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <br />
+                                                    </td>
+                                                </tr>                                       
+                                                <tr>
+                                                   <td align="right" >
+                                                
+                                                       <div id="LabelBanco"></div>
+                                                   
+                                                   </td>
+                                                        <td align="left" style="font-family:'Book Antiqua'; font-size:8pt; " >
+                                                            
+                                                                <div id="lbBanco"></div>                                                            
+                                                        </td>
+                                                    <td colspan="2">
+                                                        <button id='btnCargarSistema' class="boton" name='btnCargarSistema'>
+                                                            CARGAR AL SISTEMA
+                                                            <img src="@Url.Content("~/Images/botones/add.png")" width="24px" />
+                                                        </button>
+                                                    </td>
+                                                    <td colspan="2" align="right">
+                                                        <button id='btnloadDataArchivos' class="boton" name='btnloadDataArchivos'>
+                                                            LISTA ARCHIVOS CARGADOS
+                                                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="24px" />
+                                                        </button>
+                                                    </td>
+                                                   
+                                                </tr>
+                                                <tr>
+                                                    
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </center>
+                     </td>
+                    </tr>                                 
+                    <tr>
+                        <td >                    
+                              <div id="grid">
+                              </div>                   
+                        </td>
+                    </tr>
+                  
+                </table>
+                
+
+       
+ 
+            @*<div class="k-grid-header" style="padding-right:17px;">*@
+                    @*<div class="k-grid-header-wrap">*@
+                        @*<center>
+                            <table cellspacing="0" style="width:98%" border="0">*@
+                                @*<tr>
+                                    <td><button id='btnver' class="boton" name='btnver'>
+                           ver lista
+                     <img src="@url.content("~/images/botones/excel.png")" width="24px" />
+                         </button>
+                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        <div id="grid" >
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </center>
+                    </div>*@
+            @*</div>*@
+      @*</div>*@
+       
+
+            @* } *@
+
+</body>
+    
+</html>
+

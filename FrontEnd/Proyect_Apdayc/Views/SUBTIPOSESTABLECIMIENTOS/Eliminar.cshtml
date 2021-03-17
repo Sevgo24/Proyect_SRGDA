@@ -1,0 +1,37 @@
+﻿@model SGRDA.Entities.BEREC_EST_SUBTYPE
+
+@{
+    ViewBag.Title = "APDAYC :: SUBTIPO DE ESTABLECIMIENTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+    
+         <p>
+            <input type="hidden" id="SUBE_ID" name="SUBE_ID" value="@Html.DisplayFor(model => model.SUBE_ID)"/>
+        </p>        
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_REC_DOCUMENTS_GRAL" targetNamespace="http://tempuri.org/DS_REC_DOCUMENTS_GRAL.xsd" xmlns:mstns="http://tempuri.org/DS_REC_DOCUMENTS_GRAL.xsd" xmlns="http://tempuri.org/DS_REC_DOCUMENTS_GRAL.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_REC_DOCUMENTS_GRAL" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_REC_DOCUMENTS_GRAL" msprop:Generator_UserDSName="DS_REC_DOCUMENTS_GRAL">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="usp_listar_Tipodocumentos" msprop:Generator_TableClassName="usp_listar_TipodocumentosDataTable" msprop:Generator_TableVarName="tableusp_listar_Tipodocumentos" msprop:Generator_TablePropName="usp_listar_Tipodocumentos" msprop:Generator_RowDeletingName="usp_listar_TipodocumentosRowDeleting" msprop:Generator_RowChangingName="usp_listar_TipodocumentosRowChanging" msprop:Generator_RowEvHandlerName="usp_listar_TipodocumentosRowChangeEventHandler" msprop:Generator_RowDeletedName="usp_listar_TipodocumentosRowDeleted" msprop:Generator_UserTableName="usp_listar_Tipodocumentos" msprop:Generator_RowChangedName="usp_listar_TipodocumentosRowChanged" msprop:Generator_RowEvArgName="usp_listar_TipodocumentosRowChangeEvent" msprop:Generator_RowClassName="usp_listar_TipodocumentosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OWNER" msprop:Generator_ColumnVarNameInTable="columnOWNER" msprop:Generator_ColumnPropNameInRow="OWNER" msprop:Generator_ColumnPropNameInTable="OWNERColumn" msprop:Generator_UserColumnName="OWNER" type="xs:string" minOccurs="0" />
+              <xs:element name="DOC_ID" msprop:Generator_ColumnVarNameInTable="columnDOC_ID" msprop:Generator_ColumnPropNameInRow="DOC_ID" msprop:Generator_ColumnPropNameInTable="DOC_IDColumn" msprop:Generator_UserColumnName="DOC_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="DOC_TYPE" msprop:Generator_ColumnVarNameInTable="columnDOC_TYPE" msprop:Generator_ColumnPropNameInRow="DOC_TYPE" msprop:Generator_ColumnPropNameInTable="DOC_TYPEColumn" msprop:Generator_UserColumnName="DOC_TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="DOC_DATE" msprop:Generator_ColumnVarNameInTable="columnDOC_DATE" msprop:Generator_ColumnPropNameInRow="DOC_DATE" msprop:Generator_ColumnPropNameInTable="DOC_DATEColumn" msprop:Generator_UserColumnName="DOC_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="DOC_VERSION" msprop:Generator_ColumnVarNameInTable="columnDOC_VERSION" msprop:Generator_ColumnPropNameInRow="DOC_VERSION" msprop:Generator_ColumnPropNameInTable="DOC_VERSIONColumn" msprop:Generator_UserColumnName="DOC_VERSION" type="xs:string" minOccurs="0" />
+              <xs:element name="DOC_DESC" msprop:Generator_ColumnVarNameInTable="columnDOC_DESC" msprop:Generator_ColumnPropNameInRow="DOC_DESC" msprop:Generator_ColumnPropNameInTable="DOC_DESCColumn" msprop:Generator_UserColumnName="DOC_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="DOC_USER" msprop:Generator_ColumnVarNameInTable="columnDOC_USER" msprop:Generator_ColumnPropNameInRow="DOC_USER" msprop:Generator_ColumnPropNameInTable="DOC_USERColumn" msprop:Generator_UserColumnName="DOC_USER" type="xs:string" minOccurs="0" />
+              <xs:element name="DOC_PATH" msprop:Generator_ColumnVarNameInTable="columnDOC_PATH" msprop:Generator_ColumnPropNameInRow="DOC_PATH" msprop:Generator_ColumnPropNameInTable="DOC_PATHColumn" msprop:Generator_UserColumnName="DOC_PATH" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_DATE_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_DATE_CREATColumn" msprop:Generator_UserColumnName="LOG_DATE_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_DATE_UPDATEColumn" msprop:Generator_UserColumnName="LOG_DATE_UPDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_USER_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_USER_CREATColumn" msprop:Generator_UserColumnName="LOG_USER_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_UPDAT" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_UPDAT" msprop:Generator_ColumnPropNameInRow="LOG_USER_UPDAT" msprop:Generator_ColumnPropNameInTable="LOG_USER_UPDATColumn" msprop:Generator_UserColumnName="LOG_USER_UPDAT" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

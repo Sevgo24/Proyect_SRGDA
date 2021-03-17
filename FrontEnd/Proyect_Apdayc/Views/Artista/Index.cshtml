@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: ARTISTAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VALIDACION DE ARTISTAS</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Artista/mantenimiento.artista.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+        <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+        <div>
+                    <br />
+            @*<table width='100%' border='0' cellspacing='0' cellpadding='0'>*@
+                
+        <tr>
+            <td style="vertical-align: bottom;">
+                <div id='divTitulo'>ARTISTAS</div>
+            </td>
+        </tr>
+         <tr>
+            <td style="vertical-align: top;">
+                <hr>
+            </td>
+        </tr>
+                <tr>
+                    <td>
+                        <center>
+                            <table width='98%' border='0' id='FiltroTabla'>
+                                <tr>
+                                    <td style="width: 15%">
+                                        NOMBRE DE ARTISTA:
+                                        
+                                    </td>
+                                    <td>
+
+                                        <input type="text" id="txtnombreartista">
+                                    </td>
+
+                                    <td style="text-align:right">                                
+                                    <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                                    &nbsp;
+                                    <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                                </td>
+
+                                </tr>
+
+                            </table>
+                            
+                        </center>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <center>
+                              <div id="grid"></div> 
+                        </center>
+                    </td>
+                </tr>
+                
+            @*</table>*@
+        </div>
+                                    <div title="Actualizar Artista con codigo SGS" id="mvActualizaSGS">
+                                <table width='100%' border='0' id='FiltroTablaPop'>
+                                    <tr>
+                                        <td>
+                                            Nombre del Artista:
+                                        </td>
+                                        <td>
+                                            <input hidden id="hidcodart">
+                                            <label id="lblartSGS"></label>
+                                        </td>
+                            
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            CODIGO SGS:
+                                        </td>
+                                        <td>
+                                            
+                                            <input type="text" id="txtartSGS" />
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                        <center><div id="avisoActualizaSGS"></div></center>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>    
+
+
+
+</body>
+
+</html>

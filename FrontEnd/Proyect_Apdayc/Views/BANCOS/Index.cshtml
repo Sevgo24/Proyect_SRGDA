@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: BANCOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+ 
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+
+    <link href="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.pack.js")"></script>
+    
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+    
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/base/modBusquedaBancos.js")"></script>
+
+
+    <link href="~/Style/SRGDA.css" rel="stylesheet" /> 
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+ 
+<style>
+
+  
+</style>
+<br />
+<table width='100%' border='0' >
+    <tr>
+        <td style=" vertical-align:bottom;">
+            <div id='divTitulo'>Banco</div>
+        </td>
+    </tr>
+   <tr><td  style=" vertical-align: top;  height:10px !important; ">
+
+
+       </td></tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'   >
+                    <tr>
+                        <td style="width:10%;padding-left:2%" nowrap> Ingrese dato:</td>
+                         <td style="width:50%">
+                             <input type="text" id="txtBusqueda" placeholder="Ingrese el dato de busqueda." class="form-control"/>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:10%;padding-left:2%" nowrap> Estado :</td>
+                        <td>
+                            <select name="ddlEstado" id="ddlEstado">
+                            </select>
+                        </td>
+                         <td style="text-align:right">  
+                                    <button id="btnBusqueda" class="boton"  >
+                                         <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                        &nbsp;Buscar</button> &nbsp;
+                            <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                        </td>
+                    </tr>
+                </table>
+            </center>       
+        </td>
+    </tr>
+    <tr><td style='height: 40px; vertical-align:bottom;'>
+            <div style="float: right;">
+               
+
+                <div class="btn-group">
+                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span>&nbsp;</span>
+
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" id="btnsuprimir">Suprimir</a></li>
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("../BANCOS/DownloadReport", "BANCOS", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                    <li><a href="@Url.Action("../BANCOS/DownloadReport", "BANCOS", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>               
+                </ul>
+            </div> &nbsp; 
+                 <a  href="@Url.Action("Create", "BANCOS")" class="btn">
+                     <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva moneda." title="Registrar nueva sucursal bancaria"  />
+
+                </a>&nbsp;  
+            </div>
+    </td></tr>
+    <tr><td>
+           <center>
+              <div id="listado"></div>
+                 
+            </center> 
+    </td></tr>
+</table>

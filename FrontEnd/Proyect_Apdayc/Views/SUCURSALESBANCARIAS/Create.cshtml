@@ -1,0 +1,283 @@
+﻿@model SGRDA.Entities.BEREC_BANKS_BRANCH
+@{
+    ViewBag.Title = "APDAYC :: SUCURSALES BANCARIAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<title>Sucursal bancaria - Nuevo</title>
+<link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+<script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.sucursalesbancarias.nuevo.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+<script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+<script>
+    $(function () {
+        $("#lista_Bancos").on("change", function () {
+            var codigo = $("#lista_Bancos").val();
+            //alert(codigo);
+            ObtenerLongitudCodigoSucursal(codigo);
+        });
+    });
+</script>
+
+<style>
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+    }
+    /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+    * html .ui-autocomplete {
+        height: 200px;
+    }
+
+    ul.ui-autocomplete {
+        z-index: 1100;
+    }
+</style>
+
+
+@using (Html.BeginForm("Create", "SUCURSALESBANCARIAS", FormMethod.Post))
+{       
+    <br />
+    
+    <center>
+          <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+            <tr>
+                <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+                    <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                 Sucursales bancarias - Nuevo
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">
+                        <button id="btnVolver" class="boton">
+                                  <span style="color: #000; font-weight: 200;">Volver </span>
+                                  <img src="@Url.Content("~/Images/botones/back.png")" width="24" />
+                              </button>
+                             &nbsp;
+                               <button id="btnGrabar"  class="boton" onclick="ValidarRequeridos()">
+                                 <span style=" color:#000; font-weight:200;">Grabar </span> 
+                                  <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                               </button> 
+
+
+                        </div>
+                                 </td>
+                            </tr></table>
+                </td>
+
+            </tr>
+             <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+            <tr>
+            <td style="width:14%; padding-left:2%">                
+                <input type="hidden" id="hidCodigoSucursal" /> 
+                <input type="hidden" id="hidCodigoDireccion" />  
+                <input type="hidden" id="hidCodigoBanco" />  
+                @Html.LabelFor(model => model.BNK_ID)
+            </td>
+            <td>
+                @if (ViewData.ContainsKey("lista_Bancos"))
+                {
+                    @Html.DropDownList("lista_Bancos", ViewData["lista_Bancos"] as List<SelectListItem>, new { style = "width:200px", id = "lista_Bancos", @class = "requeridoLst" }) 
+                    
+                }
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:14%; padding-left:2%">
+                @Html.LabelFor(model => model.BRCH_ID)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BRCH_ID, htmlAttributes: new { id = "BRCH_ID", style = "width:100px;", maxLength = "10", @class = "requerido" })
+                
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:14%; padding-left:2%"> 
+                @Html.LabelFor(model => model.BRCH_NAME)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BRCH_NAME, htmlAttributes: new { id = "BRCH_NAME", style = "width:250px;", maxLength = "40", @class = "requerido" })
+                
+            </td>
+            </tr>           
+              
+            <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+            </tr>
+
+            <tr>
+                                 <td  colspan="2" >
+                                    <div id="tabs">
+                                      <ul>
+                                        <li><a href="#tabs-1">Direcciones</a></li>
+                                        <li><a href="#tabs-2">Contactos</a></li>
+                                      </ul>
+                                      <div id="tabs-1">
+                                          <table style=" width:100%;" border="0">
+                                               <tr>
+                                                  <td>
+                                                      <div><img src="~/Images/botones/add.png" class="addDireccion" height="30"></div>
+                                                      <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addDireccion">Agregar Dirección  </a></div>
+                                                      <hr /> </td>
+                                               </tr>
+                                                <tr>
+                                                  <td> 
+                                                      <div id="gridDireccion"></div>
+                                                  </td>
+                                               </tr>
+                                          </table>   
+                                      </div>
+
+                                      <div id="tabs-2">
+                                          <table style=" width:100%;" border="0">
+                                          <tr>
+                                                  <td>
+                                                      <div><img src="~/Images/botones/add.png" class="addContacto" height="30"></div>
+                                                      <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" id="addContacto" class="addContacto">Agregar Contacto  </a></div>
+                                                      <hr /> </td>
+                                               </tr>
+                                                <tr>
+                                                  <td> 
+                                                      <div id="gridContacto"></div>
+                                                  </td>
+                                               </tr>
+                                          </table>
+                                      </div>
+                                    </div> 
+                                </td>
+                            </tr>            
+
+        </table>
+          <div id="divDireccion">
+        </div>
+        
+
+        <div title="Contacto" id="mvContacto">   
+            <center>
+                        <table width='98%' border='0'>  
+                            <tr>
+                                <td>Tipo de Identificación</td>
+                                <td>                             
+                                    <select id="ddlTipoIdentificacion" style="width: 150px"></select>                                    
+                                    <input type="hidden" id="hidAccionMvCon" />
+                                    <input type="hidden" id="hidEdicionCon" />
+                                    <input type="hidden" id="hidIdentidicacion" />
+                                </td>                               
+                            </tr>    
+                            
+                            <tr>
+                                 <td>Nro. Identificación</td>          
+                                <td>
+                                    <input type="text" id="txtNroIdentificacion" style="width: 140px">                                  
+                                    <input type="hidden" id="hidCantNumValidar" />
+                                    <input type="hidden" id="hidExitoValNumero" />
+                                    <button id='btnBuscarContacto'  class="boton" name='btnBuscarContacto'> 
+                                            <img src="@Url.Content("~/Images/botones/buscar2.png")" style="cursor: pointer;" width="16px" /></button> 
+                                </td> 
+                            </tr>             
+
+                            <tr>     
+                                <td>Contacto</td>               
+                                <td colspan="4"><input type="text" id="txtContacto" style="width: 200px" disabled="disabled">
+                                    <input type="hidden" id="hidCodigoBPS" />    
+                                <td>                              
+                            </tr>   
+                            
+                            <tr>
+                                <td>Rol</td>               
+                                <td>
+                                    <select id="ddlRol" style="width: 150px"></select>
+                                    <input type="hidden" id="hidRolid" />      
+                                <td>  
+                            </tr>                           
+                        </table>                
+                        <center>
+                                <div id="divResultValidarDoc"></div> 
+                        </center>    
+            </center>
+        </div>
+    </center>        
+}
+
+<script>
+    function ValidarRequeridos() {
+        var error = 0;
+        $('.requerido').each(function (i, elem) {
+            /// alert($(elem).val() );
+            if ($.trim($(elem).val()) == '') {
+                $(elem).css({ 'border': '1px solid red' });
+                error++;
+            } else {
+                $(elem).css({ 'border': '1px solid gray' });
+            }
+        });
+        $('.requeridoLst').each(function (i, elem) {
+            /// alert($(elem).val() );
+            if ($(elem).val() == '000' || $(elem).val() == '00000' || $(elem).val() == '0') {
+                $(elem).css({ 'border': '1px solid red' });
+                error++;
+            } else {
+                $(elem).css({ 'border': '1px solid gray' });
+            }
+        });
+        if (error > 0) {
+            // event.preventDefault();
+            msgError("Debe ingresar los campos requeridos ");
+            // $('#aviso').html('<br /><span style="color:red;">Debe ingresar los campos requeridos </span> <br />');
+            return false;
+        } else {
+            msgError("");
+            //$('#aviso').html('<br /><span style="color:red;"></span> <br />');
+            return true;
+        }
+
+        $("#BRCH_ID").blur();
+    };
+</script>
+
+<script>
+    function ObtenerLongitudCodigoSucursal(idbanco) {
+        $.ajax({
+            url: '../General/ObtenerLongitudCodigoSucursal',
+            data: { Id: idbanco },
+            type: 'POST',
+            success: function (response) {
+                var dato = response;
+                if (dato.result == 1) {
+                    $("#BRCH_ID").attr("maxlength", dato.valor);
+                } else {
+                    alert(dato.message);
+                }
+            }
+        });
+    }
+</script>
+
+
+

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_Procesos" targetNamespace="http://tempuri.org/DS_Procesos.xsd" xmlns:mstns="http://tempuri.org/DS_Procesos.xsd" xmlns="http://tempuri.org/DS_Procesos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_Procesos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_Procesos" msprop:Generator_UserDSName="DS_Procesos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListaProcesos" msprop:Generator_TableClassName="ListaProcesosDataTable" msprop:Generator_TableVarName="tableListaProcesos" msprop:Generator_TablePropName="ListaProcesos" msprop:Generator_RowDeletingName="ListaProcesosRowDeleting" msprop:Generator_RowChangingName="ListaProcesosRowChanging" msprop:Generator_RowEvHandlerName="ListaProcesosRowChangeEventHandler" msprop:Generator_RowDeletedName="ListaProcesosRowDeleted" msprop:Generator_UserTableName="ListaProcesos" msprop:Generator_RowChangedName="ListaProcesosRowChanged" msprop:Generator_RowEvArgName="ListaProcesosRowChangeEvent" msprop:Generator_RowClassName="ListaProcesosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PROC_ID" msprop:Generator_ColumnVarNameInTable="columnPROC_ID" msprop:Generator_ColumnPropNameInRow="PROC_ID" msprop:Generator_ColumnPropNameInTable="PROC_IDColumn" msprop:Generator_UserColumnName="PROC_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="PROC_DESC" msprop:Generator_ColumnVarNameInTable="columnPROC_DESC" msprop:Generator_ColumnPropNameInRow="PROC_DESC" msprop:Generator_ColumnPropNameInTable="PROC_DESCColumn" msprop:Generator_UserColumnName="PROC_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="PROC_TYPE" msprop:Generator_ColumnVarNameInTable="columnPROC_TYPE" msprop:Generator_ColumnPropNameInRow="PROC_TYPE" msprop:Generator_ColumnPropNameInTable="PROC_TYPEColumn" msprop:Generator_UserColumnName="PROC_TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="PROC_TDESC" msprop:Generator_ColumnVarNameInTable="columnPROC_TDESC" msprop:Generator_ColumnPropNameInRow="PROC_TDESC" msprop:Generator_ColumnPropNameInTable="PROC_TDESCColumn" msprop:Generator_UserColumnName="PROC_TDESC" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_DESC" msprop:Generator_ColumnVarNameInTable="columnMOD_DESC" msprop:Generator_ColumnPropNameInRow="MOD_DESC" msprop:Generator_ColumnPropNameInTable="MOD_DESCColumn" msprop:Generator_UserColumnName="MOD_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="MOG_DESC" msprop:Generator_ColumnVarNameInTable="columnMOG_DESC" msprop:Generator_ColumnPropNameInRow="MOG_DESC" msprop:Generator_ColumnPropNameInTable="MOG_DESCColumn" msprop:Generator_UserColumnName="MOG_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="PROC_FUCTION" msprop:Generator_ColumnVarNameInTable="columnPROC_FUCTION" msprop:Generator_ColumnPropNameInRow="PROC_FUCTION" msprop:Generator_ColumnPropNameInTable="PROC_FUCTIONColumn" msprop:Generator_UserColumnName="PROC_FUCTION" type="xs:string" minOccurs="0" />
+              <xs:element name="PROC_LAUNCH" msprop:Generator_ColumnVarNameInTable="columnPROC_LAUNCH" msprop:Generator_ColumnPropNameInRow="PROC_LAUNCH" msprop:Generator_ColumnPropNameInTable="PROC_LAUNCHColumn" msprop:Generator_UserColumnName="PROC_LAUNCH" type="xs:string" minOccurs="0" />
+              <xs:element name="PROC_JOBS" msprop:Generator_ColumnVarNameInTable="columnPROC_JOBS" msprop:Generator_ColumnPropNameInRow="PROC_JOBS" msprop:Generator_ColumnPropNameInTable="PROC_JOBSColumn" msprop:Generator_UserColumnName="PROC_JOBS" type="xs:string" minOccurs="0" />
+              <xs:element name="ENDS" msprop:Generator_ColumnVarNameInTable="columnENDS" msprop:Generator_ColumnPropNameInRow="ENDS" msprop:Generator_ColumnPropNameInTable="ENDSColumn" msprop:Generator_UserColumnName="ENDS" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_DATE_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_DATE_CREATColumn" msprop:Generator_UserColumnName="LOG_DATE_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_DATE_UPDATEColumn" msprop:Generator_UserColumnName="LOG_DATE_UPDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_USER_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_USER_CREATColumn" msprop:Generator_UserColumnName="LOG_USER_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_USER_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_USER_UPDATEColumn" msprop:Generator_UserColumnName="LOG_USER_UPDATE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

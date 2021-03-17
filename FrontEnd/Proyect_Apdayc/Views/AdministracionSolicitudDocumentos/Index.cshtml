@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>SOLICITUDES DE APROBACION </title>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacion.aprobacion.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.agrupacion.licencia.division.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.nuevo.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.division.js")"></script>*@
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>
+    <div id="ContenedormvBuscarCorrelativo"></div>
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE ADMINISTRACION DE SOLICITUDES DE DOCUMENTO</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+                            <table style=' width:98%' border='0' id='FiltroTablas'>
+                                <tr>
+                                    <td align="left" style="width:200px">CODIGO DE DOCUMENTO:</td>
+                                    <td><input type="text" id="txtcod"></td>
+                                    <td>SERIE :</td>
+                                    <td>
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie" />
+                                        <input type="hidden" id="hidCorrelativo" value="0" />
+                                        <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie">
+                                            Seleccione una Serie.
+                                        </label>
+                                    </td>
+                                    <td align="left" style="width:200px">NUMERO:</td>
+                                    <td><input type="text" id="txtnum"></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">FECHA  CREACION:</td>
+                                    <td><input type="checkbox" id="chkConFechaCrea" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                                    <td><input type="text" id="txtFecCreaInicial" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                                    <td><input type="text" id="txtFecCreaFinal" /></td>
+                                </tr>
+                                <tr>
+                                    <td>OFICINA RECAUDO :</td>
+                                    <td><input id="hidOficina" value="0" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">SELECCIONE OFICINA</label></td>
+                                    <td>
+                                        ESTADO APROBACION
+                                    </td>
+                                    <td>
+                                        <select id="ddlestadoAprobacion">
+                                            <option value="-1">SELECCIONE</option>
+                                            <option value="0">PENDIENTE</option>
+                                            <option value="1">APROBADO</option>
+                                            <option value="2">RECHAZADO</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        TIPO APROBACION
+                                    </td>
+                                    <td>
+                                        <select id="ddltipoAprobacion">
+                                            @*<option value="-1">SELECCIONE</option>
+                                                <option value="1">NOTA DE CREDITO</option>
+                                                <option value="2">QUIEBRA</option>*@
+                                        </select>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="center">
+                <button id='btnBuscarSolicitud' class="boton" name='btnBuscar'>
+                    Buscar
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnLimpiarSolicitud' class="boton" name='btnLimpiar'>
+                    Limpiar
+                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="left" style="padding-left:30px;font-size:small;font-weight:bold">
+                CANTIDAD : <label id="lblcantidad"> 0.</label><hr2>
+            </td>
+        </tr>
+        <tr id="trlistarAprobaciones">
+            <td colspan="8">
+                @*APROBACIONES*@
+                <div id="grid"></div>
+            </td>
+        </tr>
+    </table>
+    <div title="Solicitud de Aprobacion de Documento" id="mvSolicitudRespt">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidId" />
+            <tr>
+                <td>Tipo de Solicitud:</td>
+                <td>
+                    <label id="lblTipoSolicitud" style="cursor: pointer; font-weight:bold;" alt="Tipo de SOlicitud" title="Tipo de SOlicitud">
+                        Tipo de Solicitud
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td> Documento</td>
+                <td>
+                    <label id="lblserie" style="cursor: pointer; font-weight:bold;">
+                        Serie
+                    </label>
+                    <label id="lblnumero" style="cursor: pointer; font-weight:bold;">
+                        Numero
+                    </label>
+                </td>
+            </tr>
+            <tr id="trocultarddl">
+                <td>
+                    <select id='ddltipoAprobacion' name="ddltipoAprobacion" style="width: 270px">
+                        @*<option value="0">--SELECCIONE--</option>
+                            <option value="1" selected="selected">NOTA DE CREDITO</option>
+                            <option value="2">QUIEBRA </option>*@
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
+                <td style="width: 210px">Descripción de la Aprobacion :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtAprobacionDescSo" name="txtAprobacionDescSo" readonly rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td>APROBACION:</td>
+                <td>
+                    <select id='ddltipoAprobacionResp' name="ddltipoAprobacionResp" style="width: 270px">
+                        <option value="1" selected="selected">APROBADO</option>
+                        <option value="2">RECHAZADO </option>
+                    </select>
+                </td>
+
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+</html>

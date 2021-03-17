@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: COMISIÓN POR TOTAL";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Comisiones por totales</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Comision/comision.total.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.tarifa.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarSocio"></div>
+
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+                    <div id='divTitulo'>Comisiones por totales</div>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input type="hidden" id="hidResponsable" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+
+            <center>
+                <table width='98%' border='0'>
+                    <tr>
+                        <td>Programa</td>
+                        <td><input type="text" id="txtPrograma"/></td>
+
+                <td style="width: 10%"> Ultimo lanzamiento : </td>
+                <td><input type='text' id="txtFechaUltimoLanzamiento"/></td>                
+
+                 <td style="text-align:right">
+                    <button id='btnBuscar' class="boton" name='btnBuscar'>
+                        Buscar 
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                    &nbsp;
+                                                <button id='btnLimpiarComTotal' class="boton" name='btnLimpiarComTotal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    '>
+                                                    Limpiar 
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                    <br />
+                </td>
+                    </tr>
+
+                    <tr>
+                        
+                        <td style="width: 10%">Representante :</td>
+                <td colspan="0">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Agente" title="Búsqueda de Agente"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                    </tr>
+
+                    <tr>
+            <td style='height: 40px; vertical-align: bottom;' colspan="20">
+                <div style="float: right;">
+                    @*<img src="@Url.Content("~/Images/botones/delete.png")" title="Eliminar."  id="btnEliminar"/>*@
+                    <img src="@Url.Content("~/Images/botones/Nuevo.png")" title="Nuevo." id="btnNuevo"/>                    
+                    &nbsp; 
+                </div>
+            </td>
+            </tr>
+                </table>
+            </center>
+        </table>
+
+        <table border="0">
+            <tr>
+                <td>
+                    <div id="gridComisionesTotales"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

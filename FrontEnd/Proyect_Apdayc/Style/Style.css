@@ -1,0 +1,28 @@
+﻿.editor-label{
+ margin-left:20px;
+ width: 500px;
+ display:block;
+}
+
+.editor-field{  
+ margin-left:20px;
+ float: left;
+ width: 500px;
+}
+
+#btnnuevo{
+    margin-left:20px;
+}
+
+#legend {
+    margin-left:20px;
+    width:96%;
+}
+
+#btncancel {
+    margin-left:20px;
+}
+
+#btnSave{
+    margin-left:20px;
+}

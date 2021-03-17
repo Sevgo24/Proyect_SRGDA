@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: REGISTRO NOTA DE CREDITO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>REPORTES NOTA DE CREDITO</title>
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Reporte/mantenimiento.registro.venta.nc.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+        * we use height instead, but this forces the menu to always be this tall
+        */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <center>
+            <table width='98%' border='0' cellspacing='0' cellpadding='0'>
+                <tr>
+                    <td>
+                        <div id='divTitulo'>REPORTE NOTA DE CREDITO</div>
+                    </td>
+                </tr>
+                <tr>
+                    <hr />
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <center>
+                            @*<table width='98%' border='0' id='FiltroTabla'> *@
+                            <table style="width:100%; padding-left:30px" id="FiltroTabla" border="0">
+                                <tr>
+                                    <td style="width:260px">
+                                        Fecha Inicial : 
+                                        <input type="text" id="txtFecInicial" readonly="false" class="requerido" />
+                                    </td>
+                                    <td style="width:260px">
+                                        Fecha Final :
+                                        <input type="text" id="txtFecFinal" readonly="false" class="requerido" />
+                                    </td>
+                                    <td style="width:400px" id="tddllOficina">Oficina:&nbsp&nbsp&nbsp<select id="dllOficina" style="width:300px"></select></td>
+                                    
+                                    <td style="width:60px" align="right" colspan="2">
+                                        <button id='btnPdf' class="boton" name='btnPdf'>
+                                            Rep. PDF
+                                            <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                                        </button>
+                                        &nbsp;
+                                        <button id='btnExcel' class="boton" name='btnExcel'>
+                                            Rep. EXCEL
+                                            <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                                        </button>
+
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                    <td colspan="5" align="left">
+                                        <div id="gridModalidad" style="color:black">
+
+                                        </div>
+                                    </td>
+                                </tr>*@
+                                <tr>
+                                    <td style="width:260px" >
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aplicado :
+                                        <select id="divEstado">
+                                            <option value=-1 selected="selected">--Todos--</option>
+                                            <option value=0>NC - ANULACIÓN</option>
+                                            <option value=1>NC - DEVOLUCIÓN </option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </center>
+                    </td>
+                </tr>
+                <tr><td><br /></td></tr>
+                <tr>
+                    <td style="vertical-align:central;text-align:center">
+                        <div id="contenedor" style="display:none"><iframe src="" width="95%" height="900" id="externo"></iframe></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style='height: 30px;'>
+                        <center>
+                            <div id='error' style=" width 100% ; vertical-align middle; ">
+                            </div>
+                        </center>
+                    </td>
+                </tr>               
+            </table>
+        </center>
+        @*           ESTO ES PARA EL IFRAME*@
+        @*<div id ="contenedor"style="display:none"><iframe src="" width ="1555" height="900" id="externo"></iframe></div>*@
+    </div>
+</body>
+</html>
+

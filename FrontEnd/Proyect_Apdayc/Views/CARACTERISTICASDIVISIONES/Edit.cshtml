@@ -1,0 +1,202 @@
+﻿@model SGRDA.Entities.BEREF_DIV_CHARAC
+
+@{
+    ViewBag.Title = "APDAYC :: CARACTERÍSTICAS DE DIVISIONES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+            $("#btnNeo").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#btnedit").hide();
+            $("DAC_ID").attr('disabled');
+            $("#DESCRIPTION").focus();
+            return false;
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+            location.reload();
+
+            return false;
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    
+    <br />
+    <center>
+    <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+
+              <tr>
+                <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+                 
+                     <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                     Características de Divisiones - Actualización
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                       <div style="float:right;">
+                          <div class="botonLink"  style="width:80px;">
+                        <a href="@Url.Action("../CARACTERISTICASDIVISIONES/","CARACTERISTICASDIVISIONES")"   >
+                            <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                            <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                        </a>
+                            </div>
+                        &nbsp;
+                        <div class="botonLink"  style="width:80px;" id="btnNeo">
+                            <a href="@Url.Action("Create", "CARACTERISTICASDIVISIONES")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Nuevo
+                                    <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+                         &nbsp;
+                              <button id="btnedit"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Editar </span> 
+                                  <img src="@Url.Content("~/Images/botones/editb.png")" width="24" />
+                               </button>
+                         &nbsp;
+                             <button id="btncancel"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Descartar </span> 
+                                  <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                               </button> 
+                         
+                        
+                             &nbsp;
+                               <button id="btnSave"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Grabar </span> 
+                                  <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                               </button> 
+
+
+                        </div>
+                                 </td>
+                            </tr></table>
+                </td>
+
+            </tr>
+
+                <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+
+            <tr>
+
+            <td style="width:10%; padding-left:2%">        
+                Código :
+            </td>
+
+            <td>
+                 @Html.TextBoxFor(model => model.DAC_ID, htmlAttributes: new { id = "DAC_ID", disabled = "disabled", style = "width:100px;", maxlength = "100" })
+            </td>
+            </tr>
+            <tr>
+
+            <td style="width:10%; padding-left:2%">        
+                @Html.HiddenFor(model => model.DAC_ID)
+                @Html.LabelFor(model => model.DESCRIPTION) :              
+            </td>
+
+            <td>
+                 @Html.TextBoxFor(model => model.DESCRIPTION, htmlAttributes: new { id = "DESCRIPTION", disabled = "disabled", style = "width:250px;", maxlength = "100" })
+            </td>
+           </tr>
+
+     <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+          </table>
+        </center>
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("DESCRIPTION").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("DESCRIPTION").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">    
+
+    if ('@TempData["flag"]' == "1") {
+        $("#btnedit").hide();
+        //$("#btnVolver").hide();
+        $("#btnnuevo").hide();
+        $("#btnNeo").hide();
+        alert("Grabado corectamente.");
+        location.href = "../";
+    } else {
+        if ('@TempData["msg"]' != "") {
+            $(function () {
+                $("#message").show();
+                $(".alert-link").show();
+            })
+        };
+    }
+
+
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

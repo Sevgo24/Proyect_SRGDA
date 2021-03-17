@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_REC_QUALIFY_CHAR" targetNamespace="http://tempuri.org/DS_REC_QUALIFY_CHAR.xsd" xmlns:mstns="http://tempuri.org/DS_REC_QUALIFY_CHAR.xsd" xmlns="http://tempuri.org/DS_REC_QUALIFY_CHAR.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_REC_QUALIFY_CHAR" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_REC_QUALIFY_CHAR" msprop:Generator_UserDSName="DS_REC_QUALIFY_CHAR">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="listar_caracteristicastipocalificaciones" msprop:Generator_TableClassName="listar_caracteristicastipocalificacionesDataTable" msprop:Generator_TableVarName="tablelistar_caracteristicastipocalificaciones" msprop:Generator_TablePropName="listar_caracteristicastipocalificaciones" msprop:Generator_RowDeletingName="listar_caracteristicastipocalificacionesRowDeleting" msprop:Generator_RowChangingName="listar_caracteristicastipocalificacionesRowChanging" msprop:Generator_RowEvHandlerName="listar_caracteristicastipocalificacionesRowChangeEventHandler" msprop:Generator_RowDeletedName="listar_caracteristicastipocalificacionesRowDeleted" msprop:Generator_UserTableName="listar_caracteristicastipocalificaciones" msprop:Generator_RowChangedName="listar_caracteristicastipocalificacionesRowChanged" msprop:Generator_RowEvArgName="listar_caracteristicastipocalificacionesRowChangeEvent" msprop:Generator_RowClassName="listar_caracteristicastipocalificacionesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OWNER" msprop:Generator_ColumnVarNameInTable="columnOWNER" msprop:Generator_ColumnPropNameInRow="OWNER" msprop:Generator_ColumnPropNameInTable="OWNERColumn" msprop:Generator_UserColumnName="OWNER" type="xs:string" minOccurs="0" />
+              <xs:element name="QUC_ID" msprop:Generator_ColumnVarNameInTable="columnQUC_ID" msprop:Generator_ColumnPropNameInRow="QUC_ID" msprop:Generator_ColumnPropNameInTable="QUC_IDColumn" msprop:Generator_UserColumnName="QUC_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="QUA_ID" msprop:Generator_ColumnVarNameInTable="columnQUA_ID" msprop:Generator_ColumnPropNameInRow="QUA_ID" msprop:Generator_ColumnPropNameInTable="QUA_IDColumn" msprop:Generator_UserColumnName="QUA_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" type="xs:string" minOccurs="0" />
+              <xs:element name="DESCTIPO" msprop:Generator_ColumnVarNameInTable="columnDESCTIPO" msprop:Generator_ColumnPropNameInRow="DESCTIPO" msprop:Generator_ColumnPropNameInTable="DESCTIPOColumn" msprop:Generator_UserColumnName="DESCTIPO" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_DATE_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_DATE_CREATColumn" msprop:Generator_UserColumnName="LOG_DATE_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_DATE_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_DATE_UPDATEColumn" msprop:Generator_UserColumnName="LOG_DATE_UPDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_CREAT" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_CREAT" msprop:Generator_ColumnPropNameInRow="LOG_USER_CREAT" msprop:Generator_ColumnPropNameInTable="LOG_USER_CREATColumn" msprop:Generator_UserColumnName="LOG_USER_CREAT" type="xs:string" minOccurs="0" />
+              <xs:element name="LOG_USER_UPDATE" msprop:Generator_ColumnVarNameInTable="columnLOG_USER_UPDATE" msprop:Generator_ColumnPropNameInRow="LOG_USER_UPDATE" msprop:Generator_ColumnPropNameInTable="LOG_USER_UPDATEColumn" msprop:Generator_UserColumnName="LOG_USER_UPDATE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

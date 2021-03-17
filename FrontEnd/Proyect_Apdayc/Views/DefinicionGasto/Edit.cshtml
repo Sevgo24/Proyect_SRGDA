@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: DEFINICIONES DE GASTO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Definición de Gastos</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/DefinicionGasto/definicion.gasto.editar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidBpsId" type="hidden" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                   <tr>
+                         <td  colspan="3" style="  text-align:right; "  class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                            
+                            <table  width='100%' border='0' id='FiltroTabla'>
+		                       <tr>
+			                       <td style="width:500px;text-align:left;">
+				                       <div id='divTituloPerfil'>Definiciones de Gastos - Actualización</div>
+			                       </td>
+				                    <td  colspan="1">
+					                     <button id="btnVolver"  class="boton" name="btnVolver">Volver 
+                                        <img src="@Url.Content("~/Images/botones/back.png")" width="14" /></button> 
+                            
+                                         &nbsp;
+                                        <button id="btnNuevo"  class="boton" name="btnNuevo">Nuevo  
+                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="14" /></button>
+
+                                         &nbsp;
+                                        <button id="btnEditar"  class="boton" name="btnEditar">Editar  
+                                        <img src="@Url.Content("~/Images/botones/editb.png")" width="14" /></button>
+
+                                         &nbsp;
+                                         <button id="btnDescartar"  class="boton">Descartar
+                                             @*<span style=" color:#000; font-weight:200;">Descartar </span>*@ 
+                                              <img src="@Url.Content("~/Images/botones/undo.png")" width="14" />
+                                         </button> 
+
+                                        &nbsp;
+                                        <button id="btnGrabar"  class="boton" name="btnGrabar">Grabar  
+                                        <img src="@Url.Content("~/Images/botones/save.png")" width="14" /></button>   
+				                    </td>   
+		                       </tr>
+	                       </table>
+                         
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Id :</td>
+                        <td><input type='text' id='txtDesCorta'   class="requerido"  name='txtDesCorta' maxlength="6" size="15" /></td>
+                    </tr>
+                    <tr> 
+                        <td> Descripción :</td>
+                        <td><input type='text' id='txtDescripcion'   class="requerido"  name='txtDescripcion' maxlength="80" size="50" /></td>
+                    </tr>
+                    <tr>
+                        <td> Tipo de Gasto :</td>
+                        <td>
+                        <select id='ddlTipoGasto' name="ddlTipoGasto" class="requeridoLst"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Grupo de Gasto :</td>
+                        <td>
+                        <select id='ddlGrupoGasto' name="ddlGrupoGasto" class="requeridoLst"></select>
+                        </td>
+                    </tr>                    
+                </table>
+            </center>
+                </td>
+            </tr>
+            <tr>
+                <td style='height: 30px;'>
+                    <center>
+                <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+                </div>
+        </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,126 @@
+﻿@model SGRDA.Entities.ROLES_PERMISOS
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Style/Style.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+    });
+</script>
+
+<style type="text/css">
+
+textarea 
+{
+   
+    resize: none;
+
+}
+</style>
+  
+@using (Html.BeginForm("Create", "ROLES_PERMISOS", FormMethod.Post))
+     { 
+          @Html.AntiForgeryToken()
+    
+    
+            <fieldset>
+  
+            <legend id="legend">@Html.ActionLink("ROLES PERMISOS", "Index",new{}, new { style="text-decoration:none;"})</legend>
+                 <button id="btnSave" class="btn btn-primary">Guardar</button>
+                 <a href="@Url.Action("Index", "ROLES_PERMISOS")" id="btncancel" class="btn btn-primary">Descartar</a><br />
+    
+                  <br />
+
+                    <div class="editor-label">
+                       @if (ViewData.ContainsKey("Lista_Roles"))
+                       { 
+                        @Html.LabelFor(model => model.ROL_ICODIGO_ROL)<br />
+                        @Html.DropDownList("Lista_Roles", (IEnumerable<SelectListItem>)ViewData["Lista_Roles"], new { style = "width:210px", id = "cb1" })
+                        @Html.ValidationMessageFor(model => model.ROL_ICODIGO_ROL)
+         
+                       }
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                       @if (ViewData.ContainsKey("Lista_Cabecera_Modulo"))
+                       { 
+                        @Html.LabelFor(model => model.CABE_ICODIGO_MODULO)<br />
+                        @Html.DropDownList("Lista_Cabecera_Modulo", (IEnumerable<SelectListItem>)ViewData["Lista_Cabecera_Modulo"], new { style = "width:210px", id = "cb2" })
+                        @Html.ValidationMessageFor(model => model.CABE_ICODIGO_MODULO)
+                       }
+                        @Html.DropDownList("Lista_ModuloNivel", ViewData["Lista_ModuloNivel"] as List<SelectListItem>, new { style = "width:210px", ViewData.Values, id = "cb3" })
+                        @Html.ValidationMessageFor(model => model.MODU_INIVEL_MODULO)
+                    </div>
+                     <br />
+                    <div class="editor-label" style="width: 350px" >
+                        @Html.LabelFor(model => model.MODU_VNOMBRE_MODULO)<br />
+                        @Html.TextBoxFor(p => p.MODU_VNOMBRE_MODULO, new { style = "width:250px"})
+                        @Html.ValidationMessageFor(model => model.MODU_VNOMBRE_MODULO)<br />
+                    </div>
+                    <br />
+                    <div class="editor-label" style="width: 350px">
+                        @Html.LabelFor(model => model.MODU_VRUTA_PAGINA)<br />
+                        @Html.TextBoxFor(p => p.MODU_VRUTA_PAGINA, new { style = "width:250px"})
+                        @Html.ValidationMessageFor(model => model.MODU_VRUTA_PAGINA)<br />
+                    </div>
+                    <br />
+                    
+                    <div class="editor-label" style="width: 350px">
+                        @Html.LabelFor(model => model.MODU_VDESCRIPCION_MODULO)<br />
+                        @Html.TextBoxFor(p => p.MODU_VDESCRIPCION_MODULO, new { style = "width:350px"})
+                        @Html.ValidationMessageFor(model => model.MODU_VDESCRIPCION_MODULO)<br />
+                    </div>
+                    <br />
+                    
+                    <div class="editor-label">
+                        <label for="cboRol">Activo</label><br />
+                        <select name="cboRol" id="cboRol">
+                            <option value="1">Si</option>
+				            <option value="0">No</option>
+                        </select><br />
+                    </div>
+           </fieldset>
+                <br />
+                <div id="message1">
+            <div class="@TempData["class1"]">
+              @Html.ValidationSummary()
+            </div>
+            </div>
+     }
+
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+           
+
+        })
+    };
+</script>
+
+<br />
+
+<div id="message">
+<div class="@TempData["class"]">
+  <a id="lnk" href="#" class="alert-link">OK! </a> @TempData["msg"]
+</div>
+</div>
+
+

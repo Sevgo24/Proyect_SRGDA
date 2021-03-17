@@ -1,0 +1,36 @@
+﻿@model SGRDA.Entities.BEREC_CHARACTERISTICS
+
+@{
+    ViewBag.Title = "APDAYC :: CARACTERÍSTICAS DE TARIFA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+    
+         <p>
+            <input type="hidden" id="CHAR_ID" name="CHAR_ID" value="@Html.DisplayFor(model => model.CHAR_ID)"/>
+        </p>        
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

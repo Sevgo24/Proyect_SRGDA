@@ -1,0 +1,463 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: BEC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BOLETA DE ENTREGA A CAJA</title>
+    @*<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/recaudacion.bec.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+    @*Busqueda General*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.recibo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.recibo.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+
+    @* Busqueda General Factura *@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.bec.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.entidad.js")"></script>
+    @*busqueda de socio en en el PoPup de factura*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    @*busqueda de socio en grupo de facturaciòn*@
+
+    @*VERIFICAR EL USO*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.agentecomercial.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/uploadApp.js")"></script>
+</head>
+<body>
+    <div id="vista">
+        <div id="ContenedormvBuscarCorrelativoSerieBec"></div>
+        <div id="ContenedormvBuscarCorrelativoSerieRecAux"></div>
+        <div id="ContenedormvBuscarConsultaFacuraBec"></div>
+        <div id="ContenedormvBuscarClienteDoc"></div>
+        @*<div id="ContenedormvBuscarSocioDoc"></div>*@
+
+        <table style="width: 98%">
+            <tr>
+                <td>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidRecId" type="hidden" />
+                    <input id="hidVersion" type="hidden" />
+                </td>
+            </tr>
+
+            @* BOTONES *@
+            <tr>
+                <td>
+                    <table width='98%' border="0" id='FiltroTablaPop'>
+                        <tr>
+                            <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                <table width='100%' border='0' id='FiltroTabla'>
+                                    <tr>
+                                        <td style="width: 500px; text-align: left;">
+                                            <div id='divTituloPerfil'>Cobros</div>
+                                        </td>
+                                        <td colspan="1">
+                                            <input type="hidden" id='txtOfiCodigo' name='txtOfiCodigo' disabled='disabled' />
+                                                                    @*<button id='btnEliminar' class="boton" name='btnNuevo'>
+                                                                        Eliminar
+                                                                        <img src="@Url.Content("~/Images/botones/cancelar.png")" width="14px" />
+                                                                    </button>*@
+                                                                    @*<img src="@Url.Content("~/Images/iconos/delete.png")" width="14px" /></button>*@
+                                            &nbsp;
+                                                                    <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                                        Volver 
+                                                                    <img src="@Url.Content("~/Images/botones/back.png")" width="14px" /></button>
+                                            &nbsp;
+                                                                    <button id='btninactivar' class="boton" name='btninactivar' style="display: none">
+                                                                        Inactivar
+                                                                    <img src="@Url.Content("~/Images/botones/save.png")" width="14px" /></button>
+                                            &nbsp;
+                                                                    <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                                        Nuevo 
+                                                                    <img src="@Url.Content("~/Images/botones/neo.png")" width="14px" /></button>
+                                            &nbsp;
+                                                                    <button id='btnGrabar' class="boton" name='btnGrabar' style="display: none">
+                                                                        Grabar 
+                                                                    <img src="@Url.Content("~/Images/botones/save.png")" width="14px" /></button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            @* CABECERA *@
+            <tr>
+                <td>
+                    <div id="DivCabeceraIngreso" class="contenedor">
+                        <table style="width: 100%; padding-left: 30px" border="0">
+                            <tr>
+                                <td>Tipo :</td>
+                                <td>
+                                    <input type="radio" id="rbtSimple" value="S" name="Tipo" class="Tipo" checked="checked" />Simple &nbsp&nbsp
+                                    <input type="radio" id="rbtCompuesto" value="C" name="Tipo" class="Tipo" />Compuesto
+                                </td>
+                                <td>Serie Recibo :</td>
+                                <td>
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativoRecAux" style="cursor:pointer;"  alt="Búsqueda de Serie" title="Búsqueda de Serie"/>
+                                    <input type="hidden" id="hidCorrelativoRecAux" value="0" />
+                                    <input type="hidden" id="hidSerieRecAux" value="0" />
+                                    <input type="hidden" id="hidActualRecAux" value="0" />
+                                    <label id="lbCorrelativoRecAux" style="cursor: pointer; font-weight: bold; background-color: rgb(255, 252, 196); width: 15px; border-color: black" alt="Búsqueda de Serie" title="Búsqueda de Serie">
+                                        Seleccione una Serie.
+                                    </label>
+
+                                </td>
+
+                                <td style="width: 135px">N° Cobro : @*&nbsp <label id="lblMRecId"></label>*@
+
+                                </td>
+                                <td>
+                                    <label id="lblMRecId"></label>
+                                    @*Estado : &nbsp<label id="lblEstadoMrec"></label>*@
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Monto Total de Depositos :</td>
+                                <td>
+                                    <input type="text" id="txtMVoucher" value="0" readonly style="width: 70px; background-color: rgb(255, 252, 196); text-align: right; padding-right: 10px" />
+                                    <input type="hidden" id="hidMVoucher" />
+                                </td>
+
+                                <td rowspan="2" style="width: 120px">Observación :</td>
+                                <td rowspan="2">
+                                    <textarea id="txtObservacion" rows="2" cols="40"></textarea></td>
+
+                                <td style="width: 135px">Usuario Creación :</td>
+                                <td>
+                                    <label id="lblUsuarioCrea"></label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 14%">Monto Total de Facturas :</td>
+                                <td>
+                                    <input type="text" id="txtMAplicar" value="0" readonly style="width: 70px; background-color: rgb(255, 252, 196); text-align: right; padding-right: 10px" />
+                                    <input type="hidden" id="hidMAplicar" />
+                                </td>
+                                @*<td style="width: 135px">Fecha Creación. :</td>
+                                <td><label id="lblFechaCrea"></label></td>*@
+
+                                <td style="width: 135px">Estado :</td>
+                                @*<td><label id="lblEstadoMrec" style=" background-color: rgb(255, 252, 196);"></label></td>                                *@
+                                @*<td><label id="lblEstadoMrec" ></label></td>    *@                            
+                                <td><input type="text" id="txtEstadoMrec" style="font-weight:bold; display:none" readonly/></td>    
+                            </tr>
+
+                            <tr>
+                                <td colspan="10">
+                                    <hr />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Banco Destino:</td>
+                                <td>
+                                    <select id="ddlBancoDoc" class="requeridoLst"></select>
+                                </td>
+                                <td>Moneda : </td>
+                                <td>
+                                    <select id="ddlMonedaDoc" class="requeridoLst"></select>
+                                </td>
+                                <td>Tipo de Cambio :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtTipoCambio" style="width: 45px; text-align: right; padding-right: 10px; background-color: rgb(255, 252, 196)" readonly value="3.35" />
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>Fecha de Creación :</td>
+                                <td>
+                                    @*<input type="text" id="txtFecDepositoDoc" style="width: 125px" class="requerido" readonly />*@
+                                    <input type="text" id="txtFechaCreacion" style="width: 85px; background-color: rgb(255, 252, 196)" class="requerido" readonly />
+                                </td>
+
+                                <td>Cuenta :</td>
+                                <td>
+                                    <select id="ddlCuentaDoc" class="requeridoLst"></select>
+                                </td>
+                                <td colspan="2">
+                                    <div id="divbtnCambiarBancoDestino" style="display:none"> <img src="@Url.Content("../Images/iconos/edit.png")" id="btnCambiarBancoDestino" style=" cursor:pointer;" alt="Cambiar Banco Destino" title="Cambiar Banco Destino" />Cambiar Banco Destino</div>
+                                    <div id="divbtnCambiarGrabarBancoDestino" style="display:none"><img src="@Url.Content("../Images/botones/finalizar.png")" id="btnCambiarGrabarBancoDestino" style="cursor:pointer;" alt="Grabar Cambio Banco Destino" title="Grabar Banco Destino" />Grabar Banco Destino</div>
+                                </td>
+                                @*<td><button id="btnVerImagenCobro">Ver Imagen</button></td>*@                           
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: center"></td>
+                                <td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+
+            @*  <tr>
+                <td style="text-align: center">
+                    <div id="divMsjValIngresoDoc"></div>
+                </td>
+            </tr>*@
+
+            @* VOUCHER *@
+            <tr>
+                <td>
+                    <table style="width: 100%" border="0" id="FiltroTabla">
+                        <tr>
+                            <td id="tdVoucher">
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addVoucher" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addVoucher" style="color: black">Agregar Tipo de Depósito</a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="tdVoucherEdicion">
+                                <label style="padding-left: 20px">Lista de Tipos de Depósito</label>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="hidMonedaGridVoucher" type="hidden" />
+                                <div id="gridVoucherBancario"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+
+            @* CLIENTE - FACTURA *@
+            <tr>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td id="tdClienteFactura">
+                    <table style="width: 100%" border="0" id="FiltroTabla">
+                        <tr>
+                            <td id="tdCliente">
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addCliente" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addCliente" style="color: black">Agregar Cliente</a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="tdClienteEdicion">
+                                <label style="padding-left: 20px">Lista de Clientes</label>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="gridCliente"></div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</body>
+</html>
+
+
+<div title="Agregar Tipo de Depósito Bancario" id="mvVoucherBancario" style='position:relative;display:none'>
+    <table border="0">
+        @*   <input type="hidden" id="hidIdReciboDetalle" />
+        <input type="hidden" id="hidIdFactura" />*@
+        <input type="hidden" id="hidIdVoucherEdit" />
+        <input type="hidden" id="hidIdVoucher" />
+
+        <tr>
+            <td>Tipo Pago
+            </td>
+            <td>
+                <select id="ddlTipoPago" class="requeridoLst"></select>
+            </td>
+        </tr>
+
+          <tr>
+            <td>Banco</td>
+            <td>
+                <select id="ddlBanco" class="requeridoLst"></select></td>
+        </tr>      
+
+    @*    <tr>
+            <td>Sucursal</td>
+            <td>
+                <select id="ddlSucursal" class="requeridoLst" style="width: 350px"></select></td>
+        </tr>*@
+        <tr>
+            <td>Sucursal</td>
+            <td>
+                <input type='text' id='txtSucursal' style=" width:350px;"  />
+                <input type="hidden" id="hidCodigoSucursal"  />
+
+                @*<input type='text' id='txtSucursal' style=" width:350px;"  class="requerido" /> 
+                <input type="hidden" id="hidCodigoSucursal" class="requerido" />*@
+                @*<input type='hidden' id="hidCodigoBPS" />*@
+            </td>
+        </tr>
+
+        <tr>
+            <td>Cuenta Cliente</td>
+            <td>                
+                @*<input type="text" id="txtCuenta" class="requerido" maxlength="30" style="width: 200px" />*@
+                <input type="text" id="txtCuenta"  maxlength="30" style="width: 200px" />
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Fecha Depósito</td>
+            <td>
+                <input type="text" id="txtFecDeposito" style="width: 125px" class="requerido" readonly /></td>
+        </tr>
+        <tr>
+            <td>Código de depósito</td>
+            <td>
+                <table border="0">
+                    <tr>
+                        <td>
+                            <input type="text" id="txtVoucher"  style="width: 200px" /></td>
+                        <td style="width: 250px">
+                            <div id="divResultValidacionDes"></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Monto de Depósito</td>
+            <td>
+                <input type="text" id="txtMontoDepositoVoucher" style="width: 125px" class="requerido" /></td>
+        </tr>
+
+        <tr>
+            <td style="width: 130px">Moneda :</td>
+            <td>
+                <input type="text" id="txtMonedaComprobante" style="width: 100px; background-color: rgb(255, 252, 196)" readonly />
+                <input type="hidden" id="hidMonedaComprobante" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" id="hidNombreFile" />
+                Ruta de Archivo
+            </td>
+
+            <td>
+                <div id="fuFiles"></div>
+                <input type="file" id="file_upload" name="file_upload">
+                <div id="uploaded"></div>
+            </td>
+        </tr>
+
+        @*        <tr>
+            <td style="width: 200px">Confimrmación del Pago</td>
+            <td>
+                <input type="checkbox" id="chkConfimacionpago" />
+        </tr>*@
+
+        <tr>
+            <td colspan="2">
+                <div id="divMsjErrorVoucher" style="text-align: center; vertical-align: central"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div title="Solicitud de Aprobacion de Requerimiento" id="mvSolicitudRequeBec">
+    <table width='100%' border='0' id='FiltroTablaPopObs'>
+        <tr>
+            <td>Tipo de Solicitud:</td>
+            <td><select id="ddltiporequerimiento"></select></td>
+        </tr>
+        <tr id="trbec">
+            <td>
+               BEC :
+            </td>
+            <td>
+                <label id="lblbecid" style="cursor: pointer; font-weight:bold;">
+                    CODIGO BEC...
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 210px">Descripción del Requerimiento :</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="txtAprobacionDesc" name="txtAprobacionDesc" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+
+<div title="Solicitud para Saltar Validacion de Monto " id="mvSolicitudRequeBecSaltar">
+    <table width='100%' border='0' id='FiltroTablaPopObs'>
+        <tr>
+            <td>Tipo de Solicitud:</td>
+            <td><select id="ddltiporequerimientoSalt"></select></td>
+        </tr>
+        <tr id="trbec">
+            <td>
+                BEC :
+            </td>
+            <td>
+                <label id="lblbecidSalt" style="cursor: pointer; font-weight:bold;">
+                    CODIGO BEC...
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 210px">Descripción del Requerimiento :</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="txtAprobacionBecDesc" name="txtAprobacionBecDesc" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+            </td>
+
+        </tr>
+    </table>
+</div>

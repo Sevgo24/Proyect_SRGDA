@@ -1,0 +1,269 @@
+﻿@model SGRDA.Entities.BEREC_TAX_ID
+
+@{
+    ViewBag.Title = "APDAYC :: DOCUMENTOS DE IDENTIFICACIÓN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#NAME_TERD").show();        
+        $("#NAME_TERD").attr("disabled", "enabled");
+        $("#NAME_TERD").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#NAME_TERD").removeAttr('disabled');
+            $("#NAME_TERD").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+            $("#TAXT_ID").attr("disabled");
+            $("#btnedit").hide();
+            $("#TAXN_NAME").focus();
+            $("#TEXT_DESCRIPTION").removeAttr('disabled');
+
+            $("#NAME_TER").hide();
+            $("#NAME_TERD").show();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#NAME_TERD").attr("disabled", "enabled");
+            $("#NAME_TERD").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+            $("#TEXT_DESCRIPTION").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            $("#NAME_TER").show();
+            $("#NAME_TERD").hide();
+
+            location.reload();
+
+            return false;
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <br />    
+    
+    <center>
+         <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+           <tr>
+               <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+               <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                  Documentos de Identificación - Actualización
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">
+                        <div class="botonLink"  style="width:80px;">
+                            <a href="@Url.Action("../IDENTIFICADORESFISCALES/","IDENTIFICADORESFISCALES")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnnuevo">
+                                <a href="@Url.Action("Create", "IDENTIFICADORESFISCALES")"   >   
+                                    <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnedit">
+                            <a href="#" id="btnedit" >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                    Editar
+                                    <img src="@Url.Content("~/Images/botones/editb.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <button id="btncancel"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Descartar </span> 
+                            <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                        </button> 
+
+                        &nbsp;
+                        <button id="btnSave"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Grabar </span> 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>   
+                   </div>
+                   </td>
+                </tr>
+                </table>
+                </td>
+            </tr>
+                 <tr><td><br /></td></tr>   
+             
+            
+             <tr>
+            <td > 
+                @Html.LabelFor(model => model.TAXT_ID) :<br />
+            </td>
+             <td>
+                @Html.TextBoxFor(model => model.TAXT_ID, htmlAttributes: new { id = "TAXT_ID", disabled = "disabled", onkeydown = "return ValidateNumber(event);", style = "width:100px;" })
+                @Html.ValidationMessageFor(model => model.TAXT_ID)
+            </td>           
+            </tr>
+                 
+            <tr >        
+            <td > 
+                @Html.HiddenFor(model => model.OWNER, htmlAttributes: new { id = "OWNER" })
+                @Html.HiddenFor(model => model.TAXT_ID, htmlAttributes: new { id = "TAXT_ID" })                
+                @Html.HiddenFor(model => model.TIS_N, htmlAttributes: new { id = "TIS_N" })
+                @*@Html.LabelFor(model => model.TIS_N)*@
+            </td>
+                  
+            </tr>
+            
+             <tr>
+                <td > 
+                    @Html.LabelFor(p => p.TIS_N) :
+                </td>
+                <td>
+                    @*@Html.TextBoxFor(p => p.NAME_TER, htmlAttributes: new { id = "NAME_TER", disabled = "disabled", style = "width:300px;" })*@
+                      @if (ViewData.ContainsKey("Lista_Territorio"))
+                      {
+                        @Html.DropDownList("Lista_Territorio", ViewData["Lista_Territorio"] as List<SelectListItem>, new { style = "width:250px", id = "NAME_TERD" }) 
+                      }
+                </td>
+               </tr>
+             
+                        
+            <tr>
+            <td style="width:100px"> 
+                @Html.LabelFor(model => model.TAXN_NAME) :<br />
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.TAXN_NAME, htmlAttributes: new { id = "TAXN_NAME", disabled = "disabled", style = "width:250px;", maxlength = "40" })
+                @Html.ValidationMessageFor(model => model.TAXN_NAME) 
+            </td>                
+            </tr>
+            
+            <tr>
+                <td style="width:100px"> 
+                    @Html.LabelFor(model => model.TEXT_DESCRIPTION) :<br />
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.TEXT_DESCRIPTION, htmlAttributes: new { id = "TEXT_DESCRIPTION", disabled = "disabled", cols = "70%", rows = "5" })
+                    @*@Html.ValidationMessageFor(model => model.TEXT_DESCRIPTION) *@
+                </td>                
+            </tr>
+                      
+            <tr>
+            <td style="width:150px"> 
+                @Html.LabelFor(model => model.TAXN_POS) :<br />
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.TAXN_POS, htmlAttributes: new { id = "TAXN_POS", disabled = "disabled", onkeydown = "return ValidateNumber(event);", maxLength = "2", style = "width:40px;" })
+                @Html.ValidationMessageFor(model => model.TAXN_POS)
+            </td>
+            </tr>
+             <tr><td><br /></td></tr>
+          </table>
+    </center>
+       
+}
+
+<script>
+    $("#btnedit").click(function () {
+        //document.getElementById("TAXT_ID").disabled = false;
+        //document.getElementById("TIS_N").disabled = false;
+        document.getElementById("TAXN_NAME").disabled = false;
+        document.getElementById("TAXN_POS").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        //document.getElementById("TAXT_ID").disabled = true;
+        //document.getElementById("TIS_N").disabled = true;
+        document.getElementById("TAXN_NAME").disabled = true;
+        document.getElementById("TAXN_POS").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+
+    if ('@TempData["flag"]' == "1") {
+        $("#btnnuevo").hide();
+        $("#btnedit").hide();
+        alert("Grabado correctamente.");
+        location.href = "../"
+    };
+</script>
+
+<script type="text/javascript">
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link"></a>@TempData["msg"]
+    </div>
+</div>

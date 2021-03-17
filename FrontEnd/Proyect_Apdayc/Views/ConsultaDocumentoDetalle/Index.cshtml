@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Detalle Documento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/consulta.documento.detalle.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/consulta.documento.detalle.js")"></script>*@
+    
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>*@
+    
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacionconsulta.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.nota.credito.js")"></script>*@
+    
+    @*<script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>*@
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.txtNumLiccss")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        #tblFacturaMasiva {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+
+    <style>
+        #tblDetalleFactura {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        <center>
+            <table style="width: 99%" border="0">
+                <tr>
+                    <td>
+                        <div id="divTitulo">Recaudación - Detalle Documento</div>
+                    </td>
+                </tr>
+                <tr>
+                    <hr />
+                </tr>
+                
+                <tr>
+                    <td colspan="2">
+
+                        <div id="tabs">
+                            <ul>
+                                <li><a href="#tabs-1" id="tabFact">Documento</a></li>
+                                <li><a href="#tabs-2" id="tabRef">Referencia</a></li>
+                                <li><a href="#tabs-3" id="tabCobros">Cobros</a></li>
+                            </ul>
+
+                            <div id="tabs-1">
+                                <center>
+                                    @*<table style="width:100%; padding-left:30px" id="FiltroTabla" border="0">*@
+                                    <table style="width:100%; padding-left:5px ;padding-right:5px" id="FiltroTablaCabecera" border="0">
+                                        @*<tr><td>FACTURA</td></tr>
+                                        <tr><td><hr /></td></tr>*@
+                                        <tr>
+                                            <td>
+                                                <div id="gridCDCabecera"></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr><td></td></tr>
+                                        <tr><td>LICENCIAS : <label id="lblTotalLicencias">0</label></td></tr>
+                                        <tr><td><hr /></td></tr>
+                                        <tr>
+                                            <td>
+
+                                                <div id="gridCDDetalle"></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </center>
+                            </div>
+
+
+                            <div id="tabs-2">
+                                <center>
+                                    @*<table style="width:100%; padding-left:30px" id="FiltroTabla" border="0">*@
+                                    <table style="width:100%; padding-left:5px ;padding-right:5px" id="FiltroTablaReferencia" border="0">
+                                        @*<tr><td>Referencia</td></tr>
+                                        <tr><td><hr /></td></tr>*@
+                                        <tr>
+                                            <td>
+                                                <div id="gridReferencia"></div>
+                                            </td>
+                                        </tr>
+
+                                        @*<tr><td></td></tr>
+                                        <tr><td>LICENCIAS : <label id="lblTotalLicencias">0</label></td></tr>
+                                        <tr><td><hr /></td></tr>
+                                        <tr>
+                                            <td>
+
+                                                <div id="gridCDDetalle"></div>
+                                            </td>
+                                        </tr>*@
+
+                                    </table>
+                                </center>
+                            </div>
+
+
+                            <div id="tabs-3">
+                                <center>
+                                    <table style="width:100%; padding-left:5px ;padding-right:5px" id="FiltroTablaCobro" border="0">                              
+                                        <tr>
+                                            <td>
+                                                <div id="gridCobro"></div>
+                                            </td>
+                                        </tr>       
+                                    </table>
+                                </center>
+                            </div>
+
+
+
+
+
+                            </div>
+
+
+
+
+
+</td>
+                </tr>
+
+
+
+
+            </table>
+        </center>
+    </div>
+
+
+
+</body>
+</html>

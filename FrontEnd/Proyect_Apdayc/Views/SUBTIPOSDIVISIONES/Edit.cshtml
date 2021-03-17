@@ -1,0 +1,231 @@
+﻿@model SGRDA.Entities.BEREF_DIV_SUBTYPE
+@{
+    ViewBag.Title = "APDAYC :: Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Style/Style.css")" rel="stylesheet" />
+
+<link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+        //combos
+        $("#DDAD_ID").hide();
+        $("#DDAD_BELONGS").hide();
+
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#btnNeo").hide();
+
+            $("#DAD_CODE").hide();
+            $("#DAD_BELONGS").hide();
+            $("#DDAD_ID").show();
+            $("#DDAD_BELONGS").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#btnedit").hide();
+
+            return false;
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            $("#DDAD_ID").hide();
+            $("#DDAD_BELONGS").hide();
+
+            location.reload();
+
+            return false;
+        })
+    });
+</script>
+
+
+@using (@Html.BeginForm(FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div id='divTituloPerfil' style="margin-top: 9px;">
+        Mantenimiento Sub tipo división - Actualización
+                    / 
+        <span>@Html.DisplayFor(model => model.DAD_CODE) </span>
+    </div>
+    
+    <center>    
+        <table border="0" style="width: 98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+
+            <tr>
+                <td colspan="4" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                    <div style="float: right;">
+                        <div class="botonLink" style="width: 80px;">
+                            <a href="@Url.Action("../SUBTIPOSDIVISIONES/", "SUBTIPOSDIVISIONES")"   >
+                                <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                    Volver
+                                <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+                        &nbsp;
+                            <div class="botonLink" style="width: 80px;" id="btnNeo">
+                                <a href="@Url.Action("Create", "SUBTIPOSDIVISIONES")"  id="btnnuevo"  >
+                                    <div style="color: #000; font-weight: 200; margin-left: 5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                            </div>
+                        &nbsp;
+                                  <button id="btnedit" class="boton">
+                                      <span style="color: #000000; font-weight: 200;">Editar </span>
+                                      <img src="@Url.Content("~/Images/botones/editb.png")" width="24" />
+                                  </button>
+                        &nbsp;
+                                 <button id="btncancel" class="boton">
+                                     <span style="color: #000; font-weight: 200;">Descartar </span>
+                                     <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                                 </button>
+
+
+                        &nbsp;
+                                   <button id="btnSave" class="boton">
+                                       <span style="color: #000; font-weight: 200;">Grabar </span>
+                                       <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                                   </button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="height: 10px;"></td>
+            </tr>
+
+            <tr>
+            <td>
+                @Html.HiddenFor(model => model.OWNER, htmlAttributes: new { id = "OWNER" })
+                @Html.HiddenFor(model => model.DAD_STYPE, htmlAttributes: new { id = "DAD_STYPE" })
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:20%; padding-left:2%">
+                @Html.LabelFor(model => model.DAD_ID)               
+            </td>
+            <td>
+                @Html.TextBoxFor(p => p.DAD_CODE, htmlAttributes: new { id = "DAD_CODE", disabled = "disabled", style = "width:310px;" })
+
+                @if (ViewData.ContainsKey("lista_divisiones"))
+                {
+                    @Html.DropDownList("lista_divisiones", ViewData["lista_divisiones"] as List<SelectListItem>, "<--Seleccione Division-->", new { style = "width:310px", id = "DDAD_ID" }) 
+                }
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:10%; padding-left:2%">
+                @Html.LabelFor(model => model.DAD_SNAME)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.DAD_SNAME, htmlAttributes: new { id = "DAD_SNAME", disabled = "disabled", style = "width:150px;", maxlength = "40" })
+                @Html.ValidationMessageFor(model => model.DAD_SNAME)
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:10%; padding-left:2%">
+                @Html.LabelFor(model => model.DAD_NAME)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.DAD_NAME, htmlAttributes: new { id = "DAD_NAME", disabled = "disabled", style = "width:150px;", maxlength = "40" })
+                @Html.ValidationMessageFor(model => model.DAD_NAME)
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:10%; padding-left:2%">
+                @Html.LabelFor(model => model.DAD_BELONGS)                
+            </td>
+            <td>
+                @Html.TextBoxFor(p => p.DAD_BELONGS, htmlAttributes: new { id = "DAD_BELONGS", disabled = "disabled", style = "width:150px;" })
+
+                @if (ViewData.ContainsKey("lista_dependencia"))
+                {
+                    @Html.DropDownList("lista_dependencia", ViewData["lista_dependencia"] as List<SelectListItem>, "<--Seleccione dependencia-->", new { style = "width:220px", id = "DDAD_BELONGS" }) 
+                }
+            </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" style="height: 10px;"></td>
+            </tr>
+        </table>    
+    </center>
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("DAD_SNAME").disabled = false;
+        document.getElementById("DAD_NAME").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("DAD_SNAME").disabled = true;
+        document.getElementById("DAD_NAME").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

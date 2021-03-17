@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "Consulta Establecimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Consulta Establecimiento</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Consulta/consulta.establecimiento.ver.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/swfobject.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/jquery.uploadify.v2.1.4.min.js")"></script>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/Extensiones/_scripts/uploadify.css")" />
+</head>
+<body>
+    <div>
+        <ceter>
+            <table border="0" width="98%" >     
+                <tr>
+                    <td>
+                         <div id="divTitulo">Establecimiento - Información</div>
+                      <hr />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="contenedor">
+                        <table border="0" width="100%">
+                            <tr>
+                                <td>
+                                    Id Establecimiento :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtId" readonly="true" style="width:50px" />
+                                </td>
+                                <td>
+                                    Nombre :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtNombre" readonly="true" style="width:350px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Usuario de Derecho :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtBPS" readonly="true" style="width:400px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tipo Establecimiento :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtTipoEst" readonly="true" style="width:300px" />
+                                </td>
+                                <td>
+                                    SubTipo Establecimiento :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtSubTipoEst" readonly="true" style="width:300px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    División Administrativa :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtDivision" readonly="true" style="width:400px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:150px">
+                                    Dirección Vigente
+                                </td>
+                                <td>
+                                    <input type="text" id="txtDirVigente" readonly="true" style="width:300px" />
+                                </td>
+                                <td style="width:150px">
+                                    Ubigeo :
+                                </td>
+                                <td>
+                                    <input type="text"  id="txtUbigeo" readonly="true" style="width:300px" />
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <table width="100%">
+                                <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>DIRECCIONES</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridDireccion"></div>
+                                    </td>
+                                </tr>
+
+                                <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>DOCUMENTOS</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridDocumentos"></div>
+                                    </td>
+                                </tr>
+
+                            
+
+                                 <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>PARAMETROS</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridParametro"></div>
+                                    </td>
+                                </tr>
+
+                                <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>ENTIDADES ASOCIADAS</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridAsociado"></div>
+                                    </td>
+                                </tr>
+
+                                <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>LICENCIAS</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridLicencias"></div>
+                                    </td>
+                                </tr>
+
+                                 <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>OBSERVACIONES</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridObservacion"></div>
+                                    </td>
+                                </tr>
+
+                                     <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>CARACTERISTICA</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridCaracteristica"></div>
+                                    </td>
+                                </tr>
+
+                
+                                    <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                       <b>MEDIOS DE DIFUSIÓN</b>
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridDifusion"></div>
+                                    </td>
+                                </tr>
+
+                        </table>
+                    </td>
+                </tr>
+                
+            </table>
+        </ceter>
+    </div>
+</body>
+</html>
+
+<div id="mvImagen">
+    <iframe style="width: 100%; height: 100%;" id="ifContenedor" marginheight="0" marginwidth="0" noresize scrolling="No" frameborder="0"></iframe>
+</div>

@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: METODO DE PAGO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Método de Pago</title>
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.MetodoPago.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div>
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div id='divTitulo'>Método de Pago</div>
+                    <input id="hidOpcionEdit" type="hidden" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTabla'>
+                            <tr>
+                                <td style="width:160px; padding-left:20px" >
+                                    Método de pago :
+                                </td>
+                                <td style="width:300px">
+                                    <input type="text" id="txtDescripcion" maxlength="40" style="width:250px" placeholder="Ingrese método de pago" />
+                                </td>                                                      
+                            </tr>
+                            <tr>
+                                <td style="width:160px; padding-left:20px">
+                                    Estado :
+                                </td>
+                                    <td>
+                                        <select name="ddlEstado" id="ddlEstado">
+                                        </select>
+                                    </td>
+                                    
+                            </tr>
+                            <tr>
+                                <td style="width:160px; padding-left:20px">
+                                    <label style="top:auto">Confirmar Automáticamente</label>                                    
+                                </td> 
+                                <td>
+                                     <input type="checkbox" id="chk"/>
+                                </td>
+                                <td colspan="5" style="text-align:right">
+                                        <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                                        <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                                        &nbsp;&nbsp;
+                                        <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                                        <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button>                                             
+                                    </td>   
+                            </tr>                                                                  
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 40px; vertical-align: bottom;'>
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo metodo de pago." title="Registrar nuevo metodo de pago." id="btnNuevo"/>&nbsp;
+                        <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar nuevo metodo de pago." title="Inactivar nuevo metodo de pago."  id="btnEliminar"/>
+                        &nbsp; 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="gridMetodo"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

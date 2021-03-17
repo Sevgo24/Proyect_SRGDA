@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_TipoObservaciones" targetNamespace="http://tempuri.org/DS_TipoObservaciones.xsd" xmlns:mstns="http://tempuri.org/DS_TipoObservaciones.xsd" xmlns="http://tempuri.org/DS_TipoObservaciones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_TipoObservaciones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_TipoObservaciones" msprop:Generator_UserDSName="DS_TipoObservaciones">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListaTipoObservaciones" msprop:Generator_TableClassName="ListaTipoObservacionesDataTable" msprop:Generator_TableVarName="tableListaTipoObservaciones" msprop:Generator_TablePropName="ListaTipoObservaciones" msprop:Generator_RowDeletingName="ListaTipoObservacionesRowDeleting" msprop:Generator_RowChangingName="ListaTipoObservacionesRowChanging" msprop:Generator_RowEvHandlerName="ListaTipoObservacionesRowChangeEventHandler" msprop:Generator_RowDeletedName="ListaTipoObservacionesRowDeleted" msprop:Generator_UserTableName="ListaTipoObservaciones" msprop:Generator_RowChangedName="ListaTipoObservacionesRowChanged" msprop:Generator_RowEvArgName="ListaTipoObservacionesRowChangeEvent" msprop:Generator_RowClassName="ListaTipoObservacionesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OBS_DESC" msprop:Generator_ColumnVarNameInTable="columnOBS_DESC" msprop:Generator_ColumnPropNameInRow="OBS_DESC" msprop:Generator_ColumnPropNameInTable="OBS_DESCColumn" msprop:Generator_UserColumnName="OBS_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="OBS_OBSERV" msprop:Generator_ColumnVarNameInTable="columnOBS_OBSERV" msprop:Generator_ColumnPropNameInRow="OBS_OBSERV" msprop:Generator_ColumnPropNameInTable="OBS_OBSERVColumn" msprop:Generator_UserColumnName="OBS_OBSERV" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

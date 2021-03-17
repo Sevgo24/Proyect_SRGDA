@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_TipoCorreo" targetNamespace="http://tempuri.org/DS_TipoCorreo.xsd" xmlns:mstns="http://tempuri.org/DS_TipoCorreo.xsd" xmlns="http://tempuri.org/DS_TipoCorreo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_TipoCorreo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_TipoCorreo" msprop:Generator_UserDSName="DS_TipoCorreo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListarTipoCorreos" msprop:Generator_TableClassName="ListarTipoCorreosDataTable" msprop:Generator_TableVarName="tableListarTipoCorreos" msprop:Generator_TablePropName="ListarTipoCorreos" msprop:Generator_RowDeletingName="ListarTipoCorreosRowDeleting" msprop:Generator_RowChangingName="ListarTipoCorreosRowChanging" msprop:Generator_RowEvHandlerName="ListarTipoCorreosRowChangeEventHandler" msprop:Generator_RowDeletedName="ListarTipoCorreosRowDeleted" msprop:Generator_UserTableName="ListarTipoCorreos" msprop:Generator_RowChangedName="ListarTipoCorreosRowChanged" msprop:Generator_RowEvArgName="ListarTipoCorreosRowChangeEvent" msprop:Generator_RowClassName="ListarTipoCorreosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAIL_TDESC" msprop:Generator_ColumnVarNameInTable="columnMAIL_TDESC" msprop:Generator_ColumnPropNameInRow="MAIL_TDESC" msprop:Generator_ColumnPropNameInTable="MAIL_TDESCColumn" msprop:Generator_UserColumnName="MAIL_TDESC" type="xs:string" minOccurs="0" />
+              <xs:element name="MAIL_OBSERV" msprop:Generator_ColumnVarNameInTable="columnMAIL_OBSERV" msprop:Generator_ColumnPropNameInRow="MAIL_OBSERV" msprop:Generator_ColumnPropNameInTable="MAIL_OBSERVColumn" msprop:Generator_UserColumnName="MAIL_OBSERV" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

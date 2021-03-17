@@ -1,0 +1,245 @@
+﻿@{
+    ViewBag.title = "APDAYC :: CAMPAÑA NUEVO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Campañas Nuevo</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Campania/consulta.campania.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+
+    <script src="@Url.Content("~/Scripts/SGRDA/uploadApp.js")"></script>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarSocio"></div>
+
+        <table width="100%" border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td colspan="4" style="vertical-align: bottom;">
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidCodigo" type="hidden" />
+                    <input id="hidNombreAsoc" type="hidden" />
+                    <input id="hidAsocioado" type="hidden" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <table  width='98%' border='0'>
+                            <tr>
+                                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+
+                                    <table  width='100%' border='0' id='FiltroTabla'>
+                                        <tr>
+                                            <td style="width: 500px; text-align: left;">
+                                                <div id='divTituloPerfil'>Campañas - Nuevo</div>
+                                            </td>
+                                            <td colspan="1">
+                                                <button id='btnVolver' class="boton" name='btnVolver'>
+                                                Volver <img src="@Url.Content("~/Images/botones/back.png")" width="14px" /></button>
+                                                &nbsp; <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                Nuevo  <img src="@Url.Content("~/Images/botones/neo.png")" width="14px" /></button>
+                                                &nbsp; <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                Grabar <img src="@Url.Content("~/Images/botones/save.png")" width="14px" /></button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                    <table border="0" style="width: 98%" class="contenedor" id="divCabeceraCamp">
+                        <tr>
+                            <td style="width: 110px">Centro de Contacto</td>
+                            <td style="width: 100px">
+                                <select id="ddlCentroContacto" style="width: 170px" class="requeridoLst" /></td>
+                        </tr>
+                        <tr>
+                            <td>Tipo de Campaña</td>
+                            <td>
+                                <select id="ddlTipoCampania" style="width: 170px" class="requeridoLst" /></td>
+                            <td style="width: 110px">Estado de Campaña</td>
+                            <td>
+                                <select id="ddlEstadoCampania" style="width: 140px" class="requeridoLst" /></td>
+                        </tr>
+                        <tr>
+                            <td>Nombre</td>
+                            <td colspan="10">
+                                <input id="txtNombre" style="width: 423px" maxlength="60" class="requerido" /></td>
+                        </tr>
+                        <tr>
+                            <td>Perfil Cliente</td>
+                            <td>
+                                <select id="ddlPerfilCliente" class="requeridoLst" /></td>
+                        </tr>
+                        <tr>
+                            <td>Fecha Inicial</td>
+                            <td>
+                                <input id="txtFechaIni" class="requerido" /></td>
+                            <td>Fecha Final</td>
+                            <td>
+                                <input id="txtFechaFin" class="requerido" /></td>
+                        </tr>
+                        <tr>
+                            <td>Descripción</td>
+                            <td colspan="10">
+                                <textarea id="txtDescripcion" style="width: 418px" maxlength="200"></textarea></td>
+                        </tr>
+
+                        <tr>
+                            <td style='height: 30px; text-align: center' colspan="20">
+                                <center>
+					                <div id='divMensajeError' style=" width: 100% ; vertical-align:  middle; "></div>
+			                    </center>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table width='98%' border='0'>
+            <tr>
+                <td>
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#tabs-1">Agentes</a></li>
+                            <li><a href="#tabs-2">Documentos</a></li>
+                            <li><a href="#tabs-3">Lote de Trabajo</a></li>
+                        </ul>
+                        <div id="tabs-1">
+                            <table style="width: 100%;" border="0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <img src="~/Images/botones/add.png" class="addAgente" height="30" />
+                                        </div>
+                                        <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addAgente">Agregar Agente</a></div>
+                                        <hr />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridAgente"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id="tabs-2">
+                            <table style="width: 100%;" border="0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <img src="~/Images/botones/add.png" class="addDocumento" height="30" />
+                                        </div>
+                                        <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addDocumento">Agregar Documento</a></div>
+                                        <hr />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridDocumento"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id="tabs-3">
+                            <table style="width: 100%;" border="0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <img src="~/Images/botones/add.png" class="addLote" height="30" />
+                                        </div>
+                                        <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addLote">Agregar Lote</a></div>
+                                        <hr />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridLoteTrabajo"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="Agregar Documentos" id="mvDocumento">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td style="width: 25%">Tipo de Documento :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvDoc" />
+                    <input type="hidden" id="hidEdicionDoc" />
+                    <select id="ddlTipoDocumento">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" id="hidNombreFile" />
+                    Ruta de Archivo
+                </td>
+
+                <td>
+                    <div id="fuFiles"></div>
+                    <input type="file" id="file_upload" name="file_upload">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Fecha Recepción: </td>
+                <td>
+                    <input type="text" id="txtFecha" />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="10">
+                    <center><div id="avisoDocumento" style=" width: 100% ; vertical-align:  middle; "></div></center>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <input type="hidden" id="hidIdDocGenerado" />
+
+</body>
+</html>
+
+<div id="mvImagen">
+    <iframe style="width: 100%; height: 100%;" id="ifContenedor" marginheight="0" marginwidth="0" noresize scrolling="No" frameborder="0"></iframe>
+</div>

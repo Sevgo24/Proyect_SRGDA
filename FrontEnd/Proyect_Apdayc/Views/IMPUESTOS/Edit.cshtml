@@ -1,0 +1,221 @@
+﻿@model SGRDA.Entities.BEREC_TAXES
+
+@{
+    ViewBag.Title = "APDAYC :: IMPUESTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+        $("#NAME_TERD").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#btnedit").hide();
+
+            $("#NAME_TER").hide();
+            $("#NAME_TERD").show();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            $("#NAME_TER").show();
+            $("#NAME_TERD").hide();
+
+            return false;
+
+            location.reload();
+        })
+    });
+</script>
+
+@using (@Html.BeginForm(FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+    <br />
+    <div id='divTituloPerfil'>
+        Mantenimiento Impuesto - Actualización 
+    </div>
+    
+    
+    <center>
+         <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+           <tr>
+               <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+              
+                    <div style="float:right">
+                        <div class="botonLink"  style="width:80px;">
+                            <a href="@Url.Action("../IMPUESTOS/", "IMPUESTOS")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnnuevo">
+                                <a href="@Url.Action("Create", "IMPUESTOS")"   >   
+                                    <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnedit">
+                            <a href="#" id="btnedit" >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                    Editar
+                                    <img src="@Url.Content("~/Images/botones/editb.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <button id="btncancel"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Descartar </span> 
+                            <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                        </button> 
+
+                        &nbsp;
+                        <button id="btnSave"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Grabar </span> 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>   
+                   </div>
+               </td>
+           </tr>
+             <tr><td><br /></td></tr>
+                            
+        <tr>    
+             <td style="width:20% ;padding-left:2% ;" >   
+                    @Html.LabelFor(p => p.TIS_N)         
+                    @Html.HiddenFor(p => p.TAX_ID, htmlAttributes: new { id = "TAX_ID" })
+                    @Html.HiddenFor(p => p.OWNER)  
+             </td>
+             <td>
+                    @Html.TextBoxFor(p => p.NAME_TER, htmlAttributes: new { id = "NAME_TER", disabled = "disabled", style = "width:200px;" })
+                    @if (ViewData.ContainsKey("Lista_Territorio"))
+                    {
+                       @Html.DropDownList("Lista_Territorio", ViewData["Lista_Territorio"] as List<SelectListItem>, new { style = "width:200px", id = "NAME_TERD" }) 
+                    }
+             </td>
+        </tr>
+            <tr>
+               <td style="width:20% ;padding-left:2% ;" >  
+               @Html.LabelFor(p => p.TAX_COD) :
+            </td>
+            <td>
+                 @Html.TextBoxFor(p => p.TAX_COD, htmlAttributes: new { id = "TAX_COD", disabled = "disabled", style = "width:60;", MaxLength = "3" })
+            </td>
+        </tr>
+        <tr>
+            <td style="width:20% ;padding-left:2% ;" >  
+                @Html.LabelFor(p => p.DESCRIPTION) :
+            </td>
+            <td>
+                @Html.TextBoxFor(p => p.DESCRIPTION, htmlAttributes: new { id = "DESCRIPTION", disabled = "disabled", style = "width:350;", MaxLength = "30" })
+            </td>
+        </tr>
+        <tr>
+            <td style="width:20% ;padding-left:2% ;" >  
+                @Html.LabelFor(p => p.TAX_CACC) :
+            </td>
+            <td>
+                @Html.TextBoxFor(p => p.TAX_CACC, htmlAttributes: new { id = "TAX_CACC", disabled = "disabled", onkeydown = "return ValidateNumber(event);", MaxLength="20" })
+            </td>
+
+        </tr>
+             <tr><td><br /></td></tr>
+          </table>
+    </center>               
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("OWNER").disabled = false;
+        document.getElementById("TAX_COD").disabled = false;
+        document.getElementById("DESCRIPTION").disabled = false;
+        document.getElementById("TAX_CACC").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("OWNER").disabled = true;
+        document.getElementById("TAX_COD").disabled = true;
+        document.getElementById("DESCRIPTION").disabled = true;
+        document.getElementById("TAX_CACC").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+</script>
+
+<script type="text/javascript">
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

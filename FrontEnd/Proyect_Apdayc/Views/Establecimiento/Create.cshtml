@@ -1,0 +1,1150 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: ESTABLECIMIENTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Establecimientos - Nuevo</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.establecimiento.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/swfobject.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/jquery.uploadify.v2.1.4.min.js")"></script>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/Extensiones/_scripts/uploadify.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/uploadApp.js")"></script>
+
+    @*<style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+                    height: 1000px;
+                    width: 1000px;
+        }
+    </style>*@
+    <style>
+            /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+            #map {
+                 height: 500px;
+                    width: 1400px;
+            }
+            #mapCons {
+                 height: 500px;
+                    width: 1000px;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            #description {
+                font-family: Roboto;
+                font-size: 15px;
+                font-weight: 300;
+            }
+
+            #infowindow-content .title {
+                font-weight: bold;
+            }
+
+            #infowindow-content {
+                display: none;
+            }
+
+            #map #infowindow-content {
+                display: inline;
+            }
+
+            .pac-card {
+                margin: 10px 10px 0 0;
+                border-radius: 2px 0 0 2px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                outline: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                background-color: #fff;
+                font-family: Roboto;
+            }
+
+            #pac-container {
+                padding-bottom: 12px;
+                margin-right: 12px;
+            }
+
+            .pac-controls {
+                display: inline-block;
+                padding: 5px 11px;
+            }
+
+                .pac-controls label {
+                    font-family: Roboto;
+                    font-size: 13px;
+                    font-weight: 300;
+                }
+
+            #pac-input {
+                background-color: #fff;
+                font-family: Roboto;
+                font-size: 15px;
+                font-weight: 300;
+                margin-left: 12px;
+                padding: 0 11px 0 13px;
+                text-overflow: ellipsis;
+                width: 400px;
+            }
+
+                #pac-input:focus {
+                    border-color: #4d90fe;
+                }
+
+            #title {
+                color: #fff;
+                background-color: #4d90fe;
+                font-size: 25px;
+                font-weight: 500;
+                padding: 6px 12px;
+            }
+
+    </style>
+
+ @* DESCOMENTAR ESTO PARA LAS PRUEBAS DE GOOGLE *@
+</head>
+
+@*<body onunload="Salir()">*@
+<body>
+    <div id="divCabecera">
+        <div id="ContenedormvBuscarSocio"></div>
+        <div id="ContenedormvBuscarResponsable"></div>
+        <table width='100%' border='0' cellspacing='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input type="hidden" id="hidCantNumValidar" />
+                    <input type="hidden" id="hidExitoValNumero" />
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTabla'>
+                            <tr>
+                                <td colspan="3" style="  text-align:right; " class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                    <table width='100%' border='0' id='FiltroTabla'>
+                                        <tr>
+                                            <td style="width:500px;text-align:left;">
+                                                <div id='divTituloPerfil'>Establecimientos - Nuevo</div>
+                                            </td>
+                                            <td colspan="1" style="height:20px;">
+                                                <button id="btnVolver" class="boton" name="btnVolver">
+                                                    Volver
+                                                    <img src="@Url.Content("~/Images/botones/back.png")" width="14" />
+                                                </button>
+                                                &nbsp;
+                                                <button id='btnNuevo' class="boton">
+                                                    Nuevo
+                                                    <img src="@Url.Content("~/Images/botones/neo.png")" width="14" />
+                                                </button>
+                                                &nbsp;
+                                                <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                    Grabar
+                                                    <img src="@Url.Content("~/Images/botones/save.png")" width="14px" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="contenedor" id="divCabeceraEst">
+                                        <table border="0" width='98%'>
+                                            <tr>
+                                                <td>Tipo de establecimiento :</td>
+                                                <td> <select id="ddlTipoestablecimiento" style="width: auto" class="requeridoLst"></select></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>SubTipo de establecimiento :</td>
+                                                <td><select id="ddlSubtipoestablecimiento" style="width: auto" class="requeridoLst"></select></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Nombre establecimiento :</td>
+                                                <td>
+                                                    <input type="text" id="txtEstablecimiento" style="width: 450px" class="requerido">
+                                                    <input type="hidden" id="hidCodigoEST">
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="width: 180px; height:10px">Nombre/Razón Social :</td>
+                                                <td colspan="5">
+                                                    <table border="0" style="border-collapse: collapse;">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarResponsable" style="cursor: pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                                                            </td>
+                                                            <td colspan="6">
+                                                                <label id="lbResponsableSocio" style="cursor: pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Seleccione Responsable</label>
+                                                                <input type="hidden" id="hidCodigoBPS">
+                                                            </td>
+                                                    </table>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style='height: 30px; text-align:center' colspan="20">
+                                                    <center>
+                                                        <div id='divMensajeError' style=" width: 100% ; vertical-align:  middle; "></div>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <tr>
+        <td colspan="3" style="height: 20px;"></td>
+    <tr>
+        <td colspan="3">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Direcciones</a></li>
+                    <li><a href="#tabs-2">Observaciones</a></li>
+                    <li><a href="#tabs-3">Documentos</a></li>
+                    <li><a href="#tabs-4">Parámetros</a></li>
+                    <li><a href="#tabs-5">Teléfonos</a></li>
+                    <li><a href="#tabs-6">Correos</a></li>
+                    <li><a href="#tabs-7">Redes Sociales</a></li>
+
+                    <li><a href="#tabs-8">Características</a></li>
+                    @*<li><a href="#tabs-9">Divisiones</a></li>*@
+                    <li><a href="#tabs-9">Entidades Asociadas</a></li>
+                    <li><a href="#tabs-10">Licencias</a></li>
+                    <li><a href="#tabs-11">Medio de difusión</a></li>
+                    <li><a href="#tabs-12">Geolocalización</a></li>
+                </ul>
+
+                @*Direccion*@
+                <div id="tabs-1">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <img src="~/Images/botones/add.png" class="addDireccion" height="30" />
+                                            </div>
+                                            <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addDireccion">Agregar Dirección  </a></div>
+
+                                        </td>
+                                        <td>
+                                            <div style="vertical-align: central">
+                                                <img src="~/Images/botones/addDetail.png" class="addListarDireccion cssTabReadOnly" height="20">
+                                            </div>
+                                            <div style="margin-top: -20px; margin-left: 20px;">&nbsp;&nbsp;<a href="#" class="addListarDireccion cssTabReadOnly">Duplicar Dirección  </a></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <hr />
+                        <tr>
+                            <td>
+                                <div id="gridDireccion"></div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                @*Observacion*@
+                <div id="tabs-2">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td>
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addObservacion" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" id="addObservacion" class="addObservacion">Agregar Observación  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="gridObservacion"></div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                @*Documento*@
+                <div id="tabs-3">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addDocumento" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addDocumento">Agregar Documento  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div id="gridDocumento"></div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                @*Parametro*@
+                <div id="tabs-4">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addParametro" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" id="addParametro" class="addParametro">Agregar Parámetro  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div id="gridParametro"></div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                @*@*Telefono*@
+                <div id="tabs-5">
+                    <table style=" width:100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div><img src="~/Images/botones/add.png" class="addTelefono cssTabReadOnly" height="30"></div>
+                                <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addTelefono cssTabReadOnly">Agregar Teléfono  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div id="gridTelefono"></div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                @*Correo*@
+                <div id="tabs-6">
+                    <table style=" width:100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div><img src="~/Images/botones/add.png" class="addCorreo cssTabReadOnly" height="30"></div>
+                                <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addCorreo cssTabReadOnly">Agregar Correos  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div id="gridCorreo"></div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                @*Redes Sociales*@
+                <div id="tabs-7">
+                    <table style=" width:100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div><img src="~/Images/botones/add.png" class="addRedes cssTabReadOnly" height="30"></div>
+                                <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addRedes cssTabReadOnly">Agregar Redes Sociales </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div id="gridRedes"></div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                @*Caracteristica*@
+                <div id="tabs-8">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addCaracteristica" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" id="addCaracteristica" class="addCaracteristica">Agregar Característica  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div id="gridCaracteristica"></div>
+
+                            </td>
+                        </tr>
+
+                        @* Ahora Muestra el Calculo de la Tarifa*@
+                        @*     <tr>
+                        <td>Tarifa Calculada:<input type="text" id="txtCalcTarif"></td>
+                    </tr>*@
+
+                    </table>
+                </div>
+
+                @*Entidades Asociadas*@
+                <div id="tabs-9">
+                    <table style=" width:100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div><img src="~/Images/botones/add.png" class="addEntidad cssTabReadOnly" height="30"></div>
+                                <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addEntidad cssTabReadOnly">Agregar Asociados  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div id="gridAsociado"></div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                @*Licencia*@
+                <div id="tabs-10">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td>
+                                <div id="gridLicencia"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                @*Difusion*@
+                <div id="tabs-11">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+
+                            <td>
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addDifusion" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addDifusion">Agregar Difusión  </a></div>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="gridDifusion"></div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                @*Geolocalizacion*@
+                <div id="tabs-12">
+                    <table style="width: 100%;" border="0">
+                        <tr>
+                            <td colspan="4" align="center">
+
+
+                                <div id="divBuscaGeo">
+                                    <input type="hidden" id="CodigoUbigeo">
+                                    <input type="hidden" id="CodigoUbigeoLAT">
+                                    <input type="hidden" id="CodigoUbigeoLON">
+
+                                    <div class="pac-card" id="pac-card">
+                                        <div>
+                                            <div id="title">
+                                                Busqueda Autocompletada
+                                            </div>
+                                            <div id="type-selector" class="pac-controls">
+                                                <input type="radio" name="type" id="changetype-all" checked="checked">
+                                                <label for="changetype-all">Todo</label>
+
+                                                <input type="radio" name="type" id="changetype-establishment">
+                                                <label for="changetype-establishment">Establecimientos</label>
+
+                                                <input type="radio" name="type" id="changetype-address">
+                                                <label for="changetype-address">Direcciones</label>
+
+                                                <input type="radio" name="type" id="changetype-geocode">
+                                                <label for="changetype-geocode">Geocodigos</label>
+                                            </div>
+                                            <div id="strict-bounds-selector" class="pac-controls">
+                                                <input type="checkbox" id="use-strict-bounds" value="">
+                                                <label for="use-strict-bounds">Limites Estrictos</label>
+                                            </div>
+                                        </div>
+                                        <div id="pac-container">
+                                            <input id="pac-input" type="text"
+                                                   placeholder="Ingrese Una Direccion">
+                                        </div>
+                                    </div>
+                                    <div id="map"></div>
+                                    <div id="infowindow-content">
+                                        <img src="" width="16" height="16" id="place-icon">
+                                        <span id="place-name" class="title"></span><br>
+                                        <span id="place-address"></span>
+                                    </div>
+
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA57Ff8rZIB8mAo-pdaE-SfSxBvlXQSVb4&libraries=places&callback=initMap"
+                                            async defer></script>
+                                    <script>
+                                        // This example requires the Places library. Include the libraries=places
+                                        // parameter when you first load the API. For example:
+
+
+                                        function initMap() {
+                                            var map = new google.maps.Map(document.getElementById('map'), {
+                                                center: { lat: -12.113354699999999, lng: -77.0276487 },
+                                                zoom: 13
+                                            });
+                                            var geocoder = new google.maps.Geocoder;
+
+                                            var card = document.getElementById('pac-card');
+                                            var input = document.getElementById('pac-input');
+                                            var types = document.getElementById('type-selector');
+                                            var strictBounds = document.getElementById('strict-bounds-selector');
+
+                                            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+                                            var autocomplete = new google.maps.places.Autocomplete(input);
+
+                                            // Bind the map's bounds (viewport) property to the autocomplete object,
+                                            // so that the autocomplete requests use the current map bounds for the
+                                            // bounds option in the request.
+                                            autocomplete.bindTo('bounds', map);
+
+                                            // Set the data fields to return when the user selects a place.
+                                            autocomplete.setFields(
+                                                ['address_components', 'geometry', 'icon', 'name']);
+
+                                            var infowindow = new google.maps.InfoWindow();
+                                            var infowindowContent = document.getElementById('infowindow-content');
+                                            infowindow.setContent(infowindowContent);
+                                            var marker = new google.maps.Marker({
+                                                map: map,
+                                                anchorPoint: new google.maps.Point(0, -29)
+                                            });
+
+                                            
+                                            if ($("#CodigoUbigeoLON").val() != null & $("#CodigoUbigeoLON").val()!= '') {
+                                                
+                                                geocodeLatLng(geocoder, map, infowindow);
+
+                                            }
+
+
+                                            autocomplete.addListener('place_changed', function () {
+                                                infowindow.close();
+                                                marker.setVisible(false);
+                                                var place = autocomplete.getPlace();
+                                                if (!place.geometry) {
+                                                    // User entered the name of a Place that was not suggested and
+                                                    // pressed the Enter key, or the Place Details request failed.
+                                                    window.alert("No details available for input: '" + place.name + "'");
+                                                    return;
+                                                }
+
+                                                // If the place has a geometry, then present it on a map.
+                                                if (place.geometry.viewport) {
+                                                    map.fitBounds(place.geometry.viewport);
+                                                } else {
+                                                    map.setCenter(place.geometry.location);
+                                                    map.setZoom(17);  // Why 17? Because it looks good.
+                                                }
+                                                marker.setPosition(place.geometry.location);
+                                                var latlong = String(place.geometry.location);
+                                                var ini1 = latlong.indexOf('(') + 1;
+                                                var ini2 = latlong.indexOf(',') - 1;
+                                                var fin1 = latlong.indexOf(',') + 2;
+                                                var fin2 = latlong.length;
+                                                //alert(fin1 + ' ' + fin2);
+
+                                                //alert(latlong.indexOf("("));
+                                                $("#CodigoUbigeoLAT").val(latlong.substr(ini1, ini2));
+                                                $("#CodigoUbigeoLON").val(latlong.substr(fin1, fin2).replace(')', ''));
+                                                $("#CodigoUbigeo").val(place.geometry.location);
+                                                marker.setVisible(true);
+
+                                                var address = '';
+                                                if (place.address_components) {
+                                                    address = [
+                                                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                                                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                                                      (place.address_components[2] && place.address_components[2].short_name || '')
+                                                    ].join(' ');
+                                                }
+
+                                                infowindowContent.children['place-icon'].src = place.icon;
+                                                infowindowContent.children['place-name'].textContent = place.name;
+                                                infowindowContent.children['place-address'].textContent = address;
+                                                infowindow.open(map, marker);
+                                            });
+
+                                            // Sets a listener on a radio button to change the filter type on Places
+                                            // Autocomplete.
+                                            function setupClickListener(id, types) {
+                                                var radioButton = document.getElementById(id);
+                                                radioButton.addEventListener('click', function () {
+                                                    autocomplete.setTypes(types);
+                                                });
+                                            }
+
+                                            setupClickListener('changetype-all', []);
+                                            setupClickListener('changetype-address', ['address']);
+                                            setupClickListener('changetype-establishment', ['establishment']);
+                                            setupClickListener('changetype-geocode', ['geocode']);
+
+                                            document.getElementById('use-strict-bounds')
+                                                .addEventListener('click', function () {
+                                                    console.log('Checkbox clicked! New state=' + this.checked);
+                                                    autocomplete.setOptions({ strictBounds: this.checked });
+                                                });
+
+                                            function geocodeLatLng(geocoder, map, infowindow) {
+                                                
+                                                
+                                                var input = document.getElementById('CodigoUbigeoLAT').value + ',' + document.getElementById('CodigoUbigeoLON').value;
+                                                //alert(input);
+                                                var latlngStr = input.split(',', 2);
+                                                var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+                                                geocoder.geocode({ 'location': latlng }, function (results, status) {
+                                                    if (status === 'OK') {
+                                                        if (results[0]) {
+                                                            map.setZoom(17);
+                                                            var marker = new google.maps.Marker({
+                                                                position: latlng,
+                                                                map: map
+                                                            });
+                                                            var infowindowContent = document.getElementById('infowindow-content');
+                                                            infowindow.setContent(infowindowContent);
+                                                            infowindowContent.children['place-icon'].src = "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png";
+                                                            //infowindowContent.children['place-name'].textContent = place.name;
+                                                            infowindowContent.children['place-address'].textContent = results[0].formatted_address;
+                                                            infowindow.open(map, marker);
+                                                        } else {
+                                                            window.alert('No results found');
+                                                        }
+                                                    } else {
+                                                        window.alert('Geocoder failed due to: ' + status);
+                                                    }
+                                                });
+                                            }
+
+                                        }
+                                    </script>
+                                </div>
+
+                        </td>
+                   </tr>
+               </table>
+            </div>
+        </td>
+    </tr>
+    <div id="divDireccion"></div>
+
+    <div title="Características" id="mvCaracteristica">
+        <table width='98%' border='0' id='FiltroTablaCaracteristicaPop'>
+            <tr>
+                <td style="vertical-align: bottom;">
+                    @* <div id='divTitulo'>Agregar características</div>*@
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTablaCaracteristica'>
+
+                            <tr>
+                                <td>Característica</td>
+                                <td>
+                                    <input type="hidden" id="hidAccionMvCar" />
+                                    <input type="hidden" id="hidEdicionCar" />
+                                    <select id="ddlCaracteristica" style="width: 180px"></select>
+                                </td>
+                                <td>  </td>
+                            </tr>
+
+                            <tr>
+                                <td>Valor</td>
+                                <td><input type="text" id="txtvalor" style="width: 100px">
+                                <td>
+                                <td>  </td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 30px;'>
+                    <center>
+                        <div id='errorCar' style=" width: 100% ; vertical-align:  middle; "></div>
+                    </center>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div title="Agregar Parámetro" id="mvParametro">
+
+        <table width='100%' border='0'>
+            <tr>
+                <td>Parmetro :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvPar" />
+                    <input type="hidden" id="hidEdicionPar" />
+                    <select id="ddlTipoParametro"></select>
+                </td>
+            </tr>
+            @*<tr>
+                    <td colspan="2">Descripción :</td>
+                </tr>*@
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtDescripcion" name="txtDescripcion" rows="8" cols="74" placeholder="Ingrese Parámetro"></textarea>
+                </td>
+
+            </tr>
+
+        </table>
+    </div>
+
+    <div title="Agregar Observación" id="mvObservacion">
+        <table width='100%' border='0'>
+            <tr>
+                <td>Tipo: </td>
+                <td>
+                    <input type="hidden" id="hidAccionMvObs" />
+                    <input type="hidden" id="hidEdicionObs" />
+                    <select id="ddlTipoObservacion"></select>
+                </td>
+            </tr>
+
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtObservacion" name="txtObservacion" rows="7" cols="72" placeholder="Ingrese Observación"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="Agregar Documentos" id="mvDocumento">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td style="width: 25%">Tipo de Documento :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvDoc" />
+                    <input type="hidden" id="hidEdicionDoc" />
+                    <select id="ddlTipoDocumento"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" id="hidNombreFile" />
+                    Ruta de Archivo
+                </td>
+
+                <td>
+                    <div id="fuFiles"></div>
+                    <input type="file" id="file_upload" name="file_upload">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Fecha Recepción: </td>
+                <td>
+                    <input type="text" id="txtFecha" />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="10">
+                    <center><div id="avisoDocumento" style=" width: 100% ; vertical-align:  middle; "></div></center>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div title="Agregar Difusión" id="mvDifusion">
+        <table width='100%' border='0'>
+            <tr>
+                <td>Medio de difusión: </td>
+                <td>
+                    <input type="hidden" id="hidAccionMvDif" />
+                    <input type="hidden" id="hidEdicionDif" />
+                    <select id="ddlDifusion"></select>
+                </td>
+            </tr>
+            <tr>
+
+
+                <td>Numero de dispositivos: </td>
+                <td>
+                    <input type="text" id="txtNroDifusion" />
+                </td>
+
+                <td>
+                    <label for="chkalmacenamiento">
+                        <input type="checkbox" id="chkalmacenamiento" />Almacenamiento
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="Registrar Socio" id="mvAgregarResponsable">
+        <table width='100%' border='0'>
+            <tr>
+                <td>Tipo de Persona :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvRes" />
+                    <input type="hidden" id="hidEdicionRes" />
+                    <select id="ddlTipoPersonaRes"></select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Tipo de Documento :</td>
+                <td>
+                    <select id="ddlTipoDocumentoRes"></select>
+                    <input type="text" id="txtNumeroDocRes" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>Nombre/Razón Social :</td>
+                <td>
+                    <input type="text" id="txtRazonSocialRes" style="width: 330px" />
+                </td>
+            </tr>
+            <tr>
+                <td>Apellido Paterno :</td>
+                <td>
+                    <input type="text" id="txtPaterno" />
+                </td>
+            </tr>
+            <tr>
+                <td>Apellido Materno :</td>
+                <td>
+                    <input type="text" id="txtMaterno" />
+                </td>
+            </tr>
+            <tr>
+                <td>Nombre :</td>
+                <td>
+                    <input type="text" id="txtNombres" />
+                </td>
+            </tr>
+
+            <hr />
+            <tr>
+                <td style='height: 30px;' colspan="6">
+                    <center>
+                        <div id='divResultValidarDoc' style=" width: 100% ; vertical-align:  middle; "></div>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="Agregar Telefonos" id="mvTelefono" style="display:none;">
+        <table width='100%' border="0" id='FiltroTablaPop'>
+            <tr>
+                <td width="120"> Tipo de Telefono :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvTel" />
+                    <input type="hidden" id="hidEdicionTel" />
+                    <select name="ddlTipoFono" id="ddlTipoFono"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>Numero :</td>
+                <td>
+                    <input type="text" id="txtFono" maxlength="15" class="requeridoTL" />
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtFonoObs" name="txtFonoObs" rows="4" cols="80"></textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><div id="avisoTL" style=" width 100% ; vertical-align middle; "></div></center>
+                </td>
+
+            </tr>
+
+
+        </table>
+    </div>
+
+    <div title="Agregar Correos" id="mvCorreo" style="display:none;">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td width="120"> Tipo de Correo :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvMail" />
+                    <input type="hidden" id="hidEdicionMail" />
+                    <select name="ddlTipoMail" id="ddlTipoMail"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>Correo :</td>
+
+                <td>
+                    <input type="text" id="txtMail" style="width:250px;" />
+
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtMailObs" name="txtMailObs" rows="4" cols="68"></textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><div id="avisoMVMail" style=" width 100% ; vertical-align middle; "></div></center>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div title="Agregar Redes" id="mvRedes" style="display:none;">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td width="70"> Tipo :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvRedes" />
+                    <input type="hidden" id="hidEdicionRedes" />
+                    <select name="ddlTipoRedes" id="ddlTipoRedes"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>Link :</td>
+
+                <td>
+                    <input type="text" id="txtLink" style="width:250px;" />
+
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtRedesObs" name="txtRedesObs" rows="4" cols="60"></textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><div id="avisoMVRedes" style=" width 100% ; vertical-align middle; "></div></center>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div title="Asociar Entidades" id="mvEntidad">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td> Tipo de Documento :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvEnt" />
+                    <input type="hidden" id="hidEdicionEnt" />
+                    <select id='ddlTipoDoc' name="ddlTipoDoc"></select>
+                </td>
+                <td> Nro. Documento :</td>
+                <td> <input type="text" id="txtDocumento" class="requeridoET" /></td>
+                <td>
+                    <button id="btnBuscarSocio">Buscar</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" align="center">
+                    <hr />
+                    <table width="70%" border="0">
+                        <tr>
+                            <td> Nombre / Razon Social :</td>
+                            <td>
+                                <input type="hidden" id="txtSocioAsociado" class="requeridoET" />
+                                <input type="text" id="txtNombre" size="50" disabled="disabled" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Rol: </td>
+                            <td>
+                                <select id='ddlRol' name="ddlRol" class="requeridoLstET"></select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <center><div id="avisoMVEntidad" style=" width 100% ; vertical-align middle; "></div></center>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    @*    <div title="Agregar División" id="mvDivision">
+            <table width='100%' border='0'>
+                <tr>
+                    <td>Tipo División</td>
+                    <td>
+                        <input type="hidden" id="hidAccionMvDiv" />
+                        <input type="hidden" id="hidEdicionDiv" />
+                        <input type="hidden" id="hidDadvid" />
+                        <select id="ddlDivisionTipo">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>División</td>
+                    <td>
+                        <select id="ddlDivision">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sub División</td>
+                    <td>
+                        <select id="ddlSubDivision">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Valor Sub División</td>
+                    <td>
+                        <select id="ddlValorSubDivision">
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>*@
+
+    <input type="hidden" id="hidIdDocGenerado" />
+</body>
+</html>
+
+
+<div id="mvImagen">
+    <iframe style="width: 100%; height: 100%;" id="ifContenedor" marginheight="0" marginwidth="0" noresize scrolling="No" frameborder="0"></iframe>
+</div>
+
+<div title="Listar Direccion" id="mvListarDireccion">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td colspan="4">
+                <div id="gridListarDireccion"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div title="Buscar Georeferenciacion" id="mvGeoreferenciacion">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td colspan="4">
+                
+            </td>
+        </tr>
+    </table>
+</div>

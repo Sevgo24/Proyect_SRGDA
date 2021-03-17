@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />*@
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>MODULO DE EMISION MENSUAL </title>
+    @*<script src="js/jquery.min.js"></script>
+        <script src="js/kendo.all.min.js"></script>*@
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.emision.mensual.masiva.js")"></script>
+
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>
+    <div id="ContenedormvBuscarSocio"></div>
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE EMISION MENSUAL</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <div class="contenedor">
+                    <table width='98%' border='0' id='FiltroTabla'>
+                        <tr>
+                            <td align="center">
+                                @*<table width='98%' border='0' id='FiltroTabla'>*@
+                        <tr>
+                            <td align="left" style="width:200px">CODIGO DE LICENCIA :</td>
+                            <td><input type="text" id="txtcodlic" /></td>
+                            <td> SOCIO:</td>
+                            <td>
+                                <table border="0" style="border-collapse: collapse;">
+                                    <tr>
+                                        <td>
+                                            <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                                        </td>
+                                        <td>
+                                            <input type="hidden" id="hidResponsable" />
+                                            <lable id="lbResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>OFICINA RECAUDO :</td>
+                            <td><input id="hidOficina" value="0" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">SELECCIONE OFICINA</label></td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="width:200px">EMISION  ACTUAL:</td>
+                            <td><input type="checkbox" id="chkConFechaCrea" class="custom-control-input" /></td>
+                            <td align="left" style="width:200px">FECHA DE EMISION:</td>
+                            <td><input type="text" id="txtFecCreaInicial" /></td>
+                        </tr>
+                        <tr>
+                            <td>ESTADO de LICENCIA</td>
+                            <td>
+                                <select id="ddEstadoLic">
+                                    <option value="0"> TODOS</option>
+                                    <option value="1">PERMITIR EMISION MENSUAL</option>
+                                    <option value="2">NO PERMITIR EMISION MENSUAL</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="8" align="center">
+                                <button id='btnBuscarEmision' class="boton" name='btnBuscarEmision'>
+                                    Buscar
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                </button>
+                                <button id='btnLimpiarEmision' class="boton" name='btnLimpiarEmision'>
+                                    Limpiar
+                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                                </button>
+
+                            </td>
+                        </tr>
+                        <tr id="trMostrar">
+                            <td colspan="8" align="left" style="padding-left:30px;font-size:small;font-weight:bold">
+                                CANTIDAD DE FACTURAS :<label id="lblCantfacturas">...</label> |  CANTIDAD DE FACTURAS VALIDAS:<label id="lblCantFactValidas">...</label> | MONTO DE FACTURAS :<label id="lblMontfacturas">...</label>|
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style='height: 40px; vertical-align:bottom;'>
+                <div style="float: right;">
+                    <button id='btnCalcular' class="boton" name='btnCalcular'>
+                        Recalcular
+                        <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                    </button>
+                    <button id='btnFacturar' class="boton" name='btnFacturar'>
+                        Facturar
+                        <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                    </button>
+                    &nbsp;
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div id="grid"></div>
+            </td>
+        </tr>
+
+    </table>
+
+    @*</td>
+            </tr>
+        </table>*@
+</body>
+</html>
+

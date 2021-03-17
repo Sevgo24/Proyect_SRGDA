@@ -1,0 +1,81 @@
+﻿
+<div title="Agregar Garantia" id="mvGarantia">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+         <tr>
+            <td> Tipo :</td>
+            <td>
+                <select id="ddlTipoGar" class="requeridoLst">
+                    <option value="0">--SELECCIONE--</option>
+                    <option value="P">POLIZA</option>
+                    <option value="S">SEGURO</option>
+                </select>
+            </td>
+            <td>Numero :</td>
+            <td>
+                <input type="text" id="txtNumeroGar"  maxlength="50"/>
+            </td>
+        </tr>
+         <tr>
+            <td>Entidad</td>
+            <td colspan="3">
+                 <input type="text" id="txtEntidad" maxlength="50" class="requerido" style=" width:300px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td> Valor:</td>
+            <td>
+               <input type="hidden" id="hidAccionMvGar" />
+               <input type="hidden" id="hidEdicionGar" /> 
+               
+                <input type="text" id="txtValorGar" class="requerido" maxlength="6"/>
+            </td>
+            <td>Moneda:</td>
+            <td>
+                <select id="ddlMonedaGar"  class="requeridoLst" />                  
+            </td>
+        </tr>
+       
+       
+
+      <tr>
+          <td>Fecha de Recepcion</td>
+          <td colspan="1">
+              <input type="text" id="txtFechaReceepcion" class="k-fecha requerido" />
+          </td>
+         <td><label id="lblFechaDevolucion">Fecha de Devolución</label></td>
+          <td>
+              <input type="text" id="txtFechaDevolucion"  class="k-fecha"/>
+          </td> 
+      </tr>
+      @*  <tr>
+            <td>Valor Aplicado</td>
+            <td>
+                <input type="text" id="txtValApl" class="requerido"/>
+            </td>
+            <td>Valor Devuelto</td>
+            <td>
+                <input type="text" id="txtValDev" class="requerido" />
+            </td>
+        </tr>
+        <tr>
+            <td>Fecha de Retencion :</td>
+            <td colspan="3">
+                <input type="text" id="txtFechaRetencion" class="k-fecha" />
+            </td>
+        </tr>*@
+        <tr>
+            <td colspan="4">
+                <center><div id="avisoGarantia" style=" width: 100% ; vertical-align:  middle; "></div></center>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<div title="Seleccione Fecha de Devolución" id="mvGarantiaDevol">
+    
+    <input type="hidden" id="hidIdGarantiaDev"   />
+    <input type="text" id="txtFechaDevol" class="k-fecha requerido" />
+   <center><div id="avisoDevolverGarantia" style=" width: 100%; font-size:10px ; vertical-align:  middle; "></div></center>
+    </div>

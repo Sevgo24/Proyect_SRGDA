@@ -1,0 +1,107 @@
+﻿@model SGRDA.Entities.BEREC_COLL_LEVEL
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Style/Style.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+    });
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend id="legend">@Html.ActionLink("NIVELAGENTESRECAUDADORES", "Index", new { }, new { style = "text-decoration:none;" })</legend>
+        <button id="btnSave" class="btn btn-success">Guardar</button>
+        <a href="@Url.Action("Index", "NIVELAGENTESRECAUDADORES")" id="btncancel" class="btn btn-success">Descartar</a><br />
+
+        <br />
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.OWNER)<br />
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OWNER, htmlAttributes: new { id = "OWNER", style = "width:60px;" })
+            @Html.ValidationMessageFor(model => model.OWNER)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LEVEL_ID)<br />
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.LEVEL_ID, htmlAttributes: new { id = "LEVEL_ID", style = "width:60px;" })
+            @Html.ValidationMessageFor(model => model.LEVEL_ID)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NMR_ID)<br />
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.NMR_ID, htmlAttributes: new { id = "NMR_ID", style = "width:60px;" })
+            @Html.ValidationMessageFor(model => model.NMR_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DESCRIPTION)<br />
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DESCRIPTION, htmlAttributes: new { id = "TAXN_NAME", TextMode = System.Web.UI.WebControls.TextBoxMode.MultiLine, cols = "30", rows = "2" })
+            @Html.ValidationMessageFor(model => model.DESCRIPTION)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LEVEL_DEP)<br />
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.LEVEL_DEP, htmlAttributes: new { id = "LEVEL_DEP", style = "width:60px;" })
+            @Html.ValidationMessageFor(model => model.LEVEL_DEP)
+        </div>
+    </fieldset>
+        
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+        })
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>Licencia</title>
+    @*<link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+        <link href="~/Style/SRGDA.css" rel="stylesheet" />*@
+
+    @*<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.agrupacion.licencia.division.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.agentecomercial.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.nuevo.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.division.js")"></script>
+</head>
+<body>
+    <div id="ContenedormvBuscarSocio"></div>
+    <div id="ContenedormvBuscarAgenteComercial"></div>
+    <div id="ContenedormvBuscarRecaudador"></div>
+    <div id="ContenedormvAgenteRecaudoObliga"></div>
+    <div id="ContenedormvBuscarGrupoFacuracion"></div>    
+    <div id="ContenedormvOficina"></div>    
+    
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>TRASLADO DE LICENCIAS POR DIVISION Y OFICINA </div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+                            <div class="contenedor">
+                                <table style=' width:98%' border='0' id='FiltroTablas'>
+                                    <tr>
+
+                                        <td align="left" style="width:200px"> Responsable: </td>
+                                            @*<table border="0" style="border-collapse: collapse;">
+                <tr>
+                    <td align="left"style="width:200px"> Responsable:</td>
+                    <td>
+                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                    </td>
+                    <td>
+                        <input type="hidden" id="hidResponsable" />
+                        <lable id="lbResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                    </td>
+                </tr>
+            </table>*@
+                                        <td> <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                                            <input type="hidden" id="hidResponsable" />
+                                            <lable id="lbResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                                        </td>
+                                        <td align="left" style="width:200px">  Codigo de licencia:</td>
+                                            @*<table border="0" style="border-collapse: collapse;">
+                                                <tr>
+                                                    <td align="center">  Codigo de licencia :</td>
+                                                    <td><input type="text" id="txtCodLic"></td>
+                                                </tr>
+                                            </table>*@
+                                        <td><input type="text" id="txtCodLic"></td>
+                                        <td align="left" style="width:200px">   Nombre de licencia :</td>
+                                            @*<table border="0" style="border-collapse: collapse;">
+                                                <tr>
+                                                    <td align="center">   Nombre de licencia :</td>
+                                                    <td><input type="text" id="txtNomLic"></td>
+                                                </tr>
+                                            </table>*@
+                                        <td><input type="text" id="txtNomLic"></td>
+                                        <td align="left" style="width:200px">   Codigo de Cadena :</td>
+                                            @*<table border="0" style="border-collapse: collapse;">
+                                                <tr>
+                                                    <td align="center">   Codigo de Cadena :</td>
+                                                    <td align="center"><input type="text" id="txtCodLicMaster"></td>
+                                                </tr>
+                                            </table>*@
+                                        <td align="center"><input type="text" id="txtCodLicMaster"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="width:200px">GRUPO COMERCIAL:</td>
+                                            @*<table border="0" style="border-collapse: collapse;">
+                                                <tr>
+                                                    <td align="left" style="width:200px">GRUPO COMERCIAL:</td>
+                                                    <td>
+                                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarGRU" style="cursor:pointer;" alt="Busqueda de Grupo Comercial" title="Busqueda de Grupo Comercial" />
+                                                    </td>
+                                                    <td>
+                                                        <label id="lbGrupo">SELECCIONE UN GRUPO COMERCIAL </label>
+                                                        <input type="hidden" id="hidGrupoFacturacion" value="0">
+                                                    </td>
+                                                </tr>
+                                            </table>*@
+                                        <td><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarGRU" style="cursor:pointer;" alt="Busqueda de Grupo Comercial" title="Busqueda de Grupo Comercial" />
+                                            <label id="lbGrupo">SELECCIONE UN GRUPO COMERCIAL </label>
+                                            <input type="hidden" id="hidGrupoFacturacion" value="0">
+                                        </td>
+                                        <td align="left" style="width:200px"> MODALIDAD</td>
+                                        <td>
+                                            <select id="dllGruModalidad"></select>
+                                        </td>
+                                        <td>
+                                            Agente Comercial :
+                                        </td>
+                                        <td>
+                                            <table border="0" style="border-collapse: collapse;" title="Agente Comercial">
+                                                <tr>
+                                                    <td>
+                                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarAGE" style="cursor: pointer;" alt="Búsqueda Agente Comercial." title="Búsqueda Agente Comercial." />
+                                                    </td>
+                                                    <td colspan="6">
+                                                        <label id="lbAgente" style="cursor: pointer;" alt="Búsqueda de Agente Comercial." title="Búsqueda Agene Comercial."> Seleccione un agente.</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="hidAccionMvEntAGE" />
+                                                        <input type="hidden" id="hidEdicionEntAGE" value="0" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px">División Geografica</td>
+                                        <td>
+                                            <select id="ddlDivision"></select>
+                                        <td> Tipo de División:</td>
+                                        <td>
+                                            <select id="ddTipoDivision"></select>
+                                        </td>
+                                        <td> División:</td>
+                                        <td>
+                                            <select id="ddDivision">
+                                                <option value="0">TODOS</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            Oficina recaudo :
+                                        </td>
+                                        <td>
+                                            <input id="hidOficina" value="10081" type="hidden">
+                                            <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">
+                                            <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">OFICINA TI</label>
+
+                                        </td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        @*<td>Departamento</td>*@
+                                        <td><label id="lblSubTipo1"></label><input type="hidden" id="hidSubTipo1" /></td>
+                                        <td><select id="ddlSubTipo1" style="width:200px"></select> </td>
+
+                                        @*<td>Provincia</td>*@
+                                        <td><label id="lblSubTipo2"></label><input type="hidden" id="hidSubTipo2" /></td>
+                                        <td><select id="ddlSubTipo2" style="width:200px"></select> </td>
+
+                                        @*<td>Distrito</td>*@
+                                        <td><label id="lblSubTipo3"></label><input type="hidden" id="hidSubTipo3" /></td>
+                                        <td><select id="ddlSubTipo3" style="width:200px"></select> </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="width:200px">FECHA  CREACION:</td>
+                                        <td><input type="checkbox" id="chkConFechaCreaTras" /></td>
+                                        <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                                        <td><input type="text" id="txtFecCreaInicialTras" /></td>
+                                        <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                                        <td><input type="text" id="txtFecCreaFinalTras" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" align="center">
+                                            <button id='btnBuscar' class="boton" name='btnBuscar'>
+                                                Buscar
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                            </button>
+                                            <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                                                Limpiar
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @*<tr id="trbuscar"><td align="center">ESTABLECIMIENTO ACTIVO</td><td align="center">ESTABLECIMIENTOS A INACTIVAR</td></tr>*@
+                                    <tr id="trListaLicencias">
+                                        @*<td align="center" width="50px">*@
+                                        <td colspan="8" > 
+                                            LISTA DE LICENCIAS
+                                            <div id="grid"></div>
+                                        </td>
+
+                                    </tr>
+                                    <tr id="trseleccionar">
+                                        <td colspan="8" align="center">
+                                            <button id='btnSeleccionar' class="boton" name='btnSeleccionar'>
+                                                Seleccionar
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                            </button> <br>( Agregar o Quitar Licencias)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td  vertical-align:top" colspan="8" id="trlistLicenciaActualizar">
+                                            LISTA DE LICENCIAS A ACTUALIZAR DIVISION
+                                            <div id="grid2"></div>
+                                        </td>
+                                    </tr>
+                                    <tr id="tractualizar" >
+                                        <td colspan="8" align="center">
+                                            <button id='btnElegirDivision' class="boton" name='btnElegirDivision'>
+                                               Elegir  Division
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                            </button>
+                                            <button id='btnActualizar' class="boton" name='btnActualizar'>
+                                                Actualizar  Division
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                            </button>
+                                           <br> <input type="checkbox" id="chkFactPend">Trasladar Facturas Pendientes 
+                                            <input type="checkbox" id="chkFactHistorico">Trasladar Historico(DOCUMENTOS CANCELADOS) 
+                                        </td>
+                                    </tr>
+                                    @*<tr>*@
+                                    @*</tr>*@
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+    </table>
+    <div id="Licdiv">
+        @Html.Partial("~/Views/Shared/_LicDivision.cshtml")
+    </div> 
+</body>
+</html>

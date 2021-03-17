@@ -1,0 +1,218 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: ESTABLECIMIENTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Establecimientos</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Establecimiento/establecimiento.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.establecimientoSocioEmpresarial.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ContenedormvBuscarSocio"></div>
+    @*<div id="ContenedormvEstablecimientoSocio"></div>*@
+
+    <div>
+        <table width='98%' border='0'>
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id='divTitulo'>Establecimientos</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="contenedor">
+                        <center>
+                            <table border="0" style="width:95%">
+                                <tr>
+                                    <td>Usuario</td>
+                                    <td colspan="5">
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Agente" />
+                                        <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio">Seleccione</label>
+                                        <input type="hidden" id="hidCodigoBPS">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10"><hr /></td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <td>Tipo de establecimiento</td>
+                                    <td><select name="ddlTipoestablecimiento" id="ddlTipoestablecimiento" style="width: 200px"></select></td>
+                                    <td>subtipo establecimiento</td>
+                                    <td><select name="ddlSubtipoestablecimiento" id="ddlSubtipoestablecimiento" style="width: 230px"></select></td>
+                                </tr>
+
+                                <tr>
+                                    <td >Nombre establecimiento</td>
+                                    <td>
+                                        <input type="text" id="txtEstablecimiento" style="width: 325px">
+                                        <input type="hidden" id="hidCodigoEST">
+                                    </td>
+                                    <td >Estado</td>
+                                    <td colspan="3"><select name="ddlEstado2" id="ddlEstado2"></select></td>
+                                    
+                                  
+                                </tr>
+
+
+
+                                  <tr>
+                                    <td colspan="10"><hr /></td>
+                                </tr>
+                                <tr>
+                                    <td >División Geografica</td>
+                                    <td colspan="5">
+                                        <select id="ddlDivision"></select>
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    @*<td>Departamento</td>*@
+                                    <td><label id="lblSubTipo1"></label><input type="hidden" id="hidSubTipo1" /></td>
+                                    <td><select id="ddlSubTipo1" style="width:200px"></select> </td>
+                                    
+                                    @*<td>Provincia</td>*@
+                                    <td><label id="lblSubTipo2"></label><input type="hidden" id="hidSubTipo2" /></td>
+                                    <td><select id="ddlSubTipo2" style="width:200px"></select> </td>
+
+                                    @*<td>Distrito</td>*@
+                                    <td><label id="lblSubTipo3"></label><input type="hidden" id="hidSubTipo3" /></td>
+                                    <td><select id="ddlSubTipo3" style="width:200px"></select> </td>
+                                </tr>
+                            
+
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">
+                                        <button id='btnBuscarEst' class="boton" name='btnBuscarEst'>
+                                            Buscar
+                                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                        </button>
+                                        &nbsp;
+                                        <button id='btnLimpiarEst' class="boton" name='btnLimpiarEst'>
+                                            Limpiar
+                                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                                        </button>
+                                        &nbsp;
+                                        <button id='btnAgruparLocales' class="boton" name='btnAgruparLocales'>
+                                            Agrupar
+                                            <img src="@Url.Content("~/Images/botones/user.png")" width="16px" />
+                                        </button>
+                                    </td>
+                                    <td colspan="2"></td>                                    
+                                </tr>
+
+                            </table>
+                        </center>
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 40px; vertical-align: bottom;'>
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo establecimiento." title="Registrar nuevo establecimiento." id="btnNuevo" />
+                        &nbsp;
+                        <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar establecimiento." title="Inactivar establecimiento." id="btnEliminar" />
+                        &nbsp;
+                        &nbsp;
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <br />
+                <td>
+                    <center>
+                        <table style="width:98%">
+                            <tr>
+                                <td>
+                                    <div id="gridEstablecimientoPrincipal"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div title="Agrupar Locales" id="mvAgruparLocal">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td width="50">Ruc:</td>
+                <td colspan="3">
+                    <input type="text" id="txtRuc" class="requerido" width="20">&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="btnBuscarEstSocio"> <img src="../Images/botones/buscar2.png" width="16px"> Buscar </button>
+                </td>
+            </tr>
+        </table>
+        <table width='100%' border="0">     
+            <tr>
+                <td>
+                    <div class="contenedor">
+                        <table width='100%' border="0">
+                            <tr>
+                                <td rowspan="2" valign="top" width="450">
+                                    <div id="gridEstOriginal" width="450"></div>
+                                </td>
+                                <td align="center" width="20"><button id="btnElegirEst"> <img src="../Images/botones/more.png" width="16px"></button></td>
+                                <td rowspan="2" valign="top" width="450">
+                                    <div id="gridEstFinal" width="450"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" width="20"><button id="btnNoelegirEst"> <img src="../Images/botones/menos.png" width="16px"></button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

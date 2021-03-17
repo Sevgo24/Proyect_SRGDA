@@ -1,0 +1,209 @@
+﻿@model SGRDA.Entities.BEREC_DOCUMENTS_GRAL
+
+@{
+    ViewBag.Title = "APDAYC :: DOCUMENTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+    });
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "DOCUMENTOS", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <div id='divTituloPerfil' style="margin-top: 22px;">
+        Mantenimiento Documento - Nuevo
+    </div>
+    <br />
+    
+    <center>
+    <table border="0" style="width: 98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+        <tr>
+            <td colspan="2" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                <div style="float: right;">
+                    <div class="botonLink" style="width: 80px;">
+                        <a href="@Url.Action("../DOCUMENTOS/", "DOCUMENTOS")"   >
+                            <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                            </div>
+                        </a>
+                    </div>
+                    &nbsp;
+                        <button id="btnSave" class="boton">
+                            <span style="color: #000; font-weight: 200;">Grabar </span>
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>
+                </div>
+            </td>
+        </tr>
+
+        <tr><td><br /></td></tr>
+
+         @*<div class="editor-label">
+                @Html.LabelFor(model => model.OWNER)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.OWNER)
+                @Html.ValidationMessageFor(model => model.OWNER)
+            </div>*@
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.DOC_ID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DOC_ID)
+            @Html.ValidationMessageFor(model => model.DOC_ID)
+        </div>*@
+        <tr>            
+            <td style="width:25% ;padding-left:2% " >
+            @Html.LabelFor(model => model.DOC_TYPE) :
+                </td>
+            <td>
+                 @if (ViewData.ContainsKey("Lista_Tipodocumentos"))
+            {
+                @Html.DropDownList("Lista_Tipodocumentos", ViewData["Lista_Tipodocumentos"] as List<SelectListItem>, new { style = "width:250px", id = "DOC_TYPE" }) 
+            }
+            @Html.ValidationMessageFor(model => model.DOC_TYPE)
+            </td>
+        </tr>   
+
+         <tr>            
+            <td style="width:25% ;padding-left:2% " >
+            @Html.LabelFor(model => model.DOC_DATE) :
+                </td>
+            <td>
+              @Html.TextBoxFor(model => model.DOC_DATE, htmlAttributes: new { id = "datepickerFechaInclusion" })
+            @Html.ValidationMessageFor(model => model.DOC_DATE)
+            </td>
+        </tr>   
+
+         <tr>            
+            <td style="width:25% ;padding-left:2% " >
+            @Html.LabelFor(model => model.DOC_VERSION) :
+                </td>
+            <td>
+             @Html.TextBoxFor(model => model.DOC_VERSION, htmlAttributes: new { id = "DOC_VERSION", style = "width:80px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+            @Html.ValidationMessageFor(model => model.DOC_VERSION)
+            </td>
+        </tr>  
+
+        <tr>            
+            <td style="width:25% ;padding-left:2% " >
+            @Html.LabelFor(model => model.DOC_USER) :
+                </td>
+            <td>
+              @Html.TextBoxFor(model => model.DOC_USER, htmlAttributes: new { id = "DOC_USER", style = "width:120px;", maxLength = "30" })
+            @Html.ValidationMessageFor(model => model.DOC_USER)
+            </td>
+        </tr>  
+
+       <tr>            
+            <td style="width:25% ;padding-left:2% " >
+            @Html.LabelFor(model => model.DOC_PATH) :
+                </td>
+            <td>
+              @Html.TextBoxFor(model => model.DOC_PATH, htmlAttributes: new { id = "DOC_PATH", style = "width:300px;" })
+            @Html.ValidationMessageFor(model => model.DOC_PATH)
+            </td>
+        </tr>  
+
+      
+
+        <tr><td><br /></td></tr>
+    </table>
+    </center>
+    
+        
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+        })
+    };
+</script>
+
+<script type="text/javascript">
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+<script>
+    //$(function () {
+    //    $("#datepickervigenia").datepicker();
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
+    $(function () {
+        $("#datepickerFechaInclusion").datepicker();
+        //$("#datepickerbaja").datepicker();
+    });
+    //});
+</script>
+
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

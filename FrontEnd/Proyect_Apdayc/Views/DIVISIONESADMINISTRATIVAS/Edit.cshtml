@@ -1,0 +1,200 @@
+﻿@model SGRDA.Entities.BEREF_DIVISIONES
+
+@{
+    ViewBag.Title = "APDAYC :: DIVISIONES ADMINISTRATIVAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        //combos
+        $("#DAD_TNAMED").hide();
+
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+
+            $("#DAD_TNAME").hide();
+
+            $("#DAD_TNAMED").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#btnedit").hide();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            $("#DAD_TNAMED").hide();
+            location.reload();
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+     
+    <br />
+    <div id="divTituloPerfil">
+        Divisiones Administrativas - Actualización 
+    </div>
+    
+    
+    <center>
+         <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+           <tr>
+               <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+              
+                    <div style="float:right">
+                        <div class="botonLink"  style="width:80px;">
+                            <a href="@Url.Action("../DIVISIONESADMINISTRATIVAS/", "DIVISIONESADMINISTRATIVAS")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnnuevo">
+                                <a href="@Url.Action("Create", "DIVISIONESADMINISTRATIVAS")"   >   
+                                    <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnedit">
+                            <a href="#" id="btnedit" >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                    Editar
+                                    <img src="@Url.Content("~/Images/botones/editb.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <button id="btncancel"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Descartar </span> 
+                            <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                        </button> 
+
+                        &nbsp;
+                        <button id="btnSave"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Grabar </span> 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>   
+                   </div>
+               </td>
+           </tr>
+             <tr><td><br /></td></tr>
+     <tr >        
+        <td style="width:15% ;padding-left:2% ;" >   
+                @Html.HiddenFor(model => model.DAD_ID, htmlAttributes: new { id = "DAD_ID" })
+                @Html.LabelFor(model => model.DAD_CODE) :
+         </td>
+         <td>
+             @Html.TextBoxFor(model => model.DAD_CODE, htmlAttributes: new { id = "DAD_CODE", disabled = "disabled", style = "width:130px;" })
+                @Html.ValidationMessageFor(model => model.DAD_CODE)
+         </td>
+        </tr>
+        <tr>
+          <td style="width:15% ;padding-left:2% ;" >   
+               @Html.LabelFor(model => model.DAD_NAME) :
+         </td>
+         <td>
+              @Html.TextBoxFor(model => model.DAD_NAME, htmlAttributes: new { id = "DAD_NAME", disabled = "disabled", style = "width:230px;"  })
+                @Html.ValidationMessageFor(model => model.DAD_NAME)
+         </td>
+</tr>
+             <tr>
+              <td style="width:20% ;padding-left:2% ;" >   
+               @Html.LabelFor(p => p.DAD_TNAME, new { id = "DAD_TNAMEL" }) :
+         </td>
+         <td>
+               @Html.TextBoxFor(p => p.DAD_TNAME, htmlAttributes: new { id = "DAD_TNAME", disabled = "disabled", style = "width:280px;" })
+
+                @if (ViewData.ContainsKey("Lista_TiposDivisiones"))
+                {
+                    @Html.DropDownList("Lista_TiposDivisiones", ViewData["Lista_TiposDivisiones"] as List<SelectListItem>, new { style = "width:250px", id = "DAD_TNAMED" }) 
+                }
+         </td>
+ 
+
+    </tr>
+             <tr><td><br /></td></tr>
+          </table>
+    </center>
+    
+ 
+
+                 
+      
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("DAD_CODE").disabled = false;
+        document.getElementById("DAD_NAME").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("DAD_CODE").disabled = true;
+        document.getElementById("DAD_NAME").disabled = true;
+
+    })
+</script>
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

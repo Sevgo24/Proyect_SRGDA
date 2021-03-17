@@ -1,0 +1,144 @@
+﻿@model SGRDA.Entities.BEREF_DIV_CHARAC
+@{
+    ViewBag.Title = "APDAYC :: CARACTERÍSTICAS DE DIVISIONES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+        $("#DAC_ID").focus();
+    });
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "CARACTERISTICASDIVISIONES", FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+        
+    
+    <br />
+    
+    <center>
+          <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+            <tr>
+                <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+                   
+                    <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                   Características de Divisiones - Nuevo
+                                     </div>
+
+                            </td>
+                            <td>
+                            
+                     <div style="float:right;">
+                        <div class="botonLink"  style="width:80px;">
+                        <a href="@Url.Action("../CARACTERISTICASDIVISIONES/", "CARACTERISTICASDIVISIONES")"   >
+                            <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                            <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                        </a>
+                            </div>
+                             &nbsp;
+                               <button id="btnSave"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Grabar </span> 
+                                  <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                               </button> 
+
+
+                        </div>
+                                  </td>
+                            </tr></table>
+                </td>
+
+            </tr>
+             <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+            <tr>        
+            <td style="width:10%; padding-left:2%">
+                Código :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.DAC_ID, htmlAttributes: new { style = "width:50px;",maxLength = "3"  })
+                @Html.ValidationMessageFor(model => model.DAC_ID)
+            </td>            
+            </tr>
+
+            <tr> 
+            <td style="width:10%; padding-left:2%">
+                @Html.LabelFor(model => model.DESCRIPTION) :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.DESCRIPTION, htmlAttributes: new { id = "DESCRIPTION", style = "width:250px;", maxLength = "100" })
+                @Html.ValidationMessageFor(model => model.DESCRIPTION)
+            </td>
+            </tr>
+              
+            <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+            </tr>
+
+        </table>
+    </center>
+
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>     
+    
+}
+
+
+<script type="text/ecmascript">
+
+    if ('@TempData["flag"]' == "1") {
+
+        alert("Grabado corectamente.");
+        location.href = "../CARACTERISTICASDIVISIONES/";
+    } else {
+        if ('@TempData["msg"]' != "") {
+            $(function () {
+                $("#message").show();
+                $(".alert-link").show();
+
+            })
+        };
+        if ('@TempData["class1"]' != "") {
+            $(function () {
+                $("#message1").show();
+
+
+            })
+        };
+    }
+
+   
+
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

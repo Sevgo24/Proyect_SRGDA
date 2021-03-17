@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4924CF81-83C4-421D-99F3-39F82513A26C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGRDA.BL</RootNamespace>
+    <AssemblyName>SGRDA.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BancosPagos\BLReporteArchivosPlanosBancos.cs" />
+    <Compile Include="BLAdministracion.cs" />
+    <Compile Include="BLAdministracionCancelacionDirecta.cs" />
+    <Compile Include="BLAdministracionCOBRONC.cs" />
+    <Compile Include="BLAdministracionCobros.cs" />
+    <Compile Include="BLAdministracionControlLicencia.cs" />
+    <Compile Include="BLAdministracionEmisionComplementaria.cs" />
+    <Compile Include="BLAdministracionEmisionMensual.cs" />
+    <Compile Include="BLAdministracionEstablecimiento.cs" />
+    <Compile Include="BLAdministracionMatrizLicencia.cs" />
+    <Compile Include="BLAdministracionNotificacionLicencias.cs" />
+    <Compile Include="BLAdministracionRequerimiento.cs" />
+    <Compile Include="BLAdministracionSeguimientoLocalPermanente.cs" />
+    <Compile Include="BLAdministracionSocio.cs" />
+    <Compile Include="BLAdministracionSocioMoroso.cs" />
+    <Compile Include="BLAdministracionSolicitudAprobacion.cs" />
+    <Compile Include="BLAgenteAccion.cs" />
+    <Compile Include="BLAgenteRecaudo.cs" />
+    <Compile Include="BLAjustesComision.cs" />
+    <Compile Include="BLAlfresco\BLAlfresco.cs" />
+    <Compile Include="BLAsociadosEst.cs" />
+    <Compile Include="BLAuditoria.cs" />
+    <Compile Include="BLCampaniaCallCenter.cs" />
+    <Compile Include="BLCampaniaContactollamada.cs" />
+    <Compile Include="BLCentroContacto.cs" />
+    <Compile Include="BLComisionAgenteRecaudo.cs" />
+    <Compile Include="BLComisionExclusion.cs" />
+    <Compile Include="BLComisionOficinasComerciales.cs" />
+    <Compile Include="BLComisionProducto.cs" />
+    <Compile Include="BLComisionTotales.cs" />
+    <Compile Include="BLContable.cs" />
+    <Compile Include="BLContactoCallCenter.cs" />
+    <Compile Include="BLCorreo.cs" />
+    <Compile Include="BLDetalleMetodosPago.cs" />
+    <Compile Include="BLDocumentoCampania.cs" />
+    <Compile Include="BLDocumentoContactoLlamada.cs" />
+    <Compile Include="BLDocumentoNoIdentificado.cs" />
+    <Compile Include="BLEmisionMensual.cs" />
+    <Compile Include="BLEntidades.cs" />
+    <Compile Include="BLEntidadLic.cs" />
+    <Compile Include="BLFactura.cs" />
+    <Compile Include="BLFacturaCobro.cs" />
+    <Compile Include="BLFacturaDetalle.cs" />
+    <Compile Include="BLFiltroOrden.cs" />
+    <Compile Include="BLLicenciaAforo.cs" />
+    <Compile Include="BLLicenciaDivision.cs" />
+    <Compile Include="BLLicenciaDivisionAgente.cs" />
+    <Compile Include="BLLicenciaPlaneamientoDetalle.cs" />
+    <Compile Include="BLMetodoPago.cs" />
+    <Compile Include="BLLicenciaDescuento.cs" />
+    <Compile Include="BLLicenciaImpuesto.cs" />
+    <Compile Include="BLLicenciaReporteDeta.cs" />
+    <Compile Include="BLAforo.cs" />
+    <Compile Include="BLFuncionCalculo.cs" />
+    <Compile Include="BLGarantia.cs" />
+    <Compile Include="BLLicenciaLocalidad.cs" />
+    <Compile Include="BLLicenciaReporte.cs" />
+    <Compile Include="BLLocalidad.cs" />
+    <Compile Include="BLModuloCliente.cs" />
+    <Compile Include="BLMultiRecibo.cs" />
+    <Compile Include="BLOrigenComision.cs" />
+    <Compile Include="BLRecibo.cs" />
+    <Compile Include="BLREC_LIC_TAB_STAT.cs" />
+    <Compile Include="BLRedSocialType.cs" />
+    <Compile Include="BLRed_Social.cs" />
+    <Compile Include="BLRolAgente.cs" />
+    <Compile Include="BLShowArtista.cs" />
+    <Compile Include="BLTarifaPlantillaDescuento.cs" />
+    <Compile Include="BLTarifaTest.cs" />
+    <Compile Include="BLTipoAccion.cs" />
+    <Compile Include="BLTipoCampania.cs" />
+    <Compile Include="BLTipoComision.cs" />
+    <Compile Include="BLAgente.cs" />
+    <Compile Include="BLArtista.cs" />
+    <Compile Include="BLAutizacion.cs" />
+    <Compile Include="BLAutorizacion.cs" />
+    <Compile Include="BLBloqueos.cs" />
+    <Compile Include="BLCABECERA_MODULO.cs" />
+    <Compile Include="BLCalificador.cs" />
+    <Compile Include="BLCaracteristica.cs" />
+    <Compile Include="BLCaracteristicaEst.cs" />
+    <Compile Include="BLCaracteristicaPredefinida.cs" />
+    <Compile Include="BLCaracteristicaValor.cs" />
+    <Compile Include="BLClaseCreacion.cs" />
+    <Compile Include="BLCodigoPostal.cs" />
+    <Compile Include="BLCuentasContables.cs" />
+    <Compile Include="BLDefinicionGasto.cs" />
+    <Compile Include="BLDerecho.cs" />
+    <Compile Include="BLDescuentos.cs" />
+    <Compile Include="BLDetalleGasto.cs" />
+    <Compile Include="BLDifusion.cs" />
+    <Compile Include="BLDifusionEst.cs" />
+    <Compile Include="BLDirecciones.cs" />
+    <Compile Include="BLDireccionEst.cs" />
+    <Compile Include="BLDivision.cs" />
+    <Compile Include="BLDivisionRecaudador.cs" />
+    <Compile Include="BLDocumentoEst.cs" />
+    <Compile Include="BLDocumentoGral.cs" />
+    <Compile Include="BLDocumentoLic.cs" />
+    <Compile Include="BLEstablecimiento.cs" />
+    <Compile Include="BLEstadoLicencia.cs" />
+    <Compile Include="BLFormatoFactura.cs" />
+    <Compile Include="BLFormatoFacturacion.cs" />
+    <Compile Include="BLGrupoFacturacion.cs" />
+    <Compile Include="BLGrupoGasto.cs" />
+    <Compile Include="BLInspectionEst.cs" />
+    <Compile Include="BLLicenciaEstadoTab.cs" />
+    <Compile Include="BLLicenciaPlaneamiento.cs" />
+    <Compile Include="BLLicencias.cs" />
+    <Compile Include="BLLicenciaTabs.cs" />
+    <Compile Include="BLMedio_Difusion.cs" />
+    <Compile Include="BLModalidad.cs" />
+    <Compile Include="BLModalidadIncidencia.cs" />
+    <Compile Include="BLMODULO.cs" />
+    <Compile Include="BLModuloSistema.cs" />
+    <Compile Include="BlObservationEst.cs" />
+    <Compile Include="BLObservationGral.cs" />
+    <Compile Include="BLObservationLic.cs" />
+    <Compile Include="BLObservationOff.cs" />
+    <Compile Include="BLOffices.cs" />
+    <Compile Include="BLOrigenModalidad.cs" />
+    <Compile Include="BLParametroGral.cs" />
+    <Compile Include="BLParametroLic.cs" />
+    <Compile Include="BLParametrosEst.cs" />
+    <Compile Include="BLPeriodoFrecuencia.cs" />
+    <Compile Include="BLProceso.cs" />
+    <Compile Include="BLRangoMorosidad.cs" />
+    <Compile Include="BLREC_BANKS_BRANCH.cs" />
+    <Compile Include="BLREC_BANKS_GRAL.cs" />
+    <Compile Include="BLREC_BLOCKS.cs" />
+    <Compile Include="BLREC_BPS_BANKS_ACC.cs" />
+    <Compile Include="BLREC_BPS_QUALY.cs" />
+    <Compile Include="BLREC_CAPACITY_TYPE.cs" />
+    <Compile Include="BLREC_CHARACTERISTICS.cs" />
+    <Compile Include="BLREC_COLL_LEVEL.cs" />
+    <Compile Include="BLREC_DEBTORS_RANGE.cs" />
+    <Compile Include="BLREC_DOCUMENTS_GRAL.cs" />
+    <Compile Include="BLREC_DOCUMENT_TYPE.cs" />
+    <Compile Include="BLREC_ECON_ACTIVITIES.cs" />
+    <Compile Include="BLREC_ESTABLISHMENT_GRAL.cs" />
+    <Compile Include="BLREC_EST_SUBTYPE.cs" />
+    <Compile Include="BLREC_EST_TYPE.cs" />
+    <Compile Include="BLREC_LAWSUITE_ACTIVITIES_TYPE.cs" />
+    <Compile Include="BLREC_LAWSUITE_TYPE.cs" />
+    <Compile Include="BLREC_LIC_STAT.cs" />
+    <Compile Include="BLREC_LIC_TYPE.cs" />
+    <Compile Include="BLREC_MODALITY.cs" />
+    <Compile Include="BLREC_MOD_GROUP.cs" />
+    <Compile Include="BLREC_MOD_USAGE.cs" />
+    <Compile Include="BLREC_MOV_TYPE.cs" />
+    <Compile Include="BLREC_NUMBERING.cs" />
+    <Compile Include="BLREC_PAYMENT_TYPE.cs" />
+    <Compile Include="BLREC_QUALIFY_CHAR.cs" />
+    <Compile Include="BLREC_QUALIFY_TYPE.cs" />
+    <Compile Include="BLREC_RATES_GRAL.cs" />
+    <Compile Include="BLREC_RATE_FREQUENCY.cs" />
+    <Compile Include="BLREC_RETURN_REASONS.cs" />
+    <Compile Include="BLREC_SECTIONS.cs" />
+    <Compile Include="BLREC_TAXES.cs" />
+    <Compile Include="BLREC_TAX_ID.cs" />
+    <Compile Include="BLREC_UNLICENSE_REASONS.cs" />
+    <Compile Include="BLREC_MOD_IMPACT.cs" />
+    <Compile Include="BLREF_CREATION_CLASS.cs" />
+    <Compile Include="BLREF_DIVISIONES.cs" />
+    <Compile Include="BLREF_DIVISIONES_VALUES.cs" />
+    <Compile Include="BLREF_ROLES.cs" />
+    <Compile Include="BLREF_SOCIETY_TYPE.cs" />
+    <Compile Include="BLREF_TAX_DIVISION.cs" />
+    <Compile Include="BLREF_ADDRESS_TYPE.cs" />
+    <Compile Include="BLREF_CURRENCY.cs" />
+    <Compile Include="BLREF_CURRENCY_VALUES.cs" />
+    <Compile Include="BLREF_DIV_CHARAC.cs" />
+    <Compile Include="BLREF_DIV_STYPE_CHAR.cs" />
+    <Compile Include="BLREF_DIV_SUBTYPE.cs" />
+    <Compile Include="BLREF_DIV_TYPE.cs" />
+    <Compile Include="BLRequerimientoDinero.cs" />
+    <Compile Include="BLROLES.cs" />
+    <Compile Include="BLROLES_PERMISOS.cs" />
+    <Compile Include="BLRoles_Usuarios.cs" />
+    <Compile Include="BLRutas.cs" />
+    <Compile Include="BLShow.cs" />
+    <Compile Include="BLSociedad.cs" />
+    <Compile Include="BLSocioNegocio.cs" />
+    <Compile Include="BLSocioNegocioBanco.cs" />
+    <Compile Include="BLTarifaPlantilla.cs" />
+    <Compile Include="BLTarifaRegla.cs" />
+    <Compile Include="BLTerritorio.cs" />
+    <Compile Include="BLTipoCalificador.cs" />
+    <Compile Include="BLTipoCorrelativo.cs" />
+    <Compile Include="BLTipoCorreo.cs" />
+    <Compile Include="BLTipoDato.cs" />
+    <Compile Include="BLTipoDerecho.cs" />
+    <Compile Include="BLTipoDescuento.cs" />
+    <Compile Include="BLTipoenvioFactura.cs" />
+    <Compile Include="BLTipoEstado.cs" />
+    <Compile Include="BLTipoGasto.cs" />
+    <Compile Include="BLTipoNumerador.cs" />
+    <Compile Include="BLTipoObjeto.cs" />
+    <Compile Include="BLTipoObservacion.cs" />
+    <Compile Include="BLTipoPago.cs" />
+    <Compile Include="BLTipoParametro.cs" />
+    <Compile Include="BLTipoProceso.cs" />
+    <Compile Include="BLTipoTelefono.cs" />
+    <Compile Include="BLTipoUsorepertorio.cs" />
+    <Compile Include="BLLoteTrabajo.cs" />
+    <Compile Include="BLTransicionesEstado.cs" />
+    <Compile Include="BLTrasladoAgentesRecaudo.cs" />
+    <Compile Include="BLUbigeo.cs" />
+    <Compile Include="BLUit.cs" />
+    <Compile Include="BLUsorepertorio.cs" />
+    <Compile Include="BLUsuarioAsociacion.cs" />
+    <Compile Include="BLUsuarioDerecho.cs" />
+    <Compile Include="BLUsuarioEmpleado.cs" />
+    <Compile Include="BLUsuarioProveedor.cs" />
+    <Compile Include="BLUsuarioRecaudador.cs" />
+    <Compile Include="BLUSUARIOS.cs" />
+    <Compile Include="BLValormusica.cs" />
+    <Compile Include="BL_WORKF_ACTIONS.cs" />
+    <Compile Include="BL_WORKF_ACTIONS_MAPPINGS.cs" />
+    <Compile Include="BL_WORKF_ACTION_TYPES.cs" />
+    <Compile Include="BL_WORKF_AGENTS.cs" />
+    <Compile Include="BL_WORKF_CLIENTS.cs" />
+    <Compile Include="BL_WORKF_DATA_TYPES.cs" />
+    <Compile Include="BL_WORKF_EVENTS.cs" />
+    <Compile Include="BL_WORKF_OBJECTS.cs" />
+    <Compile Include="BL_WORKF_OBJECTS_TYPE.cs" />
+    <Compile Include="BL_WORKF_PARAMETERS.cs" />
+    <Compile Include="BL_WORKF_RADIO.cs" />
+    <Compile Include="BL_WORKF_STATES.cs" />
+    <Compile Include="BL_WORKF_STATE_TYPE.cs" />
+    <Compile Include="BL_WORKF_TRACES.cs" />
+    <Compile Include="BL_WORKF_TRANSITIONS.cs" />
+    <Compile Include="BL_WORKF_WORKFLOWS.cs" />
+    <Compile Include="BL_WORK_AGENTS_ACTION.cs" />
+    <Compile Include="BLTipoReporte.cs" />
+    <Compile Include="BLPreImpresion.cs" />
+    <Compile Include="Comision\BLComisionEscala.cs" />
+    <Compile Include="Consulta\BLConsultaDocumento.cs" />
+    <Compile Include="Empadronamiento\BLDetalleEmpadronamiento.cs" />
+    <Compile Include="Empadronamiento\BLMatrizEmpadronamiento.cs" />
+    <Compile Include="FacturaElectronica\BLCabeceraFactura.cs" />
+    <Compile Include="FacturaElectronica\BLDescuentoRecargo.cs" />
+    <Compile Include="FacturaElectronica\BLDetalleFactura.cs" />
+    <Compile Include="FacturaElectronica\BLExtras.cs" />
+    <Compile Include="FacturaElectronica\BLReferencia.cs" />
+    <Compile Include="FacturaElectronica\BLSunat.cs" />
+    <Compile Include="FacturaElectronica\BLTipoNotaCredito.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporte\BLRegistroVenta.cs" />
+    <Compile Include="Reporte\BLRegistroVentaNC.cs" />
+    <Compile Include="Reporte\BLREGISTRO_CAJA.cs" />
+    <Compile Include="Reporte\BLReporte.cs" />
+    <Compile Include="Reporte\BLReporteArtistaDetallado.cs" />
+    <Compile Include="Reporte\BLReporteComprobantesBancarios.cs" />
+    <Compile Include="Reporte\BLReporteComprobantexAutor.cs" />
+    <Compile Include="Reporte\BLReporteDistribucion.cs" />
+    <Compile Include="Reporte\BLReporteEstadoCuenta.cs" />
+    <Compile Include="Reporte\BLReporteFacturaCancelada.cs" />
+    <Compile Include="Reporte\BLReporteFacturaxCobrar.cs" />
+    <Compile Include="Reporte\BLReporteInformeControl.cs" />
+    <Compile Include="Reporte\BLReporteListarusuarios.cs" />
+    <Compile Include="Reporte\BLReporteRecaudacionSedes.cs" />
+    <Compile Include="Reporte\BLReporteResumenFacturacionMensual.cs" />
+    <Compile Include="Reporte\BLREPORTE_DEPOSITO_BANCARIO.cs" />
+    <Compile Include="Reporte\BLREPORTE_DE_EMPRADRONAMIENTO.cs" />
+    <Compile Include="Reporte\BLREPORTE_DE_LICENCIAS_NUEVAS.cs" />
+    <Compile Include="Reporte\BL_BecEspeciales.cs" />
+    <Compile Include="Reporte\BL_LICENCIA_X_ARTISTA.cs" />
+    <Compile Include="Reporte\BL_ReporteEstablecimiento.cs" />
+    <Compile Include="Reporte\BL_Reporte_Bec_Inactiva.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GlobalVars\GlobalVars.csproj">
+      <Project>{164aef80-cbfe-41cf-a42a-fa5eebef6104}</Project>
+      <Name>GlobalVars</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGRDA.DA\SGRDA.DA.csproj">
+      <Project>{a9d03476-80e7-4f4f-9856-45caacf3f780}</Project>
+      <Name>SGRDA.DA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGRDA.Entities\SGRDA.Entities.csproj">
+      <Project>{1c410e8f-ced0-4f59-a3c5-7d8c0b7a980a}</Project>
+      <Name>SGRDA.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGRDA.Utility\SGRDA.Utility.csproj">
+      <Project>{2029e4e7-373f-4214-80d0-67eabef6ded2}</Project>
+      <Name>SGRDA.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Licenciamiento</title>
+
+        <script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/Licenciamiento.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+    </head>
+    <body>
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style=" vertical-align:bottom;">
+                    <div id='divTitulo'>Licenciamiento</div>
+                </td>
+            </tr>
+            <tr><td  style=" vertical-align: top;"><hr></td></tr>
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTabla'>
+                            <tr>
+                                <td> Codigo de Licencia:</td>
+                                <td>
+                                    <input type="text" id="txtCodLicencia"/>
+                                </td>
+                                <td> Modalidad:</td>
+                                <td>
+                                    <select id="ddModalidad"></select>
+                                </td>
+                                <td> Tarifa Asociada:</td>
+                                <td></td>
+                                <td> División:</td>
+                                <td>
+                                    <select id="ddDivision"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Tipo de Licencia:</td>
+                                <td>
+                                    <select id="ddTipoLicencia"></select>
+                                </td>
+                                <td> Establecimiento:</td>
+                                <td>
+                                    <select id="ddEstablecimiento"></select>
+                                </td>
+                                <td> Temporalidad:</td>
+                                <td>
+                                    <select id="ddTemporalidad"></select>
+                                </td>
+                                <td> Tipo de División:</td>
+                                <td>
+                                    <select id="ddTipoDivision"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Estado de Licencia :</td>
+                                <td>
+                                    <select id="ddEstadoLicencia"></select>
+                                </td>
+                                <td> Responsable:</td>
+                                <td></td>
+                                <td> Moneda:</td>
+                                <td>
+                                    <select id="ddMoneda"></select>
+                                </td>
+                                <td> Nombre de la Licencia:</td>
+                                <td>
+                                    <input type="text" id="txtNomLicencia" />
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

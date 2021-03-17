@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Workflow - Agente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Workflow - Estado de Procesosn</title>
+    
+    <script src="@Url.Content("~/Scripts/SGRDA/WorkFlow/mantenimiento.agent.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+</head>
+<body>
+    <div title="Nuevo Ciclo de Aprobación">
+
+        <table style="width: 100%" border="0">
+            <tr>
+                <td>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidId" type="hidden" />
+                    
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:98%" border="0" id="FiltroTablaPop">
+                            <tr>
+                                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                       
+                                    
+                                        <table  width='100%' border='0' id='FiltroTabla'>
+		                               <tr>
+			                               <td style="width:500px;text-align:left;">
+				                               <div id="divTituloPerfil">Workflow- Estado de Procesos</div>
+			                               </td>
+				                            <td  colspan="1">
+					                                <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                        Volver 
+                                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                                &nbsp;
+                                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                        Nuevo 
+                                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                                &nbsp;
+                                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                        Grabar 
+                                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>
+				                            </td>   
+		                               </tr>
+	                               </table>
+                                                             
+                
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                        <table >
+                                              <tr id="trId">
+                                                <td style="padding-left:30px;width:80px">
+                                                    Id Agente :
+                                                </td>
+                                                <td style="width:110px">
+                                                    <input type="text" id="txtCodigo"  style="width:120px" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:30px;width:80px">
+                                                    Nombre :
+                                                </td>
+                                                <td>
+                                                    <textarea id="txtNombre" rows="2" cols="50" maxlength="45" class="requerido"></textarea>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td style="padding-left:30px;width:80px">
+                                                    Etiqueta :
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="txtEtiqueta"  style="width:400px" maxlength="45" class="requerido" />
+                                                </td>
+                                            </tr>
+                                          
+                                        </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+
+        </table>
+         <center> <div id="aviso"></div> </center>
+    </div>
+</body>
+</html>

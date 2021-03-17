@@ -1,0 +1,195 @@
+﻿@model SGRDA.Entities.BEComisionExclusion
+@{
+    ViewBag.Title = "APDAYC :: COMISION POR EXCLUSION";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Comisión por exclusion administrativa</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Comision/comision.exclusion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.tarifa.js")"></script>   
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.aux.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <div id="ContenedormvModalidad"></div>
+        <div id="ContenedormvBuscarTarifa"></div>
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+                    <div id='divTitulo'>Comisión por Exclusion Administrativa</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+
+                <center>
+                <table width='98%' border='0'>
+            <tr>                   
+                    <td style="width: 16%">Producto :</td>
+                <td colspan="5">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarMod" style="cursor:pointer;"  alt="Búsqueda de Responsable" title="Búsqueda de Responsable"/>
+                                <input id="hidOpcionEdit" type="hidden" />
+                                <input type="hidden" id="hidModalidad" />
+                                <input type="hidden" id="hididPeriodicidad" />
+                                <input type="hidden" id="hididTarifa" />
+                            </td>
+                            <td colspan="6">
+                                <label id="lblModalidad" style="cursor: pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad">Seleccione</label>
+                            </td>
+
+
+                        </tr>
+                    </table>
+                </td>
+
+                <td style="text-align: right">
+                    <button id='btnBuscar' class="boton" name='btnBuscar'>
+                        Buscar 
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                    &nbsp;
+                                                <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                                                    Limpiar 
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                    <br />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Origen modalidad :</td>
+                <td style="width: 15%">
+                    <select id="ddlOrigen" style="width: 150px"></select></td>
+
+                <td style="width: 13%">Tipo sociedad :</td>
+                <td>
+                    <select id="ddlSociedad" style="width: 150px"></select></td>
+            </tr>
+
+            <tr>
+                <td>Clases de creación :</td>
+                <td>
+                    <select id="ddlClasesCreacion" style="width: 150px"></select></td>
+
+                <td>Derecho :</td>
+                <td>
+                    <select id="ddlDerecho" style="width: 150px"></select></td>
+            </tr>
+
+            <tr>
+                <td>Grupo modalidad :</td>
+                <td>
+                    <select id="ddlGrupoModalidad" style="width: 150px"></select></td>
+
+                <td>Nivel de incidencia :</td>
+                <td>
+                    <select id="ddlIncidencia" style="width: 150px"></select></td>
+            </tr>
+
+            <tr>
+                <td>Frecuencia de uso :</td>
+                <td>
+                    <select id="ddlFrecuenciaUso" style="width: 150px"></select></td>
+
+                <td>Uso de repertorio :</td>
+                <td>
+                    <select id="ddlRepertorio" style="width: 150px"></select></td>
+            </tr>
+            <tr>
+                <td>Temporalidad :</td>
+                <td>
+                    <select id="ddlTemporalidad" style="width: 130px"></select></td>
+
+                <td style="width: 16%">Tarifa :</td>
+                <td colspan="5">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarTarifa" style="cursor: pointer;" alt="Búsqueda de Tarifa" title="Búsqueda de Tarifa"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lbTarifa" style="cursor: pointer;" alt="Búsqueda de Tarifa" title="Búsqueda de Tarifa">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Tipo comisión :</td>
+                <td>
+                    <select id="ddlTipoComision" style="width: 130px"></select></td>
+
+                <td>Origen comisión :</td>
+                <td>
+                    <select id="ddlOrigenComision" style="width: 130px"></select></td>
+            </tr>
+            <tr>
+                <td>División administrativa :</td>
+                <td>
+                    <select id="ddlDivisionAdministrativa" style="width: 200px"></select></td>
+            </tr>
+            <tr>
+                <td>Fecha vigencia :</td>
+                <td>
+                    <input type='text' id='txtFechaIni' /></td>
+
+                <td></td>
+                <td>
+                    <input type='text' id='txtFechaFin' /></td>
+            </tr>
+            <tr>
+                <td>Estado :</td>
+                <td>
+                    <select id="ddlEstado" style="width: 200px"></select></td>
+            </tr>
+
+            <tr>
+                <td style='height: 40px; vertical-align: bottom;' colspan="20">
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva Comisión División administrativa." title="Registrar nueva Comisión División administrativa." id="btnNuevo"/>&nbsp;
+                                        <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de Comisión División administrativa." title="Inactivar datos de Comisión División administrativa."  id="btnEliminar"/>
+                        &nbsp; 
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </center>
+        </table>
+
+        <tr>
+            <td>
+                <div id="grid"></div>
+            </td>
+        </tr>
+    </div>
+</body>
+</html>

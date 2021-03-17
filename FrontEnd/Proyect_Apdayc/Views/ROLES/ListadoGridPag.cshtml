@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SGRDA.Entities.ROLES>
+
+@{
+    ViewBag.Title = "ListadoGridPag";
+}
+
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+
+<script src="@Url.Content("~/Scripts/jquery.paginate.js")"></script>
+<link href="@Url.Content("~/Content/styles/admin.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/base/modPaginacion.js")"></script>
+<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+<h2>ListadoGridPag</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="button" class="btn btn-success" value="Buscar" />
+    <button class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Buscar</button> 
+     <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+<table class="table">
+    <tr>
+  
+        <th>
+            @Html.DisplayNameFor(model => model.ROL_ICODIGO_ROL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROL_VNOMBRE_ROL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROL_VDESCRIPCION_ROL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROL_CACTIVO_ROL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROL_ICODIGO_ROL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROL_VNOMBRE_ROL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROL_VDESCRIPCION_ROL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROL_CACTIVO_ROL)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+    @Html.Hidden("hdfPagina",1)
+    @Html.Hidden("hdfTotal",(int)ViewBag.TotalFinta)
+    
+    <div class="pagination-conteiner">
+        <div class="paglist">
+            <div id="pagination-slider"></div>
+        </div>
+        <div class="nomlist">
+            <b><span class="total-registros" >Total de registros: @ViewBag.TotalFinta</span></b>
+        </div>
+    </div>
+}

@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: VALORES DE IMPUESTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Impuestos - Nuevo</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.impuestovalor.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+    <script src="~/Scripts/js/cultures/kendo.culture.es-PE.min.js"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div title="Registrar Valor de Impuesto">
+
+        <table style="width: 100%" border="0">
+            <tr>
+                <td>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidId" type="hidden" />
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:98%" border="0" id="FiltroTablaPop">
+                            <tr>
+                                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                       <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                 Impuestos - Nuevo
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">                         
+                                        <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                        Volver 
+                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                &nbsp;
+                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                        Nuevo 
+                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                &nbsp;
+                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                        Grabar 
+                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>
+                                </div>     </td>
+                            </tr></table>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="contenedor">
+                                        <table>
+                                              <tr>
+                                                    <td style="width:90px">
+                                                        Nombre :
+                                                    </td>
+                                                    <td style="width:150px">
+                                                        <input type="text" id="txtNombre" style="width:230px; text-transform:uppercase;" maxlength="30"  class="requerido"/>
+                                                    </td>
+                                                      <td>
+                                                          <div id="divResultValidacionDes"></div>
+                                                      </td>
+                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    Abrev. :
+                                                </td>
+                                                <td>
+                                                    <input type="text" maxlength="3" id="txtAbrev" class="requerido" style=" text-transform:uppercase;" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:90px">
+                                                    Territorio :
+                                                </td>
+                                                <td colspan="2">
+                                                    <select id="ddlTerritorio" class="requeridoLst"></select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:90px">
+                                                    Fecha de Vigencia :
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="txtFecha" class="requerido" readonly />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="width:140px">
+                                                    Cuenta Contable :
+                                                </td>
+                                                <td>
+                                                    <select id="ddlCuenta" class="requeridoLst" >
+                                                        <option value="0"><-- Seleccionar --></option>
+                                                        <option value="1">Cuenta 1</option>
+                                                        <option value="2">Cuenta 2</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                      <div id="tabs">
+                                                <ul>
+                                                    <li><a href="#tabs-1" id="tabVal">Valor del Impuesto</a></li>                                   
+                                                </ul>
+
+                                                       <div id="tabs-2">
+                                                            <table style="width: 100%;" border="0">
+                                            <tr>
+                                                <td>                                                    
+                                                     <table border="0">
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <img src="~/Images/botones/add.png" class="addvalores" height="30">
+                                                                </div>
+                                                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addvalores">Agregar</a></div>
+                                                            </td>
+
+                                                        </tr>
+                                                    </table>    
+
+                                                    <hr />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div id="gridVal"></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                                        </div>
+                                      </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+
+        </table>
+        <center> <div id="aviso"></div> </center>
+    </div>
+
+
+    <div title="Agregar Valor del Impuesto" id="mvValores">
+        <table>
+            <tr>
+                <td>División Administrativa :
+                    <input type="hidden" id="hidAccionMvVal" />
+                    <input type="hidden" id="hidEdicionVal" />
+                </td>
+                <td colspan="2">
+                    <select id="ddlDivisionFiscal"></select></td>
+            </tr>
+            <tr>
+                <td>Valor Impuesto:</td>
+                <td colspan="2">
+                    <select id="ddlValor"></select></td>
+            </tr>
+            <tr>
+                <td>Valor :</td>
+                <td><input type="text" id="txtValor" maxlength="5" style="width:60px"/></td>
+            </tr>
+@*            <tr>
+                <td>Valor en Porcentaje :</td>
+                <td><input type="text" id="txtValorPorcentaje" maxlength="5" style="width:60px"/></td>
+            </tr>
+            <tr>
+                <td>Valor en Monto :</td>
+                <td><input type="text" id="txtValorMonto" maxlength="5" style="width:60px"/></td>
+            </tr>*@
+            <tr> 
+                <td style="width:135px">Fecha de Vigencia :</td>
+                <td>
+                    <input type="text" id="txtFechaValor" readonly /></td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>

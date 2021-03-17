@@ -1,0 +1,260 @@
+﻿@model SGRDA.Entities.BEAjustesComision
+@{
+    ViewBag.Title = "APDAYC :: COMISIÓN PRELIQUIDAR";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pre-Liquidar / Liquidar comisiones</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Comision/comision.preliquidar.liquidar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.tarifa.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.establecimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        <div id="ContenedormvModalidad"></div>
+        <div id="ContenedormvBuscarSocio"></div>
+        <div id="ContenedormvBuscarTarifa"></div>
+        <div id="ContenedormvEstablecimiento"></div>
+        <div id="ContenedormvLicencia"></div>
+        <div id="ContenedormvOficina"></div>
+        <div id="ContenedormvSocioBus"></div>
+
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+
+                    <div id='divTitulo'>Pre-Liquidar / Liquidar comisiones</div>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidAuxNivAgent" type="hidden" />
+                    <input id="hidNivelAgente" type="hidden" />
+                    <input type="hidden" id="hidResponsable" />
+                    <input type="hidden" id="hidIdUsuario" />
+                    <input type="hidden" id="hidModalidad" />
+                    <input type="hidden" id="hididPeriodicidad" />
+                    <input type="hidden" id="hididTarifa" />
+                    <input type="hidden" id="hidLicencia" />
+                    <input type="hidden" id="hidOficina" />
+                    <input type="hidden" id="hidIdEstablecimiento" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+
+            <center>
+            <table width='98%' border='0'>
+
+            <tr>
+                <td style="width: 10%">Representate :</td>
+                <td colspan="0">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Agente" title="Búsqueda de Agente"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td style="width: 10%"> Fecha desde : </td>
+                <td><input type='text' id="txtFechaIni"/></td>
+
+                <td style="width: 10%"> Fecha hasta : </td>
+                <td><input type='text' id="txtFechaFin"/></td>
+
+                 <td style="text-align:right">
+                    <button id='btnBuscar' class="boton" name='btnBuscar'>
+                        Buscar 
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                    &nbsp;
+                                                <button id='btnLimpiarRetLib' class="boton" name='btnLimpiarLiquidacion'>
+                                                    Limpiar 
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                    <br />
+                </td>
+            </tr>
+
+            <tr>     
+                <td style="width: 10%">Producto :</td>
+                <td colspan="0">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarMod" style="cursor:pointer;"  alt="Búsqueda de Responsable" title="Búsqueda de Responsable"/>
+                            </td>
+                            <td colspan="6">
+                                <label id="lblModalidad" style="cursor: pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>  
+
+                <td style="width: 10%">Nivel de agente :</td>
+                <td><select id="ddlNivelAgente"></select></td>
+
+                @*<td style="width: 10%">Tipo comisión :</td>
+                <td><select id="ddlTipoComision"></select></td>*@
+            </tr>           
+
+            <tr>
+                <td style="width: 10%">Establecimiento :</td>
+                <td colspan="0">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarEstablecimiento" style="cursor: pointer;" alt="Búsqueda de Establecimiento" title="Búsqueda de Establecimiento"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lblEstablecimiento" style="cursor: pointer;" alt="Búsqueda de Establecimiento" title="Búsqueda de Establecimiento">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td style="width: 10%">Licencia :</td>
+                <td colspan="0">
+                    <table border="0" style="border-collapse: collapse;">
+                    <tr>
+                        <td>
+                            <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarLic" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia"/>
+                        </td>
+                        <td colspan="6">
+                            <label id="lblLicencia" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia">Seleccione</label>
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+
+               @*<td style="width: 16%">Usuario :</td>
+                <td colspan="5">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarUsuario" style="cursor: pointer;" alt="Búsqueda de Usuario" title="Búsqueda de Usuario"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lblUsuario" style="cursor: pointer;" alt="Búsqueda de Usuario" title="Búsqueda de Usuario">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>     *@
+            </tr>   
+
+            @*<tr>
+                <td style="width: 10%">Tarifa :</td>
+                <td colspan="0">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarTarifa" style="cursor: pointer;" alt="Búsqueda de Tarifa" title="Búsqueda de Tarifa"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lbTarifa" style="cursor: pointer;" alt="Búsqueda de Tarifa" title="Búsqueda de Tarifa">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td style="width: 10%">Oficina :</td>
+                <td colspan="0">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>*@
+
+            @*<tr>  
+                <td style="width: 10%">Moneda :</td>
+                <td style="width: 10%"><select id="ddlMoneda"></select></td>    
+                
+                <td style="width: 10%">Div administrativa :</td>
+                <td><select id="ddlDivisionAdministrativa" style="width: 200px"></select></td>         
+            </tr>*@
+
+            <tr>
+            <td style='height: 40px; vertical-align: bottom;' colspan="20">
+                <div style="float: right;">
+                      <img src="@Url.Content("~/Images/botones/delete.png")" title="Pre Liquidar."  id="btnPreLiquidar"/>
+
+                      @*<a href="@Url.Action("../ComisionPreLiquidar/GenerateAndDisplayReport", "ComisionPreLiquidar", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;<img src="@Url.Content("~/Images/botones/delete.png")" title="Pre Liquidar."  id="btnPreLiquidar"/></a>*@
+                    
+                      <img src="@Url.Content("~/Images/botones/finalizar.png")" title="Liquidar." id="btnLiquidar"/>&nbsp;
+
+                      @*<ul class="dropdown-menu" role="menu">
+                            <li><a id="btnPreLiquidar" href="@Url.Action("../ComisionPreLiquidar/DownloadReport", "ComisionPreLiquidar", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>                                
+                        </ul>*@
+                    
+                    &nbsp; 
+                </div>
+            </td>
+            </tr>
+                    </table>
+                    </center>
+        </table>
+
+        <table border="0">
+            <tr>
+                <td>
+                    <div id="gridPreliquidar"></div>
+                </td>
+            </tr>
+        </table>
+
+        <table border="0">
+            <tr>
+                <td style="width: 70%"></td>
+                <td style="text-align: right; width: 80%">
+                    <h4>Total valor comisión:</h4>
+                </td>
+                <td>
+                    <label id="TotalComision" style="text-align: left; font-size: 15px"></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>APDAYC .::. SGRDA </title>
+     <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+     <link href="~/Style/SRGDA.css" rel="stylesheet" />
+   <link href="~/Images/iconos/sgrda.ico"     rel="shortcut icon" type="image/x-icon" />
+  
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery.price_format.2.0.js")"></script>
+    <script>
+
+        function ajaxindicatorstart(text) {
+            if (jQuery('body').find('#resultLoading').attr('id') != 'resultLoading') {
+                //jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="../Images/otros/ajax-loader.gif"><div>' + text + '</div></div><div class="bg"></div></div>');
+                jQuery('body').append('<div id="resultLoading" style="display:none"><div><div>' + text + '</div></div><div class="bg"></div></div>');
+            }
+
+            jQuery('#resultLoading').css({
+                'width': '100%',
+                'height': '100%',
+                'position': 'fixed',
+                'z-index': '10000000',
+                'top': '0',
+                'left': '0',
+                'right': '0',
+                'bottom': '0',
+                'margin': 'auto'
+            });
+
+            jQuery('#resultLoading .bg').css({
+                'background': '#000000',
+                'opacity': '0.3',
+                //'width': '100%',
+               // 'height': '100%',
+                'position': 'absolute',
+                'top': '0'
+            });
+
+            jQuery('#resultLoading>div:first').css({
+                'width': '200px',
+                'height': '25px',
+                'text-align': 'center',
+                'position': 'fixed',
+                'top': '0',
+                'left': '0',
+                'right': '0',
+                'bottom': '0',
+                'margin-top': '40px',
+                'font-size': '14px',
+                'z-index': '10',
+                'color': '#ffffff',
+                'background': '#E88239'
+
+            });
+
+           // jQuery('#resultLoading .bg').height('100%');
+            jQuery('#resultLoading').fadeIn(200);
+            jQuery('body').css('cursor', 'wait');
+        }
+
+        function ajaxindicatorstop() {
+           // jQuery('#resultLoading .bg').height('100%');
+             jQuery('#resultLoading').fadeOut(200);
+            jQuery('body').css('cursor', 'default');
+        }
+
+        jQuery(document).ajaxStart(function () {
+            //show ajax indicator
+            ajaxindicatorstart('Procesando..');
+        }).ajaxStop(function () {
+            //hide ajax indicator
+            ajaxindicatorstop();
+        });
+
+
+
+        $(function () {
+           
+            CargarMenu();
+        });
+
+        var CargarMenu = function () {
+            $.ajax({
+                url: '../Menu/CargarMenu',
+                type: 'POST',
+                success: function (response) {
+                    var dato = response;
+                    // validarRedirect(dato);
+                    if (dato.result == 1) {
+                        //   alert(dato.message);
+                        $("#divMenu").html(dato.message);
+                        initLabels();
+                    } else {
+                        alert(dato.message);
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status === 0) {
+                        // alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status == 404) {
+                        $.ajax({
+                            url: '../../Menu/CargarMenu',
+                            type: 'POST',
+                            success: function (response) {
+                                var dato = response;
+                                // validarRedirect(dato);
+                                if (dato.result == 1) {
+                                    //   alert(dato.message);
+                                    $("#divMenu").html(dato.message);
+                                    initLabels();
+                                } else {
+                                    alert(dato.message);
+                                }
+                            }
+                        });
+                    } else if (jqXHR.status == 500) {
+                        //alert('Internal Server Error [500].');
+                    } else if (exception === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (exception === 'timeout') {
+                        alert('Time out error.');
+                    } else if (exception === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+            return false;
+        }
+        var initLabels = function () {
+
+            $.ajax({
+                //url: '../../Menu/obtenerNavBar',
+                url: '../Menu/obtenerNavBar',
+                type: 'POST',
+                success: function (response) {
+                    var dato = response;
+                    //alert(dato.result); 
+                    // validarRedirect(dato);
+                    if (dato.result == 1) {
+                        var barra = dato.data.Data;
+                        $("#lblPerfilTit").html(barra.Perfil);
+                        $("#lblOficinaTit").html(barra.Oficina);
+                        $("#lblUsuarioTit").html(barra.Usuario);
+                    } else {
+                        alert(dato.message);
+                    }
+                }
+            });
+        }
+
+    </script>
+    <link href="@Url.Content("~/Style/menu.css")" rel="stylesheet" />
+
+	<meta name="viewport" content="width=device-width">
+	 <style>
+		.pie {
+    border: 1px solid #ccc;
+
+        background-color: whitesmoke;
+        width: 100%;
+        margin-left:-10px;
+        /*para Firefox*/
+        -moz-border-radius: 7px 7px 7px 7px;
+        /*para Safari y Chrome*/
+        -webkit-border-radius: 7px 7px 7px 7px;
+        /* para Opera */
+        border-radius: 7px 7px 7px 7px;
+        box-shadow:10px 6px 10px 0px gray ;
+        /*box-shadow:10px 10px 16px 0px rgba(66,151,215,1)*/
+}
+
+	     a.lnktool:hover {
+             color:red;
+	     }
+ .desactivado  {
+filter:alpha(opacity=40);
+-moz-opacity: 0.4;
+opacity: 0.4;}
+
+.activado  {
+filter:alpha(opacity=100);
+-moz-opacity: 1.0;
+opacity: 1.0;
+}
+ 
+  </style> 
+
+   
+</head>
+<body>
+    <center>
+ 
+    <header>
+   
+
+@*MENU*@
+<div id="divMenu" style=" position:fixed;  z-index: 1100;margin-top:-10px; margin-left:-10px; width:100%; "></div> 
+    @* <div  style=" width:60%;height:60px; margin-top:-5px;background:#2d97af;box-shadow:10px 10px 16px 0px rgba(66,151,215,1)">
+  </div>  *@
+ <div  style="
+ text-align:right;  
+ margin-left:-10px; 
+ position:absolute;
+ margin-top:40px;
+ width:100%;height:20px; font-size:10.5px;color:#2e6e9e; background:whitesmoke; font-family:Verdana; "> 
+           &nbsp;
+           <img src="~/Images/iconos/rol.png" />&nbsp;Perfil:<b> <label id="lblPerfilTit" ></label>   </b>&nbsp;&nbsp;
+           <img src="~/Images/iconos/office.png" />&nbsp;Oficina : <b><label id="lblOficinaTit"></label>    </b>&nbsp;&nbsp;
+           <img src="~/Images/iconos/user.png" />&nbsp; Usuario : <b><label id="lblUsuarioTit"> </label>   </b>&nbsp;
+     &nbsp; 
+     &nbsp;| &nbsp; 
+     &nbsp; 
+           <a href="../Principal/Logout" title="finalizar la sesión actual." class="lnktool"> <img src="~/Images/iconos/logout.png" />&nbsp;Finalizar Sesion</a>  
+           <a href="../Principal" title="ir a la página de bienvenida" class="lnktool"><img src="~/Images/iconos/home.png" />&nbsp;Inicio</a> &nbsp;  &nbsp; 
+            </div>
+   
+                   
+
+              
+      
+    </header>
+    <div id="body" style="margin-top:40px;">
+        @*<div  style="ecf8fd #a6c9e2 margin-top:-20px; width:100%;height:20px;box-shadow:10px 6px 16px 0px rgba(66,151,215,1)"></div>*@
+        @*@RenderSection("featured", required: false)*@ 
+        <section class="content-wrapper main-content clear-fix"  > 
+                @RenderBody()
+        </section>
+    </div><br /><br />
+    <footer class="pie" style=" height:60px; font-size:11px; text-align:right; color:gray; " >
+           <label >
+               2014 APDAYC Todos los Derechos Reservados
+               Av Petit Thouars 5038 Miraflores apdayc@apdayc.org.pe 
+               Lima - Perú  &nbsp;&nbsp;&nbsp; 
+           </label>   <img src="~/Images/logo/logoth.jpg" style="margin-top:5px;" /> 
+        </footer>
+        <br />
+    @*</div>*@
+        </center>
+</body></html> 
+
+<script>
+    $.extend(
+{
+    redirectPost: function (location, args) {
+        var form = '';
+        $.each(args, function (key, value) {
+            value = value.split('"').join('\"')
+            form += '<input type="hidden" name="' + key + '" value="' + value + '">';
+        });
+        $('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+    }
+});
+
+    function abrir_ventana(url, id_pop, window_width, window_height) {
+    //    var window_width = 758;
+        //var window_height = 479;
+        var newfeatures = 'scrollbars=no,resizable=no';
+        var window_top = (screen.height - window_height) / 2;
+        var window_left = (screen.width - window_width) / 2;
+        newWindow = window.open(url, id_pop, 'width=' + window_width + ',height=' + window_height + ',top=' + (window_top - 20) + ',left=' + window_left + ',features=' + newfeatures + '');
+       // setInterval(function () { wait(); }, 3000);
+    }
+    function wait() {
+        newWindow.close();
+    }
+</script>
+
+    
+            
+      

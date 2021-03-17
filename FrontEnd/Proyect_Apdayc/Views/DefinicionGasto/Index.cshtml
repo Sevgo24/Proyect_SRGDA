@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: DEFINICIONES DE GASTO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Definición de Gastos</title>
+
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/DefinicionGasto/definicion.gasto.js")"></script>
+
+    <style>
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+  </style>
+</head>
+<body>
+    <div>
+      
+        
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+    <tr>
+        <td style=" vertical-align:bottom;">
+
+            <div id='divTitulo'>Definiciones de Gastos</div>
+        </td>
+    </tr>
+    <tr><td  style=" vertical-align: top;"><hr></td></tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td> Tipo de Gasto:</td>
+                        <td>
+                            <select id='ddlTipoGasto' name="ddlTipoGasto">
+                            </select>
+                        </td>
+                        <td rowspan="2" style="text-align:right">
+                            <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                            
+                            <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Grupo de Gasto:</td>
+                        <td>
+                            <select id='ddlGrupoGasto' name="ddlGrupoGasto">
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Descripción:</td>
+                        <td colspan="3"> 
+                            <input type='text' id='txtDescripcion' placeholder='Ingrese Descripción' style=" width:400px;"   /> 
+                            <input type='hidden' id="hidCodigoBPS" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Estado :</td>
+                        <td>
+                            <select name="ddlEstado" id="ddlEstado">
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </center>       
+        </td>
+    </tr>
+    <tr><td style='height: 40px; vertical-align:bottom;'>
+            <div style="float: right;">
+                <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar grupo de gasto." title="Registrar definicion de gasto." id="btnNuevo"/>&nbsp;
+                <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar grupo de gasto." title="Inactivar definicion de gasto."  id="btnEliminar"/>
+                &nbsp; 
+            </div>
+    </td></tr>
+    <tr><td>
+
+            <center>
+               <div id="grid"></div>
+
+            </center> 
+    </td></tr>
+       <tr><td style='height: 30px;'>
+    <center>
+            <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+            </div>
+    </center>
+        </td></tr>
+</table>
+    </div>
+</body>
+</html>

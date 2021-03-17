@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C410E8F-CED0-4F59-A3C5-7D8C0B7A980A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGRDA.Entities</RootNamespace>
+    <AssemblyName>SGRDA.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alfresco\BEMigrarContrato.cs" />
+    <Compile Include="Alfresco\BEMigrarPlanilla.cs" />
+    <Compile Include="Alfresco\BE_Datos.cs" />
+    <Compile Include="BancosPagos\BEArchivosPlanosBancos.cs" />
+    <Compile Include="BancosPagos\BEFileBanco.cs" />
+    <Compile Include="BancosPagos\BEGenerarArchivo.cs" />
+    <Compile Include="BancosPagos\BE_CargaArchivoPlano.cs" />
+    <Compile Include="BEAdministracionCancelacionDirecta.cs" />
+    <Compile Include="BEAdministracionCobros.cs" />
+    <Compile Include="BEAdministracionEmisionComplementaria.cs" />
+    <Compile Include="BEAdministracionEmisionComplementariaDetalle.cs" />
+    <Compile Include="BEAdministracionEmisionMensual.cs" />
+    <Compile Include="BEAdministracionEstablecimiento.cs" />
+    <Compile Include="BEAdministracionMatrizLicencia.cs" />
+    <Compile Include="BEAdministracionRequerimientos.cs" />
+    <Compile Include="BEAdministracionSeguimientoLocalPermanente.cs" />
+    <Compile Include="BEAdministracionSocioMoroso.cs" />
+    <Compile Include="BEAdministracionSolicitudAprobacion.cs" />
+    <Compile Include="BEAforo.cs" />
+    <Compile Include="BEAgente.cs" />
+    <Compile Include="BEAgenteAccion.cs" />
+    <Compile Include="BEAgenteCampania.cs" />
+    <Compile Include="BEAgenteTreeview.cs" />
+    <Compile Include="BEAjustesComision.cs" />
+    <Compile Include="BECampaniaCallCenter.cs" />
+    <Compile Include="BECampaniaConsultaAsignarSocio.cs" />
+    <Compile Include="BECampaniaDoc.cs" />
+    <Compile Include="BECentroContacto.cs" />
+    <Compile Include="BEComisionAgenteRecaudo.cs" />
+    <Compile Include="BEComisionExclusion.cs" />
+    <Compile Include="BEComisionOficinasComerciales.cs" />
+    <Compile Include="BEComisionProducto.cs" />
+    <Compile Include="BEComisionRecaudadorRango.cs" />
+    <Compile Include="BEContable.cs" />
+    <Compile Include="BEContactoAsignarCampania.cs" />
+    <Compile Include="BECorreoEst.cs" />
+    <Compile Include="BEDescuentosPlantilla.cs" />
+    <Compile Include="BEDireccionAgenteRecaudo.cs" />
+    <Compile Include="BEDocumentoContactoLlamada.cs" />
+    <Compile Include="BEDocumentoNoIdentificado.cs" />
+    <Compile Include="BEEmisionMensual.cs" />
+    <Compile Include="BEEntidades.cs" />
+    <Compile Include="BEFacturaConsulta.cs" />
+    <Compile Include="BEFacturaDescuento.cs" />
+    <Compile Include="BeFiltroOrden.cs" />
+    <Compile Include="BEGrupoModalidadOficina.cs" />
+    <Compile Include="BELicenciaAforo.cs" />
+    <Compile Include="BELicenciaConteo.cs" />
+    <Compile Include="BELicenciaDivision.cs" />
+    <Compile Include="BELicenciaDivisionAgente.cs" />
+    <Compile Include="BELicenciaLocalidadConteo.cs" />
+    <Compile Include="BELicenciaPlaneamientoDetalle.cs" />
+    <Compile Include="BELicenciaTipoInactivacion.cs" />
+    <Compile Include="BELoteTrabajo.cs" />
+    <Compile Include="BEMultiRecibo.cs" />
+    <Compile Include="BEMultiReciboDetalle.cs" />
+    <Compile Include="BEAdministracionNotificacionEventos.cs" />
+    <Compile Include="BENotaCredito.cs" />
+    <Compile Include="BEObservationAgenteRecaudo.cs" />
+    <Compile Include="BEOficinaDivisionModalidad.cs" />
+    <Compile Include="BEParametroSubTipo.cs" />
+    <Compile Include="BEPreImpresion.cs" />
+    <Compile Include="BERedSocialEst.cs" />
+    <Compile Include="BEREF_CURRENCY_VALUES.cs" />
+    <Compile Include="BESocioAdministracion.cs" />
+    <Compile Include="BETarifaPlantillaDescuento.cs" />
+    <Compile Include="BETarifaPlantillaDescuentoCaracteristica.cs" />
+    <Compile Include="BETarifaPlantillaDescuentoSeccion.cs" />
+    <Compile Include="BETarifaPlantillaDescuentoValores.cs" />
+    <Compile Include="BETelefonoEst.cs" />
+    <Compile Include="BETipoCampania.cs" />
+    <Compile Include="BETipoReporte.cs" />
+    <Compile Include="BECampaniaContactollamada.cs" />
+    <Compile Include="BETipoRequerimiento.cs" />
+    <Compile Include="BETracesLog.cs" />
+    <Compile Include="BEUit.cs" />
+    <Compile Include="BEValoresConfig.cs" />
+    <Compile Include="Comision\BEComisionEscala.cs" />
+    <Compile Include="Comision\BEComisionEscalaRango.cs" />
+    <Compile Include="Empadronamiento\BEDetalleEmpadronamiento.cs" />
+    <Compile Include="Empadronamiento\BEMatrizEmpadronamiento.cs" />
+    <Compile Include="Empadronamiento\BETabla_Comision.cs" />
+    <Compile Include="FacturaElectronica\BECabeceraFactura.cs" />
+    <Compile Include="FacturaElectronica\BEDatoAdicional.cs" />
+    <Compile Include="FacturaElectronica\BEDescuentoRecargo.cs" />
+    <Compile Include="FacturaElectronica\BEDetalleFactura.cs" />
+    <Compile Include="FacturaElectronica\BEExtras.cs" />
+    <Compile Include="FacturaElectronica\BEReferencia.cs" />
+    <Compile Include="FacturaElectronica\BESunat.cs" />
+    <Compile Include="FacturaElectronica\BETipoNotaCredito.cs" />
+    <Compile Include="BEArtista.cs" />
+    <Compile Include="BEAsociado.cs" />
+    <Compile Include="BEAsociadosEst.cs" />
+    <Compile Include="BEAuditoria.cs" />
+    <Compile Include="BEAutorizacion.cs" />
+    <Compile Include="BEBloqueos.cs" />
+    <Compile Include="BECalificador.cs" />
+    <Compile Include="BECaracteristica.cs" />
+    <Compile Include="BECaracteristicaEst.cs" />
+    <Compile Include="BECaracteristicaLic.cs" />
+    <Compile Include="BECaracteristicaPredefinida.cs" />
+    <Compile Include="BECaracteristicaValor.cs" />
+    <Compile Include="BEClaseCreacion.cs" />
+    <Compile Include="BECodigoPostal.cs" />
+    <Compile Include="BEComisionRepresentantes.cs" />
+    <Compile Include="BEComisionTipo.cs" />
+    <Compile Include="BEComisionTotales.cs" />
+    <Compile Include="BECorreo.cs" />
+    <Compile Include="BECorreoType.cs" />
+    <Compile Include="BECuentaContable.cs" />
+    <Compile Include="BECurrencyValues.cs" />
+    <Compile Include="BEDefinicionGasto.cs" />
+    <Compile Include="BEDerecho.cs" />
+    <Compile Include="BEDescuentos.cs" />
+    <Compile Include="BEDetalleGasto.cs" />
+    <Compile Include="BEDifusion.cs" />
+    <Compile Include="BEDifusionEst.cs" />
+    <Compile Include="BEDireccion.cs" />
+    <Compile Include="BEDireccionBps.cs" />
+    <Compile Include="BEDireccionOfi.cs" />
+    <Compile Include="BEDivision.cs" />
+    <Compile Include="BEDivisionesEst.cs" />
+    <Compile Include="BEDivisionRecaudador.cs" />
+    <Compile Include="BEDocumentoBps.cs" />
+    <Compile Include="BEDocumentoEst.cs" />
+    <Compile Include="BEDocumentoGral.cs" />
+    <Compile Include="BEDocumentoLic.cs" />
+    <Compile Include="BEDocumentoOfi.cs" />
+    <Compile Include="BEEntidadLic.cs" />
+    <Compile Include="BEEstablecimiento.cs" />
+    <Compile Include="BEEstadoLicencia.cs" />
+    <Compile Include="BEFactura.cs" />
+    <Compile Include="BEFacturaDetalle.cs" />
+    <Compile Include="BEFacturaVencimiento.cs" />
+    <Compile Include="BEMetodoPago.cs" />
+    <Compile Include="BEFormatoFactura.cs" />
+    <Compile Include="BEFormatoFacturaxGrupoModalidad.cs" />
+    <Compile Include="BEFuncionCalculo.cs" />
+    <Compile Include="BEGarantia.cs" />
+    <Compile Include="BEGrupoGasto.cs" />
+    <Compile Include="BEHistorico.cs" />
+    <Compile Include="BEImpuestoValor.cs" />
+    <Compile Include="BEInspectionEst.cs" />
+    <Compile Include="BELegalizacion.cs" />
+    <Compile Include="BELicenciaEstadoTab.cs" />
+    <Compile Include="BELicenciaLocalidad.cs" />
+    <Compile Include="BELicenciaPlaneamiento.cs" />
+    <Compile Include="BELicenciaReporte.cs" />
+    <Compile Include="BELicenciaReporteDeta.cs" />
+    <Compile Include="BELicencias.cs" />
+    <Compile Include="BELocalidad.cs" />
+    <Compile Include="BEMedioDifusion.cs" />
+    <Compile Include="BEModalidad.cs" />
+    <Compile Include="BEModalidadIncidencia.cs" />
+    <Compile Include="BEModulo.cs" />
+    <Compile Include="BEModuloCliente.cs" />
+    <Compile Include="BENumerador.cs" />
+    <Compile Include="BENumeradorOficina.cs" />
+    <Compile Include="BEObservationBps.cs" />
+    <Compile Include="BEObservationEst.cs" />
+    <Compile Include="BEObservationGral.cs" />
+    <Compile Include="BEObservationLic.cs" />
+    <Compile Include="BEObservationOff.cs" />
+    <Compile Include="BEObservationType.cs" />
+    <Compile Include="BEOfficeMin.cs" />
+    <Compile Include="BEOrigenComision.cs" />
+    <Compile Include="BEOrigenModalidad.cs" />
+    <Compile Include="BEParametroGral.cs" />
+    <Compile Include="BEParametroLic.cs" />
+    <Compile Include="BEParametroOff.cs" />
+    <Compile Include="BEParametrosEst.cs" />
+    <Compile Include="BEPeriodoFrecuencia.cs" />
+    <Compile Include="BEProceso.cs" />
+    <Compile Include="BERangoMorosidad.cs" />
+    <Compile Include="BERecaudadorBps.cs" />
+    <Compile Include="BERecibo.cs" />
+    <Compile Include="BEReciboDetalle.cs" />
+    <Compile Include="BEREC_BANKS_BPS.cs" />
+    <Compile Include="BEREC_BANKS_BRANCH.cs" />
+    <Compile Include="BEREC_BANKS_GRAL.cs" />
+    <Compile Include="BEREC_BLOCKS.cs" />
+    <Compile Include="BEREC_BPS_BANKS_ACC.cs" />
+    <Compile Include="BEREC_BPS_QUALY.cs" />
+    <Compile Include="BEREC_CAPACITY_TYPE.cs" />
+    <Compile Include="BEREC_CHARACTERISTICS.cs" />
+    <Compile Include="BEREC_COLL_LEVEL.cs" />
+    <Compile Include="BEREC_DEBTORS_RANGE.cs" />
+    <Compile Include="BEREC_DOCUMENTS_GRAL.cs" />
+    <Compile Include="BEREC_DOCUMENT_TYPE.cs" />
+    <Compile Include="BEREC_ECON_ACTIVITIES.cs" />
+    <Compile Include="BEREC_ESTABLISHMENT_GRAL.cs" />
+    <Compile Include="BEREC_EST_SUBTYPE.cs" />
+    <Compile Include="BEREC_EST_TYPE.cs" />
+    <Compile Include="BEFormatoFacturacion.cs" />
+    <Compile Include="BEREC_LAWSUITE_TYPE.cs" />
+    <Compile Include="BEGrupoFacturacion.cs" />
+    <Compile Include="BEREC_LIC_STAT.cs" />
+    <Compile Include="BEREC_LIC_TAB_STAT.cs" />
+    <Compile Include="BEREC_LIC_TYPE.cs" />
+    <Compile Include="BEREC_MODALITY.cs" />
+    <Compile Include="BEREC_MOD_GROUP.cs" />
+    <Compile Include="BEREC_MOD_USAGE.cs" />
+    <Compile Include="BEREC_MOV_TYPE .cs" />
+    <Compile Include="BEREC_NUMBERING.cs" />
+    <Compile Include="BEOffices.cs" />
+    <Compile Include="BEREC_OBSERVATION_TYPE.cs" />
+    <Compile Include="BEREC_PAYMENT_TYPE.cs" />
+    <Compile Include="BEREC_QUALIFY_CHAR.cs" />
+    <Compile Include="BEREC_QUALIFY_TYPE.cs" />
+    <Compile Include="BEREC_RATES_DATA.cs" />
+    <Compile Include="BEREC_RATES_GRAL.cs" />
+    <Compile Include="BEREC_RATE_FREQUENCY.cs" />
+    <Compile Include="BEREC_RETURN_REASONS.cs" />
+    <Compile Include="BEREC_SECTIONS.cs" />
+    <Compile Include="BEREC_TAXES.cs" />
+    <Compile Include="BEREC_TAX_ID.cs" />
+    <Compile Include="BEREC_TIPO_PARAMETRO.cs" />
+    <Compile Include="BEREC_UNLICENSE_REASONS.cs" />
+    <Compile Include="BEREC_MOD_IMPACT.cs" />
+    <Compile Include="BERedes_Sociales.cs" />
+    <Compile Include="BERedSocialBps.cs" />
+    <Compile Include="BERedSocialType.cs" />
+    <Compile Include="BEREF_CREATION_CLASS.cs" />
+    <Compile Include="BEREF_CURRENCY.cs" />
+    <Compile Include="BEREF_DIVISIONES.cs" />
+    <Compile Include="BEREF_DIVISIONES_VALUES.cs" />
+    <Compile Include="BEREF_ROLES.cs" />
+    <Compile Include="BEREF_SOCIETY_TYPE.cs" />
+    <Compile Include="BEREF_TAX_DIVISION.cs" />
+    <Compile Include="BEREF_ADDRESS_TYPE.cs" />
+    <Compile Include="BEREF_DIV_CHARAC.cs" />
+    <Compile Include="BEREF_DIV_STYPE_CHAR.cs" />
+    <Compile Include="BEREF_DIV_SUBTYPE.cs" />
+    <Compile Include="BEREF_DIV_TYPE.cs" />
+    <Compile Include="BEREF_TIS_NAME.cs" />
+    <Compile Include="BERequerimientoDinero.cs" />
+    <Compile Include="BERoles.cs" />
+    <Compile Include="BERutas.cs" />
+    <Compile Include="BESelectListItem.cs" />
+    <Compile Include="BEShow.cs" />
+    <Compile Include="BEShowArtista.cs" />
+    <Compile Include="BESociedad.cs" />
+    <Compile Include="BESocioNegocioOficina.cs" />
+    <Compile Include="BELicenciaTabs.cs" />
+    <Compile Include="BETarifaCaracteristica.cs" />
+    <Compile Include="BETarifaDescuento.cs" />
+    <Compile Include="BETarifaPlantilla.cs" />
+    <Compile Include="BETarifaPlantillaCaracteristica.cs" />
+    <Compile Include="BETarifaPlantillaSeccion.cs" />
+    <Compile Include="BETarifaPlantillaValor.cs" />
+    <Compile Include="BETarifaPlantillaVariable.cs" />
+    <Compile Include="BETarifaRegla.cs" />
+    <Compile Include="BETarifaReglaAsociada.cs" />
+    <Compile Include="BETarifaReglaData.cs" />
+    <Compile Include="BETarifaReglaParamAsociada.cs" />
+    <Compile Include="BETarifaReglaValor.cs" />
+    <Compile Include="BETarifaTest.cs" />
+    <Compile Include="BETarifaVariable.cs" />
+    <Compile Include="BETelefono.cs" />
+    <Compile Include="BETelefonoType.cs" />
+    <Compile Include="BETerritorio.cs" />
+    <Compile Include="BETipoAccion.cs" />
+    <Compile Include="BETipoCalificador.cs" />
+    <Compile Include="BETipoComision.cs" />
+    <Compile Include="BETipoCorrelativo.cs" />
+    <Compile Include="BETipoDato.cs" />
+    <Compile Include="BETipoDerecho.cs" />
+    <Compile Include="BETipoDescuento.cs" />
+    <Compile Include="BETipoDocumento.cs" />
+    <Compile Include="BETipoenvioFactura.cs" />
+    <Compile Include="BETipoEstado.cs" />
+    <Compile Include="BETipoGasto.cs" />
+    <Compile Include="BETipoNumerador.cs" />
+    <Compile Include="BETipoObjeto.cs" />
+    <Compile Include="BETipoPago.cs" />
+    <Compile Include="BETipoParametro.cs" />
+    <Compile Include="BETipoProceso.cs" />
+    <Compile Include="BETipoUsorepertorio.cs" />
+    <Compile Include="BETransicionesEstado.cs" />
+    <Compile Include="BETrasladoAgentesRecaudo.cs" />
+    <Compile Include="BETreeview.cs" />
+    <Compile Include="BEUbigeo.cs" />
+    <Compile Include="BEUsorepertorio.cs" />
+    <Compile Include="BEValormusica.cs" />
+    <Compile Include="CABECERA_MODULO.cs" />
+    <Compile Include="BEParametroBps.cs" />
+    <Compile Include="BEDireccionEst.cs" />
+    <Compile Include="BETelefonoBps.cs" />
+    <Compile Include="BECorreoBps.cs" />
+    <Compile Include="BEDetalleMetodoPago.cs" />
+    <Compile Include="extends\exBEgeneric.cs" />
+    <Compile Include="MODULO.cs" />
+    <Compile Include="PAGINACION.cs" />
+    <Compile Include="Partial\PCBloqueos.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCCABECERA_MODULO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCCalificador.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCCaracteristicaPredefinida.cs" />
+    <Compile Include="Partial\PCClaseCreacion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCCodigoPostal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCCorreoType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCCuentaContable.cs" />
+    <Compile Include="Partial\PCDefinicionGasto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCDescuentos.cs" />
+    <Compile Include="Partial\PCDetalleGasto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCDireccion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCDivision.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCEstablecimiento.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCEstadoLicencia.cs" />
+    <Compile Include="Partial\PCFormatoFactura.cs" />
+    <Compile Include="Partial\PCGrupoFacturacion.cs" />
+    <Compile Include="Partial\PCGrupoGasto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCMedioDifusion.cs" />
+    <Compile Include="Partial\PCModulo.cs" />
+    <Compile Include="Partial\PCObservationGral.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCOffices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCParametroGral.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCRangoMorosidad.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_BANKS_BPS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_BANKS_BRANCH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_BANKS_GRAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_BLOCKS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_BPS_BANKS_ACC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_BPS_QUALY.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_CAPACITY_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_CHARACTERISTICS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_COLL_LEVEL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_DEBTORS_RANGE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_DOCUMENTS_GRAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_DOCUMENT_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_ECON_ACTIVITIES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_EST_SUBTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_EST_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_LAWSUITE_ACTIVITIES_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_LAWSUITE_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_MOD_GROUP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_MOV_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_NUMBERING.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_OBSERVATION_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_PAYMENT_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_QUALIFY_CHAR.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_QUALIFY_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_RATE_FREQUENCY.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_RETURN_REASONS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_SECTIONS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_TAXES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_TAX_DIVISION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_TAX_ID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_TIPO_PARAMETRO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_UNLICENSE_REASONS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREC_MOD_IMPACT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCRedSocial.cs" />
+    <Compile Include="Partial\PCRedSocialType.cs" />
+    <Compile Include="Partial\PCREF_ADDRESS_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_CREATION_CLASS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_CURRENCY.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_CURRENCY_VALUES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_DIVISIONES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_DIVISIONES_VALUES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_DIV_CHARAC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_DIV_STYPE_CHAR.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_DIV_SUBTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_DIV_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_ROLES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCREF_SOCIETY_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCRequerimientoDinero.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCROLES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCROLES_PERMISOS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCRoles_Usuarios.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCRutas.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCSocioNegocio.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTelefonoType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTerritorio.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTipoAccion.cs" />
+    <Compile Include="Partial\PCTipoCalificador.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTipoCorrelativo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTipoDato.cs" />
+    <Compile Include="Partial\PCTipoDerecho.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTipoDescuento.cs" />
+    <Compile Include="Partial\PCTipoenvioFactura.cs" />
+    <Compile Include="Partial\PCTipoEstado.cs" />
+    <Compile Include="Partial\PCTipoGasto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTipoObjeto.cs" />
+    <Compile Include="Partial\PCTipoObservacion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTipoParametro.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCTipoProceso.cs" />
+    <Compile Include="Partial\PCTrasladoAgentesRecaudo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCUbigeo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Partial\PCUSUARIOS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BEREC_LAWSUITE_ACTIVITIES_TYPE .cs" />
+    <Compile Include="REF_CURRENCY_VALUES.cs" />
+    <Compile Include="Reporte\BEAgenteRecaudo.cs" />
+    <Compile Include="Reporte\BEApoderadoLegal.cs" />
+    <Compile Include="Reporte\BEArtistas.cs" />
+    <Compile Include="Reporte\BEAutoridadPrincipal.cs" />
+    <Compile Include="Reporte\BEComprobanteBancario.cs" />
+    <Compile Include="Reporte\BEContacto.cs" />
+    <Compile Include="Reporte\BEEstablecimientos.cs" />
+    <Compile Include="Reporte\BEFactura.cs" />
+    <Compile Include="Reporte\BEFacturaCancelada.cs" />
+    <Compile Include="Reporte\BELicencia.cs" />
+    <Compile Include="Reporte\BEOficina.cs" />
+    <Compile Include="Reporte\BEParametro.cs" />
+    <Compile Include="Reporte\BEPeriodoDeuda.cs" />
+    <Compile Include="Reporte\BEPlanilla.cs" />
+    <Compile Include="Reporte\BERegistroVenta.cs" />
+    <Compile Include="Reporte\BERegistroVentaNC.cs" />
+    <Compile Include="Reporte\BEReporteArtistaDetallado.cs" />
+    <Compile Include="Reporte\BEReporteComprobantexAutor.cs" />
+    <Compile Include="Reporte\BEReporteDistribucion.cs" />
+    <Compile Include="Reporte\BEReporteEstadoCuenta.cs" />
+    <Compile Include="Reporte\BEReporteFacturaxCobrar.cs" />
+    <Compile Include="Reporte\BEReporteInformeControl.cs" />
+    <Compile Include="Reporte\BEReporteListarRecaudacionSedes.cs" />
+    <Compile Include="Reporte\BEReporteListarUsuarios.cs" />
+    <Compile Include="Reporte\BEReporteResumenFacturacionMensual.cs" />
+    <Compile Include="Reporte\BEREPORTE_CAJA.cs" />
+    <Compile Include="Reporte\BEREPORTE_DEPOSITO_BANCO.cs" />
+    <Compile Include="Reporte\BEREPORTE_DE_EMPRADRONAMIENTO.cs" />
+    <Compile Include="Reporte\BERepresentanteLegal.cs" />
+    <Compile Include="Reporte\BEUbigeoRpt.cs" />
+    <Compile Include="Reporte\BEUsuarioDerecho.cs" />
+    <Compile Include="Reporte\Be_BecsEspeciales.cs" />
+    <Compile Include="Reporte\Be_Bec_Inactivas.cs" />
+    <Compile Include="Reporte\BE_LICENCIA_X_ARTISTA.cs" />
+    <Compile Include="Reporte\BE_Modalidades.cs" />
+    <Compile Include="Reporte\BE_REPORTE_DE_LICENCIAS_NUEVAS.cs" />
+    <Compile Include="Reporte\BE_Reporte_Establecimiento.cs" />
+    <Compile Include="Reporte\BE_TipoCobro.cs" />
+    <Compile Include="ROLES.cs" />
+    <Compile Include="ROLES_PERMISOS.cs" />
+    <Compile Include="Roles_Usuarios.cs" />
+    <Compile Include="SocioNegocio.cs" />
+    <Compile Include="TipoDato.cs" />
+    <Compile Include="UsuarioAsociacion.cs" />
+    <Compile Include="UsuarioDerecho.cs" />
+    <Compile Include="UsuarioEmpleado.cs" />
+    <Compile Include="UsuarioProveedor.cs" />
+    <Compile Include="UsuarioRecaudador.cs" />
+    <Compile Include="USUARIOS.cs" />
+    <Compile Include="WORKF_ACTIONS.cs" />
+    <Compile Include="WORKF_ACTIONS_MAPPINGS.cs" />
+    <Compile Include="WORKF_ACTION_TYPES.cs" />
+    <Compile Include="WORKF_AGENTS.cs" />
+    <Compile Include="WORKF_CLIENTS.cs" />
+    <Compile Include="WORKF_DATA_TYPES.cs" />
+    <Compile Include="WORKF_EVENTS.cs" />
+    <Compile Include="WORKF_OBJECTS.cs" />
+    <Compile Include="WORKF_OBJECTS_TYPE.cs" />
+    <Compile Include="WORKF_PARAMETERS.cs" />
+    <Compile Include="WORKF_RADIO.cs" />
+    <Compile Include="WORKF_STATES.cs" />
+    <Compile Include="WORKF_STATES_WORKFLOW.cs" />
+    <Compile Include="WORKF_STATE_TYPE.cs" />
+    <Compile Include="WORKF_TRACES.cs" />
+    <Compile Include="WORKF_TRANSITIONS.cs" />
+    <Compile Include="WORKF_WORKFLOWS.cs" />
+    <Compile Include="WORK_AGENTS_ACTION.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Validation\Validation.csproj">
+      <Project>{3c645e3b-edcd-4a4a-aa3d-f4783fc6f9b5}</Project>
+      <Name>Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

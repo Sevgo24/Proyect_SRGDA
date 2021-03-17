@@ -1,0 +1,230 @@
+﻿@{
+    ViewBag.Title = "DIN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Documento No Identificado</title>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="~/Scripts/SGRDA/Recaudacion/documento.no.identificado.js"></script>
+
+
+</head>
+<body>
+    <div>
+
+        <table style="width: 98%">
+            <tr>
+                <td colspan="5">
+                    @*<hr />*@
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <table width='98%' border="0" id='FiltroTablaPop'>
+                        <tr>
+                            <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                <table width='100%' border='0' id='FiltroTabla'>
+                                    <tr>
+                                        <td style="width: 500px; text-align: left;">
+                                            <div id='divTituloPerfil'>Documento No Identificado</div>
+                                        </td>                                      
+                                        @*<td colspan="1" style="padding-right:10px">
+                                                <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                    Grabar
+                                                    <img src="@Url.Content("~/Images/botones/save.png")" width="14px" />
+                                                </button>
+                                            </td>*@
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr><td></td></tr>
+
+            <tr>
+                <td>
+                    <table style="width: 98%" border="0" id="FiltroTabla">
+                   
+                        <tr>
+                            
+                            <td style="color: black;padding-top:20px;padding-left:30px" colspan="10">  
+                                BANCO DESTINO:
+
+                                <select id="ddlBancoFiltro"></select>
+                             <spam  style="color: black;padding-top:20px;padding-left:20px">Fecha Depósito</spam>
+                          
+                                <input type="text" id="txtFecDeposito_Filtro" style="width: 125px" class="requerido" readonly />
+                                  <spam style="padding-left:10px;padding-right:10px">AL</spam>
+                                <input type="text" id="txtFecDeposito_Filtro_Fin" style="width: 125px" class="requerido" readonly />
+                            <spam style="color: black;padding-top:20px;padding-left:20px">ESTADO:</spam>
+                                <select  id="ddlEstadoFiltro"></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                @*<select id="ddlEstadoFiltro"></select>*@
+                                <button id='btnBucsar' class="boton" name='btnPdf' >
+                                    BUSCAR
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" width="24px" />
+                                </button>&nbsp;
+                                @*<button id='btnPdf' class="boton" name='btnPdf'>
+                                        Rep. PDF
+                                        <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                                    </button>&nbsp;*@
+                                    <button id='btnExcel' class="boton" name='btnExcel'>
+                                        Rep. EXCEL
+                                        <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                                    </button>
+                            </td>
+                        </tr >
+                        <tr><td colspan="10"><hr /></td></tr>
+                        
+                            <tr>
+
+                            <td width="400">
+                                <div>
+                                    <img src="~/Images/botones/add.png" class="addVoucher" height="30">
+                                </div>
+                                <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addVoucher" style="color: black">Agregar Documento No Identificado </a></div>
+                            </td>
+                            <td align="right">
+                            <button type="submit" name="Dowloand" id="Descargar">Descargar Plantilla</button>
+                            </td>
+                            <td align="right" width="500px">
+                                <form id="frmFormulario" enctype="multipart/form-data" onchange="Validar()">
+                                    <input type="file" name="archivoTXT">
+                                    <button type="submit" name="submit"  id="boton">Cargar Plantilla</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr><td colspan="10"><hr /></td></tr>
+                        <tr>
+                            <td colspan="5"> <div id="gridDIN"></div></td>
+                        </tr>
+                    </table>
+                    
+           
+
+
+            @*<tr>
+                    <td>
+                        <div>
+                            <img src="~/Images/botones/add.png" class="addVoucher" height="30">
+                        </div>
+                        <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addVoucher" style="color: black">Agregar Tipo de Depósito</a></div>
+                    </td>
+                </tr>*@
+
+            @*<tr><td colspan="5"><hr /></td></tr>
+                <tr>
+                    <td>
+                        <div id="gridDIN"></div>
+
+                    </td>
+                </tr>*@
+
+        </table>
+
+    </div>
+</body>
+</html>
+
+
+
+<div title="Agregar Depósito Bancario  - DNI" id="mvVoucherBancario" style='position:relative;display:none'>
+    <table border="0">
+        <input type="hidden" id="hidIdVoucherEdit" />
+        <input type="hidden" id="hidIdVoucher" />
+
+        <tr>
+            <td>
+                Tipo Pago
+            </td>
+            <td>
+                <select id="ddlTipoPago" class="requeridoLst"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Banco</td>
+            <td>
+                <select id="ddlBanco" class="requeridoLst"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Moneda</td>
+            <td>
+                <select id="ddlMoneda" class="requeridoLst"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Tipo Cambio</td>
+            <td>
+                <input type="text" id="txtTipoCambio" style="width: 55px" class="requerido" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Cuenta</td>
+            <td>
+                <select id="ddlCuenta" class="requeridoLst"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Fecha Depósito</td>
+            <td>
+                <input type="text" id="txtFecDeposito" style="width: 125px" class="requerido" readonly />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Monto de Depósito</td>
+            <td>
+                <input type="text" id="txtMontoDepositoVoucher" style="width: 125px" class="requerido" />
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Código Confirmación</td>
+            <td>
+                <table border="0">
+                    <tr>
+                        <td>
+                            <input type="text" id="txtCodigoConfirmacion" class="requerido" style="width: 200px" />
+                        </td>
+                        <td style="width: 250px">
+                            <div id="divResultValidacionDes"></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>        
+        <tr>
+            <td>Observación</td>
+            <td>
+                <textarea id="txtObservacion" rows="4" cols="50"></textarea>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2">
+                <div id="divMsjErrorVoucher" style="text-align: center; vertical-align: central"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+

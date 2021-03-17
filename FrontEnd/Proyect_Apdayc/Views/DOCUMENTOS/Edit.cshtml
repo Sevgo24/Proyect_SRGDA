@@ -1,0 +1,279 @@
+﻿@model SGRDA.Entities.BEREC_DOCUMENTS_GRAL
+
+@{
+    ViewBag.Title = "APDAYC :: DOCUMENTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        //combos
+        $("#DDOC_TYPE").hide();
+        $("#datepickerFechaInclusion").hide();
+
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#DOC_DATE").hide();
+            $("#DOC_DESC").hide();
+            $("#DDOC_TYPE").show();
+            $("#datepickerFechaInclusion").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#btnedit").hide();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            $("#DDOC_TYPE").hide();
+            $("#datepickerFechaInclusion").hide();
+
+            location.reload();
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    
+    
+      <br />
+    <div id="divTituloPerfil">
+        Mantenimiento Documento - Actualización 
+    </div>
+    
+    
+    <center>
+         <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+           <tr>
+               <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+              
+                    <div style="float:right">
+                        <div class="botonLink"  style="width:80px;">
+                            <a href="@Url.Action("../DOCUMENTOS/", "DOCUMENTOS")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnnuevo">
+                                <a href="@Url.Action("Create", "DOCUMENTOS")"   >   
+                                    <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnedit">
+                            <a href="#" id="btnedit" >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                    Editar
+                                    <img src="@Url.Content("~/Images/botones/editb.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <button id="btncancel"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Descartar </span> 
+                            <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                        </button> 
+
+                        &nbsp;
+                        <button id="btnSave"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Grabar </span> 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>   
+                   </div>
+               </td>
+           </tr>
+             <tr><td><br /></td></tr>
+     <tr >        
+        <td style="width:22% ;padding-left:2% ;" >   
+       @Html.HiddenFor(model => model.OWNER, htmlAttributes: new { id = "OWNER" })    
+            @Html.HiddenFor(model => model.DOC_ID, htmlAttributes: new { id = "DOC_ID" })
+             @Html.LabelFor(model => model.DOC_TYPE) :
+         </td>
+         <td>
+              @Html.TextBoxFor(model => model.DOC_DESC, htmlAttributes: new { id = "DOC_DESC", disabled = "disabled", style = "width:250px;" })
+                @if (ViewData.ContainsKey("Lista_Tipodocumentos"))
+                {
+                    @Html.DropDownList("Lista_Tipodocumentos", ViewData["Lista_Tipodocumentos"] as List<SelectListItem>, new { style = "width:250px", id = "DDOC_TYPE" }) 
+                }
+                @Html.ValidationMessageFor(model => model.DOC_TYPE)
+         </td>
+    </tr>
+             <tr>
+                 <td style="width:22% ;padding-left:2% ;" >   
+                     @Html.LabelFor(model => model.DOC_DATE)<br />
+                 </td>
+                 <td>
+                      @Html.TextBoxFor(model => model.DOC_DATE, htmlAttributes: new { id = "datepickerFechaInclusion" })
+                @Html.TextBoxFor(model => model.DOC_DATE, htmlAttributes: new { id = "DOC_DATE", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.DOC_DATE)
+                 </td>
+             </tr>
+
+            <tr>
+                 <td style="width:22% ;padding-left:2% ;" >   
+                     @Html.LabelFor(model => model.DOC_VERSION) :
+                 </td>
+                 <td>
+                    @Html.TextBoxFor(model => model.DOC_VERSION, htmlAttributes: new { id = "DOC_VERSION", disabled = "disabled", style = "width:80px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.DOC_VERSION)
+                 </td>
+             </tr>
+
+                <tr>
+                 <td style="width:22% ;padding-left:2% ;" >   
+                     @Html.LabelFor(model => model.DOC_USER) :
+                 </td>
+                 <td>
+                   @Html.TextBoxFor(model => model.DOC_USER, htmlAttributes: new { id = "DOC_USER", disabled = "disabled", style = "width:120px;", maxLength = "30" })
+                @Html.ValidationMessageFor(model => model.DOC_USER)
+         
+                 </td>
+             </tr>
+
+         
+                 <tr>
+                 <td style="width:25% ;padding-left:2% ;" >   
+                     @Html.LabelFor(model => model.DOC_PATH) :
+                 </td>
+                 <td>
+                  @Html.TextBoxFor(model => model.DOC_PATH, htmlAttributes: new { id = "DOC_PATH", disabled = "disabled", style = "width:120px;", TextMode = System.Web.UI.WebControls.TextBoxMode.MultiLine, cols = "30", rows = "2", maxLength = "100" })
+                @Html.ValidationMessageFor(model => model.DOC_PATH)
+         
+                 </td>
+             </tr>
+
+
+             <tr><td><br /></td></tr>
+          </table>
+    </center>
+    
+    
+
+           
+       
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("DOC_VERSION").disabled = false;
+        document.getElementById("DOC_USER").disabled = false;
+        document.getElementById("DOC_PATH").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("DOC_VERSION").disabled = true;
+        document.getElementById("DOC_USER").disabled = true;
+        document.getElementById("DOC_PATH").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+</script>
+
+<script type="text/javascript">
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+<script>
+    //$(function () {
+    //    $("#datepickervigenia").datepicker();
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
+    $(function () {
+        $("#datepickerFechaInclusion").datepicker();
+        //$("#datepickerbaja").datepicker();
+    });
+    //});
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

@@ -1,0 +1,181 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: COMISIÓN DE OFICINAS COERCIALES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Comisión Oficinas comerciales - Nuevo</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Comision/comision.oficinas.comerciales.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/swfobject.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Extensiones/_scripts/jquery.uploadify.v2.1.4.min.js")"></script>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/Extensiones/_scripts/uploadify.css")" />
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvModalidad"></div>
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidAuxNivAgent" type="hidden" />
+                    <input type="hidden" id="hidModalidad" />
+                    <input type="hidden" id="hidAuxOficina" />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+
+                    <table width='100%' border='0' id='FiltroTabla'>
+                        <tr>
+                            <td style="width: 500px; text-align: left;">
+                                <div id='divTituloPerfil'>Comisión Oficinas comerciales - Nuevo</div>
+                            </td>
+                            <td colspan="1">
+                                <button id="btnVolver" class="boton" name="btnVolver">
+                                    Volver 
+                                <img src="@Url.Content("~/Images/botones/back.png")" width="24" /></button>
+                                &nbsp;
+                                <button id="btnGrabar" class="boton" name="btnGrabar">
+                                    Grabar  
+                                <img src="@Url.Content("~/Images/botones/save.png")" width="24" /></button>
+
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </td>
+            </tr>
+            <tr>
+
+            <tr>
+                <td>
+                    <center>
+                <table width='98%' border='0'>
+                    <td style="width: 16%">Producto :</td>
+                <td colspan="5">
+                    <table border="0" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarMod" style="cursor: pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad"/>
+
+                            </td>
+                            <td colspan="6">
+                                <label id="lblModalidad" style="cursor: pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad">Seleccione</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Origen modalidad :</td>
+                <td style="width: 15%">
+                    <input type='text' id='txtOrigen' style="width: 150px" readonly="true" /></td>
+
+                <td style="width: 13%">Tipo sociedad :</td>
+                <td>
+                    <input type='text' id='txtSociedad' style="width: 150px" readonly="true" /></td>
+            </tr>
+
+            <tr>
+                <td>Clases de creación :</td>
+                <td>
+                    <input type='text' id='txtClasesCreacion' style="width: 150px" readonly="true" /></td>
+
+                <td>Derecho :</td>
+                <td>
+                    <input type='text' id='txtDerecho' style="width: 150px" readonly="true" /></td>
+            </tr>
+
+            <tr>
+                <td>Grupo modalidad :</td>
+                <td>
+                    <input type='text' id='txtGrupoModalidad' style="width: 150px" readonly="true" /></td>
+
+                <td>Nivel de incidencia :</td>
+                <td>
+                    <input type='text' id='txtIncidencia' style="width: 150px" readonly="true" /></td>
+            </tr>
+
+            <tr>
+                <td>Frecuencia de uso :</td>
+                <td>
+                    <input type='text' id='txtFrecuenciaUso' style="width: 150px" readonly="true" /></td>
+
+                <td>Uso de repertorio :</td>
+                <td>
+                    <input type='text' id='txtRepertorio' style="width: 150px" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Tipo comisión :</td>
+                <td>
+                    <select id="ddlTipoComision" class="requeridoLst" style="width: 130px"></select></td>
+
+                <td>Origen comisión :</td>
+                <td>
+                    <select id="ddlOrigenComision" class="requeridoLst" style="width: 130px"></select></td>
+            </tr>
+            <tr>
+                <td>Formato comisión :</td>
+                <td>
+                    <select id="ddlFormatoComision" class="requeridoLst" style="width: 130px"></select></td>
+            </tr>
+            <tr>
+                <td>Valor :</td>
+                <td>
+                    <input type='text' id='txtValor' class="requerido" style="width: 120px" /></td>
+            </tr>
+            <tr>
+                <td>Oficinas comerciales :</td>
+                <td>
+                    <select id="ddlOficinaComercial" class="requeridoLst" style="width: 200px"></select></td>
+            </tr>
+            <tr>
+                <td>Nivel agente :</td>
+                <td>
+                    <select id="ddlNivelAgente" class="requeridoLst" style="width: 200px"></select></td>
+            </tr>
+            <tr>
+                <td>Fecha vigencia :</td>
+                <td>
+                    <input type='text' id='txtFecha' class="requerido" /></td>
+            </tr>
+        </table>
+        </center>
+                </td>
+            </tr>
+            <tr>
+                <td style='height: 30px;'>
+                    <center>
+                <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+                </div>
+            </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

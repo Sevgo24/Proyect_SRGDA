@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: AGENTE DIVISIÓN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Agentes de Recaudo por División Administrativa</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.agentedivision.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvOficina"></div>   
+
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div id="divTitulo">Agentes de Recaudo por División Administrativa</div>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <table id="FiltroTabla" style="width:98%" border="0">     
+                            <tr>
+                                <td style="width:200px ;padding-left:2%"  >
+                                    Agencia de Recaudo :
+                                </td>                                
+                                <td>                                    
+                                     <table border="0" style="border-collapse: collapse;">
+                                        <tr>
+                                            <td>
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Agencia de Recaudo"/>
+                                            </td>
+                                            <td colspan="6">
+                                                <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Agencia de Recaudo" title="Búsqueda de Oficina">Seleccione una agencia de recaudo.</label>
+                                            </td>
+                                            <input type="hidden" id="hidOficina" value="0" />
+                                        </tr>
+                                    </table>
+                                </td>    
+
+                                <td></td>                          
+                                <td></td>
+
+
+                                <td style="text-align:right">                                
+                                    <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                                    &nbsp;
+                                    <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                                </td>
+
+                            </tr>                       
+                            <tr>
+                                <td   style="width:200px ;padding-left:2%" >
+                                    División Administrativa :
+                                 </td>
+                                <td>
+                                      <select id="ddlDivision"></select>   
+                                    
+                                </td>                                   
+                            </tr>   
+                            <tr>
+                                <td   style="width:200px ;padding-left:2%" >
+                                    Nombre Agente</td>
+                                <td><input type="text" id="txtAgeRecaudador" style="width: 350px" /></td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 40px; vertical-align: bottom;'>
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo división administrativa." title="Registrar nuevo división administrativa." id="btnNuevo"/>&nbsp;
+                        @*<img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de división administrativa." title="Inactivar datos de división administrativa."  id="btnEliminar"/>*@
+                        &nbsp; 
+                    </div>
+            </tr>
+
+            <tr>
+
+                <td>
+                    <center>
+                        <div id="gridAgenteRecaudo"></div>
+                    </center>
+                </td>
+
+            </tr>
+
+
+        </table>
+
+    </div>
+</body>
+</html>

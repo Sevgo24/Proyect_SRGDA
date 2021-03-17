@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>SOCIOS </title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.agentecomercial.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.nuevo.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.division.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.matriz.licencia.js")"></script>
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>   
+    <div id="ContenedormvBuscarAgenteComercial"></div>
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO ADMINISTRACION MATRIZ </div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+                            <table style=' width:98%' border='0' id='FiltroTablas'>
+                                <tr>
+                                    <td align="left" style="width:200px">CODIGO SOCIO:</td>
+                                    <td><input type="text" id="txtcodsoc"></td>
+                                    <td align="left" style="width:200px">RAZON SOCIAL:</td>
+                                    <td><input type="text" id="txtraz"></td>
+                                    <td align="left" style="width:200px">DOCUMENTO IDENTIDAD:</td>
+                                    <td><input type="text" id="txtruc"></td>
+
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">NOMBRE SOCIO:</td>
+                                    <td><input type="text" id="txtnomsoc"></td>
+                                    <td align="left" style="width:200px">APELLIDO PATERNO:</td>
+                                    <td><input type="text" id="txtapepat"></td>
+                                    <td align="left" style="width:200px">APELLIDO MATERNO:</td>
+                                    <td><input type="text" id="txtapemat"></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">NOMBRE ESTABLECIMIENTO:</td>
+                                    <td><input type="text" id="txtnomest"></td>
+                                    <td align="left" style="width:200px">MODALIDAD:</td>
+                                    <td><select id="dllGruModalidad"></select></td>
+                                    <td align="left" style="width:200px">CODIGO LICENCIA:</td>
+                                    <td><input type="text" id="txtcodlic"></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">FECHA  CREACION:</td>
+                                    <td><input type="checkbox" id="chkConFechaCrea" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                                    <td><input type="text" id="txtFecCreaInicial" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                                    <td><input type="text" id="txtFecCreaFinal" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:200px">División Geografica</td>
+                                    <td><select id="ddlDivision"></select></td>
+                                    <td> Tipo de División:</td>
+                                    <td><select id="ddTipoDivision"></select></td>
+                                    <td> División:</td>
+                                    <td><select id="ddDivision"><option value="0">TODOS</option></select></td>
+                                </tr>
+                                <tr>
+                                    @*<td>Departamento</td>*@
+                                    <td><label id="lblSubTipo1"></label><input type="hidden" id="hidSubTipo1" /></td>
+                                    <td><select id="ddlSubTipo1" style="width:200px"></select> </td>
+
+                                    @*<td>Provincia</td>*@
+                                    <td><label id="lblSubTipo2"></label><input type="hidden" id="hidSubTipo2" /></td>
+                                    <td><select id="ddlSubTipo2" style="width:200px"></select> </td>
+
+                                    @*<td>Distrito</td>*@
+                                    <td><label id="lblSubTipo3"></label><input type="hidden" id="hidSubTipo3" /></td>
+                                    <td><select id="ddlSubTipo3" style="width:200px"></select> </td>
+                                </tr>
+                                <tr>
+                                    <td>Oficina recaudo :</td>
+                                    <td><input id="hidOficina" value="10081" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">OFICINA TI</label></td>
+                                    <td>Estado de Licencias</td>
+                                    <td><select id="ddEstadoLic"><option value="0"> Todos</option><option value="1">Activo</option><option value="2">Inactivo</option></select></td>
+                                    <td>Estado de Facturacion</td>
+                                    <td><select id="ddEstadoLicFact"><option value="0"> Todos</option><option value="1">Factura</option><option value="2">Sin factura</option></select></td>
+                                </tr>
+                                <tr>
+                                    <td>EMISION MENSUAL</td>
+                                    <td><select id="ddEstadoPeriodo"><option value="0"> Todos</option><option value="1">SELECCIONADO PARA EMISION MENSUAL</option><option value="2">NO SELECCIONADO PARA EMISION MENSUAL</option></select></td>
+                                    <td>
+                                        Agente Comercial :
+                                    </td>
+                                    <td>
+                                        <table border="0" style="border-collapse: collapse;" title="Agente Comercial">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarAGE" style="cursor: pointer;" alt="Búsqueda Agente Comercial." title="Búsqueda Agente Comercial." />
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lbAgente" style="cursor: pointer;" alt="Búsqueda de Agente Comercial." title="Búsqueda Agene Comercial."> Seleccione un agente.</label>
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" id="hidAccionMvEntAGE" />
+                                                    <input type="hidden" id="hidEdicionEntAGE" value="0" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                    <td align="left" style="width:200px">PERIODOS SIN FACTURAR:</td>
+                                    <td><input type="checkbox" id="chkConPeriodoSinFact" /></td>
+                                    <td align="left" style="width:200px">FECHA INICIAL :</td>
+                                    <td><input type="text" id="txtFecInicialH" /></td>
+                                    <td align="left" style="width:200px">FECHA  FINAL:</td>
+                                    <td><input type="text" id="txtFecFinalH" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px"> VALIDACION EMISION MENSUAL:</td>
+                                    <td><input type="checkbox" id="chkvalidacionLicencias" /></td>
+                                    <td align="left" style="width:200px">FECHA INICIAL :</td>
+                                    <td><input type="text" id="txtFecInicialV" /></td>
+                                    <td align="left" style="width:200px">FECHA  FINAL:</td>
+                                    <td><input type="text" id="txtFecFinalV" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td align="left" style="width:200px">RANGO DE PERIODO FACTURADO:</td>
+                                    <td><input type="checkbox" id="chkConFechaFact" /></td>
+                                    <td align="left" style="width:200px">FECHA FACTURACION INICIAL:</td>
+                                    <td><input type="text" id="txtFecFactaInicial" /></td>
+                                    <td align="left" style="width:200px">FECHA FACTURACION FINAL:</td>
+                                    <td><input type="text" id="txtFecFactFinal" /></td>
+                                </tr>*@
+                                <tr>
+                                    <td>
+                                        OPCIONES
+                                    </td>
+                                    <td><select id="ddlOpcionesListar"></select></td>
+                                    <td align="left" style="width:200px">FECHA INICIAL :</td>
+                                    <td><input type="text" id="txtFecInicialH" /></td>
+                                    <td align="left" style="width:200px">FECHA  FINAL:</td>
+                                    <td><input type="text" id="txtFecFinalH" /></td>
+                                </tr>
+                           </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="8" align="center">
+                <button id='btnBuscar' class="boton" name='btnBuscar'>
+                    Buscar
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                    Limpiar
+                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                </button>
+
+                <div style="float: right;">
+                    <button id='btnPdf' class="boton" name='btnPdf'>
+                        Rep. PDF
+                        <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                    </button>
+                    &nbsp;
+                    <button id='btnExcel' class="boton" name='btnExcel'>
+                        Rep. EXCEL
+                        <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                    </button>
+                    <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de usuario." title="Inactivar datos de usuario." id="btnEliminarLic" />
+                    &nbsp;
+                </div>
+            </td>
+        </tr>
+        <tr id="trListaMatrizLicenia">
+            <td colspan="8">
+                LISTA DE LICENCIAS
+                <div id="grid"></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:central;text-align:center">
+                <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

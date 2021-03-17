@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "DescuentosMasivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>Licencia</title>
+    @*<link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+        <link href="~/Style/SRGDA.css" rel="stylesheet" />*@
+
+    @*<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/Licenciamiento2.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.empresarial.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.establecimiento.js")"></script>
+
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.artista.js")"></script>
+
+
+</head>
+<body>
+    <div id="ContenedormvBuscarSocio"></div>
+    <div id="ContenedormvBuscarModalidad"></div>
+    <div id="ContenedormvEstablecimiento"></div>
+    <div id="ContenedorMvSocioEmpresarial"></div>
+    <div id="ContenedormvBuscarGrupoFacuracion"></div>
+    <div id="ContenedormvArtista"></div>
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>Consulta de Licencia - Descuentos</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+                            <div class="contenedor">
+                                <table style=' width:98%' border='0' id='FiltroTablas'>
+                                    <tr>
+                                        <td> Codigo de Licencia:</td>
+                                        <td>
+                                            <input type="hidden" id="hidLicReq" />
+                                            <input type="text" id="txtCodLicencia" size="10" />
+                                        </td>
+                                        <td> Nombre de la Licencia:</td>
+                                        <td>
+                                            <input type="text" id="txtNomLicencia" size="15" />
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> Responsable:</td>
+                                        <td>
+                                            <table border="0" style="border-collapse: collapse;">
+                                                <tr>
+                                                    <td>
+                                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="hidResponsable" />
+                                                        <lable id="lbResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>Establecimiento</td>
+                                        <td>
+                                            <table border="0" style="border-collapse: collapse;">
+                                                <tr>
+                                                    <td>
+                                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarEstablecimiento" style="cursor:pointer;" alt="Búsqueda de Establecimiento" title="Búsqueda de Establecimiento" />
+                                                        <input type="hidden" id="hidEstablecimiento" />
+                                                    </td>
+                                                    <td colspan="6"> <label id="lblEstablecimiento" style="cursor:pointer;" alt="Búsqueda de Establecimiento" title="Búsqueda de Establecimiento">Todos</label> </td>
+                                                </tr>
+                                            </table>
+
+                                    </tr>
+                                    <tr>
+                                        <td> Modalidad:</td>
+                                        <td>
+                                            @*<select id="ddModalidad"></select>*@
+                                            <table border="0" style="border-collapse: collapse;">
+                                                <tr>
+                                                    <td>
+                                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarMOD" style="cursor:pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" id="hidModalidad" />
+                                                        <lable id="lbModalidad" style="cursor:pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad">Todos</lable>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td> Tarifa Asociada:</td>
+                                        <td>
+                                            <select id="ddTarifaAsociada" style=" width:300px;"></select>
+                                            @* <input type="hidden" id="hidTarifa"/>
+                                <label id="lblTarifaDesc">Todos</label>*@
+                                        </td>
+                                        <td> Temporalidad:</td>
+                                        <td>
+                                            <select id="ddTemporalidad"></select>
+                                            @*<input type="hidden" id="hidTemporalidad"/>
+                                <label id="lblTemporalidadDesc">Todos</label>*@
+                                        </td>
+
+
+
+                                    </tr>
+
+
+
+
+                                    <tr>
+                                        <td colspan="8" align="center">
+                                            <button id='btnBuscar' class="boton" name='btnBuscar'>
+                                                Buscar
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                            </button>
+                                            <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                                                Limpiar
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr id="trListaLicencias">
+                        <td align="center">
+                            <div id="grid"></div>
+                        </td>
+                    </tr>
+                    <tr id="trseleccionar">
+                        <td colspan="8" align="center">
+                            <button id='btnSeleccionar' class="boton" name='btnSeleccionar'>
+                                Seleccionar
+                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                            </button> <br>( Agregar o Quitar Licencias)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td vertical-align:top" colspan="8" id="trlistLicenciaActualizar">
+                            LISTA DE LICENCIAS A ACTUALIZAR DIVISION
+                            <div id="grid2"></div>
+                        </td>
+                    </tr>
+                    <tr id="tractualizar">
+                        <td colspan="8" align="center">
+                            <button id='btnElegirDivision' class="boton" name='btnElegirDivision'>
+                                Elegir  Licencia
+                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                            </button>
+                            <button id='btnActualizar' class="boton" name='btnActualizar'>
+                                Actualizar  Licencia
+                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                            </button>
+                            <br> <input type="checkbox" id="chkFactPend">Trasladar Facturas Pendientes
+                            <input type="checkbox" id="chkFactHistorico">Trasladar Historico(DOCUMENTOS CANCELADOS)
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div title="Solicitud de Aprobacion de Requerimiento" id="mvSolicitudRequeLic">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr>
+                <td>Tipo de Solicitud:</td>
+                <td><select id="ddltiporequerimiento"></select></td>
+            </tr>
+            <tr id="trlicenciaTipoInact">
+                <td>Tipo de Solicitud:</td>
+                <td><select id="ddltipoInact"></select></td>
+            </tr>
+            <tr id="trlicencia">
+                <td>
+                    Licencia
+                </td>
+                <td>
+                    <label id="lbllicid" style="cursor: pointer; font-weight:bold;">
+                        CODIGO LICENCIA
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 210px">Descripción del Requerimiento :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtAprobacionDesc" name="txtAprobacionDesc" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+

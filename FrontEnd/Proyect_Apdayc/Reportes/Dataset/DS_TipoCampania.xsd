@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_TipoCampania" targetNamespace="http://tempuri.org/DS_TipoCampania.xsd" xmlns:mstns="http://tempuri.org/DS_TipoCampania.xsd" xmlns="http://tempuri.org/DS_TipoCampania.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_TipoCampania" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_TipoCampania" msprop:Generator_UserDSName="DS_TipoCampania">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TipoCampania" msprop:Generator_TableClassName="TipoCampaniaDataTable" msprop:Generator_TableVarName="tableTipoCampania" msprop:Generator_TablePropName="TipoCampania" msprop:Generator_RowDeletingName="TipoCampaniaRowDeleting" msprop:Generator_RowChangingName="TipoCampaniaRowChanging" msprop:Generator_RowEvHandlerName="TipoCampaniaRowChangeEventHandler" msprop:Generator_RowDeletedName="TipoCampaniaRowDeleted" msprop:Generator_UserTableName="TipoCampania" msprop:Generator_RowChangedName="TipoCampaniaRowChanged" msprop:Generator_RowEvArgName="TipoCampaniaRowChangeEvent" msprop:Generator_RowClassName="TipoCampaniaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CONC_CTID" msprop:Generator_ColumnVarNameInTable="columnCONC_CTID" msprop:Generator_ColumnPropNameInRow="CONC_CTID" msprop:Generator_ColumnPropNameInTable="CONC_CTIDColumn" msprop:Generator_UserColumnName="CONC_CTID" type="xs:string" minOccurs="0" />
+              <xs:element name="CONC_CTNAME" msprop:Generator_ColumnVarNameInTable="columnCONC_CTNAME" msprop:Generator_ColumnPropNameInRow="CONC_CTNAME" msprop:Generator_ColumnPropNameInTable="CONC_CTNAMEColumn" msprop:Generator_UserColumnName="CONC_CTNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="OBS_DESC" msprop:Generator_ColumnVarNameInTable="columnOBS_DESC" msprop:Generator_ColumnPropNameInRow="OBS_DESC" msprop:Generator_ColumnPropNameInTable="OBS_DESCColumn" msprop:Generator_UserColumnName="OBS_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="ESTADO" msprop:Generator_ColumnVarNameInTable="columnESTADO" msprop:Generator_ColumnPropNameInRow="ESTADO" msprop:Generator_ColumnPropNameInTable="ESTADOColumn" msprop:Generator_UserColumnName="ESTADO" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

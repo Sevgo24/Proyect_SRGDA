@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>SOCIOS </title>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.emision.complementaria.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.nuevo.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.division.js")"></script>*@
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>
+    <div id="ContenedormvBuscarSocio"></div>
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO ADMINISTRACION EMISION COMPLEMENTARIA</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="left" style="width:200px">CODIGO DE EMISION :</td>
+                        <td><input type="text" id="txtcodemicab" /></td>
+                        <td>OFICINA RECAUDO :</td>
+                        <td><input id="hidOficina" value="0" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">SELECCIONE OFICINA</label></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="width:200px">FECHA  DE:</td>
+                        <td>
+                            <select id="ddlTipoFecha">
+                                <option value="0">SELECCIONE</option>
+                                <option value="1">CREACION</option>
+                                <option value="2">PROCESADO</option>
+                                <option value="3">DENEGACION</option>
+                            </select>
+                        </td>
+
+                        <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                        <td><input type="text" id="txtFecCreaInicial" /></td>
+                        <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                        <td><input type="text" id="txtFecCreaFinal" /></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="width:200px">CODIGO DE LICENCIA :</td>
+                        <td><input type="text" id="txtcodlic" /></td>
+                        <td>
+                            ESTADO APROBACION
+                        </td>
+                        <td>
+                            <select id="ddlestadoAprobacionEmiComp">
+                                <option value="-1">SELECCIONE</option>
+                                <option value="0">PENDIENTE</option>
+                                <option value="1">APROBADO</option>
+                                <option value="2">RECHAZADO</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="center">
+                <button id='btnBuscarComplementaria' class="boton" name='btnBuscarComplementaria'>
+                    Buscar
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnLimpiarComplementaria' class="boton" name='btnLimpiarComplementaria'>
+                    Limpiar
+                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                </button>
+                <div style="float: right;">
+                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva Cancelacion Directa" title="Registrar nueva Cancelacion Directa" id="btnregistrarEmisionComplementaria" />&nbsp;
+                    &nbsp;
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div id="grid"></div>
+            </td>
+        </tr>
+    </table>
+
+
+    <div title="Registrar Cancelacion Directa" id="mvAgregarEmisionComplementaria">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr id="trcabadd">
+                <td colspan="8" align="center">
+                    <table width='100%' border='0'>
+                        <tr>
+                            <td> Nombre Proceso</td>
+                            <td><input type="hidden" id="hidcabid" /> <input type="text" id="txtaddnomproc" /></td>
+                        </tr>
+                        <tr>
+                            <td>Descripcion :</td>
+                            <td><textarea id="txtEmisionComplementariaDesc" name="txtEmisionComplementariaDesc" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 250px; height: 70px" maxlength="255"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" align="center">
+                                <button id='btnbuscarLicenciasComplementarias' class="boton" name='btnbuscarLicenciasComplementarias'>
+                                    SIGUIENTE
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr id="trbuscalicencias">
+                <td colspan="8" align="center">
+                    <table width='100%' align="center">
+                        <tr>
+                            <td align="right" width="300px">
+                                Socio :
+                            <td align="left">
+                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable" />
+                                <input type="hidden" id="hidResponsable" />
+                                <lable id="lbResponsable" style="cursor:pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Todos</lable>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td align="right">CODIGO LICENCIA:</td>
+                            <td align="left"><input type="text" id="txtaddcodlic" /></td>
+                        </tr>
+                        <tr>
+                            <td align="right">AÑO</td>
+                            <td align="left"><input type="text" id="txtaddanio" /></td>
+                        </tr>
+                        <tr>
+                            <td align="right">MES</td>
+                            <td align="left"><input type="text" id="txtaddmes" /></td>
+                        </tr>
+                        <tr>
+                            <td align="center"> <div id="gridLicencias"></div></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" align="center">
+                                <button id='btnbuscarperiodoCompl' class="boton" name='btnbuscarperiodoCompl'>
+                                    BUSCAR
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%" valign="top">
+                                <div id="gridconsultalicencia"></div>
+
+                            </td>
+                            <td width="50%" valign="top">
+                                <div id="gridlicenciaRegistrada"></div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+
+    <div title="Documentos generados Emision omplementaria" id="MvMostrarDocumentosxSolicitud">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr id="trcabadd">
+                <td colspan="8" align="center">
+                    <table width='100%' border='0'>
+                        <tr>
+                            <td><div id="gridListarFacturasxSolicitudAprobada"></div>  </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    <div title="EMISION COMPLEMENTARIA" id="MvObtenerEmisionComplementaria">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr id="trcabadd">
+                <td colspan="8" align="center">
+                    <table width='100%' border='0'>
+                        <tr>
+                            <td>NOMBRE :</td> 
+                            <td> <input type="hidden" id="ProcEmiComplId"/><input type="text" id="txtnomemicomp"/></td>
+                        </tr>
+
+                        <tr>
+                            <td>DESCRIPCION :</td>
+                            <td><textarea id="txtdescpemicomp" name="txtdescpemicomp" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 250px; height: 70px" maxlength="255"></textarea></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</html>
+

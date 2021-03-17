@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+<script src="@Url.Content("~/Scripts/base/modBusquedaCaracteristicaCadaSubDivision.js")"></script>
+
+<link href="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.pack.js")"></script>
+<script src="@Url.Content("~/Scripts/Base/modModal.js")"></script>
+    
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+<link href="~/Style/SRGDA.css" rel="stylesheet" />
+<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+
+
+<br />
+<table style="width: 100%">
+     <tr>
+        <td>
+            <div id='divTitulo'>Caracteristica Subdiviciones Asignadas</div>           
+        </td
+    </tr>
+
+     <tr>
+        <td style="vertical-align: top; height: 10px !important;"></td>
+    </tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'   >
+                   
+                     <tr>
+                         <td style="width:15%;padding-left:2%" nowrap>Ingrese tipo de división : </td>
+                         <td>
+                                <input type="text" id="txtBusqueda" placeholder="Ingrese el dato de busqueda." class="form-control" />
+                        </td>
+                         <td style="padding-left:2%" >    
+                                  <div style=" text-align:center;">                             
+                                     <button id="btnBusqueda" class="boton"  >
+                                           <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                        Buscar
+                                    </button> 
+                                </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </center>
+        </td>
+    </tr>
+
+      <tr>
+        <td style="padding-right: 3%">
+
+            <div style="float: right;">
+                 <div class="btn-group">
+                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span>&nbsp;</span>
+
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" id="btnsuprimir">Suprimir</a></li>
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("../CARACTERISTICASASIGNADASSUBDIVISION/DownloadReport", "CARACTERISTICASASIGNADASSUBDIVISION", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                    <li><a href="@Url.Action("../CARACTERISTICASASIGNADASSUBDIVISION/DownloadReport", "CARACTERISTICASASIGNADASSUBDIVISION", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>               
+                </ul>
+            </div>
+
+
+                <a  href="@Url.Action("Create", "CARACTERISTICASASIGNADASSUBDIVISION")" class="btn">
+                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva caracteristica subdivisión." title="Registrar nueva caracteristica subdivisión."  />
+                </a>
+            </div>
+        </td>
+    </tr>
+
+
+     <tr>
+        <td>
+            <div id="listado"></div>
+        </td>
+    </tr>
+
+</table>

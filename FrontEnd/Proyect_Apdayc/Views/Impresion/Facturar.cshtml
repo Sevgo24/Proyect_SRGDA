@@ -1,0 +1,131 @@
+﻿@model Proyect_Apdayc.Clases.DTO.Impresion.DTOFactura
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+    <title>LYRIC-@ViewBag.Title-FACT</title>
+            font-size:10px;
+            font-family:Arial;
+            margin: -0.5em;
+            padding: 0; 
+        }
+        .spCabecera {
+           height:30px;
+            margin-left:50px;
+        }
+         .spCell1 {
+            height:20px;
+            margin-left:-8px;
+            float:left;
+             width:50px;
+        }
+         .spCell2 {
+            height:20px;
+              width:500px;
+            float:left;
+        }
+         .spCell3{
+           height:20px;
+          float:left;
+            width:50PX;
+             text-align:right;
+        }
+         .row {
+ 
+  display: table-row;
+ 
+}
+
+.container {
+  display: table;
+}
+.column {
+  display: table-cell; 
+}
+.columnFooter {
+  display: table-cell; 
+   height:100px;
+}
+ 
+ 
+    </style>
+
+     
+</head>
+<body >
+        
+       <span class="spCabecera">   @Model.RUM  </span><br/>
+       <span class="spCabecera">   @Model.Usuario</span><br/>
+       <span class="spCabecera">   @Model.RUC</span><br/>
+       <span class="spCabecera">   @Model.Local</span><br/>
+       <span class="spCabecera">   @Model.Direccion</span><br/><br/><br/>
+
+        <div class="container">
+
+       @{
+		foreach (var item in Model.Detalle)
+		{
+
+           
+        <div class="row">
+                <div class="column spCell1">@item.Codigo</div>
+                <div class="column spCell2">@item.Descripcion </div>
+                <div class="column spCell3">@item.Subtotal</div>
+        </div>
+		}
+       
+        }
+              <div class="row">
+                <div class="columnFooter spCell1"> </div>
+                <div class="columnFooter spCell2"> </div>
+                <div class="columnFooter spCell3  ">
+                       
+                    2344.55</div>
+            </div>
+             </div>
+  
+
+    
+</body>
+</html>
+ <script>
+
+       //function beforePrint() { alert("antes de imprimir"); }
+       //function afterPrint() { alert("IMPRIMIÓÓÓ...."); }
+
+
+       //if (window.matchMedia) {
+       //    var mediaQueryList = window.matchMedia('print');
+       //    mediaQueryList.addListener(function (mql) {
+       //        if (mql.matches) {
+       //            beforePrint();
+       //        } else {
+       //            afterPrint();
+       //        }
+       //    });
+       //}
+       //window.onbeforeprint = beforePrint;
+       //window.onafterprint = afterPrint;
+
+
+       function PrintWindow() {                   
+           window.print();           
+           CheckWindowState();
+      }
+       function CheckWindowState()    {          
+           if (document.readyState == "complete") {
+              // alert("impresión finalizada....");
+               window.close();
+           } else {          
+               setTimeout("CheckWindowState()", 2000)
+           }
+       }
+
+       PrintWindow();
+   </script>

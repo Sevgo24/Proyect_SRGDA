@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: CONTACTOS CALL CENTER";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contacto call center</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Campania/mantenimiento.contacto.callcenter.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+    <script src="@Url.Content("~/Scripts/SGRDA/uploadApp.js")"></script>
+</head>
+<body>
+    <div>
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="text-align: left" colspan="2">
+                    <div id="divTitulo">Contacto Call Center</div>
+                    <input type="hidden" id="hidOpcionEdit" />
+                    <br />
+                </td>
+            </tr>
+
+            <table border="0" style="width: 98%" class="contenedor">
+                <tr>
+                    <td style="width: 120px">Centro de Contactos 
+                    </td>
+                    <td>
+                        <select id="ddlCentroContacto"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tipo de Campañas
+                    </td>
+                    <td>
+                        <select id="ddlTipoCampania"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Campaña
+                    </td>
+                    <td>
+                        <select id="ddlCampania"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Agente/Lote
+                    </td>
+                    <td>
+                        <select id="ddlAgenteLote"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right" colspan="2">
+                        <button id='btnBuscar' class="boton" name='btnBuscar'>
+                            Buscar
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                        &nbsp;
+                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                            Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                        <br />
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" style="width: 98%">
+                <tr>
+                    <td style='height: 40px; vertical-align: bottom; width: 20%' colspan="20">
+                        <div style="float: right;">
+                            <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo centro de contacto." title="Registrar nuevo centro de contacto." id="btnNuevo"/>&nbsp;
+                            <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar centro de contacto." title="Inactivar centro de contacto."  id="btnEliminar"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="21">
+                        <div id="gridContactoCallCenter"></div>
+                    </td>
+                </tr>
+            </table>
+        </table>
+    </div>
+
+    <div title="Agregar Observación" id="mvObservacion">
+        <table width='100%' border='0'>
+            <tr>
+                <td>Tipo: </td>
+                <td>
+                    <input type="hidden" id="hidAccionMvObs" />
+                    <input type="hidden" id="hidEdicionObs" />
+                    <select id="ddlTipoObservacion"></select></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtObservacion" name="txtObservacion" rows="12" cols="74" placeholder="Ingrese Observación"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="Agregar Documentos" id="mvDocumento">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td style="width: 25%">Tipo de Documento :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvDoc" />
+                    <input type="hidden" id="hidEdicionDoc" />
+                    <select id="ddlTipoDocumento">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" id="hidNombreFile" />
+                    Ruta de Archivo
+                </td>
+
+                <td>
+                    <div id="fuFiles"></div>
+                    <input type="file" id="file_upload" name="file_upload">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Fecha Recepción: </td>
+                <td>
+                    <input type="text" id="txtFecha" />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="10">
+                    <center><div id="avisoDocumento" style=" width: 100% ; vertical-align:  middle; "></div></center>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div title="Ver Documentos" id="mvVerDocumento">
+        <table border="0" style="width: 98%">
+            <tr>
+                <td colspan="21">
+                    <input type="hidden" id="hidContactoLlamada" />
+                    <div id="gridDocumentos"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <input type="hidden" id="hidIdDocGenerado" />
+</body>
+</html>
+
+<div id="mvImagen">
+    <iframe style="width: 100%; height: 100%;" id="ifContenedor" marginheight="0" marginwidth="0" noresize scrolling="No" frameborder="0"></iframe>
+</div>

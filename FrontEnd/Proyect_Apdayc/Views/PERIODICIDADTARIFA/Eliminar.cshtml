@@ -1,0 +1,36 @@
+﻿@model SGRDA.Entities.BEREC_RATE_FREQUENCY
+
+@{
+    ViewBag.Title = "APDAYC :: PERIODICIDAD DE LA TARIFA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+    
+         <p>
+            <input type="hidden" id="RAT_FID" name="RAT_FID" value="@Html.DisplayFor(model => model.RAT_FID)"/>
+        </p>        
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

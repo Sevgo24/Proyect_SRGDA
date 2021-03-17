@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.dbnet.cl" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.dbnet.cl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.dbnet.cl">
+      <s:element name="ConsultaEstado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_docu" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="foli_inte" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="serie_inte" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaEstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaEstadoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizaEstadoDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodiEmpr" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_docu" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="foli_inte" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="serie_inte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizaEstadoDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActualizaEstadoDocResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="int" type="s:int" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultaEstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaEstado" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaEstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaEstadoDocSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizaEstadoDoc" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaEstadoDocSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizaEstadoDocResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaEstadoHttpGetIn">
+    <wsdl:part name="ruc" type="s:string" />
+    <wsdl:part name="tipo_docu" type="s:string" />
+    <wsdl:part name="foli_inte" type="s:string" />
+    <wsdl:part name="serie_inte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaEstadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaEstadoDocHttpGetIn">
+    <wsdl:part name="ruc" type="s:string" />
+    <wsdl:part name="CodiEmpr" type="s:string" />
+    <wsdl:part name="tipo_docu" type="s:string" />
+    <wsdl:part name="foli_inte" type="s:string" />
+    <wsdl:part name="serie_inte" type="s:string" />
+    <wsdl:part name="Estado" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaEstadoDocHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaEstadoHttpPostIn">
+    <wsdl:part name="ruc" type="s:string" />
+    <wsdl:part name="tipo_docu" type="s:string" />
+    <wsdl:part name="foli_inte" type="s:string" />
+    <wsdl:part name="serie_inte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaEstadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaEstadoDocHttpPostIn">
+    <wsdl:part name="ruc" type="s:string" />
+    <wsdl:part name="CodiEmpr" type="s:string" />
+    <wsdl:part name="tipo_docu" type="s:string" />
+    <wsdl:part name="foli_inte" type="s:string" />
+    <wsdl:part name="serie_inte" type="s:string" />
+    <wsdl:part name="Estado" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaEstadoDocHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="ConsultaEstado">
+      <wsdl:input message="tns:ConsultaEstadoSoapIn" />
+      <wsdl:output message="tns:ConsultaEstadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaEstadoDoc">
+      <wsdl:input message="tns:ActualizaEstadoDocSoapIn" />
+      <wsdl:output message="tns:ActualizaEstadoDocSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpGet">
+    <wsdl:operation name="ConsultaEstado">
+      <wsdl:input message="tns:ConsultaEstadoHttpGetIn" />
+      <wsdl:output message="tns:ConsultaEstadoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaEstadoDoc">
+      <wsdl:input message="tns:ActualizaEstadoDocHttpGetIn" />
+      <wsdl:output message="tns:ActualizaEstadoDocHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpPost">
+    <wsdl:operation name="ConsultaEstado">
+      <wsdl:input message="tns:ConsultaEstadoHttpPostIn" />
+      <wsdl:output message="tns:ConsultaEstadoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaEstadoDoc">
+      <wsdl:input message="tns:ActualizaEstadoDocHttpPostIn" />
+      <wsdl:output message="tns:ActualizaEstadoDocHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaEstado">
+      <soap:operation soapAction="http://www.dbnet.cl/ConsultaEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaEstadoDoc">
+      <soap:operation soapAction="http://www.dbnet.cl/ActualizaEstadoDoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaEstado">
+      <soap12:operation soapAction="http://www.dbnet.cl/ConsultaEstado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaEstadoDoc">
+      <soap12:operation soapAction="http://www.dbnet.cl/ActualizaEstadoDoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpGet" type="tns:Service1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ConsultaEstado">
+      <http:operation location="/ConsultaEstado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaEstadoDoc">
+      <http:operation location="/ActualizaEstadoDoc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpPost" type="tns:Service1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ConsultaEstado">
+      <http:operation location="/ConsultaEstado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaEstadoDoc">
+      <http:operation location="/ActualizaEstadoDoc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpGet" binding="tns:Service1HttpGet">
+      <http:address location="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpPost" binding="tns:Service1HttpPost">
+      <http:address location="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,682 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: SOCIOS DE NEGOCIO ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Socio de Negocio - Nuevo</title>
+    
+   <script src="@Url.Content("~/Scripts/SGRDA/SocioAdministracion/socio.negocio.administracion.nuevo.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    @* Imports para realizar el Descuento *@
+    <script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.tarifatest.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Descuento/mantenimiento.descuento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Caracteristica/mantenimiento.caracteristica.js")"></script>
+@*    import para realizar la busqueda de socio empresarial*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.empresarial.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>*@
+    
+    <script src="@Url.Content("~/Scripts/SGRDA/uploadApp.js")"></script>
+
+ 
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+
+ul.ui-autocomplete {
+    z-index: 1100;
+}
+  </style>
+</head>
+
+<body>
+    <div>
+        <div id="loading"> 
+               <table style="width:100%;"><tr>
+               <td style="  text-align:center; font-style:italic;">Espera un momento</td>
+               <td style="margin-top: 0px;"> <img src="~/Images/otros/loading.GIF" width="32" /></td>
+               </tr></table>
+      </div>
+        <div id="mvContenedorSocioEmpresarial"></div>
+
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+    <tr>
+        <td style=" vertical-align:bottom;">
+            <input id="hidOpcionEdit" type="hidden"/>
+            <input id="hidBpsId" type="hidden"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                         <td  colspan="3" style="  text-align:right; "  class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                            <table width='100%' border='0' id='FiltroTabla'>
+                                <tr>
+                                    <td style="width:50%;text-align:left;">
+                                        <div id='divTituloPerfil'>Persona - Entidad / Nuevo</div>
+                                    </td>
+                                    <td>
+                                        <button id='btnRegresar' style="vertical-align:middle;"  class="boton" name='btnRegresar'>Volver 
+                            <img src="@Url.Content("~/Images/botones/back.png")" width="14" /></button>
+                        
+                            &nbsp;
+                            <button id='btnNuevo'  class="boton">Nuevo 
+                            <img src="@Url.Content("~/Images/botones/neo.png")" width="14" /></button>  
+
+                             &nbsp;
+                               <button id='btnGrabar'  class="boton" name='btnGrabar'>Grabar 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="14" /></button> 
+                                    </td>
+                                </tr>
+                            </table>
+                                
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="contenedor">
+                            <table border="0" style="width:100%;">
+
+                            <tr>   
+                            <td> Empresa:</td>
+                            <td><input type='text' id='txtEmpresa' value="@ViewBag.DesEmpresa" disabled="disabled" /></td>
+                            <td>  </td>
+                          <td rowspan="6">
+                              <label id="lblchkGE"><input type="checkbox" id="chkGE" />Grupo Empresarial</label>  
+
+                          </td>
+                            </tr>
+                            <tr>
+                            <td> Tipo Persona :</td>
+                            <td><select   id='ddlTipoPersona'  /> <button id="btnValidar">Validar</button>
+
+
+                            </td>
+                            <td>   </td>
+                        
+
+                            </tr>
+                            <tr>
+                            <td>  Tipo Documento:</td>
+                            <td> 
+                            <select   id='ddlTipoDocumentoVal' name='ddlTipoDocumentoVal'  > </select> 
+                            </td>
+                            <td>
+                                
+
+                            </td>
+                            </tr>
+                    
+                            <tr>
+                            <td> Nro Documento :</td>
+                            <td colspan="2">
+                                <table border="0"><tr>
+                                    <td>  <input   id='txtNroDocumento'    placeholder='Nro Documento' type="text" /> 
+                                    <input type="hidden" id="hidCantNumValidar" />
+                                    <input type="hidden" id="hidExitoValNumero" />
+                                    &nbsp;&nbsp; <button id="btnValidarDocumento">Validar</button></td>
+                                    <td >
+                                        &nbsp;&nbsp;
+                                        &nbsp;&nbsp;
+                                        &nbsp;&nbsp;
+                                        <div id="divResultValidarDoc" style=" width:100%;  margin-top:-24px; margin-left:20px;" ></div>
+                                        <div id="divGetRuc" style=" position:absolute; display:none;  margin-top:-20px; margin-left:10px; font-style:italic;" ></div>
+                                    </td>
+                                    </tr>
+                                </table>
+                              
+
+
+                             <div id="mvValidarDni" style="display:none;" title="Validacion de DNI">
+                                 Ingrese digito de verificacion: <input type="text" id="txtNroValidacion"   /><br /><br />
+                               <center>  <img src="~/Images/otros/dni_test.jpg" height="120px" width="270px" />
+                                  
+                                 <br>
+                                 <div id="divErrorValidarDoc"></div> </center>
+                             </div>
+
+                            </td>
+                            @*<td>     </td>*@
+                            </tr>   
+                            <tr>
+                            <td>Razon Social:</td>
+                            <td colspan="2"> 
+                            <input type='text' id='txtRazon' style=" width:400px;"     placeholder='Ingrese Razon social' name='txtRazon' /> </td>
+                            
+                            </tr>
+
+                                                            <tr>
+                            <td>Nombre Comercial:</td>
+                            <td colspan="2"> 
+                            <input type='text' id='txtNomComercial' style=" width:400px;"     placeholder='Ingrese Nombre Comercial' name='txtNomComercial' /> </td>
+                            </tr>
+
+@*                            <tr>
+                            <td>Nombre del Grupo Empresarial</td>
+                            <td><img src="/Images/botones/buscar.png" style="cursor:pointer;" id="btnGrupEmp" alt="Alternate Text" title="Busqueda de Grupo Empresarial" />
+                            <lable id="lblGrupoEmpresarial">Seleccione</lable>        
+                            </td>
+                            <td><input type="hidden" id="hidGrupoEmpresarial">
+                            
+                            </tr>*@
+                            <tr>
+                            <td> Apellido Paterno:</td>
+                            <td colspan="2"> 
+                                <table>
+                                    <tr>
+                                        <td><input type='text' id='txtPaterno' style=" width:150px;"  placeholder='Ingrese Apellido Paterno'  /> </td>
+                                        <td>Apellido Materno</td>
+                                        <td><input type='text' id='txtMaterno' style=" width:150px;"  placeholder='Ingrese Apellido Materno'  /> </td>
+                                        <td>Nombres</td>
+                                        <td><input type='text' id='txtNombres' style=" width:150px;"  placeholder='Ingrese Nombres'  /> </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td><label id="lblVerificado" style=" color:red; width:'150px'; display:block; font-weight:bold;" ></label></td>
+                            
+                            </tr>
+                            </table>
+                                </div>
+                        </td>
+                       
+                            <td  valign="bottom">   
+                                
+                                  
+                        
+                   
+                                
+                        </td>
+
+                      
+                      </tr>
+                    <tr>
+                         <td  colspan="3" style="height:10px;" ></td>
+                     <tr>
+                         <td  colspan="3" >
+                            <div id="tabs" style="display:none;">
+  <ul>
+    <li><a href="#tabs-1">Direcciones</a></li>
+    <li><a href="#tabs-2">Observaciones</a></li>
+    <li><a href="#tabs-3">Documentos</a></li>
+    <li><a href="#tabs-4">Parámetros</a></li>
+    <li><a href="#tabs-5">Teléfonos</a></li>
+    <li><a href="#tabs-6">Correos</a></li>
+    <li><a href="#tabs-7">Redes Sociales</a></li>
+    @* Agregando Tab De Descuento Para ,realizar los Descuentos Por Cliente *@
+    @*<li><a href="#tabs-8">Descuentos</a></li>*@
+  </ul>
+  <div id="tabs-1">
+      <table style=" width:100%;" border="0">
+          <tr>
+              <td>
+                  <table>
+                      <tr>
+                           <td style="width:150px">
+                                <div><img src="~/Images/botones/add.png" class="addDireccion cssTabReadOnly" height="30"></div>
+                                <div style=" margin-top:-30px; margin-left:30px;"><a href="#" class="addDireccion cssTabReadOnly">Agregar Dirección  </a></div>
+                           </td>
+                           <td style="width:150px">
+                                <div style="vertical-align:central"><img src="~/Images/botones/addDetail.png" class="addListarDireccion cssTabReadOnly" height="20"></div>
+                                <div style=" margin-top:-20px; margin-left:20px;">&nbsp;&nbsp;<a href="#" class="addListarDireccion cssTabReadOnly">Duplicar Dirección  </a></div>
+                           </td>
+                      </tr>
+                  </table>
+                   <hr />
+              </td>
+          </tr>
+          <tr>
+              <td> 
+                  <div id="gridDireccion"></div>
+              </td>
+          </tr>
+      </table>
+   
+  </div>
+  <div id="tabs-2">
+          <table style=" width:100%;" border="0">
+          <tr>
+
+              <td>
+                  <div><img src="~/Images/botones/add.png" class="addObservacion cssTabReadOnly" height="30"></div>
+                  <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addObservacion cssTabReadOnly">Agregar Observación  </a></div>
+                   <hr /> </td>
+          </tr>
+            <tr>
+
+              <td> 
+                  <div id="gridObservacion"></div>
+
+              </td>
+          </tr>
+
+      </table>
+  </div>
+  <div id="tabs-3">
+     <table style=" width:100%;" border="0">
+          <tr>
+
+              <td>
+                  <div><img src="~/Images/botones/add.png" class="addDocumento cssTabReadOnly" height="30"></div>
+                  <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addDocumento cssTabReadOnly">Agregar Documento  </a></div>
+                   <hr /> </td>
+          </tr>
+            <tr>
+
+              <td> 
+                  <div id="gridDocumento"></div>
+
+              </td>
+          </tr>
+
+      </table>
+  </div>
+  <div id="tabs-4">
+  <table style=" width:100%;" border="0">
+          <tr>
+
+              <td>
+                  <div><img src="~/Images/botones/add.png" class="addParametro cssTabReadOnly" height="30"></div>
+                  <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addParametro cssTabReadOnly">Agregar Parámetro  </a></div>
+                   <hr /> </td>
+          </tr>
+            <tr>
+
+              <td> 
+                  <div id="gridParametro"></div>
+
+              </td>
+          </tr>
+
+      </table>
+  </div>
+   <div id="tabs-5">
+  <table style=" width:100%;" border="0">
+          <tr>
+
+              <td>
+                  <div><img src="~/Images/botones/add.png" class="addTelefono cssTabReadOnly" height="30"></div>
+                  <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addTelefono cssTabReadOnly">Agregar Teléfono  </a></div>
+                   <hr /> </td>
+          </tr>
+            <tr>
+
+              <td> 
+                  <div id="gridTelefono"></div>
+
+              </td>
+          </tr>
+
+      </table>
+  </div>
+ <div id="tabs-6">
+  <table style=" width:100%;" border="0">
+          <tr>
+
+              <td>
+                  <div><img src="~/Images/botones/add.png" class="addCorreo cssTabReadOnly" height="30"></div>
+                  <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addCorreo cssTabReadOnly">Agregar Correos  </a></div>
+                   <hr /> </td>
+          </tr>
+            <tr>
+
+              <td> 
+                  <div id="gridCorreo"></div>
+
+              </td>
+          </tr>
+
+      </table>
+  </div>
+  <div id="tabs-7">
+  <table style=" width:100%;" border="0">
+          <tr>
+
+              <td>
+                  <div><img src="~/Images/botones/add.png" class="addRedes cssTabReadOnly" height="30"></div>
+                  <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addRedes cssTabReadOnly">Agregar Redes Sociales </a></div>
+                   <hr /> </td>
+          </tr>
+            <tr>
+
+              <td> 
+                  <div id="gridRedes"></div>
+
+              </td>
+          </tr>
+
+      </table>
+  </div>
+@*    <div id="tabs-8">
+        @Html.Partial("~/Views/Shared/_LicDescuento.cshtml")
+    </div>*@
+
+                        </td>
+
+                    </tr>
+                </table>
+            </center>       
+        </td>
+    </tr>
+     
+       <tr><td style='height: 30px;'>
+    <center>
+            <div id='aviso' style=" width: 100% ; vertical-align:  middle; ">
+            </div>
+    </center>
+        </td></tr>
+</table>
+         
+<div id="divDireccion"></div>
+ 
+
+ <div title="Agregar Documentos" id="mvDocumento"  style="display:none;">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td> Tipo de Documento :</td>
+            <td>
+                  <input type="hidden" id="hidAccionMvDoc" />
+               <input type="hidden" id="hidEdicionDoc" /> 
+                <select name="ddlTipoDocumento" id="ddlTipoDocumento">
+                    
+                </select>
+            </td>
+            </tr>
+        <tr>
+            <td ><input type="hidden" id="hidNombreFile" />
+                Ruta de Archivo</td>
+         
+            <td>
+               <div id="fuFiles"></div>
+                  <input type="file" id="file_upload" name="file_upload">
+                @*<div id="uploaded"></div>*@
+            </td>
+         
+        </tr>
+         <tr>
+            <td >Fecha Recepción: </td>
+         
+            <td  >
+                 <input type="text" id="txtFecha"  class="k-fecha"/> 
+            </td>
+        </tr>
+      <tr>
+          <td colspan="2">
+               <center><div id="avisoDocumento" style=" width: 100% ; vertical-align:  middle; "></div></center>
+          </td>
+      </tr>
+    </table>
+</div>
+
+
+<div title="Agregar Telefonos" id="mvTelefono"  style="display:none;">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td> Tipo de Telefono :</td>
+            <td>
+                  <input type="hidden" id="hidAccionMvTel" />
+                  <input type="hidden" id="hidEdicionTel" /> 
+                  <select name="ddlTipoFono" id="ddlTipoFono"></select>
+            </td>
+            </tr>
+        <tr>
+            <td >Numero</td>
+            <td >
+                  <input type="text" id="txtFono" maxlength="15" class="requeridoTL" />
+            </td>
+         
+        </tr>
+         <tr>
+            <td colspan="2">
+                 <textarea id="txtFonoObs" name="txtFonoObs" rows="4" cols="80" ></textarea>
+            </td>
+         
+        </tr>
+        <tr>
+            <td colspan="2">
+            <center><div id="avisoTL" style=" width: 100% ; vertical-align:  middle; "></div></center>
+      </td>
+         
+        </tr>
+        
+      
+    </table>
+</div>
+
+<div title="Agregar Correos" id="mvCorreo"  style="display:none;">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td> Tipo de Correo :</td>
+            <td>
+                  <input type="hidden" id="hidAccionMvMail" />
+                  <input type="hidden" id="hidEdicionMail" /> 
+                <select name="ddlTipoMail" id="ddlTipoMail">
+                    
+                </select>
+            </td>
+            </tr>
+        <tr>
+            <td >Correo</td>
+         
+            <td >
+                  <input type="text" id="txtMail"  style="width:250px;" />
+              
+            </td>
+         
+        </tr>
+        <tr>
+            <td colspan="2">
+                 <textarea id="txtMailObs" name="txtMailObs" rows="4" cols="60" ></textarea>
+            </td>
+         
+        </tr>
+        <tr>
+            <td colspan="2">
+            <center><div id="avisoMVMail" style=" width: 100% ; vertical-align:  middle; "></div></center>
+      </td>
+         
+        </tr>
+    </table>
+</div>
+                
+<div title="Agregar Observación" id="mvObservacion"  style="display:none;">
+   
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td> Tipo de Observacion :</td>
+            <td>
+               <input type="hidden" id="hidAccionMvObs" />
+               <input type="hidden" id="hidEdicionObs" /> 
+               <select   id="ddlTipoObservacion">
+                    
+                </select>
+            </td>
+            </tr>
+        <tr>
+            <td colspan="2"> Descripcion de la Observacion :</td>
+          </tr>
+        <tr>
+            <td colspan="2">
+                 <textarea id="txtObservacion" name="txtObservacion" rows="4" cols="80" class="requeridoOBS"></textarea>
+            </td>
+         
+        </tr>
+      <tr>
+            <td colspan="2">
+            <center><div id="avisoOBS" style=" width: 100% ; vertical-align:  middle; "></div></center>
+      </td></tr>
+    </table>
+</div>
+
+<div title="Agregar Parametro" id="mvParametro"  style="display:none;">
+   
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td> Tipo de Parámetro :</td>
+            <td>
+               <input type="hidden" id="hidAccionMvPar" />
+               <input type="hidden" id="hidEdicionPar" /> 
+                <select name="ddlTipoParametro" id="ddlTipoParametro">
+                    
+                </select>
+            </td>
+            </tr>
+        <tr>
+            <td colspan="2"> Descripción del Parámetro :</td>
+          </tr>
+        <tr>
+            <td colspan="2">
+                 <textarea id="txtDescripcion" name="txtDescripcion" rows="4" cols="80" class="requeridoPM"></textarea>
+            </td>
+         
+        </tr>
+      <tr>
+            <td colspan="2">
+            <center><div id="avisoPM" style=" width: 100% ; vertical-align:  middle; "></div></center>
+      </td></tr>
+    </table>
+</div>
+
+<div title="Listar Direccion" id="mvListarDireccion">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+           <td colspan="4"> 
+                    <div id="gridListarDireccion"></div>
+           </td>
+        </tr>
+    </table>
+</div>
+
+<div title="Agregar Redes" id="mvRedes"  style="display:none;">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td> Tipo :</td>
+            <td>
+                  <input type="hidden" id="hidAccionMvRedes" />
+                  <input type="hidden" id="hidEdicionRedes" /> 
+                <select name="ddlTipoRedes" id="ddlTipoRedes">
+                    
+                </select>
+            </td>
+            </tr>
+        <tr>
+            <td >Link</td>
+         
+            <td >
+                  <input type="text" id="txtLink"  style="width:250px;" />
+              
+            </td>
+         
+        </tr>
+        <tr>
+            <td colspan="2">
+                 <textarea id="txtRedesObs" name="txtRedesObs" rows="4" cols="60" ></textarea>
+            </td>
+         
+        </tr>
+        <tr>
+            <td colspan="2">
+            <center><div id="avisoMVRedes" style=" width: 100% ; vertical-align:  middle; "></div></center>
+            </td>
+         
+        </tr>
+    </table>
+</div>
+        @* DIV DE DESCEUNTOS *@
+<div title="Descuentos" id="mvDescuento">
+        <table style='width: 100%' border='0' id='FiltroTablaPop'>
+            <tr>
+                <td>Tipo de Descuento :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvDscto" />
+                    <input type="hidden" id="hidEdicionDscto" />
+                    <input type="hidden" id="hidDsctoId" />
+                    <select id='ddlTipoDescuento' class="requeridoLst"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>Descuento :</td>
+                <td>
+                    <select id='ddlDescuento' class="requeridoLst"></select>
+                    <input type="text" id="txtDescuentoEspecial"  style="display:none" class="requerido" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <hr />
+                    <table border="0">
+                        <tr>
+                            <td style="width: 170px;">Porcentaje Dscto %:</td>
+                            <td>
+                                <label id="lblPerDscto"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Valor Dscto:</td>
+                            <td>
+                                <label id="lblValorDscto"></label>
+                                <input type="text" id="txtValorDscto" style="display:none; width:80px" class="requerido"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Signo:</td>
+                            <td>
+                                <label id="lblSignoDscto"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><div id="avisoDescuento" style=" width: 100% ; vertical-align:  middle; "></div></center>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+   @* </div>*@
+                     <input type="hidden" id="hidIdDocGenerado" />
+</body>
+</html>
+<div id="mvImagen">
+
+@*    <img id="imgDocumento" />
+
+    <a id="lnkDocumento"  target="_blank">Descargar documento</a>*@
+
+
+    <iframe style="  width:100%; height:100%;" id="ifContenedor"  marginheight="0" marginwidth="0" noresize scrolling="No" frameborder="0" ></iframe>
+
+
+</div>

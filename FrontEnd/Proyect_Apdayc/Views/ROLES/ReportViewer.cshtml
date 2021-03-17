@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "ReportViewer";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+ <section class="social" id="ReportDisplayPanel">
+        <h4>VISTA PREVIA</h4>
+        <a href="@Url.Action("DownloadReport", "ROLES",new { format = "PDF" })" class="btn btn-success" target="_blank"><i  class="glyphicon glyphicon-save"></i>&nbsp;PDF</a>
+     <a href="@Url.Action("DownloadReport", "ROLES",new { format = "EXCEL" })" class="btn btn-success" target="_blank"><i  class="glyphicon glyphicon-save"></i>&nbsp;EXCEL</a>
+        
+ </section>

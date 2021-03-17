@@ -1,0 +1,38 @@
+﻿@model SGRDA.Entities.BEREF_DIV_CHARAC
+
+@{
+    ViewBag.Title = "APDAYC :: CARACTERÍSTICAS DE DIVISIONES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+    
+         <p>
+            <input type="hidden" id="taxid" name="taxid" value="@Html.DisplayFor(model => model.DAC_ID)"/>
+        </p>
+        
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

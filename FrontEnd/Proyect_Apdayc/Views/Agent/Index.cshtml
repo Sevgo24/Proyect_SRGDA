@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Workflow - Agente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Módulo Cliente</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/WorkFlow/mantenimiento.agent.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+</head>
+<body>
+    <div>
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div id="divTitulo">Workflow - Búsqueda de  Agente</div>
+                </td>          
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:98%" id="FiltroTabla"  border="0">
+                            <tr>
+                                <td style="width:120px; padding-left:30px" >
+                                    Nombre  :
+                                </td>
+                                <td  style="width:450px">
+                                    <input type="text" id="txtNombre" maxlength="200" style="width:350px"   />
+                                </td>
+                                <td style="width:70px;"> Estado :</td>
+                                <td >
+                                    <select name="ddlEstado" id="ddlEstado">
+                                    </select>
+                                </td>
+                                <td style="text-align:right">
+                                     <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="24px" /></button> 
+                                    &nbsp;&nbsp;
+
+                                    <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" /></button> 
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td style="width:120px; padding-left:30px" >
+                                    Etiqueta :
+                                </td>
+                               <td  style="width:300px">
+                                    <input type="text" id="txtEtiqueta" maxlength="40" style="width:250px" />
+                                </td>
+                            </tr>       
+                            
+                    
+                                    
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 40px; padding-right: 50px'>
+                    <div style="float: right;">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span>&nbsp;</span>
+
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" id="btnEliminar">suprimir</a></li>
+                                <li class="divider"></li>
+                                <li><a id="repPDF" href="@Url.Action("../Agent/DownloadReport", "Agent", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                                <li><a id="repEXCEL" href="@Url.Action("../Agent/DownloadReport", "Agent", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>
+                            </ul>
+                        </div>
+                        &nbsp; 
+                                            <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo Agente." title="Registrar nuevo Agnete." id="btnNuevo"/>&nbsp;
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

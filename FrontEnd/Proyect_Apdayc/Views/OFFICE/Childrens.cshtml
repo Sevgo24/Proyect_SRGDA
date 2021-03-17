@@ -1,0 +1,17 @@
+﻿@*@model TreeDemo.Models.Employee*@
+@model SGRDA.Entities.BEOfficeMin
+
+@foreach (var item in Model.BEOfficeMins)
+{ 
+    <ul>
+    @if (item != null)
+    {        
+        <li><a href="#@item.OFF_ID"  class="usr">@item.OFF_NAME</a>
+        @if (item.BEOfficeMins.Count > 0)
+        {         
+            @Html.Partial("Childrens", item)           
+        }
+        </li>
+    }
+    </ul>
+}

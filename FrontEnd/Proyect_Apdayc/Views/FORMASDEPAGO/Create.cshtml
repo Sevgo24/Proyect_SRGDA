@@ -1,0 +1,296 @@
+﻿@model SGRDA.Entities.BEREC_PAYMENT_TYPE
+
+@{
+    ViewBag.Title = "APDAYC :: FORMAS DE PAGO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        
+        $("#chkFecha").prop("checked", true);
+        $('#txtfecha').kendoDatePicker({ format: "dd/MM/yyyy" });
+
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+        $("#PAY_ID").focus();
+
+        var chk = $("#chkFecha").prop("checked");
+        if (chk == false) {
+            $("#txtfecha").removeAttr('disabled');
+            $("#VTO1").removeAttr('disabled');
+            $("#VTO2").removeAttr('disabled');
+            $("#VTO3").removeAttr('disabled');
+            $("#VTO4").removeAttr('disabled');
+            $("#VTO5").removeAttr('disabled');
+            $("#VTO6").removeAttr('disabled');
+        }
+        else {
+            $("#txtfecha").attr("disabled", "disabled");
+            $("#VTO1").attr("disabled", "disabled");
+            $("#VTO2").attr("disabled", "disabled");
+            $("#VTO3").attr("disabled", "disabled");
+            $("#VTO4").attr("disabled", "disabled");
+            $("#VTO5").attr("disabled", "disabled");
+            $("#VTO6").attr("disabled", "disabled");
+        }
+
+        $("#chkFecha").on("click", function () {
+            var chk = $("#chkFecha").prop("checked");
+            if (chk == false) {
+                $("#txtfecha").removeAttr('disabled');
+                $("#VTO1").removeAttr('disabled');
+                $("#VTO2").removeAttr('disabled');
+                $("#VTO3").removeAttr('disabled');
+                $("#VTO4").removeAttr('disabled');
+                $("#VTO5").removeAttr('disabled');
+                $("#VTO6").removeAttr('disabled');
+            }
+            else {
+                $("#txtfecha").attr("disabled", "disabled");
+                $("#VTO1").attr("disabled", "disabled");
+                $("#VTO2").attr("disabled", "disabled");
+                $("#VTO3").attr("disabled", "disabled");
+                $("#VTO4").attr("disabled", "disabled");
+                $("#VTO5").attr("disabled", "disabled");
+                $("#VTO6").attr("disabled", "disabled");
+            }
+        });
+    });
+
+
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "FORMASDEPAGO", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <br />
+    
+    <center>
+    <table border="0" style="width: 98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+        <tr>
+            <td colspan="2" style="  text-align:right; " class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                
+                <table width='100%' border='0' id='FiltroTabla'>                     
+                    <td style="width:500px;text-align:left;">
+                        <div id='divTituloLic'>Formas de Pagos - Nuevo</div>
+                    </td>
+                
+                    <td  colspan="1">
+                    <div class="botonLink" style="width: 80px;">
+                        <a href="@Url.Action("../FORMASDEPAGO/", "FORMASDEPAGO")"   >
+                            <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                            </div>
+                        </a>
+                    </div>
+                    &nbsp;
+                        <button id="btnSave" class="boton">
+                            <span style="color: #000; font-weight: 200;">Grabar </span>
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>
+         
+                         </td>
+                </table>
+            </td>
+        </tr>
+
+        <tr><td><br /></td></tr>
+        <tr>            
+            <td style="width:10% ;padding-left:2% " >
+                @Html.LabelFor(model => model.PAY_ID) :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PAY_ID, htmlAttributes: new { id = "PAY_ID", style = "width:60px;", maxLength = "2" })
+                @Html.ValidationMessageFor(model => model.PAY_ID)
+            </td>
+        </tr>   
+
+        <tr>            
+            <td style="width:10% ;padding-left:2% " >
+                @Html.LabelFor(model => model.DESCRIPTION) :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.DESCRIPTION, htmlAttributes: new { id = "DESCRIPTION", style = "width:250px;", maxLength = "40" })
+                @Html.ValidationMessageFor(model => model.DESCRIPTION)
+            </td>
+        </tr>  
+        <tr><td><br /></td></tr>
+    </table>
+    </center>   
+    
+    <br />
+    <h5 style="padding-left: 2%">Número de dias para vencimiento</h5>
+    <center>
+    <div class="contenedorInput" style="padding-left:0%">          
+        <table border="0" style=" width:100%;">
+        <tr >    
+            <td>
+                @Html.CheckBoxFor(model => model.PAY_DATE_FIX, htmlAttributes: new { id = "chkFecha", style = "width:60px;", maxLength = "1"})
+                @Html.ValidationMessageFor(model => model.PAY_DATE_FIX)
+            </td>    
+            <td>
+                @Html.LabelFor(model => model.PAY_DATE_FIX) 
+            </td>
+            <td>
+               @* @Html.TextBoxFor(model => model.PAY_DATE_FIX_DAY, htmlAttributes: new { id = "PAY_DATE_FIX_DAY", type = "date", Value = Model.PAY_DATE_FIX_DAY.ToString("dd-MM-yyyy") })*@
+                
+                <input type="text" id="txtfecha"/>
+            </td>
+         </tr>
+        <tr >
+            <td style="width:10% ;padding-left:2% ;" >          
+                   @Html.LabelFor(model => model.VTO1) 
+            </td>
+             <td>
+                @Html.TextBoxFor(model => model.VTO1, htmlAttributes: new { id = "VTO1", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.VTO1)
+             </td>
+            <td></td>
+         </tr>
+
+         <tr >        
+            <td style="width:10% ;padding-left:2% ;" >          
+                  @Html.LabelFor(model => model.VTO2) 
+            </td>
+             <td>
+                @Html.TextBoxFor(model => model.VTO2, htmlAttributes: new { id = "VTO2", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.VTO2)
+             </td>
+             <td></td>
+         </tr>
+
+         <tr >        
+            <td style="width:10% ;padding-left:2% ;" >          
+                    @Html.LabelFor(model => model.VTO3) 
+            </td>
+             <td>
+                 @Html.TextBoxFor(model => model.VTO3, htmlAttributes: new { id = "VTO3", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.VTO3)
+             </td>
+             <td></td>
+         </tr>
+
+         <tr >        
+            <td style="width:10% ;padding-left:2% ;" >          
+                   @Html.LabelFor(model => model.VTO4) 
+            </td>
+             <td>
+                @Html.TextBoxFor(model => model.VTO4, htmlAttributes: new { id = "VTO4", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.VTO4)
+             </td>
+             <td></td>
+         </tr>
+
+         <tr >        
+            <td style="width:10% ;padding-left:2% ;" >          
+                   @Html.LabelFor(model => model.VTO5) 
+            </td>
+             <td>
+               @Html.TextBoxFor(model => model.VTO5, htmlAttributes: new { id = "VTO5", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.VTO5)
+             </td>
+             <td></td>
+         </tr>
+
+         <tr >        
+            <td style="width:10% ;padding-left:2% ;" >          
+                  @Html.LabelFor(model => model.VTO6) 
+            </td>
+             <td>       
+                 @Html.TextBoxFor(model => model.VTO6, htmlAttributes: new { id = "VTO6", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.VTO6)
+             </td>
+             <td></td>
+         </tr> 
+        </table>       
+    </div>
+    </center>
+    
+    <br />
+    <h5 style="padding-left: 2%">Fomas de pago</h5>
+    <center>    
+    <div class="contenedorInput" style="padding-left:0%">          
+    <table border="0" style=" width:100%;">
+        <tr>
+            <td style="width: 1%; padding-left: 2%;">
+                @Html.LabelFor(model => model.PAY_BANK) 
+                @Html.CheckBoxFor(model => model.PAY_BANK, htmlAttributes: new { id = "PAY_BANK", style = "width:60px;", maxLength = "1" })
+                @Html.ValidationMessageFor(model => model.PAY_BANK)
+            </td>
+
+            <td style="width: 1%">
+                @Html.LabelFor(model => model.PAY_BANK_RECEIPT) 
+                @Html.CheckBoxFor(model => model.PAY_BANK_RECEIPT, htmlAttributes: new { id = "PAY_BANK_RECEIPT", style = "width:60px;", maxLength = "1" })
+                @Html.ValidationMessageFor(model => model.PAY_BANK_RECEIPT)
+            </td>
+
+            <td style="width: 1%">
+                @Html.LabelFor(model => model.PAY_AGE_RECEIPT) 
+                @Html.CheckBoxFor(model => model.PAY_AGE_RECEIPT, htmlAttributes: new { id = "PAY_AGE_RECEIPT", style = "width:60px;", maxLength = "1" })
+                @Html.ValidationMessageFor(model => model.PAY_AGE_RECEIPT)
+            </td>
+
+            <td style="width: 1%;">
+                @Html.LabelFor(model => model.PAY_TRANSFER) 
+                @Html.CheckBoxFor(model => model.PAY_TRANSFER, htmlAttributes: new { id = "PAY_TRANSFER", style = "width:60px;", maxLength = "1" })
+                @Html.ValidationMessageFor(model => model.PAY_TRANSFER)
+            </td>
+        </tr>
+    </table>    
+    </div>
+    </center>
+
+            
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+        })
+    };
+</script>
+
+<script type="text/javascript">
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

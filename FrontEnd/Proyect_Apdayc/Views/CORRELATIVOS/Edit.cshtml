@@ -1,0 +1,860 @@
+﻿@model SGRDA.Entities.BEREC_NUMBERING
+
+@{
+    ViewBag.Title = "APDAYC :: CORRELATIVOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#descripcion").focus();
+            $("#btnedit").hide();
+
+
+            if ($("#W_YEAR").val() == 1) {
+                $("#chkAno").prop('checked', true);
+                $("#LON_YEAR").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+                $("#ddlPosYear").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+            }
+            else {
+                $("#chkAno").prop('checked', false);
+                $("#LON_YEAR").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+                $("#ddlPosYear").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+            }
+
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+            location.reload();
+        })
+
+        $("#chkSerie").attr("disabled", true);
+        $("#chkAno").attr("disabled", true);
+        $("#chkNmrManual").attr("disabled", true);
+        $("#TIS_N").prop("disabled", true);
+        $("#NMR_TYPE").prop("disabled", true);
+        $("#TIS_N").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        $("#NMR_TYPE").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+
+        $("#DIVIDER1").prop("disabled", true);
+        $("#DIVIDER1").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        $("#DIVIDER2").prop("disabled", true);
+        $("#DIVIDER2").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        $("#ddlPosSerial").prop("disabled", true);
+        $("#ddlPosSerial").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        $("#LON_YEAR").prop("disabled", true);
+        $("#LON_YEAR").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        $("#ddlPosYear").prop("disabled", true);
+        $("#ddlPosYear").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+
+
+        //---------------------------------
+        var vPosSerial = $("#ddlPosSerial").val();
+        //var vSerie = $("#NMR_SERIAL").val();
+        var vSerie = $("#NMR_SERIAL").val() == '0' ? '' : $("#NMR_SERIAL").val();
+        var vAño = $("#LON_YEAR option:selected").text();
+        var vD1 = $("#DIVIDER1").val();
+        var vD2 = $("#DIVIDER2").val();
+        $("#txtDiv1").val(vD1);
+        $("#txtDiv2").val(vD2);
+
+        var vposSeri = $("#ddlPosSerial").val();
+        if (vposSeri == '1') {
+            $("#sIni").text('Serie');
+            if ($('#chkSerie').is(':checked'))
+                $("#txtIni").val(vSerie);
+            else
+                $("#txtIni").val('');
+
+            $("#sFin").text('Año');
+            if ($('#chkAno').is(':checked'))
+                $("#txtFin").val(vAño);
+            else
+                $("#txtFin").val('');
+
+            $("#ddlPosYear").val(2);
+        } else {
+            $("#sIni").text('Año');
+            if ($('#chkAno').is(':checked'))
+                $("#txtIni").val(vAño);
+            else
+                $("#txtIni").val('');
+
+            $("#sFin").text('Serie');
+            if ($('#chkSerie').is(':checked'))
+                $("#txtFin").val(vSerie);
+            else
+                $("#txtFin").val('');
+            $("#ddlPosYear").val(1);
+        }
+
+
+
+
+        var fullDate = new Date();
+        var vPosSerialIndex = $("#ddlPosSerial").val();
+        if (vPosSerialIndex == 1)
+            $("#ddlPosYear").val(2);
+
+        $("#ddlPosSerial").change(function (e) {
+            var vPosSerial = $("#ddlPosSerial").val();
+            var vSerie = $("#NMR_SERIAL").val() == '0' ? '' : $("#NMR_SERIAL").val();
+            var vAño = $("#LON_YEAR option:selected").text();
+            var vD1 = $("#DIVIDER1").val();
+            var vD2 = $("#DIVIDER2").val();
+
+            $("#txtDiv1").val(vD1);
+            $("#txtDiv2").val(vD2);
+            if (vPosSerial == 1) {
+                $("#sIni").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtIni").val(vSerie);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtFin").val(vAño);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosYear").val(2);
+            } else {
+                $("#sIni").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtIni").val(vAño);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtFin").val(vSerie);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosYear").val(1);
+            }
+        });
+
+        $("#ddlPosYear").change(function (e) {
+            var vPosYear = $("#ddlPosYear").val();
+            var vSerie = $("#NMR_SERIAL").val() == '0' ? '' : $("#NMR_SERIAL").val();
+            var vAño = $("#LON_YEAR option:selected").text();
+            var vD1 = $("#DIVIDER1").val();
+            var vD2 = $("#DIVIDER2").val();
+
+            $("#txtDiv1").val(vD1);
+            $("#txtDiv2").val(vD2);
+            if (vPosYear == 2) {
+                $("#sIni").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtIni").val(vSerie);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtFin").val(vAño);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosSerial").val(1);
+            } else {
+                $("#sIni").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtIni").val(vAño);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtFin").val(vSerie);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosSerial").val(2);
+            }
+        });
+
+
+        $('#NMR_SERIAL').keyup(function (e) {
+            var vPosSerial = $("#ddlPosSerial").val();
+            var vSerie = $("#NMR_SERIAL").val() == '0' ? '' : $("#NMR_SERIAL").val();
+            var vAño = $("#LON_YEAR option:selected").text();
+            var vD1 = $("#DIVIDER1").val();
+            var vD2 = $("#DIVIDER2").val();
+
+            $("#txtDiv1").val(vD1);
+            $("#txtDiv2").val(vD2);
+            if (vPosSerial == 1) {
+                $("#sIni").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtIni").val(vSerie);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtFin").val(vAño);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosYear").val(2);
+            } else {
+                $("#sIni").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtIni").val(vAño);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtFin").val(vSerie);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosYear").val(1);
+            }
+        });
+
+        $('#DIVIDER1').change(function (e) {
+            var vD1 = $("#DIVIDER1").val();
+            $("#txtDiv1").val(vD1);
+        });
+
+        $('#DIVIDER2').change(function (e) {
+            var vD2 = $("#DIVIDER2").val();
+            $("#txtDiv2").val(vD2);
+        });
+
+        $('#LON_YEAR').change(function (e) {
+            var vPosYear = $("#ddlPosYear").val();
+            var vSerie = $("#NMR_SERIAL").val() == '0' ? '' : $("#NMR_SERIAL").val();
+            var vAño = $("#LON_YEAR option:selected").text();
+            var vD1 = $("#DIVIDER1").val();
+            var vD2 = $("#DIVIDER2").val();
+
+            $("#txtDiv1").val(vD1);
+            $("#txtDiv2").val(vD2);
+            if (vPosYear == 2) {
+                $("#sIni").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtIni").val(vSerie);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtFin").val(vAño);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosSerial").val(1);
+            } else {
+                $("#sIni").text('Año');
+                if ($('#chkAno').is(':checked'))
+                    $("#txtIni").val(vAño);
+                else
+                    $("#txtIni").val('');
+                $("#sFin").text('Serie');
+                if ($('#chkSerie').is(':checked'))
+                    $("#txtFin").val(vSerie);
+                else
+                    $("#txtFin").val('');
+                $("#ddlPosSerial").val(2);
+            }
+        });
+
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <br />
+    
+    <center>
+         <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+           <tr>
+               <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+              
+                    <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                 Correlativos - Actualización 
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">
+                        <div class="botonLink"  style="width:80px;">
+                            <a href="@Url.Action("../CORRELATIVOS/", "CORRELATIVOS")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnnuevo">
+                                <a href="@Url.Action("Create", "CORRELATIVOS")"   >   
+                                    <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnedit">
+                            <a href="#" id="btnedit" >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                    Editar
+                                    <img src="@Url.Content("~/Images/botones/editb.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <button id="btncancel"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Descartar </span> 
+                            <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                        </button> 
+
+                        &nbsp;
+                        <button id="btnSave"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Grabar </span> 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>   
+                   </div>     </td>
+                            </tr></table>
+               </td>
+           </tr>
+
+            <tr>
+                <td style="padding-left:2%">
+
+                        <table style="width:98%" border="0" >
+
+                   <tr>
+                       <td colspan="2">
+                           <label style="font-size:14px;"><strong>Datos del Numerador </strong> </label>  
+                       </td>
+                       <td colspan="2">
+                           <label style="font-size:14px;"><strong>Rango   </strong> </label>  
+                       </td>            
+                   </tr>
+                    <tr>
+                        <td >ID</td>
+                        <td>
+                                @Html.HiddenFor(model => model.NMR_ID)
+                                @Html.TextBoxFor(model => model.NMR_ID, htmlAttributes: new { id = "NMR_ID", disabled = "disabled", style = "width:40px;" })
+                        </td> 
+                        <td>Desde</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.NMR_FORM, htmlAttributes: new { id = "NMR_FORM", disabled = "disabled", style = "width:80px;", maxLength = "8", onkeydown = "return ValidateNumber(event);" })
+                        </td>           
+                    </tr>
+                    <tr>
+                        <td> Nombre       </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.NMR_NAME, htmlAttributes: new { id = "NMR_NAME", disabled = "disabled", style = "width:300px;", maxLength = "40" })
+                        </td>
+                         <td>Hasta</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.NMR_TO, htmlAttributes: new { id = "NMR_TO", disabled = "disabled", style = "width:80px;", maxLength = "8", onkeydown = "return ValidateNumber(event);" })
+                        </td>
+                    </tr>
+                   <tr>
+                       <td>Territorio</td>
+                        <td>                            
+                              @if (ViewData.ContainsKey("Lista_TipoTerritorio"))
+                              {
+                                @Html.DropDownList("Lista_TipoTerritorio", ViewData["Lista_TipoTerritorio"] as List<SelectListItem>, new { style = "width:250px", id = "TIS_N" }) 
+                              }
+                        </td>
+                        <td>Actual</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.NMR_NOW, htmlAttributes: new { id = "NMR_NOW", disabled = "disabled", style = "width:80px;", maxLength = "8", onkeydown = "return ValidateNumber(event);" })
+                        </td>
+                   </tr>
+                   <tr>
+                       <td>Tipo Doc.</td>
+                       <td>                           
+                            @if (ViewData.ContainsKey("Lista_TipoDocumento"))
+                            {
+                                @Html.DropDownList("Lista_TipoDocumento", ViewData["Lista_TipoDocumento"] as List<SelectListItem>, new { style = "width:250px", id = "NMR_TYPE" }) 
+                            }
+                       </td>
+                       <td>Numerador Manual</td>
+                        <td>
+                            <input type="checkbox" id="chkNmrManual" /> 
+                            @Html.TextBoxFor(model => model.NMR_MANUAL, htmlAttributes: new { id = "NMR_MANUAL", disabled = "disabled", style = "width:40px;", maxLength = "1" })
+                        </td>
+                   </tr>
+                   <tr>
+                       <td>
+                           Ajuste </td>
+                       <td>
+                           @Html.TextBoxFor(model => model.AJUST, htmlAttributes: new { id = "AJUST", disabled = "disabled", style = "width:40px;", maxLength = "1" })
+                       </td>
+
+                   </tr>
+
+                    <tr><td><br /></td></tr>                   
+     
+                     <tr>
+                       <td colspan="2">                    
+                               <h4> <input type="checkbox" id="chkSerie" />  <label style="font-size:14px;"><strong>Incluir Serie</strong> </label>  
+                                    @Html.TextBoxFor(model => model.W_SERIAL, htmlAttributes: new { id = "W_SERIAL", disabled = "disabled", style = "width:40px;" })
+                               </h4>          
+                       </td>
+                         <td colspan="2">                           
+                           <h4> <input type="checkbox" id="chkAno" /> <label style="font-size:14px;"><strong>Incluir Año</strong> </label>  
+                                @Html.TextBoxFor(model => model.W_YEAR, htmlAttributes: new { id = "W_YEAR", disabled = "disabled", style = "width:40px;" })
+                           </h4>                               
+                       </td>
+                   </tr>
+                    <tr>
+                        <td>Serie  </td>
+                        <td>
+                            
+                            <table>
+                                <tr>
+                                    <td>@Html.TextBoxFor(model => model.NMR_SERIAL, htmlAttributes: new { id = "NMR_SERIAL", disabled = "disabled", style = "width:60px;", maxLength = "4" })</td>
+                                    <td> &nbsp&nbsp &nbsp  <div id="divResultValidacionDes"></div></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>Formato</td>
+                        <td>
+                              @if (ViewData.ContainsKey("Lista_FormatoAno"))
+                              {
+                                @Html.DropDownList("Lista_FormatoAno", ViewData["Lista_FormatoAno"] as List<SelectListItem>, new { style = "width:70px", id = "LON_YEAR" }) 
+                              }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:90px">Posición</td>
+                        <td style="width:400px">                        
+                            @if (ViewData.ContainsKey("Lista_PosSerie"))
+                            {
+                                @Html.DropDownList("Lista_PosSerie", ViewData["Lista_PosSerie"] as List<SelectListItem>, new { style = "width:70px", id = "ddlPosSerial" }) 
+                            }
+                        </td>
+                        <td style="width:140px">
+                            Posición
+                        </td>
+                        <td>
+                            
+                                @if (ViewData.ContainsKey("Lista_PosAno"))
+                                {
+                                @Html.DropDownList("Lista_PosAno", ViewData["Lista_PosAno"] as List<SelectListItem>, new { style = "width:70px", id = "ddlPosYear" }) 
+                                }
+
+                        </td>
+                    </tr>
+                     
+                    <tr><td><br /></td></tr>
+
+                    <tr>
+                        <td colspan="2">                          
+                           
+                            <label style="font-size:14px;"><strong>Divisor</strong> </label>                           
+                       </td>    
+                         <td colspan="2" rowspan="2">
+                            <table border="0">
+                                <tr>
+                                    <td>
+                                        <label style="font-size:14px;"><strong>Simulador</strong> </label>                           
+                                    </td>
+                                </tr>
+                                <tr>                                    
+                                    <td>
+                                        <input type="text" id="txtIni"  style="width:55px" readonly/> 
+                                    
+                                        <input type="text" id="txtDiv1" style="width:25px" readonly/> 
+                                   
+                                        <input type="text" id="txtCentro" style="width:35px" value="1" readonly/> 
+                                    
+                                        <input type="text" id="txtDiv2" style="width:25px" readonly/> 
+                                    
+                                        <input type="text" id="txtFin" style="width:55px" readonly/> 
+
+                                        
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        
+                                        <label for="lblIni" id="lblIni" style="width:55px;text-align:center">
+                                            <span id="sIni">Serie</span>                                            
+                                        </label>                                        
+
+                                        <label for="lblDiv1" id="lblDiv1" style="width:25px;text-align:center">D1</label>
+
+                                        <label for="lblCentro" id="lblCentro" style="width:35px;text-align:center"></label>
+
+                                        <label for="lblDiv2" id="lblDiv2" style="width:25px;text-align:center">D2</label>
+
+                                        <label for="lblFin" id="lblFin" style="width:55px;text-align:center">
+                                            <span id="sFin">Año</span>  
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>                      
+                    </tr>
+                    <tr>
+                        <td>Divisor 1</td>
+                        <td>
+                               @if (ViewData.ContainsKey("Lista_Div1"))
+                               {
+                                @Html.DropDownList("Lista_Div1", ViewData["Lista_Div1"] as List<SelectListItem>, new { style = "width:80px", id = "DIVIDER1" }) 
+                               }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Divisor 2</td>
+                        <td>      
+                              @if (ViewData.ContainsKey("Lista_Div2"))
+                              {
+                                @Html.DropDownList("Lista_Div2", ViewData["Lista_Div2"] as List<SelectListItem>, new { style = "width:80px", id = "DIVIDER2" }) 
+                              }
+                        </td>
+                    </tr>
+                </table>
+
+                </td>
+            </tr>
+     
+
+          </table>
+                  
+    </center>   
+    
+    <br />
+    
+    
+   
+}
+
+<script>
+    $("#btnedit").click(function () {
+        //document.getElementById("TIS_N").disabled = false;
+        document.getElementById("NMR_TYPE").disabled = false;
+        document.getElementById("NMR_SERIAL").disabled = false;
+        document.getElementById("NMR_NAME").disabled = false;
+        document.getElementById("W_SERIAL").disabled = false;
+        document.getElementById("W_YEAR").disabled = false;
+        document.getElementById("NMR_FORM").disabled = false;
+        document.getElementById("NMR_TO").disabled = false;
+        document.getElementById("NMR_NOW").disabled = false;
+        document.getElementById("AJUST").disabled = false;
+        document.getElementById("ddlPosSerial").disabled = false;
+        document.getElementById("LON_YEAR").disabled = false;
+        document.getElementById("DIVIDER1").disabled = false;
+        document.getElementById("DIVIDER2").disabled = false;
+        document.getElementById("ddlPosYear").disabled = false;
+        document.getElementById("NMR_MANUAL").disabled = false;
+        $("#chkSerie").removeAttr("disabled");
+        $("#chkAno").removeAttr("disabled");
+        $("#chkNmrManual").removeAttr("disabled");
+        $("#TIS_N").prop("disabled", false);
+        $("#NMR_TYPE").prop("disabled", false);
+        $("#TIS_N").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+        $("#NMR_TYPE").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+
+        $("#DIVIDER1").prop("disabled", false);
+        $("#DIVIDER1").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+        $("#DIVIDER2").prop("disabled", false);
+        $("#DIVIDER2").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+        $("#ddlPosSerial").prop("disabled", false);
+        $("#ddlPosSerial").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+
+
+
+        $('#chkSerie').change(function () {
+            if ($('#chkSerie').is(':checked')) {
+
+                $("#NMR_SERIAL").prop('disabled', false);
+                $("#POS_SERIAL").prop('disabled', false);
+                $("#W_SERIAL").val('1');
+            } else {
+                $("#NMR_SERIAL").prop('disabled', true);
+                $("#POS_SERIAL").prop('disabled', true);
+                $("#NMR_SERIAL").val('0');
+                $("#POS_SERIAL").val('0');
+                $("#W_SERIAL").val('0');
+
+                var vPosSerial = $("#ddlPosSerial").val();
+                if (vPosSerial == 1)
+                    $("#txtIni").val('');
+                else
+                    $("#txtFin").val('');
+            }
+        });
+
+        $('#chkAno').change(function () {
+            if ($('#chkAno').is(':checked')) {
+                $("#LON_YEAR").prop('disabled', false);
+                $("#ddlPosYear").prop('disabled', false);
+                $("#W_YEAR").val('1');
+
+                var vPosYear = $("#ddlPosYear").val();
+                
+                var vAño = $("#LON_YEAR option:selected").text();
+                if (vPosYear == 2)
+                    $("#txtFin").val(vAño);
+                else
+                    $("#txtIni").val(vAño);
+            } else {
+                $("#LON_YEAR").prop('disabled', true);
+                $("#ddlPosYear").prop('disabled', true);
+                $("#LON_YEAR").val('0');
+                //$("#ddlPosYear").val('0');
+                $("#W_YEAR").val('0');
+
+                var vPosYear = $("#ddlPosYear").val();
+                if (vPosYear == 2)
+                    $("#txtFin").val('');
+                else
+                    $("#txtIni").val('');
+
+            }
+        });
+
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("NMR_TYPE").disabled = true;
+        document.getElementById("NMR_SERIAL").disabled = true;
+        document.getElementById("NMR_NAME").disabled = true;
+        document.getElementById("W_SERIAL").disabled = true;
+        document.getElementById("W_YEAR").disabled = true;
+        document.getElementById("NMR_FORM").disabled = true;
+        document.getElementById("NMR_TO").disabled = true;
+        document.getElementById("NMR_NOW").disabled = true;
+        document.getElementById("AJUST").disabled = true;
+        document.getElementById("POS_SERIAL").disabled = true;
+        document.getElementById("LON_YEAR").disabled = true;
+        document.getElementById("DIVIDER1").disabled = true;
+        document.getElementById("DIVIDER2").disabled = true;
+        $("#chkSerie").attr("disabled", true);
+        $("#chkAno").attr("disabled", true);
+        $("#chkNmrManual").attr("disabled", true);
+        $("#TIS_N").prop("disabled", true);
+        $("#NMR_TYPE").prop("disabled", true);
+        $("#TIS_N").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        $("#NMR_TYPE").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+    })
+</script>
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+
+    if ('@TempData["flag"]' == "1") {
+        $("#btnNeo").hide();
+        $("#btnnuevo").hide();
+        $("#btnedit").hide();
+        $("#W_YEAR").hide();
+        $("#W_SERIAL").hide();
+        alert("Grabado correctamente.");
+        location.href = "../"
+    };
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var K_MENSAJE = {
+        DuplicadoDescripcion: "La Serie ya existe, ingrese uno nuevo."
+    };
+
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+
+    $("#W_SERIAL").hide();
+    $("#W_YEAR").hide();
+    $("#NMR_MANUAL").hide();
+
+    if ($("#W_SERIAL").val() == 1)
+        $("#chkSerie").prop('checked', true);
+    else
+        $("#chkSerie").prop('checked', false);
+
+
+    if ($("#W_YEAR").val() == 1) {
+        $("#chkAno").prop('checked', true);
+    }
+    else {
+        $("#chkAno").prop('checked', false);
+    }
+
+    if ($("#NMR_MANUAL").val() == 1)
+        $("#chkNmrManual").prop('checked', true);
+    else
+        $("#chkNmrManual").prop('checked', false);
+
+
+    $("#chkNmrManual").change(function () {
+        if ($('#chkNmrManual').is(':checked')) {
+            $("#NMR_MANUAL").val('1');
+        } else {
+            $("#NMR_MANUAL").val('0');
+        }
+    });
+
+    $("#chkSerie").change(function () {
+        if ($('#chkSerie').is(':checked')) {
+            $("#NMR_SERIAL").prop("disabled", false);
+            $("#NMR_SERIAL").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+            $("#ddlPosSerial").prop("disabled", false);
+            $("#ddlPosSerial").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+            $("#W_SERIAL").val('1');
+        } else {
+            $("#NMR_SERIAL").prop("disabled", true);
+            $("#NMR_SERIAL").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+            $("#ddlPosSerial").prop("disabled", true);
+            $("#ddlPosSerial").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+            $("#W_SERIAL").val('0');
+        }
+    });
+
+    $("#chkAno").change(function () {
+        if ($('#chkAno').is(':checked')) {
+            $("#LON_YEAR").prop("disabled", true);
+            $("#LON_YEAR").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+            $("#ddlPosYear").prop("disabled", true);
+            $("#ddlPosYear").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'white');
+            $("#W_YEAR").val('1');
+        } else {
+            $("#LON_YEAR").prop("disabled", true);
+            $("#LON_YEAR").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+            $("#ddlPosYear").prop("disabled", true);
+            $("#ddlPosYear").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+            $("#W_YEAR").val('0');
+        }
+    });
+
+
+
+    $("#btnSave").on("click", function () {
+        var estadoDuplicado = validarDuplicado();
+        if (!estadoDuplicado) {
+            msgErrorDiv("divResultValidacionDes", "");
+            return true;
+        } else {
+            msgErrorDiv("divResultValidacionDes", K_MENSAJE.DuplicadoDescripcion);
+            return false;
+        }
+
+    });
+
+    //-------- FUNCIONES ------------------
+    function validarDuplicado() {
+        var estado = false;
+        var correlativo = {
+            NMR_ID: $("#NMR_ID").val(),
+            NMR_TYPE: $("#NMR_TYPE").val(),
+            NMR_SERIAL: $("#NMR_SERIAL").val()
+        };
+
+        $.ajax({
+            url: '../ObtenerXDescripcion',
+            //url: '../Correlativos/ObtenerXDescripcion',
+            type: 'POST',
+            dataType: 'JSON',
+            data: correlativo,
+            async: false,
+            success: function (response) {
+                var dato = response;
+                if (dato.result == 1) {
+                    estado = true;
+                } else {
+                    estado = false;
+                }
+            }
+            //,
+            //error: function (xhr, ajaxOptions, thrownError) {
+            //    alert(xhr.status);
+            //    alert(thrownError);
+            //}
+        });
+        return estado;
+    }
+
+    function msgErrorDiv(divMsg, message, control) {
+
+        if (message == "") {
+            $('#' + divMsg).html('<span style="color:red;"></span>');
+            if (control != undefined) {
+
+                if (control == "grid" || control == "grid2") {
+                    $("#" + control).css({ 'border': '1px solid transparent' });
+                } else {
+                    $("#" + control).css({ 'border': '1px solid gray' });
+                }
+            }
+        } else {
+            $('#' + divMsg).html('&nbsp;<span style="color:red; font-weight:bold;">' + message + '</span>');
+            if (control != undefined) {
+                $("#" + control).css({ 'border': '1px solid red' });
+            }
+        }
+    }
+
+</script>

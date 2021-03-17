@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: DIVISIONES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Divisiones</title>
+
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.divisiones.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <table border="0" style="width: 100%">
+            <tr>
+                <td>
+                    <div id="divTitulo">Divisiones</div>
+                </td>
+                <br />
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table style="width: 98%" id="FiltroTabla" border="0">
+                        <tr>
+                            <td style="padding-left: 2%">Tipo :
+                                &nbsp
+                                <select id="ddlDivision"></select>
+                            </td>
+                            <td>Ingrese División :
+                                &nbsp
+                                <input type="text" id="txtNombre" style="text-transform:uppercase;" />
+                            </td>
+                            <td>Estado :
+                                &nbsp
+                                <select id="dllEstado"> </select>
+                            </td>
+
+                            <td style="text-align: right">
+
+                                <button id='btnBuscar' class="boton" name='btnBuscar'>
+                                    Buscar 
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px" /></button>
+                                &nbsp;&nbsp;
+
+                            <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                                Limpiar 
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width=20px" /></button>
+
+                            </td>
+                        </tr>
+                    </table>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td style='height: 40px'>
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo nivel de agente." title="Registrar nuevo nivel de agente." id="btnNuevo"/>&nbsp;
+                        <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de nivel de agente." title="Inactivar datos de nivek de agente."  id="btnEliminar"/>
+                        &nbsp; 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

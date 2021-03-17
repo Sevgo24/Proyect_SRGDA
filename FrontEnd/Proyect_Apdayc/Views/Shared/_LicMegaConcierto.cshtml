@@ -1,0 +1,140 @@
+﻿ <div id="divPreLiquid">
+   <table style=" width:100%;" border="0" cellspacing="0" cellpadding="0" >        
+          <tr>
+               <td  class="cssToolBarTab">
+                  <div class="cssTabBtnVer verLocalidades" title="ver localidades asociadas a la licencia."><div>Ver Localidades</div></div>
+                  <div class="cssTabBtnAgregar addLocalidades" title="agregar localidad a la licencia."><div>Agregar Localidad</div></div>
+                   
+                  <div style=" float:right">
+                    <button id='btnPreLiquidacion'  class="boton"  title="Preliquidar con un Aforo Seleccionado">PreliQuidar</button>  
+                    <button id='btnLiquidacion'     class="boton"  title="Liquidar con un Aforo Seleccionado">Liquidar</button>  
+                  </div>
+               </td>
+          </tr>
+          <tr>
+              <td> 
+                  <div id="gridLocalidades"></div>
+              </td>
+
+          </tr>
+
+          <tr><td></td></tr>
+
+          <tr>
+
+              <td  class="cssToolBarTab">
+                  <div class="cssTabBtnVer verLocalidadAforo" title="ver aforos asociadas a la licencia."><div>Ver Aforos</div></div>
+                  @*<div class="cssTabBtnAgregar addLocalidadAforo" title="agregar aforo a la licencia."><div>Agregar Aforo</div></div>*@
+               </td>
+
+              
+          </tr>
+            <tr>
+
+              <td> 
+                  <div id="gridAforo"></div>
+              </td>
+          </tr>  
+@*                  <tr>
+              <td style='cursor:pointer;text-align:right;'>
+
+                 <button id='btnPreLiquidacion'  class="boton"  title="Ut">PreliQuidar</button>  
+              </td>
+          </tr>   *@    
+            
+          <tr><td></td></tr><tr><td></td></tr>
+
+@*          <tr>
+               <td  class="cssToolBarTab">
+                  <div class="cssTabBtnVer verMatriz" title="ver matriz."><div>Ver Matriz</div></div>
+                  <div class="cssTabBtnAgregar " id='btnMatriz' title="registrar matriz." style="display:none;"><div>Registrar Matriz</div></div>
+            </td>              
+          </tr>*@
+
+           <tr>
+              <td> 
+                  <div title="Localidades" id="divLocalidadesMatriz">                      
+                      <div id="gridMatriz"></div>
+                      <div id="avisoLocalidades" style=" width: 100% ; vertical-align:  middle; "></div>
+                  </div>
+              </td>
+          </tr>
+      </table>  
+    <div title="MegaConcierto" id="MvPreLiquidar">
+    <table width='100%' border='0' id='PreLiquidTablaPop'>
+    <tr>
+      <td>PreLiquidar</td>
+     </tr>
+      <tr>
+      <td>Seleccione Tipo de Aforo</td>
+          <td>
+          <select id="ddllistaaforo">
+          </td>
+     </tr>
+     <tr>
+     <td>Monto a Preliquidar</td>
+     <td><input type="text" id="txtmontopreliquid" value="0" readonly="true"></td>
+     </tr>
+     <tr>
+     <td><input type="button" value="GRABAR" id="btngrabarpreliqui"  class="boton"  title="Ut"></td>
+     <td><input type="button" value="CANCELAR" id="btncancelarpreliqui"  class="boton"  title="Ut"></td>
+     </tr>
+
+        <tr>
+     <td colspan="2">
+     <center><div id="avisoTabPreliquid"></div></center>
+     </td>
+            </tr>
+
+
+        <tr>
+
+            <td>AFORO SELECCIONADO PARA LA PRELIQUIDACION :</td><td><input type="text" id="lblDescripcionpreliquid" readonly="true"></td>
+       </tr>
+       <tr>
+            <td>TOTAL CALCULADO DE AFORO : </td><td><input type="text" id="lblcalculopreliquid" readonly="true"></td>
+
+        </tr>
+    </table>
+    </div>
+     @* liquidar *@
+    <div title="MegaConcierto" id="MvLiquidar">
+    <table width='100%' border='0' id='LiquidTablaPop'>
+    <tr>
+      <td>PreLiquidar</td>
+     </tr>
+      <tr>
+      <td>Seleccione Tipo de Aforo</td>
+          <td>
+          <select id="ddllistaaforoLiquid">
+          </td>
+     </tr>
+     <tr>
+     <td>Monto a Preliquidar</td>
+     <td><input type="text" id="txtmontoliquid" value="0" readonly="true"></td>
+     </tr>
+     <tr>
+     <td><input type="button" value="GRABAR" id="btngrabarliqui"  class="boton"  title="Ut"></td>
+     <td><input type="button" value="CANCELAR" id="btncancelarliqui"  class="boton"  title="Ut"></td>
+     </tr>
+
+        <tr>
+     <td colspan="2">
+     <center><div id="avisoTabLiquid"></div></center>
+     </td>
+            </tr>
+
+
+        <tr>
+
+            <td>AFORO SELECCIONADO PARA LA PRELIQUIDACION :</td><td><input type="text" id="lblDescripcionliquid" readonly="true"></td>
+       </tr>
+       <tr>
+            <td>TOTAL CALCULADO DE AFORO : </td><td><input type="text" id="lblcalculoliquid" readonly="true"></td>
+
+        </tr>
+    </table>
+    </div>
+
+    
+     </div>

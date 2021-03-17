@@ -1,0 +1,233 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: RECAUDACIÓN - NUEVO PAGO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NUEVO PAGO</title>
+
+    @*<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.recibo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/recaudacion.cobros.pago.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/detalle.forma.pago.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarCorrelativo"></div>
+        <div id="ContenedormvDetalleFormaPago"></div>
+        <div id="ContenedormvBuscarSocio"></div>
+
+        <table width='100%' border='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+                    <div id='divTitulo'>NUEVO PAGO</div>
+                    <input type="hidden" id="hidOpcionEdit" />
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <center>
+                    <table width='98%' border='0' class="contenedor" id="divCabeceraPago">
+                        <tr>
+                            <td style="width: 10%">Usuario de Derecho :</td>                            
+                            <td style="width:20%">
+                                <table style=" width:100%;" border="0">
+                                    <tr>
+                                        <td style="width:2%">
+                                            <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Agente"/>
+                                            <input type="hidden" id="hidRecibo">
+                                            <input type="hidden" id="hidCodigoBPS"> 
+                                            <input type="hidden" id="hidTotal" value="0"/>   
+                                            <input type="hidden" id="hidImporte"/>   
+                                        </td>
+                                        <td style="width:50%">
+                                            <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio">Seleccione</label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                            <td style="width: 3%; text-align:right">Serie :</td>
+                            <td colspan="9">
+                                <table border="0" style="border-collapse: collapse;">
+                                <tr>
+                                    <td>
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor: pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie"/>
+                                        <input type="hidden" id="hidCorrelativo" value="0"/> 
+                                        <input type="hidden" id="hidSerie" value="0"/> 
+                                        <input type="hidden" id="hidActual" value="0"/>   
+                                    </td>
+                                    <td colspan="6">
+                                        <label id="lbCorrelativo" style="cursor: pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie">Seleccione</label>
+                                    </td>
+                                    <td>
+                                        <label id="lbl">-</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtCorrelativo" readonly="true" class="requerido" style="width:40px; text-align:center"/>
+                                    </td>
+                                </tr>
+                                </table>
+                            </td>
+
+                           
+                            <td style="text-align:right; width:60%">
+                                <button id='btnGrabarRecibo' class="boton" name='btnGrabarRecibo'> Grabar Recibo
+                                <img src="@Url.Content("~/Images/botones/2save.png")" width="16px" /></button>
+                                &nbsp;
+                                <button id='btnDescartar' class="boton" name='btnDescartar'>Volver 
+                                <img src="@Url.Content("~/Images/botones/back.png")" width="16px" /></button> 
+                            </td>
+                        </tr>                      
+
+                        <tr>
+                            <td>Importe Recibo:</td>
+                            <td style="width:14%">
+                                <input type="text" id="txtImporte" class="requerido" style="width:20%; text-align:right"/>
+                            </td>    
+                        </tr>
+
+                        <tr>
+                            <td style='height: 30px; text-align:center' colspan="20">
+                                <center>
+					                    <div id='divMensajeError' style=" width: 100% ; vertical-align:  middle; "></div>
+			                    </center>
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </tr>
+
+            <center>
+                <table width='99%' border='0'>
+                    <tr>
+                        <td>
+                            <center>
+                                <table border="0" style="width:100%">
+                                    <tr id="trAgregar">
+                                        <td style="width:1%"> <img src="../Images/botones/add.png" class="addFormaPago" height="30"> </td>
+                                        <td> <label id="btnMetodoPago" style="cursor:pointer;" class="addFormaPago"> Agregar método de pago</label> </td>
+                                    </tr>
+                                </table>
+                            </center>        
+
+                            @*<center>
+                                <table border=0  style=" width:99%;" border="1" class="contenedor" id="tbMetodoPago">
+                             
+                                                <tr>
+                                                <td style="width:80px">Forma de pago </td> <td style="width:20%"><select id="ddlFormaPago" style="width: 190px" class="requeridoLst"/></td>
+                                                <td style="width:40px">Valor </td> <td style="width:55%"><input type="text" id="txtValor" style="width:60px" class="requerido"></td>
+
+                                                <td style="width:2%"><a href=# onclick="return GrabarRecibo({});"><img id="btnAplicarFactura" src="../Images/botones/finalizar.png" class="AplicarFactura" width=20px border=0></a></td>
+                                                <td style="width:7%"> <lable id="lblRecibo" style="cursor:pointer; text-align:right" class="AplicarFactura">Aplicar Facturas</lable> </td> 
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="width:80px">Banco </td> <td><select id="ddlBanco" style="width: 190px" /></td>
+                                                    <td style="width:40px">Sucursal </td> <td><select id="ddlSucursal" style="width: 190px" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:80px">Fecha depósito </td> <td><input type="text" id="txtFecha" class="requerido"></td>
+                                                    <td style="width:40px">Referencia </td> <td><input type="text" id="txtReferencia" style="width:350px" maxlength="30" ></td>
+                                                </tr>   
+
+                                                <tr>
+                                                    <td style="width:80px">Cuenta </td> <td><select id="ddlCuenta" style="width: 190px" /></td>
+                                                </tr>
+                                       
+                                        <center>
+                                            <table border="0" style="width:100%">
+                                                <tr id="trAgregar">
+                                                    <td style="width:1%"> <img src="../Images/botones/add.png" class="addFormaPago" height="30"> </td>
+                                                    <td> <lable id="lblAgregar" style="cursor:pointer;" class="addFormaPago"> Agregar método de pago</lable> </td>
+                                                </tr>
+                                            </table>
+                                        </center>
+                                    </table>
+                            </center>*@
+                        </td>
+                    </tr>
+                </table>
+            </center>
+
+        </table>
+
+        <center>
+            <table width='98%' border='0'>
+                <tr>
+                    <td colspan="6">
+                        <div id="gridFormaPago"></div>
+                    </td>
+                </tr>
+                <tr>
+                    @*<td style='height: 40px; vertical-align: bottom;'>
+                        <div style="float: right;">
+                            <img src="@Url.Content("~/Images/botones/finalizar.png")" alt="Aplicar recibo a factura." title="Aplicar recibo a factura." id="btnAplicarFactura" class="AplicarFactura" style="cursor:pointer; width:20px"/>                    
+                        </div>
+                    </td>
+                    <td style="width:7%"> <lable id="lblRecibo" style="cursor:pointer; text-align:right" class="AplicarFactura">Aplicar Facturas</lable> </td> *@
+                                        
+                   @* <td style="text-align:right">
+                        <button id='btnAplicarFactura' class="boton" name='btnAplicarFactura'>Aplicar Factura 
+                        <img src="@Url.Content("~/Images/botones/finalizar.png")" style="width:16px" /></button> 
+                    </td> *@         
+                </tr>
+            </table>
+        </center>
+        <br />
+        <br />
+        <br />
+        <center>
+                <table width='98%' border='0'>
+                    <tr>
+                        <td>
+                            <label>FACTURAS A APLICAR</label>
+                        </td>
+                        <td style="text-align:right; width:80%">
+                            <button id='btnRegistrarPago' class="boton" name='btnRegistrarPago'> Registrar Pago                            
+                            <img src="@Url.Content("~/Images/botones/2save.png")" width="16px" /></button>                               
+                        </td>
+                    </tr>
+                    <tr>                        
+                        <td colspan="6">
+                            <center>
+                                <div id="gridFactura" class="contenedor"></div>                                
+                            </center>
+                        </td>                        
+                    </tr>                   
+                </table>
+
+                <table width='98%' border='0' id="tablaTotal">
+                     <tr>
+                        <td style="text-align:right; width:77%">Total :</td>
+                        <td style="text-align:left; width:10% ; padding-left:15px" id="RowTotal"><input type="text" id="txtTotal" style="width:61%; text-align:right; background-color:InactiveBorder" readonly="true"/> </td>
+                    </tr>
+                </table>
+        </center>
+    </div>
+</body>
+</html>

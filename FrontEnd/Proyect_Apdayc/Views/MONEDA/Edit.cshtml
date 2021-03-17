@@ -1,0 +1,270 @@
+﻿@model SGRDA.Entities.BEREF_CURRENCY
+
+@{
+    ViewBag.Title = "APDAYC :: MONEDAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#btnNeo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#descripcion").focus();
+            $("#btnedit").hide();
+
+            return false;
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#btnNeo").show();
+            
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            location.reload();
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+          
+        @*<div class="popUp-content">
+            <br />
+            <div>*@
+               @* <a href="@Url.Action("Create", "MONEDA")" id="btnnuevo" class="btn btn-success">Nuevo</a>*@
+                @*<button id="btnSave" class="btn btn-success">Guardar</button>*@
+                @*<a href="#" id="btncancel" class="btn btn-success">Descartar</a>*@
+                @*<a href="#" id="btnedit" class="btn btn-success">Editar</a>*@
+           @* </div>
+            <br /> 
+
+          *@
+    <br />
+    <center>
+    <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+
+              <tr>
+                <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+                     <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                 Monedas - Nuevo
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">
+                          <div class="botonLink"  style="width:80px;">
+                        <a href="@Url.Action("../MONEDA/","MONEDA")"   >
+                            <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                            <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                        </a>
+                            </div>
+                        &nbsp;
+                        <div class="botonLink"  style="width:80px;" id="btnNeo">
+                            <a href="@Url.Action("Create", "MONEDA")"  id="btnnuevo"  >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Nuevo
+                                    <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+                         &nbsp;
+                              <button id="btnedit"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Editar </span> 
+                                  <img src="@Url.Content("~/Images/botones/editb.png")" width="24" />
+                               </button>
+                         &nbsp;
+                             <button id="btncancel"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Descartar </span> 
+                                  <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                               </button> 
+                         
+                        
+                             &nbsp;
+                               <button id="btnSave"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Grabar </span> 
+                                  <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                               </button> 
+
+
+                        </div>    
+                </td>
+                </tr>
+                </table>
+                </td>
+
+            </tr>
+
+                <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+            <tr>
+            <td class="editor-label">   
+                @Html.HiddenFor(model => model.CUR_ALPHA, htmlAttributes: new { id = "CUR_ALPHA" })
+            
+                @Html.LabelFor(model => model.CUR_DESC)
+            </td>
+            <td class="editor-field">
+                @*@Html.TextAreaFor(model => model.CUR_DESC, htmlAttributes: new { id = "CUR_DESC", disabled = "disabled", TextMode = System.Web.UI.WebControls.TextBoxMode.MultiLine, cols = "20", rows = "2", maxLength = "40" })*@
+                @Html.TextBoxFor(model => model.CUR_DESC, htmlAttributes: new { id = "CUR_DESC", disabled = "disabled", style = "width:250px;", maxLength = "40" })
+                @Html.ValidationMessageFor(model => model.CUR_DESC)
+            </td>
+
+            <td class="editor-label">
+                @Html.LabelFor(model => model.CUR_NUM)
+            </td>
+            <td class="editor-field">
+                @Html.TextBoxFor(model => model.CUR_NUM, htmlAttributes: new { id = "CUR_NUM", disabled = "disabled", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.CUR_NUM)
+            </td>
+            </tr>
+            <tr>
+            <td class="editor-label">
+                @Html.LabelFor(model => model.UNIT_MAJOR)
+            </td>
+            <td class="editor-field">
+                @Html.TextBoxFor(model => model.UNIT_MAJOR, htmlAttributes: new { id = "UNIT_MAJOR", disabled = "disabled", style = "width:250px;", maxLength = "40" })
+                @Html.ValidationMessageFor(model => model.UNIT_MAJOR)
+            </td>
+
+            <td class="editor-label">
+                @Html.LabelFor(model => model.UNIT_MINOR)
+            </td>
+            <td class="editor-field">
+                @Html.TextBoxFor(model => model.UNIT_MINOR, htmlAttributes: new { id = "UNIT_MINOR", disabled = "disabled",style = "width:250px;" , maxLength = "40" })
+                @Html.ValidationMessageFor(model => model.UNIT_MINOR)
+            </td>
+           </tr>
+            <tr>
+            <td class="editor-label">
+                @Html.LabelFor(model => model.DECIMALS)
+            </td>
+            <td class="editor-field">
+                @Html.TextBoxFor(model => model.DECIMALS, htmlAttributes: new { id = "DECIMALS", disabled = "disabled", style = "width:40;", onkeydown = "return ValidateNumber(event);", maxLength = "2" })
+                @Html.ValidationMessageFor(model => model.DECIMALS)
+            </td>
+
+            <td class="editor-label">
+                @Html.LabelFor(model => model.FORMAT)
+            </td>
+            <td class="editor-field">
+                @Html.TextBoxFor(model => model.FORMAT, htmlAttributes: new { id = "FORMAT", disabled = "disabled", style = "width:100px;", maxLength = "15" })
+                @Html.ValidationMessageFor(model => model.FORMAT)
+            </td>
+                </tr>
+
+     <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+          </table>
+        </center>
+        @*</div>*@
+    @*</fieldset>*@
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("CUR_DESC").disabled = false;
+        document.getElementById("CUR_NUM").disabled = false;
+        document.getElementById("UNIT_MAJOR").disabled = false;
+        document.getElementById("UNIT_MINOR").disabled = false;
+        document.getElementById("DECIMALS").disabled = false;
+        document.getElementById("FORMAT").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("CUR_DESC").disabled = true;
+        document.getElementById("CUR_NUM").disabled = true;
+        document.getElementById("UNIT_MAJOR").disabled = true;
+        document.getElementById("UNIT_MINOR").disabled = true;
+        document.getElementById("DECIMALS").disabled = true;
+        document.getElementById("FORMAT").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">
+    if ('@TempData["flag"]' == "1") {
+        $("#btnedit").hide();
+        $("#btnNeo").hide();
+        $("#btnnuevo").hide();
+        $("#DECON_ID").css('color', '#333333').css('border', '1px solid gray').css('background-color', 'rgb(235, 235, 228)');
+        alert("Grabado corectamente.");
+        location.href = "../";
+    } else if ('@TempData["flag"]' == "0")
+    {
+        if ('@TempData["msg"]' != "") {
+            $(function () {
+                $("#message").show();
+                $(".alert-link").show();
+            })
+        };
+
+    }
+
+</script>
+
+<script type="text/javascript">
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

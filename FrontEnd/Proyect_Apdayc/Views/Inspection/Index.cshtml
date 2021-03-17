@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: INSPECCIÓN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Consulta de Inspeccion</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.inspection.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.establecimiento.js")"></script>   
+    <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarSocio"></div>
+        <div id="ContenedormvEstablecimiento"></div>
+        <div id="ContenedormvBuscarSocios"></div>
+        <div id="ContenedormvBuscarDireccion"></div>
+
+        <table style="width: 100%">
+            <tr>
+                <td style="vertical-align: bottom;">
+
+                    <div id='divTitulo'>Inspecciones de establecimiento</div>
+                    <input id="hidOpcionEdit" type="hidden" />
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <hr>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTabla'>
+                            <tr>
+                                <td>Código</td>
+                                <td>                                    
+                                    <input type="hidden" id="hidCodigoBPS">
+                                    <input type="hidden" id="hidCodigoEST">                                    
+                                    <input type="text" id="txtCodigo" maxlength="40" style="width:100px"/>                                   
+                                
+                                <td>Establecimiento</td>
+                                <td>                                   
+                                    @*<input type="text" id="txtEstablecimiento" style="width: 544px">*@  
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" alt="Buscar establecimiento." title="Buscar." id="btnBuscarEstablecimiento"/>   
+                                    <label id="lblNombreestablecimiento"></label>         
+                                </td>                                                               
+                            </tr>
+                            <tr>
+                                <td>Tipo</td>
+                                 <td>                                    
+                                    <select id="ddlTipoestablecimiento" style="width: 200px"></select>  
+                                </td>
+
+                                <td>Subtipo</td>
+                                <td>
+                                    <select id="ddlSubtipoestablecimiento" style="width: 200px"></select>
+                                 </td>
+                            </tr>  
+
+                            <tr>
+                                <td>Socio</td>
+                                <td>                                    
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" alt="Buscar usuario." title="Buscar." id="btnBuscarBS"/>
+                                    <label id="lblsocio"></label>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Tipo División<td>
+                                    <select id="ddlDivisionTipo" style="width: 200px"></select>                                       
+                                </td>
+
+                                <td>División</td>
+                                <td>                                     
+                                    <select id="ddlDivision" style="width: 200px"></select>
+                                </td>
+
+                                <td colspan="5" style="text-align:right">
+                                    <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                                    &nbsp;&nbsp;
+                                <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button>                                             
+                                </td> 
+                            </tr>  
+
+                            <tr>
+                                
+                            </tr>                                                                 
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 40px; vertical-align: bottom;'>
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva inspeccion." title="Registrar nueva inspeccion." id="btnNuevo"/>&nbsp;
+                                        <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de inspeccion." title="Inactivar datos de inspeccions."  id="btnEliminar"/>
+                        &nbsp; 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

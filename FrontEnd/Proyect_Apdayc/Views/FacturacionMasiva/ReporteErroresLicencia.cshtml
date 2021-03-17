@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Recaudación - Reporte Errores de la Facturación Masiva";
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte Errores de la Facturación Masiva</title>
+    
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacionmasiva.imprimir.js")"></script>
+        <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+      <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+
+
+    <script src="~/Scripts/jquery.jstree.js"></script>
+    <style>
+        #tblFacturaMasiva {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+
+    </style>
+</head>
+<body>
+       <div id="divTree">
+        <center>
+            <table style="width: 95%" >
+
+            <tr>
+                <td style="text-align: center">
+                    <img src="~/Images/botones/apdayLogo.jpg" width="70px" height="90px" />
+                </td>
+                <td style="text-align: center">
+                    <div><h3>Reporte Errores de la Facturación Masiva</h3></div>
+                </td>
+                <td>
+                    <div><h5> @ViewBag.Fecha</h5></div>
+                    <div><h5>@ViewBag.Hora</h5></div>
+                    <div><h5>@ViewBag.Usuario</h5></div>
+                    
+                </td>
+            </tr>           
+           
+            <tr>
+                <td colspan="3">
+                    <hr noshade="noshade" />
+                </td>
+            </tr>
+
+              <tr>
+                  <td colspan="2">
+                      <div id="treeview"></div>
+                  </td>
+                  <td style="vertical-align:top; text-align:left">
+                                   <button id='btnImprimir'  class="boton" name='btnImprimir'>Imprimir 
+                                        <img src="@Url.Content("~/Images/botones/print.png")" width="16px" />
+                                   </button>                        
+                  </td>
+              </tr>      
+                <tr>
+
+                    <td colspan="10">
+                        <div id="grid"></div>
+
+                    </td>
+                </tr>
+        </table>
+        </center>
+    </div>
+
+
+</body>
+</html>

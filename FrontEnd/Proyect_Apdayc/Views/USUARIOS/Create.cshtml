@@ -1,0 +1,123 @@
+﻿@model SGRDA.Entities.USUARIOS
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Style/Style.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+    });
+</script>
+
+<style type="text/css">
+textarea 
+{   
+    resize: none;
+}
+</style>
+  
+@using (Html.BeginForm("Create", "USUARIOS", FormMethod.Post))
+     { 
+          @Html.AntiForgeryToken()
+    
+    
+            <fieldset>
+  
+            <legend id="legend">@Html.ActionLink("USUARIOS", "Index",new{}, new { style="text-decoration:none;"})</legend>
+                 <button id="btnSave" class="btn btn-primary">Guardar</button>
+                 <a href="@Url.Action("Index", "USUARIOS")" id="btncancel" class="btn btn-primary">Descartar</a><br />
+    
+                  <br />
+
+                     <div class="editor-label">
+                        @Html.LabelFor(p => p.USUA_VNOMBRE_USUARIO)<br />
+                        @Html.TextBoxFor(p => p.USUA_VNOMBRE_USUARIO)
+                        @Html.ValidationMessageFor(model => model.USUA_VNOMBRE_USUARIO)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.USUA_VAPELLIDO_PATERNO_USUARIO)<br />
+                        @Html.TextBoxFor(p => p.USUA_VAPELLIDO_PATERNO_USUARIO)
+                        @Html.ValidationMessageFor(model => model.USUA_VAPELLIDO_PATERNO_USUARIO)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.USUA_VAPELLIDO_MATERNO_USUARIO)<br />
+                        @Html.TextBoxFor(p => p.USUA_VAPELLIDO_MATERNO_USUARIO)
+                        @Html.ValidationMessageFor(model => model.USUA_VAPELLIDO_MATERNO_USUARIO)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.USUA_VUSUARIO_RED_USUARIO)<br />
+                        @Html.TextBoxFor(p => p.USUA_VUSUARIO_RED_USUARIO)
+                        @Html.ValidationMessageFor(model => model.USUA_VUSUARIO_RED_USUARIO)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.USUA_VPASSWORD_USUARIO)<br />
+                        @Html.TextBoxFor(p => p.USUA_VPASSWORD_USUARIO)
+                        @Html.ValidationMessageFor(model => model.USUA_VPASSWORD_USUARIO)
+                    </div>
+                    
+                    <div class="editor-label">
+                       @if (ViewData.ContainsKey("Lista_Roles"))
+                       { 
+                        @Html.LabelFor(model => model.ROL_ICODIGO_ROL)<br />
+                        @Html.DropDownList("Lista_Roles", (IEnumerable<SelectListItem>)ViewData["Lista_Roles"], new { style = "width:210px", id = "cb1" })
+                        @Html.ValidationMessageFor(model => model.ROL_ICODIGO_ROL)
+                       }
+                    </div>
+
+                    <div class="editor-label">
+                        <label for="cboRol">Activo</label><br />
+                        <select name="cboRol" id="cboRol">
+                            <option value="true">Si</option>
+				            <option value="false">No</option>
+                        </select><br />
+                    </div>
+
+           </fieldset>
+                <br />
+                <div id="message1">
+            <div class="@TempData["class1"]">
+              @Html.ValidationSummary()
+            </div>
+            </div>
+     }
+
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+           
+
+        })
+    };
+</script>
+
+<br />
+
+<div id="message">
+<div class="@TempData["class"]">
+  <a id="lnk" href="#" class="alert-link">OK! </a> @TempData["msg"]
+</div>
+</div>
+
+

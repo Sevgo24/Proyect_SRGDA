@@ -1,0 +1,177 @@
+﻿@model SGRDA.Entities.BEREC_MOD_GROUP
+
+@{
+    ViewBag.Title = "APDAYC :: GRUPO DE MODALIDAD DE USO";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+<script src="@Url.Content("~/Scripts/base/modBusquedaGrupoModalidad.nuevo.js")"></script>
+
+
+@*<script>
+
+</script>*@
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "GRUPOMODALIDAD", FormMethod.Post))
+{     
+    @Html.AntiForgeryToken()
+
+    
+    <br />
+    
+    <center>
+    <table border="0" style="width: 98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+        <tr>
+            <td colspan="2" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+               
+                  <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                          Grupo Modalidad- Nuevo
+    
+                                     </div>
+
+                            </td>
+                            <td> 
+                 <div style="float: right;">
+                    <div class="botonLink" style="width: 80px;">
+                        <a href="@Url.Action("../GRUPOMODALIDAD/", "GRUPOMODALIDAD")"   >
+                            <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                            </div>
+                        </a>
+                    </div>
+                    &nbsp;
+                        <button id="btnGrabar" class="boton">
+                            <span style="color: #000; font-weight: 200;">Grabar </span>
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>
+                </div>
+                                  </td>
+                            </tr></table>
+            </td>
+        </tr>
+
+        <tr><td><br /></td></tr>
+@*        <tr>            
+            <td style="width:13% ;padding-left:2% " >
+                @Html.LabelFor(p => p.MOG_ID) :
+            </td>
+            <td>               
+                
+                @Html.TextBoxFor(p => p.MOG_ID, htmlAttributes: new { id = "MOG_ID", style = "width:60px;", maxlength = "3" })
+            </td>
+        </tr>*@
+        <tr>
+            <td> ID :</td>
+            <td><input type='text' id='txtIdMod'  class="requerido"  name='txtIdMod' maxlength="3"/></td>
+        </tr>
+        <tr>  <td> Descripción :</td>
+              <td><input type='text' id='txtDescripcion'   class="requerido"  name='txtDescripcion' maxlength="40" size="50" /></td>
+        </tr>
+@*        <tr>            
+            <td style="width:13% ;padding-left:2% " >
+                @Html.LabelFor(p => p.MOG_DESC) :
+            </td>
+            <td>               
+                
+                @Html.TextBoxFor(p => p.MOG_DESC , htmlAttributes: new { id = "MOG_DESC", style = "width:200px;", maxlength = "40" })
+            </td>
+        </tr>  *@
+
+        <tr><td><br /></td></tr>
+
+        <tr>
+            <td  colspan="3" >
+                <div id="tabs">
+                        <ul>
+                        <li><a href="#tabs-1">Formato de las Facturas</a></li>
+                        </ul>
+                        <div id="tabs-1">
+                            <table style=" width:100%;" border="0">
+                            <tr>
+                                <td colspan="4">
+                                            <div><img src="~/Images/botones/add.png" class="addFormato" height="30"></div>
+                                        <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addFormato">Agregar Formato</a></div>
+                                    <hr />                                                  
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td colspan="4"> 
+                                        <div id="gridFormato"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </center>
+    
+        <div title="Agregar Formato de Factura" id="mvFormato">
+
+        <table width='100%' border='0' id='FiltroTablaPopDet'>
+            <tr style="display:none">
+                <td>ID :</td>
+                <td ><input type='text' id='txtid' name='txtid' style="width:20px"/></td>
+            </tr>
+            <tr>
+                <td>Formato de Facturas :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvCar" />
+                    <input type="hidden" id="hidEdicionCar" />
+                    <select id="ddlFormato"> </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <br />
+    <div id="message1">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}
+
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+        })
+    };
+
+    if ('@TempData["flag"]' == "1") {
+        alert("Grabado correctamente.");
+        location.href = "../GRUPOMODALIDAD"
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

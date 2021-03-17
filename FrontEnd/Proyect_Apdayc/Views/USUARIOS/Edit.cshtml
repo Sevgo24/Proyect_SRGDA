@@ -1,0 +1,170 @@
+﻿@model SGRDA.Entities.USUARIOS
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Style/Style.css")" rel="stylesheet" />
+
+<style type="text/css">
+textarea 
+{
+    resize: none;
+}
+</style>
+
+<script>
+ 
+
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        $("#nombre").hide();
+        $("#apellidoP").hide();
+        $("#apellidoM").hide();
+        $("#usuario_red").hide();
+        $("#password").hide();
+        $("#rol").hide();
+        $("#std").hide();
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+
+            $("#dnombre").hide();
+            $("#dapellidop").hide();
+            $("#dapellidom").hide();
+            $("#dusuariored").hide();
+            $("#dpassword").hide();
+            $("#drol").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#apellidoP").show();
+            $("#apellidoM").show();
+            $("#usuarior_red").show();
+            $("#password").show();
+            $("#rol").show();
+            $("#std").show();
+
+            $("#btnedit").hide();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#nombre").show();
+            $("#apellidop").show();
+            $("#apellidom").show();
+            $("#usuario_red").show();
+            $("#password").show();
+            $("#rol").show();
+            $("#std").show();
+
+            $("#dnombre").hide();
+            $("#dapellidop").hide();
+            $("#dapellidom").hide();
+            $("#dusuariored").hide();
+            $("#dpassword").hide();
+            $("#drol").hide();
+            $("#dstd").hide();
+
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            location.reload();
+        })
+    });
+</script>
+
+ 
+@using (Html.BeginForm("Edit", "USUARIOS", FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+
+     @Html.ValidationSummary(true)
+    <fieldset>
+        <legend id="legend">@Html.ActionLink("USUARIOS", "Index", new{}, new { style="text-decoration:none;"}) / <span> @Html.DisplayFor(model => model.USUA_VNOMBRE_USUARIO) </span> </legend>
+    <div class="popUp-content">
+        <br />
+        <div>
+            <a href="@Url.Action("Create", "USUARIOS")" id="btnnuevo" class="btn btn-primary">Nuevo</a>
+            <button id="btnSave" class="btn btn-primary">Guardar</button>
+            <a href="#" id="btncancel" class="btn btn-primary">Descartar</a>     
+            <a href="#" id="btnedit" class="btn btn-primary">Editar</a>               
+        </div>
+
+        <br />
+        <div>
+            <input type="hidden" id="id" name="id" value="@Html.DisplayFor(model => model.USUA_ICODIGO_USUARIO)"/>
+            
+            <label>NOMBRE</label><br />
+            <div id="dnombre"><span style="width: 350px" class="dnombre">@Html.DisplayFor(model => model.USUA_VNOMBRE_USUARIO)</span><br /></div> 
+            <input type="text" id="nombre" class="form-control" name="nombre" style="width: 350px" value="@Html.DisplayFor(model => model.USUA_VNOMBRE_USUARIO)" /><br />
+            
+            <label>APELLIDO PATERNO</label><br />
+            <div id="dapellidop"><span style="width: 350px" class="dapellidop">@Html.DisplayFor(model => model.USUA_VAPELLIDO_PATERNO_USUARIO)</span><br /></div> 
+            <input type="text" id="apellidoP" class="form-control" name="apellidoP" style="width: 350px" value="@Html.DisplayFor(model => model.USUA_VAPELLIDO_PATERNO_USUARIO)" /><br />
+            
+            <label>APELLIDO MATERNO</label><br />
+            <div id="dapellidom"><span style="width: 350px" class="dapellidom">@Html.DisplayFor(model => model.USUA_VAPELLIDO_MATERNO_USUARIO)</span><br /></div> 
+            <input type="text" id="apellidoM" class="form-control" name="apellidoM" style="width: 350px" value="@Html.DisplayFor(model => model.USUA_VAPELLIDO_MATERNO_USUARIO)" /><br />
+
+            <label>USUARIO DE RED</label><br />
+            <div id="dusuariored"><span style="width: 350px" class="dusuariored">@Html.DisplayFor(model => model.USUA_VAPELLIDO_MATERNO_USUARIO)</span><br /></div> 
+            <input type="text" id="usuario_red" class="form-control" name="usuario_red" style="width: 350px" value="@Html.DisplayFor(model => model.USUA_VUSUARIO_RED_USUARIO)" /><br />
+
+            <label>PASSWORD</label><br />
+            <div id="dpassword"><span style="width: 350px" class="dpassword">@Html.DisplayFor(model => model.USUA_VPASSWORD_USUARIO)</span><br /></div> 
+            <input type="text" id="password" class="form-control" name="password" style="width: 350px" value="@Html.DisplayFor(model => model.USUA_VPASSWORD_USUARIO)" /><br />
+            
+            <div>
+                @Html.LabelFor(model => model.ROL_ICODIGO_ROL)<br />
+            </div>
+            <div>
+                @Html.DropDownList("Lista_Roles", (IEnumerable<SelectListItem>)ViewData["Lista_Roles"], new { style = "width:210px", id = "cb1" })
+                @Html.ValidationMessageFor(model => model.ROL_ICODIGO_ROL)
+            </div> <br />
+         
+             <label>ESTADO</label><br />
+              <div id="dstd">
+                <span style="width: 350px" id="ocstd" class="ocstd">@Html.DisplayFor(model => model.USUA_CACTIVO_USUARIO)</span><br />
+             </div>
+             <input type="text" id="std" name="std" style="width: 100px"  class="form-control" value=" @Html.DisplayFor(model => model.USUA_CACTIVO_USUARIO)" />
+
+        </div>
+        <br />
+    </div>
+        </fieldset>
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+</script>
+
+<br />
+
+<div id="message">
+<div class="@TempData["class"]">
+  <a id="lnk" href="#" class="alert-link">OK! </a> @TempData["msg"]
+</div>
+</div>
+

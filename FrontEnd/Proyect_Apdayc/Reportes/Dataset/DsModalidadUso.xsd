@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsModalidadUso" targetNamespace="http://tempuri.org/DsModalidadUso.xsd" xmlns:mstns="http://tempuri.org/DsModalidadUso.xsd" xmlns="http://tempuri.org/DsModalidadUso.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsModalidadUso" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsModalidadUso" msprop:Generator_UserDSName="DsModalidadUso">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MOD_ID" msprop:Generator_ColumnVarNameInTable="columnMOD_ID" msprop:Generator_ColumnPropNameInRow="MOD_ID" msprop:Generator_ColumnPropNameInTable="MOD_IDColumn" msprop:Generator_UserColumnName="MOD_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_DEC" msprop:Generator_ColumnVarNameInTable="columnMOD_DEC" msprop:Generator_ColumnPropNameInRow="MOD_DEC" msprop:Generator_ColumnPropNameInTable="MOD_DECColumn" msprop:Generator_UserColumnName="MOD_DEC" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_ORIG" msprop:Generator_ColumnVarNameInTable="columnMOD_ORIG" msprop:Generator_ColumnPropNameInRow="MOD_ORIG" msprop:Generator_ColumnPropNameInTable="MOD_ORIGColumn" msprop:Generator_UserColumnName="MOD_ORIG" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_SOC" msprop:Generator_ColumnVarNameInTable="columnMOD_SOC" msprop:Generator_ColumnPropNameInRow="MOD_SOC" msprop:Generator_ColumnPropNameInTable="MOD_SOCColumn" msprop:Generator_UserColumnName="MOD_SOC" type="xs:string" minOccurs="0" />
+              <xs:element name="TIPO_CREACION_x0020_" msprop:Generator_ColumnVarNameInTable="columnTIPO_CREACION_" msprop:Generator_ColumnPropNameInRow="TIPO_CREACION_" msprop:Generator_ColumnPropNameInTable="TIPO_CREACION_Column" msprop:Generator_UserColumnName="TIPO_CREACION " type="xs:string" minOccurs="0" />
+              <xs:element name="MODALIDAD" msprop:Generator_ColumnVarNameInTable="columnMODALIDAD" msprop:Generator_ColumnPropNameInRow="MODALIDAD" msprop:Generator_ColumnPropNameInTable="MODALIDADColumn" msprop:Generator_UserColumnName="MODALIDAD" type="xs:string" minOccurs="0" />
+              <xs:element name="TIPO_DERECHO" msprop:Generator_ColumnVarNameInTable="columnTIPO_DERECHO" msprop:Generator_ColumnPropNameInRow="TIPO_DERECHO" msprop:Generator_ColumnPropNameInTable="TIPO_DERECHOColumn" msprop:Generator_UserColumnName="TIPO_DERECHO" type="xs:string" minOccurs="0" />
+              <xs:element name="INCIDENCIA" msprop:Generator_ColumnVarNameInTable="columnINCIDENCIA" msprop:Generator_ColumnPropNameInRow="INCIDENCIA" msprop:Generator_ColumnPropNameInTable="INCIDENCIAColumn" msprop:Generator_UserColumnName="INCIDENCIA" type="xs:string" minOccurs="0" />
+              <xs:element name="TIPO_OBRA" msprop:Generator_ColumnVarNameInTable="columnTIPO_OBRA" msprop:Generator_ColumnPropNameInRow="TIPO_OBRA" msprop:Generator_ColumnPropNameInTable="TIPO_OBRAColumn" msprop:Generator_UserColumnName="TIPO_OBRA" type="xs:string" minOccurs="0" />
+              <xs:element name="USO_REPERTORIO" msprop:Generator_ColumnVarNameInTable="columnUSO_REPERTORIO" msprop:Generator_ColumnPropNameInRow="USO_REPERTORIO" msprop:Generator_ColumnPropNameInTable="USO_REPERTORIOColumn" msprop:Generator_UserColumnName="USO_REPERTORIO" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_COM" msprop:Generator_ColumnVarNameInTable="columnMOD_COM" msprop:Generator_ColumnPropNameInRow="MOD_COM" msprop:Generator_ColumnPropNameInTable="MOD_COMColumn" msprop:Generator_UserColumnName="MOD_COM" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_DISCA" msprop:Generator_ColumnVarNameInTable="columnMOD_DISCA" msprop:Generator_ColumnPropNameInRow="MOD_DISCA" msprop:Generator_ColumnPropNameInTable="MOD_DISCAColumn" msprop:Generator_UserColumnName="MOD_DISCA" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_DISCS" msprop:Generator_ColumnVarNameInTable="columnMOD_DISCS" msprop:Generator_ColumnPropNameInRow="MOD_DISCS" msprop:Generator_ColumnPropNameInTable="MOD_DISCSColumn" msprop:Generator_UserColumnName="MOD_DISCS" type="xs:string" minOccurs="0" />
+              <xs:element name="MOD_DISCC" msprop:Generator_ColumnVarNameInTable="columnMOD_DISCC" msprop:Generator_ColumnPropNameInRow="MOD_DISCC" msprop:Generator_ColumnPropNameInTable="MOD_DISCCColumn" msprop:Generator_UserColumnName="MOD_DISCC" type="xs:string" minOccurs="0" />
+              <xs:element name="ENDS" msprop:Generator_ColumnVarNameInTable="columnENDS" msprop:Generator_ColumnPropNameInRow="ENDS" msprop:Generator_ColumnPropNameInTable="ENDSColumn" msprop:Generator_UserColumnName="ENDS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

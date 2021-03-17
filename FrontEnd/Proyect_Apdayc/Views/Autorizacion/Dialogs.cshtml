@@ -1,0 +1,195 @@
+﻿@*ventana modal del autorizaciones*@
+<div title="Agregar Autorizacion" id="mvAutorizacion">
+<table width='100%' border='0' id='FiltroTablaPop'>
+<tr>
+<td>
+<input type="hidden" id="hidAccionMvAut" />
+<input type="hidden" id="hidEdicionAut" />  
+Fecha de Inicio :</td>
+<td>
+Fecha Fin :
+</td>
+</tr>
+<tr>
+<td> 
+<input type="text" id="txtAutoFecIni" class="k-fecha requerido"/>
+</td>
+<td>
+    <input type="text" id="txtAutoFecFin"  class="k-fecha requerido"/>
+</td>
+</tr>
+<tr>
+    <td colspan="2"> 
+        <textarea id="txtAutoObserv" style="width:450px; height:80px;" class="requerido" ></textarea>
+    </td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td colspan="2"> 
+<center><div id="avisoAutorizacion" style=" width: 100% ; vertical-align:  middle; "></div></center>
+</td></tr>
+</table>
+</div>
+
+@*ventana modal del shows*@
+<div title="Agregar Shows" id="mvShow">
+<table width='100%' border='0' id='FiltroTablaPop'>
+<tr>
+<td colspan="2">Nombre Show:</td>
+</tr>
+<tr>
+<td colspan="2"><input type="text" id="txtShowNombre" maxlength="60" size="60" class="requerido" /></td>
+</tr>
+<tr>
+<td>
+<input type="hidden" id="hidAccionMvShow" />
+<input type="hidden" id="hidIdShowEditar" />  
+<input type="hidden" id="hidIdAutorizacionShow" />  
+Fecha de Inicio :</td>
+<td>
+Fecha Fin :
+</td>
+</tr>
+<tr>
+<td> 
+<input type="text" id="txtShowFecIni" class="k-fecha requerido"/>
+</td>
+<td>
+    <input type="text" id="txtShowFecFin"  class="k-fecha requerido"/>
+</td>
+</tr>
+<tr>
+<td colspan="2">Observacion:</td>
+</tr>
+<tr>
+    <td colspan="2"> 
+        <textarea id="txtShowObserv" style="width:450px; height:80px;" class="requerido" ></textarea>
+    </td>
+</tr>
+<tr>
+<td colspan="2">Orden:</td>
+</tr>
+<tr>
+<td colspan="2"><input type="number" id="txtOrden"  value="0"   class="requerido" /></td>
+</tr>
+<tr>
+<td colspan="2"> 
+<center><div id="avisoPopupShow" style=" width: 100% ; vertical-align:  middle; "></div></center>
+</td></tr>
+</table>
+</div>
+                                
+@*ventana modal del artista*@
+<div title="Agregar Artista" id="mvArtista">
+<table width='100%' border='0' id='FiltroTablaPop'>
+<tr>
+<td>Artista (*): </td>
+                <td>
+                        <table border="0" style="border-collapse: collapse;">
+                                <tr>
+                                <td>
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarArtista" style="cursor:pointer;" alt="Búsqueda de Artista" title="Búsqueda de Artista"/>
+                                        <input type="hidden" id="hidArtistaSel" class="requerido"  />
+                                </td>
+                                <td colspan="6"> 
+                                        <label id="lblArtista" style="cursor:pointer;"  title="Búsqueda de Artista">Seleccione Artista</label>
+                                </td>
+                                </tr>
+                        </table>
+                </td>
+</tr>
+<tr>
+<td >
+SHOW (*):
+        </td><td ><label id="lblShowSel"></label>
+<input type="hidden" id="hidShowSel" class="requerido" />
+</td>
+</tr> 
+<tr>
+<td >
+<label for="chkPrincipal">Es Artista Principal</label>
+        </td>
+<td >
+<input type="checkbox" id="chkPrincipal" /> 
+</td>
+</tr> 
+<tr>
+<td>Campos Obligatorios(*)
+<input type="hidden" id="hidAccionMvArtista" />
+@*<input type="hidden" id="hidIdArtistaEditar" />  *@
+@*<input type="hidden" id="hidIdShowArtista" />  *@
+</td>
+<td>
+               
+</td>
+</tr>
+@* <tr>
+<td> 
+<input type="text" id="txtShowFecIni" class="k-fecha requerido"/>
+</td>
+<td>
+    <input type="text" id="txtShowFecFin"  class="k-fecha requerido"/>
+</td>
+</tr>
+<tr>
+<td colspan="2">Observacion:</td>
+</tr>
+<tr>
+    <td colspan="2"> 
+        <textarea id="txtShowObserv" style="width:450px; height:80px;" class="requerido" ></textarea>
+    </td>
+</tr>
+<tr>
+<td colspan="2">Orden:</td>
+</tr>
+<tr>
+<td colspan="2"><input type="number" id="txtOrden"  value="0"   class="requerido" /></td>
+</tr>*@
+<tr>
+<td colspan="2"> 
+<center><div id="avisoPopupArtista" style=" width: 100% ; vertical-align:  middle; "></div></center>
+</td></tr>
+</table>
+</div>
+
+@*ventana modal del las obras*@
+    <div title="Artista Obras" id="MVObrasArtista">
+        <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td> ARTISTA</td>
+            <td><label id="lblnombreartista"></td>
+        </tr>
+         <tr>
+            <td> SHOW</td>
+            <td><label id="lblnombreshow"></td>
+        </tr>
+        <tr>
+            <td> AUTOR 1:</td>
+            <td><type="text" id="txtautor1"></td>
+        </tr>
+        <tr>
+            <td> AUTOR 2:</td>
+            <td><type="text" id="txtautor2"></td>
+        </tr>
+
+        <tr>
+            <td>
+                FECHA EMISION
+            </td>
+            <td> 
+                <input type="text" id="txtFecInicial" readonly="false" class="requerido"/>
+
+            </td>
+        </tr>
+        <tr>
+            <td> MINUTOS DE DURACION </td>
+            <td><label id="lblnombreshow"></td>
+        </tr>
+         <tr>
+             <td colspan="2">
+                <center><div id="avisoTabObrasArtistas"></div></center>
+             </td>
+         </tr>
+            </table>
+    </div>

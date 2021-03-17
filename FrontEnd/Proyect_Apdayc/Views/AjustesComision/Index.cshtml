@@ -1,0 +1,236 @@
+﻿@*@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+@model SGRDA.Entities.BEAjustesComision
+@{
+    ViewBag.Title = "AJUSTE DE COMISIONES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ajuste Comisiones</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Comision/ajustes.comision.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.aux.js")"></script>  
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.establecimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+</head>
+
+<body>
+    <div>
+        <div id="ContenedormvLicencia"></div>
+        <div id="ContenedormvModalidad"></div>
+        <div id="ContenedormvBuscarSocio"></div>
+
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+
+            <tr>
+                <td style="vertical-align: bottom">
+                    <div id="divTitulo">Ajuste de Comisiones</div>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input type="hidden" id="hidAccionMvAju" />
+                    <input type="hidden" id="hidEdicionAju" />
+                    <input type="hidden" id="hidResponsable" />
+                    <input type="hidden" id="hidLicencia" />
+                    <input type="hidden" id="hidModalidad" />
+                    <input type="hidden" id="hidIdAjusteComision" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="text-align: center;">
+                        <center>
+                            <table style="width: 98%;" border="0">
+                                <tr>
+                                    <td style="width: 10px; text-align: right">Representante :</td>
+                                    <td colspan="5">
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable"/>
+                                                </td>
+                                                <td>
+                                                    <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Responsable" title="Búsqueda de Responsable">Seleccione</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td style="text-align: right">Fecha :</td>
+                                    <td style="text-align: left">
+                                        <input type="text" id="txtFecha" />
+                                    </td>
+
+                                    <td style="text-align: right">
+                                        <button id='btnBuscarAjusteComision' class="boton" name='btnBuscarAjusteComision'>
+                                            Buscar 
+                                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                                        &nbsp;
+                                                    <button id='btnLimpiarAjusteComision' class="boton" name='btnLimpiarAjusteComision'>
+                                                        Limpiar 
+                                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                                        <br />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 10%; text-align: right">Licencia :</td>
+                                    <td colspan="5">
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarLic" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia"/>
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lblLicencia" style="cursor: pointer;" alt="Búsqueda de Licencia" title="Búsqueda de Licencia">Seleccione</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td style="width: 10%; text-align: right">Moneda :</td>
+                                    <td style="text-align: left">
+                                        <select id="ddlMoneda"></select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 10%; text-align: right">Producto :</td>
+                                    <td colspan="5">
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarMod" style="cursor: pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad"/>
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lblModalidad" style="cursor: pointer;" alt="Búsqueda de Modalidad" title="Búsqueda de Modalidad">Seleccione</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                @*<tr>
+                                    <td style='height: 10%; vertical-align: bottom; text-align: right' colspan="21">
+                                        <div style="float: right;">
+                                            <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar comision oficina comercial." title="Registrar comision oficina comercial." id="btnNuevo"/>&nbsp;
+                            <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar comision oficina comercial." title="Inactivar comision oficina comercial." id="btnEliminar"/>
+                                            &nbsp;
+                                        </div>
+                                    </td>
+                                </tr>*@
+                            </table>
+                        </center>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Agregar ajuste</a></li>
+        </ul>
+
+        <div id="tabs-1">
+            <table style="width: 100%;" border="0">
+                <tr>
+                    <td>
+                        <div>
+                            <img src="~/Images/botones/add.png" class="addAjusteComision" height="30">
+                        </div>
+                        <div style="margin-top: -30px; margin-left: 30px;">
+                            <a href="#" class="addAjusteComision" id="linkAjustes">Agregar ajuste comisión </a>
+
+                        </div>
+                        <hr />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div id="gridAjuste"></div>                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td  style="text-align:right">
+                        @*<input id="TotalComision" type="text" style="width:100px; text-align:left"/>*@
+                        <input type="hidden" id="hidValfecha">
+                        Total: <label id="TotalComision" style="text-align:left"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div title="Ajuste comisión" id="mvAjusteComision">
+        <table width='98%' border='0' id='FiltroTablaCaracteristicaPop'>
+            <tr>
+                <td style="vertical-align: bottom;"></td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTablaCaracteristica'>
+                            <tr>
+                                <td align="right" style="width: 25%">Agente recaudo :</td>
+                                <td style="padding-left: 5%">
+                                    <input type="text" id="txtAgente" style="width: 250px" class="requerido" disabled="disabled">
+                                </td>
+                            </tr>
+
+                             <tr>
+                                <td align="right">Código licencia :</td>
+                                <td style="padding-left: 5%"><input type="text" id="txtLicencia" style="width: 100px" class="requerido" disabled="disabled"><td>
+                            </tr>
+
+                            <tr>
+                                <td align="right">Origen comisión :</td>
+                                <td style="padding-left: 5%"><select id="ddlOrigenComision" style="width: 180px" class="requeridoLst"></select></td>                                      
+                            </tr> 
+
+                            <tr>                                        
+                                <td align="right">Valor :</td>
+                                <td style="padding-left: 5%"><input type="text" id="txtvalorComision" style="width: 100px" class="requerido"><td>                                 
+                            </tr>   
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 30px;'>
+                    <center>
+                        <div id='errorCar' style=" width: 100% ; vertical-align:  middle; "></div>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>ESTABLECIMIENTOS </title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.establecimiento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.administracion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.division.js")"></script>
+</head>
+<body>
+    <div id="ContenedormvBuscarSocioAdministracion"></div>
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE ADMINISTRACION DE ESTABLECIMIENTOS</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+                            <table style=' width:98%' border='0' id='FiltroTablas'>
+                                <tr>
+                                    <td align="left" style="width:200px">CODIGO ESTABLECIMIENTO:</td>
+                                    <td><input type="text" id="txtcodest"></td>
+                                    <td align="left" style="width:200px">RAZON SOCIAL:</td>
+                                    <td><input type="text" id="txtraz"></td>
+                                    <td align="left" style="width:200px">DOCUMENTO IDENTIDAD:</td>
+                                    <td><input type="text" id="txtruc"></td>
+
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">NOMBRE SOCIO:</td>
+                                    <td><input type="text" id="txtnomsoc"></td>
+                                    <td align="left" style="width:200px">APELLIDO PATERNO:</td>
+                                    <td><input type="text" id="txtapepat"></td>
+                                    <td align="left" style="width:200px">APELLIDO MATERNO:</td>
+                                    <td><input type="text" id="txtapemat"></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">NOMBRE ESTABLECIMIENTO:</td>
+                                    <td><input type="text" id="txtnomest"></td>
+                                    <td align="left" style="width:200px">USUARIO MODIF:</td>
+                                    <td><select id="dllusumodif"></select></td>
+                                    <td align="left" style="width:200px">CODIGO LICENCIA:</td>
+                                    <td><input type="text" id="txtcodlic"></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">FECHA  CREACION:</td>
+                                    <td><input type="checkbox" id="chkConFechaCrea" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION INICIAL:</td>
+                                    <td><input type="text" id="txtFecCreaInicial" /></td>
+                                    <td align="left" style="width:200px">FECHA CREACION FINAL:</td>
+                                    <td><input type="text" id="txtFecCreaFinal" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="width:200px">FECHA  MODIFICACION:</td>
+                                    <td><input type="checkbox" id="chkConFechaMod" /></td>
+                                    <td align="left" style="width:200px">FECHA MODIFICACION INICIAL:</td>
+                                    <td><input type="text" id="txtFecModInicial" /></td>
+                                    <td align="left" style="width:200px">FECHA MODIFICACION FINAL:</td>
+                                    <td><input type="text" id="txtFecModFinal" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:200px">División Geografica</td>
+                                    <td><select id="ddlDivision"></select></td>
+                                    <td> Tipo de División:</td>
+                                    <td><select id="ddTipoDivision"></select></td>
+                                    <td> División:</td>
+                                    <td><select id="ddDivision"><option value="0">TODOS</option></select></td>
+                                </tr>
+                                <tr>
+                                    @*<td>Departamento</td>*@
+                                    <td><label id="lblSubTipo1"></label><input type="hidden" id="hidSubTipo1" /></td>
+                                    <td><select id="ddlSubTipo1" style="width:200px"></select> </td>
+
+                                    @*<td>Provincia</td>*@
+                                    <td><label id="lblSubTipo2"></label><input type="hidden" id="hidSubTipo2" /></td>
+                                    <td><select id="ddlSubTipo2" style="width:200px"></select> </td>
+
+                                    @*<td>Distrito</td>*@
+                                    <td><label id="lblSubTipo3"></label><input type="hidden" id="hidSubTipo3" /></td>
+                                    <td><select id="ddlSubTipo3" style="width:200px"></select> </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="center">
+                <button id='btnBuscar' class="boton" name='btnBuscar'>
+                    Buscar
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                    Limpiar
+                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                </button>
+                <div style="float: right;">
+                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo usuario." title="Registrar nuevo usuario." id="btnNuevo" />&nbsp;
+                    <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de usuario." title="Inactivar datos de usuario." id="btnEliminar" />
+                    &nbsp;
+                </div>
+            </td>
+        </tr>
+
+        <tr id="trListaEstable">
+            <td colspan="8">
+                LISTA DE ESTABLECIMIENTOS
+                <div id="grid"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="8" align="center">
+                <button id='btnMarcaEstPrinci' class="boton" name='btnMarcaEstPrinci'>
+                    ESTABLECIMIENTO PRINCIPAL
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnMarcaEstInactivar' class="boton" name='btnMarcaEstInactivar'>
+                    ESTABLECIMIENTOS A INACTIVAR
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnElegirSocio' class="boton" name='btnElegirSocio'>
+                        SOCIO
+                        <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+            </td>
+        </tr>
+
+        <tr id="trListaSocioPrincipal">
+            <td colspan="8">
+                ESTABLECIMIENTO PRINCIPAL
+                <div id="grid2"></div>
+            </td>
+        </tr>
+
+        <tr id="trListaSociosInactivar">
+            <td colspan="8">
+                ESTABLECIMIENTOS A INACTIVAR
+                <div id="grid3"></div>
+            </td>
+        </tr>
+
+        <tr id="trAgruparEstable">
+            <td colspan="8" align="center">
+                <button id='btnAgruparEstablecimientos' class="boton" name='btnAgruparSOcios'>
+                    AGRUPAR ESTABLECIMIENTO
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+
+                <br><input type="checkbox" id="chkActEst">Actualizar Socio
+                <input type="checkbox" id="chkActLic">Actualizar Licencias
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>

@@ -1,0 +1,355 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>EVENTOS </title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.seguimiento.local.permanente.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script> @*no puede ir sin buscador.socio*@
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div id="ContenedormvOficina"></div>
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>ADMINISTRACION DE SEGUIMIENTO DE LOCALES</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+                            <div id="tabs">
+                                <ul>
+                                    <li><a href="#tabs-1" id="tabLista">Listado General</a></li>
+                                    <li><a href="#tabs-2" id="tabAprobado">Lista de Aprobados</a></li>
+                                    <li><a href="#tabs-3" id="tabObservado">Lista de Observados</a></li>
+                                </ul>
+                                <div id="tabs-1">
+                                    <p>
+                                        <div id="grid2">
+
+                                            <table width='100%' border='0' id='FiltroTabla'>
+                                                <tr>
+                                                    <td width="60%" align="left">
+                                                        <table width='100%' border='0' id='FiltroTabla'>
+                                                            <tr>
+                                                                <td width='30%' align="left"> Oficina:</td>
+                                                                <td><input id="hidOficina" value="0" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">SELECCIONE OFICINA</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width='30%' align="left">Modalidad:</td>
+                                                                    <td><select id="dllGruModalidad"></select></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width='30%' align="left"> Año :</td>
+                                                                <td width="50px" align="left">
+                                                                    <input type="text" id="txtanio" size="20" placeholder="AÑO A BUSCAR" />
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+
+                                                    </td>
+                                                    <td width="40%" align="left" >
+                                                        <table width='100%' border='0' id='FiltroTabla'>
+                                                            <tr>
+                                                                <td>REPORTE GENERAL</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>LICENCIAS ACTIVAS :</td>
+                                                                <td><label id="lblsegActiva"></label> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>LICENCIAS INACTIVAS :</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>LICENCIAS SIN OBSERVACION:</td>
+                                                                <td><label id="lblsegaprob"></label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>LICENCIAS OBSERVADAS :</td>
+                                                                <td><label id="lblsegobs"></label></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="8" align="center">
+                                                        <button id='btnBuscarSeguimiento' class="boton" name='btnBuscarSeguimiento'>
+                                                            Buscar
+                                                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                                        </button>
+                                                        <button id='btnLimpiarSeguimiento' class="boton" name='btnLimpiarSeguimiento'>
+                                                            Limpiar
+                                                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                                                        </button>
+
+                                                        <div style="float:left;border-color:red" >
+                                                            <button id="leyendageneral">
+                                                                Info
+                                                            </button>
+                                                        </div>
+
+                                                        <div style="float: right;">
+                                                            <button id='btnPdfSeg' class="boton" name='btnPdfSeg'>
+                                                                Rep. PDF
+                                                                <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                                                            </button>
+                                                            &nbsp;
+                                                            <button id='btnExcelSeg' class="boton" name='btnExcelSeg'>
+                                                                Rep. EXCEL
+                                                                <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="trListaLicenciaBuscar">
+                                                    <td colspan="8">
+                                                        LISTA DE LICENCIAS
+                                                        <div id="gridSeguimiento"></div>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+
+                                        </div>
+                                    </p>
+                                </div>
+
+                                <div id="tabs-2">
+                                    <p>
+                                        <table width='100%' border='0' id='FiltroTabla'>
+                                            <tr>
+                                                <td width="70%" align="left">
+                                                    <table width='100%' border='0' id='FiltroTabla'>
+                                                        <tr>
+                                                            <td>
+                                                                PERIODO :
+                                                            </td>
+                                                            <td>
+                                                                <select id="lstMes">
+                                                                    <option value="0">Seleccione...</option>
+                                                                    <option value="1">ENERO</option>
+                                                                    <option value="2">FEBRERO</option>
+                                                                    <option value="3">MARZO</option>
+                                                                    <option value="4">ABRIL</option>
+                                                                    <option value="5">MAYO</option>
+                                                                    <option value="6">JUNIO</option>
+                                                                    <option value="7">JULIO</option>
+                                                                    <option value="8">AGOSTO</option>
+                                                                    <option value="9">SEPTIEMBRE</option>
+                                                                    <option value="10">OCTUBRE</option>
+                                                                    <option value="11">NOVIEMBRE</option>
+                                                                    <option value="12">DICIEMBRE</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                OPCION :
+                                                            </td>
+                                                            <td>
+                                                                <select id="lstopcionaprob">
+                                                                    <option value="0">SELECCiONE..</option>
+                                                                    <option value="1">LICENCIA APROBADAS</option>
+                                                                    <option value="2">LICENCIA CON PAGO ADELANTADO</option>
+                                                                    <option value="3">LICENCIA CON PERIODO NO REGISTRADO</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+
+                                                <td width="30%" align="left">
+                                                    <table width='100%' border='0' id='FiltroTabla'>
+                                                        <tr>
+                                                            <td>
+                                                                Reporte Emision OK
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Cantidad de Licencias Aprobadas
+                                                            </td>
+                                                            <td>
+                                                                <label id="lblCantidadAprobadas"></label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                CANTIDAD DE LICENCIAS PARA EMISION SELECCIONADA :
+                                                            </td>
+                                                            <td>
+                                                                <label id="lbllicaprobselect"></label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                CANTIDAD DE LICENCIAS CON PAGO ADELANTADO :
+                                                            </td>
+                                                            <td>
+                                                                <label id="lbllicaprobadelant"></label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                CANTIDAD DE LICENCIAS SIN PERIODO REGISTRADO SELECCIONADO :
+                                                            </td>
+                                                            <td>
+                                                                <label id="lbllicaprobasinper"></label>
+                                                            </td>
+                                                        </tr>
+                                                   </table>
+                                                
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" align="center">
+                                                    <div style="float: right;">
+                                                       
+                                                        <button id='btnPdfSegApr' class="boton" name='btnPdfSegApr'>
+                                                            Rep. PDF
+                                                            <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                                                        </button>
+                                                        &nbsp;
+                                                        <button id='btnExcelSegApr' class="boton" name='btnExcelSegApr'>
+                                                            Rep. EXCEL
+                                                            <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr id="trListarLicenciaAprob">
+                                                <td colspan="8">
+                                                    <div id="gridAprobados"></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                            
+                                    </p>
+                                </div>
+                                <div id="tabs-3">
+                                    <p>
+                                        <table width='100%' border='0' id='FiltroTabla'>
+                                            <tr>
+                                                <td width="70%">
+                                                    <table width='100%' border='0' id='FiltroTabla'>
+                                                        <tr>
+                                                            <td>
+                                                                RAZON :
+                                                            </td>
+                                                            <td>
+                                                                <select id="lstrazon">
+                                                                    <option value="0">Seleccione ..</option>
+                                                                    <option value="1">MOROSIDAD</option>
+                                                                    <option value="2">RECALCULAR</option>
+                                                                    <option value="3">NO SE MARCO PARA EMISION</option>
+                                                                    <option value="4">PERIODO SELECCIONADO BLOQUEADO</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </td>
+                                                <td width="30%">
+                                                    <table width='100%' border='0' id='FiltroTabla'>
+                                                        <tr>
+                                                            <td>
+                                                                CANTIDAD DE LICENCIAS Observadas
+                                                            </td>
+                                                            <td>
+                                                                <label id="lbllicenobs"></label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                LICENCIAS OBSERVADAS / RAZON :
+                                                            </td>
+                                                            <td>
+                                                                <label id="lbllicenobsrazon"></label>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" align="center">
+                                                    <div style="float: right;">
+                                                        <button id='btnRecalcular' class="boton" name='btnRecalcular'>
+                                                            RECALCULAR
+                                                            <img src="@Url.Content("~/Images/botones/2save.png")" width="24px" />
+                                                        </button>
+                                                        &nbsp;
+                                                        <button id='btnPdfSegObs' class="boton" name='btnPdfSegObs'>
+                                                            Rep. PDF
+                                                            <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" />
+                                                        </button>
+                                                        &nbsp;
+                                                        <button id='btnExcelSegObs' class="boton" name='btnExcelSegObs'>
+                                                            Rep. EXCEL
+                                                            <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr id="trListarLicenciaObs">
+                                                <td colspan="8">
+                                                    <div id="gridRechazados"></div>
+                                                </td>
+                                            </tr>
+                                        </table>  
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:central;text-align:center">
+                            <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div title="INFORMACION" id="mvleyendaSeguimiento">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <tr>
+                <td>
+                    PESTAÑA GENERAL: <br />
+                    SI EL PERIODO MUESTRA  <br />
+                        -UN MONTO EN POSITIVO : EL PERIODO ESTA CANCELADO EJM:  100.0000<br />
+                        -UN MONTO EN NEGATIVO : EL PERIODO ESTA PENDIENTE  EJEM:     -100.00000<br />
+                        -UN MONTO EN 0.00000  : EL PERIODO SE ENCUENTRA ABIERTO SIN FACTURA <br />
+                        -UN SIMBOLO DE -      : EL PERIODO NO SE HA REGISTRADO EN LA BD  <br />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+

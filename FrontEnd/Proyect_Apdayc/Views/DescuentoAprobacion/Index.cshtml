@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<head>
+    
+    <script src="@Url.Content("~/Scripts/SGRDA/Descuento/mantenimiento.descuento.aprobacion.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+                 .ui-autocomplete {
+                     max-height: 200px;
+                     overflow-y: auto;
+                     /* prevent horizontal scrollbar */
+                     overflow-x: hidden;
+                 }
+                 /* IE 6 doesn't support max-height
+        * we use height instead, but this forces the menu to always be this tall
+        */
+                 * html .ui-autocomplete {
+                     height: 200px;
+                 }
+
+                 ul.ui-autocomplete {
+                     z-index: 1100;
+                 }
+    </style>
+</head>    
+
+<body>
+    <tr>
+        <td style=" vertical-align:bottom;">
+            <div id='divTitulo'>Consulta de Aprobaciones</div>
+        </td>
+    </tr>
+    <tr><td style=" vertical-align: top;"></td></tr>
+    <tr>
+        <td align="center">
+            <table width='98%' border='0' id='FiltroTabla'>
+                <tr>
+                    <td>
+                        Codigo Licencia :
+                    </td>
+                    <td><input type="text" id="txtcodlic"></td>
+                    <td>
+                        nombre Licencia :
+                    </td>
+                    <td>
+                        <input type="text" id="txtnomlic">
+                    </td>
+                    <td>
+                        Oficina
+                    </td>
+                    <td>
+                        <select id="dllOficina">
+                        </select>
+                    </td>
+                    <td>
+                        Estado Descuento
+                    </td>
+                    <td>
+                        <select id="ddlestado">
+                            <option value="-1">Seleccione</option>
+                            <option value="0">Pendiente</option>
+                            <option value="1">Aprobado</option>
+                            <option value="2">Rechazado</option>
+                        </select>
+                    </td>
+               </tr>
+               <tr>
+                   <td>Nombre Descuento</td>
+                   <td>
+                       <input type="text" id="txtnomdesc">
+
+                   </td>
+                   <td>
+                       CON FECHA DE CREACION DE DESCUENTO
+                   </td>
+                   <td>
+                        <input type="checkbox" id="chkfecdesc">
+                   </td>
+                   <td>
+                       FECHA INICIAL
+                   </td>
+                   <td>
+                       <input type="text" id="txtFecInicial">
+                   </td>
+                   <td>
+                       FECHA FINAL
+                   </td>
+                   <td>
+                       <input type="text" id="txtFecFinal">
+                   </td>
+               </tr>
+                <tr>
+                    <td colspan="8" align="center">
+                        <button id='btnBuscar' class="boton" name='btnBuscar'>
+                            Buscar
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                        </button>
+                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                            Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+      
+
+    </tr>
+    <tr>
+        <td align="center">
+            <div id="grid"></div>
+        </td>
+    </tr>
+
+
+</body>
+    
+</table>
+
+<div title="Aprobacion Descuento de Licencia" id="mvActualizaDescuento">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td>Actualiza Monto de Descuento</td>
+            <input hidden id="hidLicDisc">
+            <input hidden id="hidLicDiscEstado">
+            <input hidden id="hidLicId">
+        </tr>
+        <tr>
+            <td>
+                Nombre Descuento:
+            </td>
+            <td>
+                <input type="text" id="txtNomDesc" readonly>
+            </td>
+        <tr>
+            <td>
+                Formato:
+            </td>
+
+            <td>
+            <label id="lblformato" width="6px">_</label>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>
+                Monto :
+            </td>
+
+            <td>
+                <input type="text" id="txtmontoDesc">
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                ORIGEN :
+            </td>
+
+            <td>
+                <input type="text" id="txtorigen">
+            </td>
+
+        </tr>
+        <tr>
+            <td>Observacion</td>
+
+            <td> <textarea id="txtObsResp" rows="2" readonly style=" width:90%;  height:40px;"></textarea></td>
+        </tr>
+
+        <tr>
+            <td>ESTADO DE APROBACION</td>
+            <TD><select id="ddlestado_desc">
+                <option value="0">Seleccione</option>
+                <option value="1">Aprobado</option>
+                <option value="2">RECHAZADO</option>
+
+                </select>
+           </TD>
+        </tr>
+        <tr id="trocultaRespObs">
+            <td>
+                RESPUESTA DE RECHAZO:
+            </td>
+            <td>
+                <textarea id="txtRespuestaObs" rows="2" style=" width:100%;  height:80px;" ></textarea>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+

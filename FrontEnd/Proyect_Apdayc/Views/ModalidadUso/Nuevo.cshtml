@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: Modalidad de Uso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Modalidad de Uso - Nuevo</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/popup.direccion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.modalidaduso.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table width='100%'  border="0" >
+          
+
+               <tr>
+                            <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                               
+                                   <table  width='100%' border='0' id='FiltroTabla'>
+		                               <tr>
+			                               <td style="width:500px;text-align:left;">
+				                               <div id="divTituloPerfil">Modalidad de Uso - Nuevo</div>
+			                               </td>
+				                            <td  colspan="1">
+					                         <input type="hidden" id='txtOfiCodigo' name='txtOfiCodigo' disabled='disabled' />                                       
+                                                    <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                    Volver 
+                                                    <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                            &nbsp;
+                                                    <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                    Nuevo 
+                                                    <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                            &nbsp;
+                                                    <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                    Grabar 
+                                                    <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>
+				                            </td>   
+		                               </tr>
+	                               </table>
+
+                            </td>
+                        </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <div class="contenedorInput">
+                            <table width='98%' border="0" >
+                                        
+                            <tr>
+                                <td>Descripción</td>
+                                <td colspan="3">                                    
+                                    <textarea id="txtDes" rows="2" cols="60" class="requerido" maxlength="60"></textarea>
+                                    <input type="hidden" id="hidCod" />
+                                </td>                                
+                            </tr>
+                             <tr>
+                                <td>Observación</td>
+                                <td colspan="3">                                    
+                                    <textarea id="txtObs" rows="2" cols="60"  maxlength="500"></textarea>
+                                    <input type="hidden" id="hidCod" />
+                                </td>                                
+                            </tr>
+                            <tr><td colspan="4"><hr /></td></tr>                  
+                            <tr>
+                                <td>
+                                        Tipo de Creaciones
+                                 </td>
+                                <td><select id="ddlTipCre" class="requeridoLst"></select> </td>
+                                
+                                <td>                                        
+                                        Tipo de Derecho  
+                                </td>                                                        
+                                <td><select id="ddlTipDer" class="requeridoLst"></select></td>
+                            </tr>
+                            <tr>
+                                 <td>
+                                    Origen de Mod. Uso                                
+                                </td>
+                                <td><select id="ddlOriMod" class="requeridoLst"></select> </td>
+                                <td>
+                                    Nivel de Incidencia   
+                                </td>
+                                <td> <select id="ddlNivInc" class="requeridoLst"></select> </td>                              
+                            </tr>
+                            <tr>
+                                <td>
+                                    Grupo Modalidad                               
+                                </td>
+                                <td><select id="dllGruMod" class="requeridoLst"></select> </td>
+                                <td>
+                                    Tipo de Uso de Obra 
+                                </td>
+                                <td><select id="ddlTipUsoRep" class="requeridoLst"></select> </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tipo Sociedad                               
+                                </td>
+                                <td><select id="ddlTipSoc" class="requeridoLst"></select> </td>
+                                <td>
+                                    Modulo de Uso de Repertorio 
+                                </td>
+                                <td><select id="ddlModUsoRep" class="requeridoLst"></select> </td>
+                            </tr>  
+                               <tr>
+                                <td>
+                                    WorkFlow                       
+                                </td colspan="3">
+                                    <td><select id="ddlFlujo" class="requeridoLst"></select>
+                                </td>                              
+                            </tr>            
+                            <tr><td colspan="4"><hr /></td></tr>
+                            <tr>
+                                <td>
+                                    Comisión (%)
+                                </td>
+                                <td> <input type="text" id="txtComision" maxlength="8" />  </td>
+                                <td>
+                                    Dcot. Admin. (%)
+                                </td>
+                                <td> <input type="text" id="txtDtoAdm" maxlength="8" //>  </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Dcto. Social (%)
+                                </td>
+                                <td> <input type="text" id="txtDtoSoc"  maxlength="8" //> </td>
+                                <td>
+                                    Dcto. Adicional (%)
+                                </td>
+                                <td><input type="text" id="txtDtoAdi"  maxlength="8" //> </td>
+                            </tr>
+
+                        </table>
+                        </div>
+                    </center>
+                </td>
+            </tr>            
+        </table> 
+        <center><div id='aviso'></div></center>       
+    </div>
+    
+</body>
+</html>

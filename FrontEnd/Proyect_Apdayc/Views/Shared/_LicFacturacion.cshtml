@@ -1,0 +1,112 @@
+﻿
+  <div id="divTabFacturacion">
+      <table border="0" style="width:100%;" cellpadding="0" cellspacing="0">
+          <tr>
+              <td class="cssToolBarTab">Grupo de Facturación</td>
+              <td class="cssToolBarTab" colspan="3">
+                  <input type="hidden" id="hidGrupoFacturacion"/>
+@*                 <div style="   margin-top:5px; float:left; "> 
+                      <div><select id="ddlgrupoFact"></select></div> id="hidGrupo" 
+                  </div>*@
+                  <div > 
+                     @*<div class="cssTabBtnAgregar addGrupoFacturacion" title="agregar grupo de facturación."><div> Agregar Grupo</div></div>*@
+                                   <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarGRU" style="cursor: pointer;" alt="Búsqueda de Grupo Factutación." title="Búsqueda de Grupo Facturación."/>
+                                    <label id="lbGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo facturación." title="Búsqueda de Grupo facturación."> Seleccione Grupo</label>                                
+
+                <div class="cssTabBtnAgregar addGrupoFacturacion" title="agregar grupo de facturación."><div> Agregar Grupo</div></div>
+                  </div>
+               </td>
+              <td class="cssToolBarTab"  rowspan="1" align="right">
+                  <button id='btnGrabarFacturacion'  class="boton">Grabar Configuración
+                   </button>  
+                   <button id='btnFacturaManual' class="boton">
+                                    Factura Manual 
+                                                   </button>  
+              </td>
+          </tr>
+          <tr id="TROcultaTipoFact">
+              <td style="width:200px;">Tipo Envío de Factura</td>
+              <td>
+                  <select id="ddlEnvioFactura"  ></select>
+              </td>
+              <td  style="width:200px;">Forma de Entrega de Factura</td>
+              <td>
+                  <select id="ddlFormaEntrega" ></select>
+              </td>           
+
+          </tr>
+          <tr>
+               <td colspan="5">
+                                 <table border="0"  style="width:100%;">
+                                     <tr>
+                                         <td>
+                                             <label for="chkIndDocReq">Documentos Requeridos  <input type="checkbox" id="chkIndDocReq" /></label>
+                                         </td>
+                                           <td>
+                                                 <label for="chkIndDscVisible">Descuentos Visibles <input type="checkbox" id="chkIndDscVisible" /></label>
+
+                                         </td>
+                                         <td>
+                                                 <label for="chkPlanilla">Planilla Automatica <input type="checkbox" id="chkPlanilla" /></label>
+                                         </td>
+                                           <td>
+                                            <label for="chkIndDetaFact">Actualizar Características Requerida <input type="checkbox" id="chkIndDetaFact" checked/></label>
+                                         </td>
+                                           <td>
+                                               <label for="chkLicEmiMensual">Emision Mensual <input type="checkbox" id="chkLicEmiMensual" checked /></label>                                           
+                                           </td>
+                                           <td>
+                                         </td>
+                                           <td>                                                 
+                                            </td>
+                                         <td style="text-align:right">
+                                                                                                                                       
+                                         </td>    
+                                     </tr>
+                                 </table>                                  
+                            </td>
+          </tr>
+          
+          <tr><td colspan="5" style="  height:5px; background:whitesmoke;"></td></tr>
+          <tr>
+              
+              <td colspan="5" align="center" >  
+                  <table style="width:100%" border="0">
+                      <tr>
+                          <td style="width:33%">
+                               
+                          </td>
+                          <td style="width:33%">
+                              <br>
+                            <center><b>PLANIFICACI&Oacute;N</b></center>
+                          </td>
+                          <td style="width:33%"></td>
+                      </tr>
+                  </table>         
+              
+              </td></tr>
+       <tr>
+           <td class="cssToolBarTab" colspan="5" style="height:30px;  "> 
+             
+          @*</td><td colspan="4" class="cssToolBarTab" >*@
+                <div style=" margin-left:10px; margin-top:5px; float:left; "> Año:   &nbsp;&nbsp;<select id="ddlAniPlaniamiento"></select> &nbsp;&nbsp;</div>
+               <div class="cssTabBtnVer verPlanificacion" title="ver planificación de pagos de la licencia." style="width:120px;"><div>ver Periodos</div></div>
+                <div style=" margin-left:10px; float:left;"><div class="cssTabBtnAgregar addPlanificacion" title="agregar planificación de facturación."> <div>Agregar Planificaci&oacute;n</div>                    </div>                 </div>
+              
+            </td>
+       </tr>
+          <tr>
+              <td colspan="5">
+                  <div id="gridPlaneamiento"></div>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="5">
+                  <div id="divResultadoFac" style="width:100%; text-align:center;"> </div>
+              </td>
+          </tr>
+      </table>
+                    
+                                
+                                
+        </div>      

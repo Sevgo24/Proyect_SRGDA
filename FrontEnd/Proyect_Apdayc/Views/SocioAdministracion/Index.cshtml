@@ -1,0 +1,356 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: SOCIOS DE NEGOCIO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Seguridad - Mantenimiento de usuarios</title>
+ @*   <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+   <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+   <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+   <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+   <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>*@
+   
+    @*<script src="@Url.Content("~/Scripts/SGRDA/SocioAdministracion/socio.negocio.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/SocioAdministracion/socio.negocio.administracion.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+    <style>
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+        .checkboxes label {
+    display: block;
+    float: left;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+.checkboxes input {
+    vertical-align: middle;
+}
+.checkboxes label span {
+    vertical-align: middle;
+}
+  </style>
+</head>
+<body>
+    <div>
+      
+        
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+    <tr>
+        <td style=" vertical-align:bottom;">
+
+            <div id='divTitulo'>Persona - Entidad</div>
+        </td>
+    </tr>
+    <tr><td  style=" vertical-align: top;"><hr></td></tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td style="width:100px;"> Tipo Doc :</td>
+                        <td>
+                            <select id='ddlTipoDocumento' name="ddlTipoDocumento">
+                        </select>
+                        </td>
+
+                        <td> Nro Documento :</td>
+                        <td><input type='text' id='txtNombreSearch' placeholder='Ingrese Documento' name='txtNombreSearch' /></td>
+                        <td rowspan="3">
+                            <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                            
+                            <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+
+                            <button id='btnAgruparSocio' class="boton" name='btnAgruparSocio'>Agrupar
+                                <img src="@Url.Content("~/Images/botones/user.png")" width="16px" />
+                            </button>
+                        </td>
+                    </tr>
+                    
+@*                    <tr><td><div id="social"><table><tr>
+                        <td> Social:</td>
+                        <td colspan="3"> 
+                            <input type='text' id='txtRazon' style=" width:400px;" placeholder='Ingrese Razon social'   /> 
+                            <input type='hidden' id="hidCodigoBPS" />
+                        </td>
+
+                    </tr></table></div></td></tr>
+
+                   <tr><td><div id="nombre"><table><tr>
+                        <td> Nombre:</td>
+                        <td colspan="3"> 
+                            <input type='text' id='txtNombre' style=" width:400px;" placeholder='Ingrese Nombre'   /> 
+                            <input type='hidden'  />
+                        </td>
+                    checked="checked"
+                    </tr></table></div></td></tr>*@
+
+                    <tr>
+                        <td> <div id="divRazon">Razón Social:</div></td>
+                        <td colspan="3"> 
+                            <input type='text' id='txtRazon' style=" width:400px;"   /> 
+                            <input type='hidden' id="hidCodigoBPS" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="3">
+                            <div class="checkboxes">
+                            <label for="chkUsuarioDerecho"><input type="checkbox"  id="chkUsuarioDerecho" checked="checked"/><span>Derecho</span></label>&nbsp;
+                            <label for="chkRecaudador"><input type="checkbox"   id="chkRecaudador" checked="checked"/><span>Recaudador</span></label>&nbsp;
+                            <label for="chkEmpleado"><input type="checkbox"  id="chkEmpleado" checked="checked"/><span>Empleado</span> </label>
+                            <label for="chkAsociacion"><input type="checkbox"   id="chkAsociacion" checked="checked"/><span>Asociacion</span> </label>&nbsp;
+                            <label for="chkGrupo"><input type="checkbox"  id="chkGrupo" checked="checked"/><span>Grupo</span></label>&nbsp;
+                            <label for="chkProveedor"><input type="checkbox"  id="chkProveedor" checked="checked"/><span>Proveedor</span></label>&nbsp;
+                                <label for="chkFiltro" id="lblFiltro"><input type="checkbox" id="chkFiltro" checked="checked"/><span>Seleccionar todo</span></label>
+                                </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Estado:</td>
+                        <td colspan="3">
+                            <select id="divEstado">
+                                <option value=2>--Todos--</option>
+                                <option value=1 selected="selected">Activo</option>
+                                <option value=0 >Inactivo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </center>       
+        </td>
+    </tr>
+    <tr><td style='height: 40px; vertical-align:bottom;'>
+            <div style="float: right;">
+                <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo usuario." title="Registrar nuevo usuario." id="btnNuevo"/>&nbsp;
+                <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de usuario." title="Inactivar datos de usuario."  id="btnEliminar"/>
+                &nbsp; 
+            </div>
+    </td></tr>
+    <tr><td>
+
+            <center>
+               <div id="grid"></div>
+
+@*                 <table id="grid">
+                <colgroup>
+                    <col class="photo" />
+                    <col class="details"/>
+                    <col/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th style=" width:30px;">
+                             
+                        </th>
+                        <th>Tipo Persona</th>
+                        <th>Documento </th>
+                        <th>Nro Documento </th>
+                        <th>Nombres / Razon Social </th>
+                        <th>Usuario </th>
+                        <th>Recaudador</th>
+                        <th>Asociacion</th>
+                        <th>Empleado</th>
+                        <th>Grupo E.</th>
+                        <th>Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                </tbody>
+            </table>*@
+
+@*                 <script id="rowTemplate" type="text/x-kendo-tmpl">
+	            <tr data-uid="#: uid #">
+		             <td class="details"  style=" width:30px;">
+			           <span class="name">#: BPS_ID#   </span>
+			          
+		            </td>
+		            <td class="country" >
+			            #: ENT_TYPE_NOMBRE #
+		            </td>
+                    <td class="country">
+		               #: TAXN_NAME #
+		            </td>
+                     <td class="country">
+		               #: TAX_ID #
+		            </td>
+                     <td class="country">
+		               #: BPS_NAME #
+		            </td>
+                     <td class="employeeID">
+		              #if(BPS_USER == "0"){#
+                        <a href="javascript:agregar(); ">
+                          Sin Perfil
+                        </a>
+                     #}else{#
+                         <a href="javascript:modificar(); ">
+                          Acceso
+                        </a>
+                     #}#
+		            </td>
+                    <td class="employeeID">
+		              #if(BPS_COLLECTOR == "0"){#
+                        <a href="javascript:agregar(); ">
+                          Sin Perfil
+                        </a>
+                     #}else{#
+                         <a href="javascript:modificar(); ">
+                          Acceso
+                        </a>
+                     #}#
+		            </td>
+                    <td class="employeeID">
+		              #if(BPS_ASSOCIATION == "0"){#
+                        <a href="javascript:agregar(); ">
+                          Sin Perfil
+                        </a>
+                     #}else{#
+                         <a href="javascript:modificar(); ">
+                          Acceso
+                        </a>
+                     #}#
+		            </td>
+                    <td class="employeeID">
+		              #if(BPS_EMPLOYEE == "0"){#
+                        <a href="javascript:agregar(); ">
+                          Sin Perfil
+                        </a>
+                     #}else{#
+                         <a href="javascript:modificar(); ">
+                          Acceso
+                        </a>
+                     #}#
+		            </td>
+                    <td class="employeeID">
+		              #if(BPS_GROUP == "0"){#
+                        <a href="javascript:agregar(); ">
+                          Sin Perfil
+                        </a>
+                     #}else{#
+                         <a href="javascript:modificar(); ">
+                          Acceso
+                        </a>
+                     #}#
+		            </td>
+                    <td class="employeeID">
+		              #if(BPS_SUPPLIER == "0"){#
+                        <a href="javascript:agregar(); ">
+                          Sin Perfil
+                        </a>
+                     #}else{#
+                         <a href="javascript:modificar(); ">
+                          Acceso
+                        </a>
+                     #}#
+		            </td>
+
+	           </tr>
+            </script>*@
+            @*<script id="altRowTemplate" type="text/x-kendo-tmpl">
+	            <tr class="k-alt" data-uid="#: uid #">
+		            
+		            <td class="details">
+			           <span class="name">#: USUA_ICODIGO_USUARIO#   </span>
+			          
+		            </td>
+		            <td class="country">
+			            #: USUA_VNOMBRE_USUARIO #
+		            </td>
+                    <td class="employeeID">
+		               #: USUA_VAPELLIDO_PATERNO_USUARIO #
+		            </td>
+                    <td class="employeeID">
+		               #: USUA_VAPELLIDO_PATERNO_USUARIO #
+		            </td>
+                 </td>
+                      <td class="employeeID">
+		             
+                   #if(!USUA_CACTIVO_USUARIO){#
+                        <a class="btn btn-default" data-bind="click: describir">
+                          Inactivo
+                        </a>
+                     #}else{#
+                        <a class="btn btn-default" data-bind="click: describir">
+                          Activo
+                        </a>
+
+                    #}#
+		            </td>
+	           </tr>
+            </script>*@
+            </center> 
+    </td></tr>
+       <tr><td style='height: 30px;'>
+    <center>
+            <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+            </div>
+    </center>
+        </td></tr>
+</table>
+         
+<div title="Agrupar Socio de Negocio" id="mvAgruparSocio">
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr>
+            <td style="width:70px">Ruc:</td>
+            <td><input type="text" id="txtRuc" width="160"></td>
+            @*<td align="center"><button id="btnBuscarAgrSocio"> <img src="../Images/botones/buscar2.png" width="16px"> Buscar </button></td>*@
+        </tr>
+        <tr>
+            <td style="width:90px">Razon Social:</td>
+            <td>
+                <input type="text" id="txtRazSocial" style="width:450px;">
+                <input type='hidden' id="hidCodBPS" />
+            </td>          
+            <td align="center"><button id="btnBuscarAgrSocio"> <img src="../Images/botones/buscar2.png" width="16px"> Buscar </button></td>
+        </tr>
+    </table>
+    <table width='100%' border="0">
+        <tr>
+            <td>
+                <div class="contenedor">
+                    <table width='100%' border="0">
+                        <tr>
+                            <td rowspan="2" valign="top" width="370">
+                                <div id="gridSocioOriginal" width="80"></div>
+                            </td>
+                            <td align="center"><button id="btnElegirSocio"> <img src="../Images/botones/more.png" width="16px"></button></td>
+                            <td rowspan="2" valign="top" width="370">
+                                <div id="gridSocioFinal" width="80"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center"><button id="btnNoelegirSocio"> <img src="../Images/botones/menos.png" width="16px"></button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div></div>
+            </td>
+        </tr>
+    </table>
+</div>
+ 
+    </div>
+</body>
+</html>

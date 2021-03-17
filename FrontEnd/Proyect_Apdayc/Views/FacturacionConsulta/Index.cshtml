@@ -1,0 +1,385 @@
+﻿
+@{
+    ViewBag.Title = "Facturación Consulta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacionconsulta.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.nota.credito.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+
+    @*Busqueda General*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.empresarial.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.subdivisiones.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.notacredito.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.agentecomercial.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+   
+    
+  <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.txtNumLiccss")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style> 
+
+    <style>
+        #tblFacturaMasiva {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+
+    <style>
+        #tblDetalleFactura {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ContenedormvBuscarSocio"></div>
+        <div id="ContenedormvBuscarGrupoFacuracion"></div>
+        <div id="ContenedormvBuscarCorrelativo"></div>
+        <div id="ContenedormvBuscarCorrelativoNC"></div>
+
+        <div id="ContenedormvBuscarAgenteComercial"></div>
+        <div id="ContenedormvModalidad"></div>
+        <div id="ContenedormvLicencia"></div>
+        <div id="ContenedormvOficina"></div>        
+        <div id="ContenedormvNotaCredito"></div>
+        <div id="ContenedormvSubDivision"></div>
+        <div id="ContenedorMvSocioEmpresarial"></div>
+
+        <center>
+        <table style="width: 98%" border="0" >
+            <tr>
+                <td>
+                    <div id="divTitulo">Recaudación - Consulta Facturación</div>
+                </td>
+            </tr>
+            <tr>
+                <hr />
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <table style="width:100%; padding-left:30px" id="FiltroTabla"  border="0">
+                            @*<tr><td></td></tr>*@
+                            <tr>
+                                 <td>
+                                    Serie:
+                                </td>
+                               <td>
+                                       <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;"  alt="Búsqueda de Serie" title="Búsqueda de Serie"/>
+                                            <input type="hidden" id="hidCorrelativo" value="0"/> 
+                                            <input type="hidden" id="hidSerie" value="0"/> 
+                                            <input type="hidden" id="hidActual" value="0"/> 
+                                            <input type="hidden" id="hidIdFactura" value="0"/> 
+                                            <input type="hidden" id="hidIdDetalleFactura" value="0"/> 
+                                            <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie" >
+                                                Seleccione una Serie.
+                                            </label>   
+                                   
+                                </td>
+                                <td>
+                                    N° Factura :
+                                </td>
+                               <td>
+                                    <input type="text" id="txtNumFact" maxlength="20" style="width:90px"/>
+                                </td>
+                                
+                                 <td style="width:100px">
+                                    Tipo Licencia:
+                                </td>
+                               <td>
+                                    <select id="dllTipoLicencia" ></select>
+                               </td>
+                            </tr>                                                                                  
+                                   
+                             <tr>
+                                <td style="width:120px">
+                                    Socio de Negocio :
+                                </td>
+                               <td>
+                                    <table border="0" style="border-collapse: collapse;" title="Socio de Negocio">
+                                        <tr>
+                                            <td>
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"/>
+                                            </td>
+                                            <td colspan="6">
+                                                <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"> Seleccione un socio.</label>                                
+                                            </td>
+                                            <td>
+                                                <input type="hidden" id="hidAccionMvEnt" />
+                                                <input type="hidden" id="hidEdicionEnt" value="0"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="width:140px">
+                                    Grupo de Facturación:
+                                </td>
+                               <td>
+                                   <input type="hidden" id="hidGrupo" value="0" />
+                                     <table border="0" style="border-collapse: collapse;">
+                                        <tr>
+                                            <td colspan="6">                                                
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo Facturación" title="Búsqueda de Grupo Facturación"/>
+                                                <label id="lbGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo Facturacióm" title="Búsqueda de Grupo facturación">Seleccione un grupo facturación.</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                               </td>
+                                  <td>
+                                    Moneda:
+                                </td>
+                               <td>
+                                   <select id="ddlMoneda" class="requeridoLst"></select>
+                               </td>
+                                 
+                            </tr>    
+                                  
+
+                                <tr>
+                                    <td>
+                                       Con Fecha
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkConFecha" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td>
+                                    Fecha Inicial :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtFecInicial" readonly="false" class="requerido"/>
+                                </td>
+                                <td>
+                                    Fecha Final :
+                                </td>
+                                <td >
+                                   <input type="text" id="txtFecFinal" readonly="false" class="requerido"/>
+                                </td>
+                              
+                                <td>
+                                    Estado Fact. :
+                                </td>
+                                <td>
+                                    <select id="ddlEstado" ></select>
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td>
+                                    Divisón :
+                                </td>
+                               <td>
+                                    <input type="hidden" id="hidSubDivision" value="0" />
+                                    <table border="0" style="border-collapse: collapse;">
+                                        <tr>
+                                            <td>
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaSubDivision" style="cursor: pointer;" alt="Búsqueda de Subdivisión" title="Búsqueda de Subdivisión"/>
+                                            </td>
+                                            <td colspan="6" >
+                                                <label id="lbSubDivision" style="cursor: pointer;" alt="Búsqueda de Subdivisión" title="Búsqueda de Subdivisión">Seleccione una subdivisión.</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                               </td>
+
+                                 <td>
+                                    Oficina Comercial :
+                                </td>
+                               <td>
+                                   <input type="hidden" id="hidOficina" value="0" />
+                                     <table border="0" style="border-collapse: collapse;">
+                                        <tr>
+                                            <td>
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"/>
+                                            </td>
+                                            <td colspan="6">
+                                                <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">Seleccione una oficina.</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                               </td>
+
+                                <td>
+                                    Agente Comercial :
+                                </td>
+                               <td>
+                                    <table border="0" style="border-collapse: collapse;" title="Agente Comercial">
+                                        <tr>
+                                            <td colspan="6">
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarAGE" style="cursor: pointer;" alt="Búsqueda Agente Comercial." title="Búsqueda Agente Comercial."/>
+                                                <label id="lbAgente" style="cursor: pointer;" alt="Búsqueda de Agente Comercial." title="Búsqueda Agene Comercial.">                                                     
+                                                    Seleccione un agente.</label>                                
+                                            </td>
+                                            <td>
+                                                <input type="hidden" id="hidAccionMvEntAGE" />
+                                                <input type="hidden" id="hidEdicionEntAGE" value="0" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tipo :
+                                </td>
+                                <td>
+                                    <select id="ddlTipoDocumento" ></select>
+                                </td>
+                                <td>
+                                    ID Factura :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtIdFact" maxlength="20" style="width:90px"/>
+                                </td>
+                                <td>
+                                    N° Licencia :
+                                </td>
+                                <td>
+                                    <input type="text" id="txtNumLic" maxlength="20" style="width:90px"/>
+                                </td>
+                            </tr>
+                           @* GRUPO COMERCIAL*@
+                            <tr>
+                                <td>
+                                    GRUPO EMPRESARIAL/COMERCIAL:
+                                </td>
+                                <td>  
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarGrupoEmpresarial" style="cursor:pointer;" alt="Busqueda de Grupo Comercial" title="Busqueda de Grupo Comercial" />
+                                    <label id="lblGrupoEmpresarial">SELECCIONE UN GRUPO COMERCIAL </label>
+                                    <input type="hidden" id="hidCodigoGrupoEmpresarial" value="0">
+                                </td>
+
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="text-align: right; padding-right: 22px" colspan="2">
+                    Tipo de Impresion :
+                    <select id="ddlTipoImpresion"></select>
+                    &nbsp&nbsp&nbsp&nbsp
+                    <span style="font-size:small;font-weight:bold">Impresas</span>
+                        <input type="checkbox" id="chkImp" />
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp
+                    <span style="font-size:small;font-weight:bold">Anuladas</span>
+                        <input type="checkbox" id="chkAnu" />
+                </td>
+            </tr>
+
+            <tr>
+                
+                  <td style="padding-left:30px">
+                    <span style="font-size:small;font-weight:bold"> Total de Registros: </span>
+                    <span style="font-size:small;font-weight:bold"><label id="CantidadRegistros">0</label></span>
+                </td>
+                <td style="text-align: right; padding-right: 20px">
+                        
+                         <button id='btnNotaCredito' class="boton" name='btnNotaCredito'>
+                            NOTA DE CRÉDITO 
+                        <img src="@Url.Content("~/Images/botones/new32.png")" width="24px" /></button>
+                        &nbsp;
+
+
+                        <img id='btnImprimir' src="@Url.Content("~/Images/botones/print.png")"  alt="Imprimir Facturas Seleccionadas" title="Imprimir Facturas Seleccionadas" />
+             
+                                        &nbsp;
+                        <button id='btnPdf' class="boton" name='btnPdf'>
+                             Rep. PDF 
+                        <img src="@Url.Content("~/Images/botones/pdf.png")" width="24px" /></button>
+
+                                        &nbsp;
+                        <button id='btnExcel' class="boton" name='btnExcel'>
+                            Rep. EXCEL 
+                        <img src="@Url.Content("~/Images/botones/excel.png")" width="24px" /></button>                    
+                        &nbsp;
+                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                            Limpiar 
+                        <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" /></button>
+                               &nbsp; &nbsp; 
+                        <button id='btnBuscar' class="boton" name='btnBuscar'>
+                            Buscar 
+                        <img src="@Url.Content("~/Images/botones/buscar2.png")" width="24px" /></button>
+
+                </td>
+            </tr>
+
+          
+            <tr>
+                <td colspan="2 ">
+
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+        </center>
+    </div>
+
+    <div title="Anulación de la Factura" id="mvAnulacion">
+        <table width='100%' border='0' id='FiltroTablaPopAnu'>
+            <input type="hidden" id="hidIdFactA" />
+            <tr>
+                <td style="width: 210px">Descripción de la Anulación :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtDescripcion" name="txtDescripcion" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+     <div title="Anulación de la Factura" id="mvObservacion">
+        <table width='100%' border='0' id='FiltroTablaPopObs'>
+            <input type="hidden" id="hidIdFact" />
+            <tr>
+                <td>Tipo de Nota de Crédito :</td>
+                <td><select id='ddlTipoNotaCredito' name="ddlTipoNotaCredito" style="width: 270px"></select></td>
+            </tr>
+            <tr>
+                <td style="width: 210px">Descripción de la Anulación :</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtObservacion" name="txtObservacion" rows="7" cols="65" placeholder="Ingrese descripción" style="width: 543px; height: 118px" maxlength="512"></textarea>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

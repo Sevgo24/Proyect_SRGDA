@@ -1,0 +1,456 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: DEPOSITO BANCARIO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DEPOSITOS BANCARIOS</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/deposito.bancario.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+
+    @*<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
+
+    <style>
+        html .k-grid tr:hover {
+            background: #DFEFFC;
+        }   
+
+        html .k-grid tr.k-alt:hover {
+            /*background: #f1f1f1;*/
+            background: #DFEFFC;
+        }
+        /*customClass
+        {
+            font-size:30px;
+        }*/
+    </style>
+
+</head>
+
+<body>
+    <div id="ContenedormvBuscarSocio"></div>
+    <div id="ContenedormvOficina"></div>
+
+    <div id="divVista">
+        <table style="width: 98%" border="0">
+            <tr>
+                <td>
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="divTitulo">Depósitos Bancarios</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <center>
+                        <div class="contenedor">
+                            <table style="width:100%; padding-left:30px; padding-right:30px" id="FiltroTabla1" border="0">
+                                <tr>
+                                    <td style="width:200px">
+                                        Con Fecha de Creación : &nbsp <input type="checkbox" id="chkConFechaIngreso" />
+                                    </td>
+                                    <td style="width:200px">
+                                        <input type="text" id="txtFechaIniIngreso" class="requerido" readonly />
+                                    </td>
+                                    <td style="width:150px">Hasta :</td>
+                                    <td style="width:250px">
+                                        <input type="text" id="txtFechaFinIngreso" class="requerido" readonly />
+                                    </td>
+
+                                    @*<td style="width:200px">*@
+                                    <td>
+                                        Oficina de Recaudo :
+                                    </td>
+                                    @*<td colspan="3">*@
+                                    <td >
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de oficina de Recaudo" />
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina de Recaudo" title="Búsqueda de Oficina">Seleccione una oficina de recaudo.</label>
+                                                </td>
+                                                <input type="hidden" id="hidOficina" value="0" />
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td colspan="3"   style="text-align: right">
+                                        @*<button id="btnExcel" style="height:34px;width:100px; border-radius:6px;background-color:white" >*@
+                                        <button id="btnExcel" style="height:34px;width:90px; border-radius:6px;border-bottom-color:black">
+                                            EXCEL&nbsp;&nbsp;
+                                            <img src="@Url.Content("~/Images/botones/excel_rep.png")" width="24px" />
+                                        </button>
+                                        &nbsp;
+                                        <button id="btnPdf"  style="height:34px;width:90px; border-radius:6px;border-bottom-color:black" >
+                                            PDF&nbsp;&nbsp;
+                                            <img src="@Url.Content("~/Images/botones/pdf_rep.png")" width="24px" />
+                                        </button>
+                                        
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td colspan="10">
+                                        <hr />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Banco Destino
+                                    </td>
+                                    <td>
+                                        <select id="ddlBancoDestino"></select>
+                                    </td>
+                                    <td>
+                                        Cuenta Destino
+                                    </td>
+                                    <td>
+                                        <select id="ddlCuentaDestino"></select>
+                                    </td>
+                                    <td style="width:100px"> Monto Depositado</td>
+                                    <td><input type="text" id="txtMontoDepositado" /></td>
+
+                                    <td style="text-align: right">
+                                        @*<button id='btnBuscar' class="boton" name='btnBuscar'>*@
+                                        <button id="btnBuscar" class="boton" name='btnBuscar' style="height:34px;width:90px; border-radius:6px;border-bottom-color:black">
+                                            Buscar
+                                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                                        </button>
+                                        &nbsp;
+                                        @*<button id='btnLimpiar' class="boton" name='btnLimpiar'>*@
+                                        <button id="btnLimpiar" class="boton" name='btnLimpiar' style="height:34px;width:90px; border-radius:6px;border-bottom-color:black">
+                                            Limpiar
+                                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td colspan="10">
+                                        <hr />
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Banco:</td>
+                                    <td>
+                                        <select id="ddlBanco"></select>
+                                    </td>
+                                    <td>Tipo Pago :</td>
+                                    <td>
+                                        <select id="ddlTipoPago"></select>
+                                    </td>
+                                    <td>Moneda :</td>
+                                    <td>
+                                        <select id="ddlMoneda"></select>
+                                    </td>
+                                    <td>
+                                        Bec Especial :
+                                        <select id="ddlBecEspecial">
+                                            <option value="-1"> -- SELECCIONE --</option>
+                                            <option value="1"> SI</option>
+                                            <option value="0"> NO</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Estado de Confirmación :</td>
+                                    <td>
+                                        <select id="ddlEstadoConfirmacion"> </select>
+                                    </td>
+                                    <td>Código del Depósito :</td>
+                                    <td>
+                                        <input type="text" id="txtCodigoBancario" />
+                                    </td>
+                                    @*<td>ID Voucher:</td>
+                                        <td colspan="3"><input type="text" id="txtID" style="width:80px" /></td>*@
+                                    <td>Código de Confirmación :</td>
+                                    <td>
+                                        <input type="text" id="txtCodigoConfirmacion" />
+                                    </td>
+                                    <td>
+                                        Est. Aprob. :
+                                        &nbsp;&nbsp;
+                                        <select id="ddlEstadoAprobacion">
+                                            <option value="-1">-- Selecionar -- </option>
+                                            @*<option value="1">SI</option>
+                                            <option value="0"> NO </option>*@
+
+                                            <option value="0"> PENDIENTE </option>
+                                            <option value="1"> APROBADO </option>
+                                            <option value="2"> RECHAZADO </option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:200px">
+                                        Con Fecha de Depósito : &nbsp <input type="checkbox" id="chkConFecha" />
+                                    </td>
+                                    <td style="width:200px">
+                                        <input type="text" id="txtFechaIni" class="requerido" readonly />
+                                    </td>
+
+                                    <td style="width:150px">Hasta :</td>
+                                    <td style="width:250px">
+                                        <input type="text" id="txtFechaFin" class="requerido" readonly />
+                                    </td>
+                                    <td>ID Voucher:</td>
+                                    <td ><input type="text" id="txtID" style="width:80px" /></td>
+                                    <td>ID Cobro: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtIdCobro" style="width:80px" /></td>
+
+                                    <td style="width:90px;display:none">Cliente :</td>
+                                    <td style="display:none">
+                                        <table border="0" style="border-collapse: collapse;" title="Socio de Negocio">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio" />
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Cliente" title="Búsqueda de Cliente"> Seleccione un Cliente.</label>
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" id="hidAccionMvEnt" />
+                                                    <input type="hidden" id="hidEdicionEnt" value="0" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+
+
+
+
+                            </table>
+                        </div>
+                    </center>
+                </td>
+            </tr>
+
+
+            @*<tr>
+                    <td style="text-align: right">
+                        <button id='btnBuscar' class="boton" name='btnBuscar'>
+                            Buscar
+                                        <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                        &nbsp;
+                                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                                            Limpiar
+                                        <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button>
+                    </td>
+                </tr>*@
+
+            <tr>
+                <td>
+                    <div id="gridDepositosBancarios"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="vertical-align:central;text-align:center" colspan="2">
+                    <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+</body>
+</html>
+
+<div id="mvConfirmacion">
+    <table width="100%" border="0">
+        <input type="hidden" id="hidIdDepositoBancario" />
+        <input type="hidden" id="hidIdCobro" />
+
+        <input type="hidden" id="hidIdBanco" />
+        <input type="hidden" id="hidIdCuenta" />
+
+        <tr>
+            <td>Banco :</td>
+            <td colspan="3"><label id="lblBanco"></label></td>
+            @*<td colspan="3"><input type="text" id="txtbanco"  readonly style=" background-color:rgb(255, 252, 196)"></input></td>*@
+        </tr>
+        <tr>
+            <td>Tipo Pago :</td>
+            <td colspan="3"><label id="lblTipoPago"></label></td>
+        </tr>
+        <tr>
+            <td>Fecha Depósito :</td>
+            <td colspan="3"><label id="lblFechaDeposito"></label></td>
+        </tr>
+        <tr>
+            <td>Código bancario :</td>
+            <td colspan="3"><label id="lblVoucher"></label></td>
+        </tr>
+        <tr>
+            <td>Monto :</td>
+            <td><label id="lblMonto"></label></td>
+            <td style="text-align:right;padding-right:10px">Moneda : &nbsp &nbsp<label id="lblMoneda"></label></td>
+        </tr>
+
+        <tr><td colspan="10"><hr /></td></tr>
+
+        <tr>
+            <td>Código de Confirmación :</td>
+            <td colspan="3">                <input type="text" id="txtCodConfirmacion" class="requerido" /></td>
+        </tr>
+        <tr>
+            <td>Estado :</td>
+            <td colspan="3">
+                <input type="radio" id="rbtConfirmado" name="Estado" class="Estado" value="C" />Confirmado &nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="radio" id="rbtRechazado" name="Estado" class="Estado" value="R" /> Rechazado
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top">Observación :</td>
+            <td colspan="3"> <textarea id="txtObservacion" cols="40" rows="4"></textarea></td>
+        </tr>
+
+        <tr>
+            <td>Ver Detalle:</td>
+            <td><button id="btnVerDetalle">Ver Detalle del Cobro</button></td>
+        </tr>
+        <tr>
+            <td>Ver Imagen Cobro:</td>
+            <td><button id="btnVerImagenCobro">Ver Imagen</button></td>
+        </tr>
+    </table>
+</div>
+
+<div id="mvBecEspecial">
+    <table width="100%" border="0">
+        <input type="hidden" id="BEhidIdDepositoBancario" />
+        <input type="hidden" id="BEhidIdCobro" />
+        <input type="hidden" id="BEhidIdBanco" />
+        <input type="hidden" id="BEhidIdCuenta" />
+
+        <tr>
+            <td>Banco :</td>
+            <td colspan="3"><label id="BElblBanco"></label></td>
+        </tr>
+        <tr>
+            <td>Tipo Pago :</td>
+            <td colspan="3"><label id="BElblTipoPago"></label></td>
+        </tr>
+        <tr>
+            <td>Fecha Depósito :</td>
+            <td colspan="3"><label id="BElblFechaDeposito"></label></td>
+        </tr>
+        <tr>
+            <td>Código bancario :</td>
+            <td colspan="3"><label id="BElblVoucher"></label></td>
+        </tr>
+        <tr>
+            <td>Monto :</td>
+            <td><label id="BElblMonto"></label></td>
+            <td style="text-align:right;padding-right:10px">Moneda : &nbsp &nbsp<label id="BElblMoneda"></label></td>
+        </tr>
+
+        <tr><td colspan="10"><hr /></td></tr>
+
+
+        <tr>
+            <td>Estado :</td>
+            <td colspan="3">
+                <input type="radio" id="BErbtConfirmado" name="BEEstado" class="BEEstado" value="1" />Aprobado &nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="radio" id="BErbtRechazado" name="BEEstado" class="BEEstado" value="2" /> Rechazado
+            </td>
+        </tr>
+
+        <tr>
+            <td style="vertical-align: top">Observación :</td>
+            <td colspan="3"> <textarea id="BEtxtBecEspecialObservacion" cols="40" rows="4"></textarea></td>
+        </tr>
+
+        <tr>
+            <td>Ver Imagen Cobro:</td>
+            <td><button id="BEbtnVerImagenCobro">Ver Imagen</button></td>
+        </tr>
+
+    </table>
+
+</div>
+
+<div id="mvConfirmacionModificar" >
+    <table width="100%" border="0">
+        <input type="hidden" id="hidIdDepositoBancarioM" />
+        <input type="hidden" id="hidIdCobroM" />
+
+        <input type="hidden" id="hidIdBancoM" />
+        <input type="hidden" id="hidIdCuentaM" />
+        
+
+        <tr>
+            <td>Tipo Pago :</td>
+            <td colspan="3"><label id="lblTipoPagoM"></label></td>
+        </tr>
+        <tr>
+            <td>Banco Destino :</td>
+            <td colspan="3"><select id="ddlBancoMod"></select></td>
+        </tr>    
+        <tr>
+            <td>Moneda :</td>
+            <td colspan="3"><select id="ddlMonedaMod" ></select></td>
+        </tr>        
+        <tr>
+            <td>Cuenta :</td>
+            <td colspan="3"><select id="ddlCtaMod"></label></td>
+        </tr>
+        <tr>
+            <td>Fecha Depósito :</td>
+            <td colspan="3"><input type="text" id="txtFechaDepMod" /> </td>            
+        </tr>        
+        <tr>
+            <td>Monto :</td>
+            <td><label id="lblMontoM"></label></td>
+            <td style="text-align:right;padding-right:10px">
+        </tr>
+
+        <tr><td colspan="10"><hr /></td></tr>
+
+        <tr>
+            <td>Código de Confirmación :</td>
+            <td colspan="3">                <input type="text" id="txtCodConfirmacionM" class="requerido" /></td>
+        </tr>
+
+
+        <tr>
+            <td>Ver Detalle:</td>
+            <td><button id="btnVerDetalleM">Ver Detalle del Cobro</button></td>
+        </tr>
+    </table>
+</div>
+

@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>ADMINISTRACION ARTISTAS </title>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>*@
+    <script src="@Url.Content("~/scripts/sgrda/administracion/mantenimiento.administracion.artista.js")"></script>
+</head>
+
+<body>
+    <div id="ContenedormvOficina"></div>
+    <div id="ContenedormvBuscarCorrelativo"></div>
+    <div id="ContenedormvBuscarSocio"></div>
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE ADMINISTRACION DE ARTISTAS</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="left" style="width:200px">CODIGO DE LICENCIA :</td>
+                        <td><input type="text" id="txtcodlic" /></td> 
+
+                        <td align="right">
+                            <button id='btnBuscar' class="boton" name='btnBuscar'>
+                                Buscar Solicitud
+                                @*<img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />*@
+                            </button>
+                        </td>
+                    </tr>
+                     <tr>
+            <td colspan="8" align="center">
+                <button id='btnAprobarArtistas' class="boton" name='btnAprobarArtistas'>
+                    Aprobar
+                    @*<img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />*@
+                </button>
+                <button id='btnRechazarArtistas' class="boton" name='btnRechazarArtistas'>
+                    Rechazar
+                   @* <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />*@
+                </button>  
+            </td>
+        </tr>                
+        </table>
+            </td>           
+        @*<tr id="trCantidadCobros"><td colspan="8" align="left" style="padding-left:30px;font-size:small;font-weight:bold">CANTIDAD DE COBROS :<label id="lblCantCobros">...</label></td></tr>*@
+           
+        </tr>
+        <tr>
+            <td> <p></p></td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div id="grid"></div>
+            </td>
+        </tr>
+        @*<tr>
+            <td style="vertical-align:central;text-align:center">
+                <div id="contenedor" style="display:none"><iframe src="" width="100%" height="900" id="externo"></iframe></div>
+            </td>
+        </tr>*@
+    </table>
+</body>
+</html>
+
+
+
+
+

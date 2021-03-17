@@ -1,0 +1,196 @@
+﻿@model SGRDA.Entities.BEREC_BPS_QUALY
+
+@{
+    ViewBag.Title = "APDAYC :: CALIFICADORES DE NEGOCIO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        //combos
+        $("#DQUC_ID").hide();
+
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#QUC_ID").hide();
+            $("#DQUC_ID").show();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#btnedit").hide();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            $("#DQUC_ID").hide();
+
+            location.reload();
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+       <br />
+    <div id="divTituloPerfil">
+        Calificadores de Socios de Negocios - Actualización 
+    </div>
+    
+    
+     <center>
+         <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+           <tr>
+               <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+              
+                    <div style="float:right">
+                        <div class="botonLink"  style="width:80px;">
+                            <a href="@Url.Action("../CALIFICADORESSOCIOSNEGOCIOS/", "CALIFICADORESSOCIOSNEGOCIOS")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnnuevo">
+                                <a href="@Url.Action("Create", "CALIFICADORESSOCIOSNEGOCIOS")"   >  
+                                    <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnedit">
+                            <a href="#" id="btnedit" >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                    Editar
+                                    <img src="@Url.Content("~/Images/botones/editb.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <button id="btncancel"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Descartar </span> 
+                            <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                        </button> 
+
+                        &nbsp;
+                        <button id="btnSave"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Grabar </span> 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>   
+                   </div>
+               </td>
+           </tr>
+             <tr><td><br /></td></tr>
+     <tr >        
+        <td style="width:15% ;padding-left:2% ;" >   
+            @*<div class="editor-label">
+                @Html.LabelFor(model => model.OWNER)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.OWNER)
+                @Html.ValidationMessageFor(model => model.OWNER)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BPS_ID)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BPS_ID)
+                @Html.ValidationMessageFor(model => model.BPS_ID)
+            </div>*@
+
+                @Html.HiddenFor(model => model.OWNER, htmlAttributes: new { id = "OWNER" })
+          
+
+                @Html.HiddenFor(model => model.BPS_ID, htmlAttributes: new { id = "BPS_ID" })
+         
+
+            
+                @Html.LabelFor(model => model.QUC_ID) :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.CARACTERISTICA, htmlAttributes: new { id = "QUC_ID", disabled = "disabled", style = "width:250px;" })
+                @if (ViewData.ContainsKey("Lista_TiposCalificadores"))
+                {
+                    @Html.DropDownList("Lista_TiposCalificadores", ViewData["Lista_TiposCalificadores"] as List<SelectListItem>, new { style = "width:250px", id = "DQUC_ID" }) 
+                }
+                @Html.ValidationMessageFor(model => model.QUC_ID)            
+            </td>
+         </tr>
+             <tr><td><br /></td></tr>    
+         </table>
+    </center>
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("QUC_ID").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("QUC_ID").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+</script>
+
+<br />
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>

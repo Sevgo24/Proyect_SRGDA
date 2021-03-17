@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: CENTRO DE CONTACTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro de Contactos</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/Campania/mantenimiento.centro.contacto.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+    <link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="text-align: left" colspan="2">
+                    <div id="divTitulo">Centro de Contactos</div>
+                    <input type="hidden" id="hidOpcionEdit" />
+                    <br />
+                </td>
+            </tr>
+
+            <table border="0" style="width: 98%" class="contenedor">
+                <tr>
+                    <td style="width: 100px">Oficina Comercial 
+                    </td>
+                    <td>
+                        <select id="ddlOficinaComercial"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nombre
+                    </td>
+                    <td>
+                        <input id="txtNombre" maxlength="60" style="width: 250px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Estado
+                    </td>
+                    <td>
+                        <select id="ddlEstado"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right" colspan="2">
+                        <button id='btnBuscar' class="boton" name='btnBuscar'>
+                            Buscar
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                        &nbsp;
+                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                            Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button><br />
+                        <br />
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" style="width: 98%">
+                <tr>
+                    <td style='height: 40px; vertical-align: bottom; width: 95%' colspan="20">
+                        <div style="float: right;">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span>&nbsp;</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#" onclick="return redirecto('PDF');"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                                    <li><a href="#" onclick="return redirecto('EXCEL');"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td style='height: 40px; vertical-align: bottom; width:20%' colspan="20">
+                        <div style="float: right;">
+                            <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nuevo centro de contacto." title="Registrar nuevo centro de contacto." id="btnNuevo"/>&nbsp;
+                            <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar centro de contacto." title="Inactivar centro de contacto."  id="btnEliminar"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="21">
+                        <div id="gridCentroContacto"></div>
+                    </td>
+                </tr>
+            </table>
+        </table>
+    </div>
+</body>
+</html>

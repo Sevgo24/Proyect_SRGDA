@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Workflow - Estado de Procesos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Workflow - Estado de Procesos</title>
+    
+    <script src="@Url.Content("~/Scripts/SGRDA/WorkFlow/mantenimiento.state.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+</head>
+<body>
+    <div title="Nuevo Ciclo de Aprobación">
+
+        <table style="width: 100%" border="0">
+            <tr>
+                <td>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidId" type="hidden" />                    
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:98%" border="0" id="FiltroTablaPop">
+                            <tr>
+                                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                       
+                                           <table  width='100%' border='0' id='FiltroTabla'>
+		                               <tr>
+			                               <td style="width:500px;text-align:left;">
+                                               <div id="divTituloPerfil">Workflow- Estados de Procesos / Nuevo</div>
+			                               </td>
+				                            <td  colspan="1">					                                                                                  
+                                                        <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                        Volver 
+                                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                                &nbsp;
+                                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                        Nuevo 
+                                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                                &nbsp;
+                                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                        Grabar 
+                                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>
+				                            </td>   
+		                               </tr>
+	                               </table>
+                                             
+                  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                        <table>
+                                              <tr id="trId">
+                                                <td style="padding-left:30px;width:90px">
+                                                    Id Estado :
+                                                </td>
+                                                <td style="width:150px">
+                                                    <input type="text" id="txtCodigo"  style="width:120px" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:30px;width:140px">
+                                                    Descripción :
+                                                </td>
+                                                <td>
+                                                    <textarea id="txtDescripcion" rows="2" cols="50" maxlength="100" class="requerido"></textarea>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td style="padding-left:30px;width:140px">
+                                                    Etiqueta :
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="txtEtiqueta"  style="width:400px" maxlength="40" class="requerido" />
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td style="padding-left:30px;width:140px">
+                                                    Descripción
+                                                    Detallada :
+                                                </td>
+                                                <td>                                                    
+                                                    <textarea id="txtDetalle" rows="3" cols="50" maxlength="512" ></textarea>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td style="padding-left:30px;width:140px">
+                                                    Tipo de Estado :
+                                                </td>
+                                                <td>
+                                                    <select id="ddlTipo" class="requeridoLst"></select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td style='height: 30px;'>
+                     <center> <div id="aviso"></div> </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#tabs-1">Asociar</a></li>
+                        </ul>
+                        <div id="tabs-1">
+                            <table style="width: 100%;" border="0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <img src="~/Images/botones/add.png" class="addTab" height="30">
+                                        </div>
+                                        <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addTab">Asociar Pestaña</a></div>
+                                        <hr />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridTab"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div title="Asociar pestaña" id="mvTab">
+            <center>
+                        <table width='98%' border='0' id="idtabla">  
+                            <tr>
+                                <td>Selecionar pestaña</td>
+                                <td style="width:5px">    
+                                    <select id='ddlTab' name="ddlTab"></select>                                        
+                                    <input type="hidden" id="hidAccionMvTab" />
+                                    <input type="hidden" id="hidEdicionTab" />
+                                    <input type="hidden" id="hidTabanterior" />
+                                    <input type="hidden" id="hidIdSequencia" />
+                                </td>                               
+                            </tr>                                          
+                        </table>                
+                         
+            </center>
+        </div>
+    </div>
+</body>
+</html>

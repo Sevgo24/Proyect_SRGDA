@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: DESCUENTO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Proceso Lincenciamiento</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.descuento.licenciamiento.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Descuento/mantenimiento.descuento.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Auditoria/mantenimiento.auditoria.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Entidad/mantenimiento.entidad.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+
+        ul.ui-autocomplete {
+            z-index: 1100;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+
+        <table style="width: 100%" border="0">
+            <tr>
+                <td style="vertical-align: bottom;">
+                    <div id='divTituloPerfil'>Proceso Lincenciamiento - Nuevo</div>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidLicId" type="hidden" />
+                    <input id="hidBpsId" type="hidden" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table width='98%' border='0' id='FiltroTabla'>
+                        <tr>
+                             <td  colspan="3" style="  text-align:right; "  class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                            
+                                <button id="btnVolver"  class="boton" name="btnVolver">Volver 
+                                <img src="@Url.Content("~/Images/botones/back.png")" width="24" /></button>                          
+                                &nbsp;
+                                <button id="btnGrabar"  class="boton" name="btnGrabar">Grabar  
+                                <img src="@Url.Content("~/Images/botones/save.png")" width="24" /></button>  
+                            </td>
+                        </tr>
+                       
+                        </table>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td style='height: 30px;'>
+                    <center>
+                    <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+                    </div>
+                </center>
+                </td>
+            </tr>
+        </table>
+
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Descuento</a></li>
+                <li><a href="#tabs-2">Auditoria</a></li>
+                <li><a href="#tabs-3">Entidad</a></li>
+            </ul>
+
+            <div id="tabs-1">
+                <table style="width: 100%;" border="0">
+                    @*<tr>
+
+                        <td>
+                            <div>
+                                <img src="~/Images/botones/add.png" class="addDescuento" height="30">
+                            </div>
+                            <div style="margin-top: -30px; margin-left: 30px;"><a href="#" id="addDescuento" class="addDescuento">Agregar Descuento  </a></div>
+                            <hr />
+                        </td>
+                    </tr>*@
+                    <tr>
+                        <td>
+                            <div id="gridDescuento"></div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div id="tabs-2">
+                <table style="width: 100%;" border="0">
+                    <tr>
+                        <td>
+                            <div id="gridAuditoria"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tabs-3">
+                <table style="width: 100%;" border="0">
+                    <tr>
+
+                        <td>
+                            <div>
+                                <img src="~/Images/botones/add.png" class="addEntidad" height="30">
+                            </div>
+                            <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addEntidad">Agregar Entidades  </a></div>
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="gridEntidad"></div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div title="Entidades" id="mvEntidad">
+                <table width='100%' border='0' id='FiltroTablaPop'>
+                    <tr>
+                        <td>Tipo de Documento :</td>
+                        <td>
+                            <input type="hidden" id="hidAccionMvEnt" />
+                            <input type="hidden" id="hidEdicionEnt" />
+                            <input type="hidden" id="hidEntidadId" />
+                            <select id='ddlTipoDocumento1' name="ddlTipoDocumento1">
+                            </select>
+                        </td>
+                        <td>Nro. Documento :</td>
+                        <td>
+                            <input type="text" id="txtDocumento" class="requerido" /></td>
+                        <td>
+                            <button id="btnBuscarSocio">Buscar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="center">
+                            <hr />
+                            <table width="70%" border="0">
+                                <tr>
+                                    <td>Nombre / Razon Social :</td>
+                                    <td>
+                                        <input type="text" id="txtNombre" size="50" disabled="disabled" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <center><div id="avisoEntidad" style=" width: 100% ; vertical-align:  middle; "></div></center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</body>
+</html>

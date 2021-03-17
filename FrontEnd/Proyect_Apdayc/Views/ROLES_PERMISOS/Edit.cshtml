@@ -1,0 +1,168 @@
+﻿@model SGRDA.Entities.ROLES_PERMISOS
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Style/Style.css")" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        $("#cb1").attr("disabled", "disabled");
+        $("#cb2").attr("disabled", "disabled");
+        $("#nommodulo").attr("disabled", "disabled");
+        $("#ruta").attr("disabled", "disabled");
+        $("#descripcion").attr("disabled", "disabled");
+        $("#std").hide();
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+
+            $("#dnommodulo").hide();
+            $("#druta").hide();
+            $("#ddescripcion").hide();
+            $("#dstd").hide();
+
+            $("#cb1").removeAttr('disabled');
+            $("#cb2").removeAttr('disabled');
+            $("#nommodulo").removeAttr('disabled');
+            $("#ruta").removeAttr('disabled');
+            $("#descripcion").removeAttr('disabled');
+            $("#std").show();
+
+            $("#btnedit").hide();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#droles").show();
+            $("#dmodulo").show();
+            $("#dnommodulo").show();
+            $("#druta").show();
+            $("#ddescripcion").show();
+            $("#dstd").show();
+
+            $("#cb1").attr("disabled", "enabled");
+            $("#cb2").attr("disabled", "enabled");
+            $("#dnommodulo").attr("disabled", "enabled");
+            $("#druta").attr("disabled", "enabled");
+            $("#ddescripcion").attr("disabled", "enabled");
+            $("#dstd").hide();
+
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            location.reload();
+        })
+    });
+</script>
+
+
+@using (@Html.BeginForm(FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <br />
+        <legend id="legend">@Html.ActionLink("ROLES PERMISOS", "Index", new { }, new { style = "text-decoration:none;" }) / <span>@Html.DisplayFor(model => model.MODU_VNOMBRE_MODULO) </span></legend>
+        <div class="popUp-content">
+            <div>
+                <a href="@Url.Action("Create", "ROLES_PERMISOS")" id="btnnuevo" class="btn btn-primary">Nuevo</a>
+                <button id="btnSave" class="btn btn-primary">Guardar</button>
+                <a href="#" id="btncancel" class="btn btn-primary">Descartar</a>
+                <a href="#" id="btnedit" class="btn btn-primary">Editar</a>
+            </div>
+
+            <br />
+
+            <div>
+                    <input type="hidden" id="id" name="id" value="@Html.DisplayFor(model => model.MODU_ICODIGO_MODULO)"/>
+                    
+                    <label>ROL</label><br />
+                    <div id="droles">
+                         @Html.DropDownList("Lista_Roles", (IEnumerable<SelectListItem>)ViewData["Lista_Roles"], new { style = "width:210px", id = "cb1" })
+                    </div><br />
+                    
+                   <label>MODULO</label>
+                    <div id="dmodulo">
+                        @Html.DropDownList("Lista_Roles", (IEnumerable<SelectListItem>)ViewData["Lista_Cabecera_Modulo"], new { style = "width:210px", id = "cb2" })
+                    </div><br />    
+
+                    <label>NOMBRE MODULO</label><br />
+                    <div id="dnommodulo"><span style="width: 350px" id="ocnommodulo" class="ocnommodulo"></span>
+                    </div>
+                    <input type="text" id="nommodulo" class="form-control" name="nommodulo" style="width: 350px" value="@Html.DisplayFor(model => model.MODU_VNOMBRE_MODULO)" /><br />
+                
+                    <label>RUTA PAGINA</label><br />
+                    <div id="druta"><span style="width: 350px" id="ocruta" class="ocruta"></span>
+                    </div>
+                    <input type="text" id="ruta" class="form-control" name="ruta" style="width: 350px" value="@Html.DisplayFor(model => model.MODU_VRUTA_PAGINA)" /><br />
+                    
+                    <label>DESCRIPCIÓN</label><br />
+                    <div id="ddescripcion"><span style="width: 350px" id="ocdescripcion" class="ocruta"></span>
+                    </div>
+                    <input type="text" id="descripcion" class="form-control" name="descripcion" style="width: 350px" value="@Html.DisplayFor(model => model.MODU_VDESCRIPCION_MODULO)" /><br />
+                
+                    <label>ESTADO</label><br />
+                    <div id="dstd"><span style="width: 350px" id="ocstd" class="ocstd">@Html.DisplayFor(model => model.ROMO_CACTIVO)</span><br /></div>
+                    <input type="text" id="std" name="std" style="width: 100px"  class="form-control" value=" @Html.DisplayFor(model => model.ROMO_CACTIVO)" />
+                    <br />
+
+            </div>
+        </div>
+    </fieldset>
+}
+
+<script type="text/ecmascript">
+
+    //function disable() {
+    //    document.getElementById("droles").disabled = true;
+    //}
+
+    //function enable() {
+    //    document.getElementById("droles").disabled = false;
+    //}
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+
+
+

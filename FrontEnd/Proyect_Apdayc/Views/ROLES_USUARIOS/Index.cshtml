@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Peril Asignado a Usuarios</title>
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+   <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+   <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+   <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+   <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+  <script src="@Url.Content("~/Scripts/SGRDA/Seguridad/RolesUsuarios.js")"></script>
+  <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+</head>
+<body>
+    <div>
+    <table>
+      <tr>
+        <td style=" vertical-align:bottom;">
+
+            <div id='divTitulo'>Peril Asignado a Usuarios</div>
+        </td>
+        </tr>
+        <tr><td  style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+           <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td> Apellidos y Nombres :</td>
+                        <td><input type='text' id='txtNombreSearch' placeholder='Ingrese el dato de busqueda.' name='txtNombreSearch' size="40"/></td>
+                        <td>
+                            <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                            &nbsp;&nbsp;
+                            <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                        </td>
+                    </tr>
+                </table>
+            </center>       
+        </td>
+        </tr>
+
+            <tr><td>
+                <center>
+                   <div id="grid"></div>
+                </center>
+            </td></tr>
+       <tr><td style='height: 30px;'>
+            <center>
+                    <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+                    </div>
+            </center>
+        </td></tr>
+                <tr><td style='height: 40px; vertical-align:bottom;'>
+            <div style="float: left;">
+                <img src="@Url.Content("~/Images/botones/Bnuevo_on.gif")" alt="Registrar nuevo usuario." title="Registrar nuevo usuario." id="btnNuevo"/>&nbsp;
+                &nbsp; 
+            </div>
+            </td>
+       </tr>
+    </table>
+
+    <div title="Asignar Perfil a Usuario" id="ModalNeoUsu">
+    <br>
+    <table width='98%' border='0' id='FiltroTablaPop'>
+        <tr>
+
+            <td> Nombres y Apellidos :</td>
+            <td colspan="3"><input type='text' id='txtNombres' name='txtNombres' class="requerido" size="30"/></td>
+            <td colspan="3"><input type='text' id='txtCodigo' name='txtCodigo' disabled='disabled'/></td>
+            &nbsp;&nbsp;
+            <td>
+                <button id='btnFiltrar'  class="boton" name='btnFiltrar'>Buscar 
+                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                &nbsp;&nbsp;
+                <button id='btnPLimpiar'  class="boton" name='btnPLimpiar'>Limpiar 
+                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+            </td>
+        </tr>
+        <tr>
+            <td> Oficina :</td>
+            <td>
+                <div id='divddlRol'>
+                    <select name="ddlRol" id="ddlRol">
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td> Estado :</td>
+            <td>
+                <select name="selEstado" id="selEstado">
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+            </td>
+        </tr>
+         <tr><td>
+            <center>
+                <div id="gridNew"></div>
+            </center>
+          </td></tr>
+    </table>
+</div>
+    </div>
+</body>

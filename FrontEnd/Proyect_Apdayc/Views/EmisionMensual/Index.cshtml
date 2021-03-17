@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>EMISION MENSUAL </title>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.establecimiento.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/Administracion/mantenimiento.administracion.EmisionMensual.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.nuevo.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Licenciamiento/licenciamiento.division.js")"></script>*@
+</head>
+<body>
+    <div id="ContenedormvOficina"></div>   
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+        <tr>
+            <td style=" vertical-align:bottom;">
+                <div id='divTitulo'>MODULO DE ADMINISTRACION DE EMISION MENSUAL</div>
+            </td>
+        </tr>
+        <tr><td style=" vertical-align: top;"><hr></td></tr>
+        <tr>
+            <td align="center">
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                        <td align="center">
+
+                            <table style=' width:98%' border='0' id='FiltroTablas'>
+                                <tr>
+                                    <td>NOMBRE DE OFICINA :</td>
+                                    <td><input type="text" id="txtnomoff"></td>
+                                    <td>DIA :</td>
+                                    <td><input type="text" id="txtdia"></td>
+
+                                    <td>RANGO INICIAL :</td>
+                                    <td><input type="text" id="txtrangoini"></td>
+                                    <td>RANGO FINAL :</td>
+                                    <td><input type="text" id="txtrangofin"></td>
+                                </tr>
+                                <tr>
+                                    <td>ESTADO :</td>
+                                    <td><select id="ddlestado"><option value="0"> Todos</option><option value="1">ACTIVO</option><option value="2">INACTIVO</option></select></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="center">
+
+                <button id='btnBuscar' class="boton" name='btnBuscar'>
+                    Buscar
+                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" />
+                </button>
+                <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                    Limpiar
+                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" />
+                </button>
+
+                <div style="float: right;">
+                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar" title="Registrar." id="btnNuevo" />&nbsp;
+                    @*<img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos de usuario." title="Inactivar datos de usuario." id="btnEliminar" />*@
+                    &nbsp;
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                LISTA DE VALIDACIONES EMISION MENSUAL
+                <div id="grid"></div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+<div title="NUEVO | MODIFICAR EMISION MENSUAL" id="mvModificaEmision">
+
+    <table width='100%' border='0' id='FiltroTablaPop'>
+        <tr >
+            <td colspan="2">NUEVO |MODIFICAR |
+            <label id="lblnombreOficina" style="cursor:pointer;" alt="Nombre de la Oficina" title="Nombre de la Oficina">|</label></td>
+            <input type="hidden" id="hidValue" />
+        </tr>
+        <tr>
+            <td>NOMBRE OFICINA</td>
+            <td> <input type="text" id="txtnomof" class="requerido"></td>
+        </tr>
+        <tr>
+            <td>DIA</td>
+            <td><input type="text" id="txtdiaof" class="requerido"> </td>
+        </tr>
+        <tr>
+            <td>HORA DE INICIO</td>
+            <td><input type="text" id="txthoraini" class="requerido"> </td>
+        </tr>
+        <tr>
+            <td>HORA FINAL</td>
+            <td><input type="text" id="txthorafin" class="requerido"> </td>
+        </tr>
+        <tr>
+            <td>Oficina recaudo :</td>
+            <td><input id="hidOficina" value="10081" type="hidden"><img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina"><label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">OFICINA TI</label></td>
+        </tr>
+    </table>
+</div>
+</html>
+

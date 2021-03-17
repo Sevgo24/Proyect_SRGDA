@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "APDAYC :: GRUPO DE MODALIDAD DE USO";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Grupo Modalidad</title>
+
+   <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+   <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+   <script src="@Url.Content("~/Scripts/base/modBusquedaGrupoModalidad.nuevo.js")"></script>
+
+    <style>
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+
+ul.ui-autocomplete {
+    z-index: 1100;
+}
+  </style>
+</head>
+<body>
+    <div>
+      <br />
+        
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+    <tr>
+        <td style=" vertical-align:bottom;">
+
+           
+            <input id="hidOpcionEdit" type="hidden"/>
+            <input id="hidBpsId" type="hidden"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                         <td  colspan="3"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                              <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                        Grupo Modalidad - Nuevo
+    
+                                     </div>
+
+                            </td>
+                            <td> 
+                                <div style="float: right;">
+                             <button id="btnVolver"  class="boton" name="btnVolver">Volver 
+                            <img src="@Url.Content("~/Images/botones/back.png")" width="24" /></button> 
+                            
+@*                             &nbsp;
+                            <button id="btnNuevo"  class="boton" name="btnNuevo">Nuevo  
+                            <img src="@Url.Content("~/Images/botones/neo.png")" width="24" /></button>
+
+                             &nbsp;
+                            <button id="btnEditar"  class="boton" name="btnEditar">Editar  
+                            <img src="@Url.Content("~/Images/botones/editb.png")" width="24" /></button>
+
+                             &nbsp;
+                             <button id="btnDescartar"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Descartar </span> 
+                                  <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                             </button> *@
+
+                            &nbsp;
+                            <button id="btnGrabar"  class="boton" name="btnGrabar">Grabar  
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" /></button>  
+                                    </div>
+                                </td></tr></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="contenedor">
+                                <center>
+                                    <table border="0" style="width:98%;">
+                                           <tr>
+                                                <td>Grupo Modalidad :</td>
+                                                <td ><input type='text' id='txtid' name='txtid' style="width:40px" maxlength="3"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:120px">Descripción :</td>
+                                                <td ><input type='text' id='txtDescripcion' name='txtDescripcion' style="width:250px"/></td>
+                                            </tr>
+                                    </table>
+                                </center>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td  colspan="3" >
+                            <div id="tabs">
+                                    <ul>
+                                    <li><a href="#tabs-1">Formato de las Facturas</a></li>
+                                    </ul>
+                                    <div id="tabs-1">
+                                        <table style=" width:100%;" border="0">
+                                        <tr>
+                                            <td colspan="4">
+                                                        <div><img src="~/Images/botones/add.png" class="addFormato" height="30"></div>
+                                                    <div style=" margin-top:-30px; margin-left:30px;"> <a href="#" class="addFormato">Agregar Formato</a></div>
+                                                <hr />                                                  
+                                            </td>
+                                        </tr>
+                                            <tr>
+                                                <td colspan="4"> 
+                                                    <div id="gridFormato"></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>       
+        </td>
+    </tr>
+       <tr>
+          <td style='height: 30px;'>
+            <center>
+                <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+                </div>
+            </center>
+            </td>
+       </tr>
+</table> 
+</div>
+        <div title="Agregar Formato de Factura" id="mvFormato">
+
+        <table width='100%' border='0' id='FiltroTablaPopDet'>
+            <tr style="display:none">
+                <td>ID :</td>
+                <td ><input type='text' id='txtidDiv' name='txtid' style="width:20px"/></td>
+            </tr>
+            <tr>
+                <td>Formato de Facturas :</td>
+                <td>
+                    <input type="hidden" id="hidAccionMvCar" />
+                    <input type="hidden" id="hidEdicionCar" />
+                    <select id="ddlFormato"> </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+

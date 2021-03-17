@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Workflow - Transiciones de Estados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Workflow - Estado de Procesosn</title>
+    
+    <script src="@Url.Content("~/Scripts/SGRDA/WorkFlow/mantenimiento.transiciones.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+</head>
+<body>
+    <div title="Nuevo Ciclo de Aprobación">
+
+        <table style="width: 100%" border="0">
+            <tr>
+                <td>
+                    <input id="hidOpcionEdit" type="hidden" />
+                    <input id="hidId" type="hidden" />                    
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:98%" border="0" id="FiltroTablaPop">
+                            <tr>
+                                <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                       
+                                    
+                                        <table  width='100%' border='0' id='FiltroTabla'>
+		                               <tr>
+			                               <td style="width:500px;text-align:left;">
+				                               <div id="divTituloPerfil">Workflow- Estado de Procesos</div>
+			                               </td>
+				                            <td  colspan="1">
+					                                <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                        Volver 
+                                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                                &nbsp;
+                                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                        Nuevo 
+                                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                                &nbsp;
+                                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                        Grabar 
+                                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>
+				                            </td>   
+		                               </tr>
+	                               </table>
+                                                             
+                
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                        <table  border="0">
+                                              <tr id="trId">
+                                                <td style="padding-left:30px">
+                                                    Id :
+                                                </td>
+                                                <td style="width:110px">
+                                                    <input type="text" id="txtCodigo"  style="width:120px" />
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td style="padding-left:30px;width:140px">
+                                                    Workflow :
+                                                </td>
+                                                <td>
+                                                    <select id="ddlCiclo" class="requeridoLst"></select>                                                        
+                                                </td>
+                                                 <td style="padding-left:150px;padding-right:30px">
+                                                    Evento :
+                                                </td>
+                                                <td>
+                                                    <select id="ddlEvento" class="requeridoLst"></select>                                                        
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:30px">
+                                                    Estado Origen :
+                                                </td>
+                                                <td>
+                                                    <select id="dllOrigen" class="requeridoLst"></select>                                                        
+                                                </td>
+                                                <td style="padding-left:150px;padding-right:30px">
+                                                    Estado Destino :
+                                                </td>
+                                                <td>
+                                                    <select id="dllDestino" class="requeridoLst"></select>                                                        
+                                                </td>
+                                            </tr>
+                                            
+                                          
+                                        </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+
+        </table>
+         <center> <div id="aviso"></div> </center>
+    </div>
+</body>
+</html>

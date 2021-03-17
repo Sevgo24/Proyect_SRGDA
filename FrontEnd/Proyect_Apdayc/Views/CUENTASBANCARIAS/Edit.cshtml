@@ -1,0 +1,275 @@
+﻿@model SGRDA.Entities.BEREC_BPS_BANKS_ACC
+
+@{
+    ViewBag.Title = "APDAYC :: CUENTAS BANCARIAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+
+        //combos
+        $("#DBNK_ID").hide();
+        $("#DBRCH_ID").hide();
+
+        $("#nombre").hide();
+        $("#std").hide();
+        $("#descripcion").attr("disabled", "enabled");
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#dnombre").hide();
+            $("#dstd").hide();
+
+            $("#nombre").show();
+            $("#std").show();
+
+            $("#DBNK_ID").show();
+            $("#DBRCH_ID").show();
+            $("#TBNK_ID").hide();
+            $("#TBRCH_ID").hide();
+
+            $("#descripcion").removeAttr('disabled');
+            $("#btnedit").hide();
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#dnombre").show();
+            $("#dstd").show();
+
+            $("#nombre").hide();
+            $("#std").hide();
+
+            $("#descripcion").attr("disabled", "enabled");
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            //combos
+            $("#DBNK_ID").hide();
+            $("#DBRCH_ID").hide();
+            location.reload();
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+ 
+      <br />    
+    
+    <center>
+         <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+           <tr>
+               <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+               <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                 Cuentas Bancarias - Actualización
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">
+                        <div class="botonLink"  style="width:80px;">
+                            <a href="@Url.Action("../CUENTASBANCARIAS/", "CUENTASBANCARIAS")"   >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                                    <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnnuevo">
+                                <a href="@Url.Action("Create", "CUENTASBANCARIAS")"   >   
+                                    <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                        </div>
+
+                        &nbsp;
+                        <div class="botonLink"  style="width:90px;" id="btnedit">
+                            <a href="#" id="btnedit" >
+                                <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">
+                                    Editar
+                                    <img src="@Url.Content("~/Images/botones/editb.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+
+                        &nbsp;
+                        <button id="btncancel"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Descartar </span> 
+                            <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                        </button> 
+
+                        &nbsp;
+                        <button id="btnSave"  class="boton">
+                            <span style=" color:#000; font-weight:200;">Grabar </span> 
+                            <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                        </button>   
+                   </div> </td>
+                            </tr></table>
+               </td>
+           </tr>
+             <tr><td><br /></td></tr>
+     <tr >        
+        <td style="width:15% ;padding-left:2% ;" >   
+       
+    
+         </td>
+    </tr>
+      
+    
+
+            @*<div class="editor-label">
+                @Html.LabelFor(model => model.OWNER)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.OWNER)
+                @Html.ValidationMessageFor(model => model.OWNER)
+            </div>*@
+
+        <tr>
+            <td style="width:15% ;padding-left:2% ;" > 
+                @Html.HiddenFor(model => model.OWNER)
+                @Html.HiddenFor(model => model.BNK_ID)
+                @Html.HiddenFor(model => model.BRCH_ID)
+                @Html.LabelFor(model => model.BPS_ID) :
+            </td>
+            <td>
+                  @Html.TextBoxFor(model => model.BPS_ID, htmlAttributes: new { id = "BPS_ID", disabled = "disabled", style = "width:120px;", maxLength = "10" })
+                @Html.ValidationMessageFor(model => model.BPS_ID)
+            </td>
+        </tr>                               
+
+
+            @*<div class="editor-label">
+                @Html.LabelFor(model => model.BNK_ID)<br />
+                @Html.TextBoxFor(p => p.BNK_ID, htmlAttributes: new { id = "TBNK_ID", disabled = "disabled", style = "width:80px;" })
+                @if (ViewData.ContainsKey("lista_Bancos"))
+                {
+                    @Html.DropDownList("lista_Bancos", ViewData["lista_Bancos"] as List<SelectListItem>, new { style = "width:250px", id = "DBNK_ID" }) 
+                }
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BRCH_ID)<br />
+                @Html.TextBoxFor(p => p.BRCH_ID, htmlAttributes: new { id = "TBRCH_ID", disabled = "disabled", style = "width:80px;" })
+                @if (ViewData.ContainsKey("lista_SucursalesBancarias"))
+                {
+                    @Html.DropDownList("lista_SucursalesBancarias", ViewData["lista_SucursalesBancarias"] as List<SelectListItem>, new { style = "width:250px", id = "DBRCH_ID" }) 
+                }
+            </div>*@
+
+               <tr>
+            <td style="width:15% ;padding-left:2% ;" > 
+                @Html.LabelFor(model => model.BACC_NUMBER) :
+            </td>
+            <td>
+                 @Html.TextBoxFor(model => model.BACC_NUMBER, htmlAttributes: new { id = "BACC_NUMBER", disabled = "disabled", style = "width:250px;", maxLength = "30" })
+                @Html.ValidationMessageFor(model => model.BACC_NUMBER)
+            </td>
+        </tr>     
+
+               <tr>
+                   <td style="width:15% ;padding-left:2% ;" > 
+            @Html.LabelFor(model => model.BACC_DC) :
+            </td>
+            <td>
+                   @Html.TextBoxFor(model => model.BACC_DC, htmlAttributes: new { id = "BACC_DC", disabled = "disabled", style = "width:120px;", maxLength = "10" })
+                @Html.ValidationMessageFor(model => model.BACC_DC)
+            </td>
+        </tr>  
+                      
+
+             <tr>
+                   <td style="width:15% ;padding-left:2% ;" > 
+            @Html.LabelFor(model => model.BACC_TYPE) :
+            </td>
+            <td>
+                      @Html.TextBoxFor(model => model.BACC_TYPE, htmlAttributes: new { id = "BACC_TYPE", disabled = "disabled", style = "width:90px;", maxLength = "3" })
+                @Html.ValidationMessageFor(model => model.BACC_TYPE)
+            </td>
+        </tr>  
+
+            <tr>
+                   <td style="width:15% ;padding-left:2% ;" > 
+            @Html.LabelFor(model => model.BACC_DEF) :
+            </td>
+            <td>
+                             @Html.TextBoxFor(model => model.BACC_DEF, htmlAttributes: new { id = "BACC_DEF", disabled = "disabled", style = "width:60px;", maxLength = "1" })
+                @Html.ValidationMessageFor(model => model.BACC_DEF)
+            </td>
+        </tr>  
+    
+
+
+                    <tr><td><br /></td></tr>
+          </table>
+    </center>
+    
+
+}
+
+    <script>
+        $("#btnedit").click(function () {
+            document.getElementById("BPS_ID").disabled = false;
+            document.getElementById("BACC_NUMBER").disabled = false;
+            document.getElementById("BACC_DC").disabled = false;
+            document.getElementById("BACC_TYPE").disabled = false;
+            document.getElementById("BACC_DEF").disabled = false;
+        })
+    </script>
+
+    <script>
+        $("#btncancel").click(function () {
+            document.getElementById("BPS_ID").disabled = true;
+            document.getElementById("BACC_NUMBER").disabled = true;
+            document.getElementById("BACC_DC").disabled = true;
+            document.getElementById("BACC_TYPE").disabled = true;
+            document.getElementById("BACC_DEF").disabled = true;
+        })
+    </script>
+
+    <script type="text/ecmascript">
+        if ('@TempData["msg"]' != "") {
+            $(function () {
+                $("#message").show();
+                $(".alert-link").show();
+            })
+        };
+    </script>
+
+    <br />
+    <div id="message">
+        <div class="@TempData["class"]">
+            <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+        </div>
+    </div>
+

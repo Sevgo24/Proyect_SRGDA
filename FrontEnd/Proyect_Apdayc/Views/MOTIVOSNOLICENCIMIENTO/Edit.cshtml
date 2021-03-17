@@ -1,0 +1,193 @@
+﻿@model SGRDA.Entities.BEREC_UNLICENSE_REASONS
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Style/Style.css")" rel="stylesheet" />
+
+<link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+<script>
+
+
+    $(function () {
+        var url;
+        url = $(this).attr("href");
+
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#btnSave").hide();
+        $("#btncancel").hide();
+
+        $("#btnedit").click(function () {
+            $("#btnSave").show();
+            $("#btncancel").show();
+            $("#btnnuevo").hide();
+            $("#btnNeo").hide();
+            $("#btnedit").hide();
+
+            return false;
+        })
+
+        $("#btncancel").click(function () {
+            $("#btnSave").hide();
+            $("#btnnuevo").show();
+            $("#btnNeo").show();
+            $("#btnedit").show();
+            $("#btncancel").hide();
+
+            location.reload();
+
+            return false;
+        })
+    });
+</script>
+
+
+@using (@Html.BeginForm(FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <center>
+        <br /> 
+        <table border="0" style="width: 98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+
+            <tr>
+                <td colspan="4" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                    <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                     Motivos no Licenciamiento - Actualización
+                                 </div>
+                            </td>
+                            <td>
+                                                    <div style="float: right;">
+                        <div class="botonLink" style="width: 80px;">
+                            <a href="@Url.Action("../MOTIVOSNOLICENCIMIENTO/", "MOTIVOSNOLICENCIMIENTO")"   >
+                                <div style="color: #000; font-weight: 200; margin-top: 3px; margin-left: 5px;">
+                                    Volver
+                                <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                            </a>
+                        </div>
+                        &nbsp;
+                            <div class="botonLink" style="width: 80px;" id="btnNeo">
+                                <a href="@Url.Action("Create", "MOTIVOSNOLICENCIMIENTO")"  id="btnnuevo"  >
+                                    <div style="color: #000; font-weight: 200; margin-left: 3px; margin-top:-10px">
+                                        Nuevo
+                                        <img src="@Url.Content("~/Images/botones/neo.png")"  width="24"  />
+                                    </div>
+                                </a>
+                            </div>
+                        &nbsp;
+                                  <button id="btnedit" class="boton">
+                                      <span style="color: #000000; font-weight: 200;">Editar </span>
+                                      <img src="@Url.Content("~/Images/botones/editb.png")" width="24" />
+                                  </button>
+                        &nbsp;
+                                 <button id="btncancel" class="boton">
+                                     <span style="color: #000; font-weight: 200;">Descartar </span>
+                                     <img src="@Url.Content("~/Images/botones/undo.png")" width="24" />
+                                 </button>
+
+
+                        &nbsp;
+                                   <button id="btnSave" class="boton">
+                                       <span style="color: #000; font-weight: 200;">Grabar </span>
+                                       <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                                   </button>
+                    </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="height: 10px;"></td>
+            </tr>
+
+            <tr>
+
+            <td>
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:10%; padding-left:2%">                
+                @Html.HiddenFor(model => model.OWNER, htmlAttributes: new { id = "OWNER" })
+                @Html.HiddenFor(model => model.UNL_ID, htmlAttributes: new { id = "UNL_ID" })
+                Id :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.UNL_ID, htmlAttributes: new { id = "UNL_ID", disabled = "disabled", style = "width:350px;", maxlength = "200" })
+               
+            </td>
+            </tr>
+
+            <tr>
+            <td style="width:10%; padding-left:2%">
+                @Html.LabelFor(model => model.UNL_DES) :
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.UNL_DES, htmlAttributes: new { id = "UNL_DES", disabled = "disabled", style = "width:350px;", maxlength = "200" })
+              
+            </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" style="height: 10px;"></td>
+            </tr>
+        </table>    
+    </center>
+}
+
+<script>
+    $("#btnedit").click(function () {
+        document.getElementById("UNL_DES").disabled = false;
+    })
+</script>
+
+<script>
+    $("#btncancel").click(function () {
+        document.getElementById("UNL_DES").disabled = true;
+    })
+</script>
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+    if ('@TempData["flag"]' == "1") {
+        $("#btnNeo").hide();
+        $("#btnedit").hide();
+        alert("Grabado correctamente.");
+        location.href = "../"
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

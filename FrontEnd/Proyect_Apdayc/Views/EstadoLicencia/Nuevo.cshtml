@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: ESTADO LICENCIA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Estado de Licencias</title>
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/estado.licencia.nuevo.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <br />
+        <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+               <table width='98%' border='0' id='FiltroTabla'>
+                    <tr>
+                       <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                           <table border="0" style=" width:100%;">
+                               <tr>
+                                   <td>
+                                       <div id='divTituloPerfil' style="  text-align:left">
+                                            Estados de la Licencia - Nuevo
+                                        </div>
+                                   </td>
+                                   <td>
+                                       <div style="float:right;">  
+                                            <button id='btnDescartar' style="vertical-align:middle;" class="boton" name='btnDescartar'>Volver 
+                                          <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                          &nbsp;
+                                          <button id='btnGrabar' class="boton" name='btnGrabar'>Grabar 
+                                           <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>  
+                                       </div>
+                                   </td>
+                               </tr>
+                           </table>                                            
+                        </td>
+                    </tr>
+                   <tr >
+                      <td></td>        
+                    </tr>
+
+                    <tr style="display:none">
+                        <td>ID :</td>
+                        <td ><input type='text' id='txtid' name='txtid' style="width:20px"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>Nombre :</td>
+                        <td ><input type='text' id='txtDescripcion'  class="requerido"  name='txtDescripcion' style="width:400px"/></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px"> Estado Licencia:</td>
+                        <td><select id='ddlEstLicencia' name="ddlEstLicencia"></select></td>
+                    </tr>
+                </table>
+            </center>
+                </td>
+            </tr>
+            <tr>
+                <td style='height: 30px;'>
+                    <center>
+                        <div id='error' style=" width: 100% ; vertical-align:  middle; ">
+                        </div>
+                </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#tabs-1">Asociar</a></li>
+                        </ul>
+                        <div id="tabs-1">
+                            <table style="width: 100%;" border="0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <img src="~/Images/botones/add.png" class="addTab" height="30">
+                                        </div>
+                                        <div style="margin-top: -30px; margin-left: 30px;"><a href="#" class="addTab">Asociar Pestaña</a></div>
+                                        <hr />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="gridTab"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+        <div title="Asociar pestaña" id="mvTab">
+            <center>
+                        <table width='98%' border='0' id="idtabla">  
+                            <tr>
+                                <td>Selecionar pestaña</td>
+                                <td style="width:5px">    
+                                    <select id='ddlTab' name="ddlTab"></select>                                        
+                                    <input type="hidden" id="hidAccionMvTab" />
+                                    <input type="hidden" id="hidEdicionTab" />
+                                    <input type="hidden" id="hidTabanterior" />
+                                    <input type="hidden" id="hidIdSequencia" />
+                                </td>                               
+                            </tr>                                          
+                        </table>                
+                         
+            </center>
+        </div>
+
+    </div>
+</body>
+</html>
+

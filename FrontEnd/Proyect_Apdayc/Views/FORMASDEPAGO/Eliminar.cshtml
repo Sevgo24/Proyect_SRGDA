@@ -1,0 +1,37 @@
+﻿@model SGRDA.Entities.BEREC_PAYMENT_TYPE
+
+@{
+    ViewBag.Title = "APDAYC :: FORMAS DE PAGO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+    
+         <p>
+            <input type="hidden" id="PAY_ID" name="PAY_ID" value="@Html.DisplayFor(model => model.PAY_ID)"/>
+        </p>        
+}
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

@@ -1,0 +1,350 @@
+﻿@*@{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <div>
+        </div>
+    </body>
+    </html>*@
+
+
+
+@{
+    ViewBag.Title = "Planillas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/consulta.documento.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacionconsulta.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.facturacion.aprobacion.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/mantenimiento.nota.credito.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/cultures/kendo.culture.es-PE.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+
+    @*Busqueda General*@
+
+    <script src="@Url.Content("~/Scripts/SGRDA/Planilla/planilla.consulta.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.gestor.recaudo.js")"></script>*@
+
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.empresarial.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.subdivisiones.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.correlativo.notacredito.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.agentecomercial.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.grupo.facturacion.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.modalidaduso.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.Licencia.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.oficina.js")"></script>
+        <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.aux.js")"></script>*@
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.txtNumLiccss")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+
+    <style>
+        #tblFacturaMasiva {
+            border: 1px solid #CCC;
+            height: 50px;
+            border-radius: 6px;
+        }
+    </style>
+
+    <style>
+        #tblDetalleFactura {
+            border: 1px solid #CCC;
+            height: 50px;
+            0 border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @*<div id="ContenedormvBuscarSocio"></div>
+            <div id="ContenedormvBuscarGrupoFacuracion"></div>
+            <div id="ContenedormvBuscarCorrelativo"></div>
+            <div id="ContenedormvBuscarCorrelativoNC"></div>
+
+            <div id="ContenedormvBuscarAgenteComercial"></div>
+            <div id="ContenedormvModalidad"></div>
+            <div id="ContenedormvLicencia"></div>
+            <div id="ContenedormvNotaCredito"></div>
+            <div id="ContenedormvSubDivision"></div>
+            <div id="ContenedorMvSocioEmpresarial"></div>*@
+
+        <div id="ContenedormvOficina"></div>
+
+        <center>
+            <table style="width: 98%" border="0">
+                <tr>
+                    <td>
+                        <div id="divTitulo">Planillas</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <hr />
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <center>
+                            @*<table style="width:100%; padding-left:30px" id="FiltroTabla" border="0">*@
+                            <table style="width:100%; padding-left:30px" class="contenedor" border="0">
+
+
+                                <tr>
+
+                                <tr>
+                                    <td>
+                                        Oficina de Recaudo :
+                                    </td>
+                                    @*<td>
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Agencia de Recaudo" />
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Agencia de Recaudo" title="Búsqueda de Oficina">Seleccione una agencia de recaudo.</label>
+                                                </td>
+                                                <input type="hidden" id="hidOficina" value="0" />
+                                            </tr>
+                                        </table>
+                                    </td>*@
+
+                                    <td>
+                                        <input type="hidden" id="hidOficina" value="0" />
+                                        <table border="0" style="border-collapse: collapse;">
+                                            <tr>
+                                                <td>
+                                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina" />
+                                                </td>
+                                                <td colspan="6">
+                                                    <label id="lbOficina" style="cursor: pointer;" alt="Búsqueda de Oficina" title="Búsqueda de Oficina">Seleccione una oficina.</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+
+
+                                    <td>División :</td>
+                                    <td>
+                                        <select id="ddlDivision" class="requeridoLst"></select>
+                                    </td>
+                                </tr>
+
+
+
+
+                </tr>
+
+
+                <tr>
+                    <td>Grupo Modalidad</td>
+                    <td><select id="dllGruModalidad"></select></td>
+                </tr>
+
+                <tr>
+
+                    <td style="width:120px">
+                        N° Licencia :
+                    </td>
+                    <td>
+                        <input type="text" id="txtNumLic" maxlength="20" style="width:90px" />
+                    </td>
+
+                    @*<td style="width:120px">
+                            Socio de Negocio :
+                        </td>
+                        <td>
+                            <table border="0" style="border-collapse: collapse;" title="Socio de Negocio">
+                                <tr>
+                                    <td>
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio" />
+                                    </td>
+                                    <td colspan="6">
+                                        <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"> Seleccione un socio.</label>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" id="hidAccionMvEnt" />
+                                        <input type="hidden" id="hidEdicionEnt" value="0" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>*@
+
+                    @*<td style="width:140px">
+                            Grupo de Facturación:
+                        </td>
+                        <td>
+                            <input type="hidden" id="hidGrupo" value="0" />
+                            <table border="0" style="border-collapse: collapse;">
+                                <tr>
+                                    <td colspan="6">
+                                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo Facturación" title="Búsqueda de Grupo Facturación" />
+                                        <label id="lbGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo Facturacióm" title="Búsqueda de Grupo facturación">Seleccione un grupo facturación.</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>*@
+
+                    <td style="width:120px">
+                        Estado Planilla :
+                    </td>
+                    <td>
+                        <select id="ddlEstadoPlanilla" class="requeridoLst">
+                            <option value="0">-- TODOS --</option>
+                            <option value="1">PLANILLAS EMITIDAS</option>
+                            <option value="2">PLANILLAS PENDIENTES</option>
+                        </select>
+                    </td>
+
+
+                </tr>
+
+
+
+
+
+                @*<tr>
+                    <td>
+                        Serie:
+                    </td>
+                    <td>
+                        <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie" />
+                        <input type="hidden" id="hidCorrelativo" value="0" />
+                        <input type="hidden" id="hidSerie" value="0" />
+                        <input type="hidden" id="hidActual" value="0" />
+                        <input type="hidden" id="hidIdFactura" value="0" />
+                        <input type="hidden" id="hidIdDetalleFactura" value="0" />
+                        <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie">
+                            Seleccione una Serie.
+                        </label>
+
+                    </td>
+                    <td>
+                        N° Factura :
+                    </td>
+                    <td>
+                        <input type="text" id="txtNumFact" maxlength="20" style="width:90px" />
+                    </td>
+
+
+                    <td>
+                        ID Factura :
+                    </td>
+                    <td>
+                        <input type="text" id="txtIdFact" maxlength="20" style="width:90px" />
+                    </td>*@
+
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        Fecha Inicial : &nbsp;
+                    </td>
+                    <td>
+                        <input type="text" id="txtFecInicial" readonly="false" class="requerido" />
+                    </td>
+                    <td>
+                        Fecha Final :
+                    </td>
+                    <td>
+                        <input type="text" id="txtFecFinal" readonly="false" class="requerido" />
+                    </td>
+
+
+
+                </tr>
+
+            </table>
+        </center>
+
+
+
+        <center>
+            <table style="width: 100%" border="0">
+
+                <tr>
+                    <td style="padding-left:30px">
+                        <span style="font-size:small;font-weight:bold"> Total de Registros: </span>
+                        <span style="font-size:small;font-weight:bold"><label id="CantidadRegistros">0</label></span>
+                    </td>
+
+                    <td style="text-align: right; padding-right: 20px">
+                        <button id='btnGenerarPlanillasMasivo' class="boton" name='btnGenerarPlanillasMasivo'>
+                            GENERAR PDF MASIVO
+                            <img src="@Url.Content("~/Images/botones/new32.png")" width="24px" />
+                        </button>
+                        <button id='btnGenerarPlanillas' class="boton" name='btnGenerarPlanillas'>
+                            REGISTRAR PLANILLAS PENDIENTES
+                            <img src="@Url.Content("~/Images/botones/new32.png")" width="24px" />
+                        </button>
+                        <button id='btnLimpiar' class="boton" name='btnLimpiar'>
+                            Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="24px" />
+                        </button>
+                        &nbsp; &nbsp;
+                        <button id='btnBuscar' class="boton" name='btnBuscar'>
+                            Buscar
+                            <img src="@Url.Content("~/Images/botones/buscar2.png")" width="24px" />
+                        </button>
+
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="10">
+
+                        <div id="grid"></div>
+                    </td>
+                </tr>
+            </table>
+        </center>
+        <div title="Generación de Formato" id="mvEjecutarProceso">
+            <label id="lblResultGenPDF"></label>
+            <iframe style="width: 100%; height: 100%;" id="ifContenedorFormato" marginheight="0" marginwidth="0" noresize scrolling="No" frameborder="0"></iframe>
+        </div>
+
+
+
+    </div>
+  
+
+
+
+
+
+</body>
+</html>

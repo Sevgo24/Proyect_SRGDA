@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Workflow - Ciclo de Aprobación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Módulo Cliente</title>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/WorkFlow/mantenimiento.workflow.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+</head>
+<body>
+    <div>
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div id="divTitulo">Búsqueda de Workflow</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <table style="width:98%" id="FiltroTabla"  border="0">
+                            <tr>
+                                <td style="width:130px; padding-left:30px" >
+                                    Descripción :
+                                </td>
+                                <td  style="width:550px">
+                                    <input type="text" id="txtCiclo" maxlength="40" style="width:450px"   />
+                                </td>
+                                <td> Estado :</td>
+                                <td>
+                                    <select name="ddlEstado" id="ddlEstado">
+                                    </select>
+                                </td>
+                                <td style="text-align:right">
+                                     <button id='btnBuscar'  class="boton" name='btnBuscar'>Buscar 
+                                    <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button> 
+                                    &nbsp;&nbsp;
+
+                                    <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar 
+                                    <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button> 
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td style="width:130px; padding-left:30px" >
+                                    Etiqueta :
+                                </td>
+                               <td  style="width:300px">
+                                    <input type="text" id="txtEtiqeta" maxlength="40" style="width:250px" />
+                                </td>
+                            </tr>      
+                            <tr>
+                                <td style="width:130px; padding-left:30px" >
+                                    Módulo :
+                                </td>
+                               <td  style="width:300px">
+                                    <select id="ddlCliente"></select>
+                                </td>
+                            </tr>                   
+                        </table>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td style='height: 40px; vertical-align: bottom;'>
+                    <div style="float: right;">
+                        <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva módulo." title="Registrar nueva módulo." id="btnNuevo"/>&nbsp;
+                                        <img src="@Url.Content("~/Images/botones/delete.png")" alt="Inactivar datos del módulo." title="Inactivar datos del módulo."  id="btnEliminar"/>
+                        &nbsp; 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="grid"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

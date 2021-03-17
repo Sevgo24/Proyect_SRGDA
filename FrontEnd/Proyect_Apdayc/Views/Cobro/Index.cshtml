@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: RECAUDACIÓN - COBROS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>INGRESOS</title>    
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/recaudacion.cobro.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Recaudacion/detalle.forma.pago.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.autocompletar.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.buscador.socio.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.core.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/Extensiones/alerts/themes/alertify.default.css")" />
+    <script src="@Url.Content("~/Scripts/Extensiones/alerts/lib/alertify.min.js")"></script>
+
+    <style>
+        li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="ContenedormvBS"></div>
+    <div id="ContenedormvDetalleFormaPago"></div>
+
+    <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+
+        <tr>
+            <td style="vertical-align: bottom;">
+                <div id='divTitulo'>INGRESOS</div>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">
+                <hr>
+            </td>
+        </tr>
+
+        <tr>
+            <center>
+                <table width='98%' border='0' class="contenedor">
+                    <tr>
+                        <td>
+                            <div id="tabs">
+                                <ul>
+                                    <li><a href="#tabs-1" id="tabs1">Usuario de Derecho</a></li>
+                                    <li><a href="#tabs-2" id="tabs2">Factura</a></li>
+                                </ul>
+
+                                <div id="tabs-1">
+                                    <table style=" width:100%;" border="0">
+                                        <tr>
+                                            <td style="width:2%">
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBSocio" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"/>
+                                                <input type="hidden" id="hidCodigoBPS">                                     
+                                                <input type="hidden" id="hidIdFactura">                                      
+                                                <input type="hidden" id="hidIdRecibo">     
+                                            </td>
+                                            <td>
+                                                <label id="lbSocio" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio">Seleccione</label>
+                                            </td>                                            
+
+                                            <td style="text-align:right">
+                                                <button id='btnBuscar' class="boton" name='btnBuscar'> Buscar 
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                                                &nbsp;
+                                                <button id='btnLimpiar' class="boton" name='btnLimpiar'>Limpiar 
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button>  
+                                                 &nbsp;
+                                                <button id='btnRegistrarPago' class="boton" name='btnRegistrarPago'>Nuevo 
+                                                <img src="@Url.Content("~/Images/botones/Nuevo.png")" width="16px" /></button>     
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div id="tabs-2">
+                                     <table style=" width:100%;" border="0">
+                                         <tr>
+                                            <td style="width:45px">Serie :</td>
+                                            <td style="width:150px">
+                                                <select id="ddlSerie" style="width:115px"></select>
+                                            </td>
+
+                                            <td style="width:60px">Número :</td>
+                                            <td>
+                                                <input type="text" id="txtNumero" style="width:70px;" maxlength="8"/>
+                                            </td>   
+                                            <td style="text-align:right">
+                                                <button id='btnBuscarSerie' class="boton" name='btnBuscar'> Buscar 
+                                                <img src="@Url.Content("~/Images/botones/buscar2.png")" width="16px" /></button>
+                                                &nbsp;
+                                                <button id='btnLimpiarSerie' class="boton" name='btnLimpiar'>Limpiar 
+                                                <img src="@Url.Content("~/Images/botones/refresh.png")" width="16px" /></button>  
+                                                 &nbsp;
+                                                <button id='btnRegistrarPagoSerie' class="boton" name='btnRegistrarPago'>Nuevo 
+                                                <img src="@Url.Content("~/Images/botones/Nuevo.png")" width="16px" /></button>     
+                                            </td>                    
+                                        </tr>   
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                              
+                </table>
+            </center>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+    <br />
+
+    <center>
+    <table width='98%' border='0'>
+        <tr>
+             <td>
+                <label>FACTURAS PENDIENTES DE PAGO</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="grid" class="contenedor"></div>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+    <br />
+
+    <table width='98%' border='0'>
+        <tr>
+             <td>
+                <label>RECIBOS PENDIENTES POR APLICAR</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="gridRecibos" class="contenedor"></div>
+            </td>
+        </tr>
+    </table>
+    </center>
+</body>
+</html>

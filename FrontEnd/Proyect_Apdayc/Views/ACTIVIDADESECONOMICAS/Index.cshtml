@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: ACTIVIDADES ECONÓMICAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/styles/kendo.metro.min.css")" rel="stylesheet" />*@
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+
+<link href="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/fancyBox/jquery.fancybox.pack.js")"></script>
+    
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Content/bootstrap/js/bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/bootstrap/js/bootbox.min.js")"></script>
+
+
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/comun.dropdownlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/base/modBusquedaActividadesEconomicas.js")"></script>
+
+<link href="~/Style/SRGDA.css" rel="stylesheet" />
+<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+
+
+<br />
+<table style="width: 100%">
+      <tr>
+        <td>
+            <div id='divTitulo'>Actividades Economicas</div>           
+        </td
+    </tr>
+     <tr>
+        <td style="vertical-align: top; height: 10px !important;"></td>
+    </tr>
+
+      <tr>
+        <td>
+            <center>
+                <table width='98%' border='0' id='FiltroTabla'   >
+                   
+                     <tr>
+                        <td>Descripción :</td>
+                        <td>
+                             <input type="text" id="txtBusqueda" placeholder="Ingrese el dato de busqueda." class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                       <td style="width:120px">Estado :</td>
+                        <td>
+                            <select name="ddlEstado" id="ddlEstado">
+                            </select>
+                        </td>
+                        <td>
+                            <div style=" text-align:right;">
+                                    <button id="btnBusqueda" class="boton"  >
+                                         <img src="@Url.Content("~/Images/botones/buscar2.png")" width="20px" />
+                                        &nbsp;Buscar</button> &nbsp;
+                            <button id='btnLimpiar'  class="boton" name='btnLimpiar'>Limpiar
+                            <img src="@Url.Content("~/Images/botones/refresh.png")" width="20px" /></button> 
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </center>
+        </td>
+    </tr>
+
+
+     <tr>
+        <td style="padding-right: 3%">
+
+            <div style="float: right;">
+                <div class="btn-group">
+                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Mas</button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span>&nbsp;</span>
+
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" id="btnsuprimir">Suprimir</a></li>
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("../ACTIVIDADESECONOMICAS/DownloadReport", "ACTIVIDADESECONOMICAS", new { format = "PDF" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa PDF</a></li>
+                    <li><a href="@Url.Action("../ACTIVIDADESECONOMICAS/DownloadReport", "ACTIVIDADESECONOMICAS", new { format = "EXCEL" })" target="_blank"><i class="glyphicon glyphicon-save"></i>&nbsp;Vista Previa EXCEL</a></li>               
+                </ul>
+            </div>
+
+                @*<a href="@Url.Action("Create", "TIPOCARGOS")" class="btn btn-success">Nuevo</a>*@
+
+                <a  href="@Url.Action("Create", "ACTIVIDADESECONOMICAS")" class="btn">
+                    <img src="@Url.Content("~/Images/botones/nuevo.png")" alt="Registrar nueva actividad economica." title="Registrar nueva actividad economica."  />
+                </a>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div id="listado"></div>
+        </td>
+    </tr>
+</table>
+

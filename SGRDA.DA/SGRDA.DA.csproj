@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9D03476-80E7-4F4F-9856-45CAACF3F780}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGRDA.DA</RootNamespace>
+    <AssemblyName>SGRDA.DA</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotCMIS">
+      <HintPath>..\..\DotCMIS.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FrontEnd\Proyect_Apdayc\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lyrics_Repositorio20190926\SGRDA.DA\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alfresco\DAAlfreco.cs" />
+    <Compile Include="Alfresco\ValidarImagen.cs" />
+    <Compile Include="BancosPagos\DAReporteArchivosPlanosBancos.cs" />
+    <Compile Include="Comision\DAComisionEscala.cs" />
+    <Compile Include="Comision\DAComisionEscalaRango.cs" />
+    <Compile Include="Consulta\DAConsultaDocumento.cs" />
+    <Compile Include="DAAdministracion.cs" />
+    <Compile Include="DAAdministracionCancelacionDirecta.cs" />
+    <Compile Include="DAAdministracionCOBRONC.cs" />
+    <Compile Include="DAAdministracionCobros.cs" />
+    <Compile Include="DAAdministracionControlLicencias.cs" />
+    <Compile Include="DAAdministracionEmisionComplementaria.cs" />
+    <Compile Include="DAAdministracionEmisionMensual.cs" />
+    <Compile Include="DAAdministracionEstablecimiento.cs" />
+    <Compile Include="DAAdministracionMatrizLicencia.cs" />
+    <Compile Include="DAAdministracionNotificacionLicencias.cs" />
+    <Compile Include="DAAdministracionRequerimiento.cs" />
+    <Compile Include="DAAdministracionSeguimientoLocalPermanente.cs" />
+    <Compile Include="DAAdministracionSocio.cs" />
+    <Compile Include="DAAdministracionSocioMoroso.cs" />
+    <Compile Include="DAAdministracionSolicitudAprobacion.cs" />
+    <Compile Include="DAAgenteCampania.cs" />
+    <Compile Include="DAAgenteRecaudo.cs" />
+    <Compile Include="DACampaniaCallCenter.cs" />
+    <Compile Include="DACampaniaContactollamada.cs" />
+    <Compile Include="DACentroContacto.cs" />
+    <Compile Include="DAContable.cs" />
+    <Compile Include="DAContactoCallCenter.cs" />
+    <Compile Include="DACorreoEst.cs" />
+    <Compile Include="DADireccionAgenteRecaudo.cs" />
+    <Compile Include="DADocumentoCampania.cs" />
+    <Compile Include="DADocumentoContactoLlamada.cs" />
+    <Compile Include="DADocumentoNoIdentificado.cs" />
+    <Compile Include="DAEmisionMensual.cs" />
+    <Compile Include="DAEntidades.cs" />
+    <Compile Include="DAFiltroOrden.cs" />
+    <Compile Include="DAGrupoModalidadOficina.cs" />
+    <Compile Include="DALicenciaAforo.cs" />
+    <Compile Include="DALicenciaDivision.cs" />
+    <Compile Include="DALicenciaDivisionAgente.cs" />
+    <Compile Include="DALicenciaPlaneamientoDetalle.cs" />
+    <Compile Include="DALoteTrabajo.cs" />
+    <Compile Include="DAMultiRecibo.cs" />
+    <Compile Include="DAObservacionAgenteRecaudo.cs" />
+    <Compile Include="DAOficinaDivision.cs" />
+    <Compile Include="DAOficinaDivisionModalidad.cs" />
+    <Compile Include="DAPreImpresion.cs" />
+    <Compile Include="DAReciboDetalle.cs" />
+    <Compile Include="DARedSocialEst.cs" />
+    <Compile Include="DATarifaPlantillaDescuento.cs" />
+    <Compile Include="DATarifaPlantillaDescuentoCaracteristica.cs" />
+    <Compile Include="DATarifaPlantillaDescuentoSeccion.cs" />
+    <Compile Include="DATarifaPlantillaDescuentoValores.cs" />
+    <Compile Include="DATelefonoEst.cs" />
+    <Compile Include="DATipoCampania.cs" />
+    <Compile Include="DATipoReporte.cs" />
+    <Compile Include="DAAgenteAccion.cs" />
+    <Compile Include="DAAjustesComision.cs" />
+    <Compile Include="DAAforo.cs" />
+    <Compile Include="DAAuditoria.cs" />
+    <Compile Include="DAComisionAgenteRecaudo.cs" />
+    <Compile Include="DAComisionExclusion.cs" />
+    <Compile Include="DAComisionOficinasComerciales.cs" />
+    <Compile Include="DAComisionProducto.cs" />
+    <Compile Include="DAComisionTotales.cs" />
+    <Compile Include="DADetalleMetodoPago.cs" />
+    <Compile Include="DAEntidadLic.cs" />
+    <Compile Include="DAFactura.cs" />
+    <Compile Include="DAFacturaCobro.cs" />
+    <Compile Include="DAFacturaDetalle.cs" />
+    <Compile Include="DAFacturaVencimiento.cs" />
+    <Compile Include="DAMetodoPago.cs" />
+    <Compile Include="DAFuncionCalculo.cs" />
+    <Compile Include="DAGarantia.cs" />
+    <Compile Include="DALicenciaDescuento.cs" />
+    <Compile Include="DALicenciaImpuesto.cs" />
+    <Compile Include="DALicenciaLocalidad.cs" />
+    <Compile Include="DALicenciaReporte.cs" />
+    <Compile Include="DALicenciaReporteDeta.cs" />
+    <Compile Include="DALocalidad.cs" />
+    <Compile Include="DAModuloCliente.cs" />
+    <Compile Include="DAOrigenComision.cs" />
+    <Compile Include="DARecibo.cs" />
+    <Compile Include="DAREC_LIC_TAB_STAT.cs" />
+    <Compile Include="DARedSocial.cs" />
+    <Compile Include="DARedSocialBps.cs" />
+    <Compile Include="DARedSocialType.cs" />
+    <Compile Include="DARolAgente.cs" />
+    <Compile Include="DATarifaCaracteristica.cs" />
+    <Compile Include="DATarifaDescuento.CS" />
+    <Compile Include="DATarifaReglaAsociada.cs" />
+    <Compile Include="DATarifaReglaParamAsociada.cs" />
+    <Compile Include="DATarifaTest.cs" />
+    <Compile Include="DATipoAccion.cs" />
+    <Compile Include="DATipoComision.cs" />
+    <Compile Include="DAArtista.cs" />
+    <Compile Include="DAAsociadosEst.cs" />
+    <Compile Include="DAAutorizacion.cs" />
+    <Compile Include="DABloqueos.cs" />
+    <Compile Include="DACalificador.cs" />
+    <Compile Include="DACaracteristicaPredefinida.cs" />
+    <Compile Include="DACaracteristicaValor.cs" />
+    <Compile Include="DAClaseCreacion.cs" />
+    <Compile Include="DACodigoPostal.cs" />
+    <Compile Include="DACuentaContable.cs" />
+    <Compile Include="DADescuentos.cs" />
+    <Compile Include="DADetalleGasto.cs" />
+    <Compile Include="DADifusion.cs" />
+    <Compile Include="DADifusionEst.cs" />
+    <Compile Include="DADivisionesEst.cs" />
+    <Compile Include="DADocumentoLic.cs" />
+    <Compile Include="DAEstadoLicencia.cs" />
+    <Compile Include="DAFormatoFactura.cs" />
+    <Compile Include="DAFormatoFacturacion.cs" />
+    <Compile Include="DAFormatoFacturaxGrupoModalidad.cs" />
+    <Compile Include="DAGrupoFacturacion.cs" />
+    <Compile Include="DAHistorico.cs" />
+    <Compile Include="DAImpuestoValor.cs" />
+    <Compile Include="DALegalizacion.cs" />
+    <Compile Include="DALicenciaEstadoTab.cs" />
+    <Compile Include="DALicenciaPlaneamiento.cs" />
+    <Compile Include="DALicencias.cs" />
+    <Compile Include="DAAgente.cs" />
+    <Compile Include="DAAsociado.cs" />
+    <Compile Include="DACaracteristicaEst.cs" />
+    <Compile Include="DACorreo.cs" />
+    <Compile Include="DACorreoBps.cs" />
+    <Compile Include="DADefinicionGasto.cs" />
+    <Compile Include="DADerecho.cs" />
+    <Compile Include="DADireccionBps.cs" />
+    <Compile Include="DADireccionEst.cs" />
+    <Compile Include="DADivisionRecaudador.cs" />
+    <Compile Include="DADocumentoBps.cs" />
+    <Compile Include="DADocumentoEst.cs" />
+    <Compile Include="DADocumentoOfi.cs" />
+    <Compile Include="DAGrupoGasto.cs" />
+    <Compile Include="DAInspectionEst.cs" />
+    <Compile Include="DALicenciaTabs.cs" />
+    <Compile Include="DAMedioDifusion.cs" />
+    <Compile Include="DAModalidad.cs" />
+    <Compile Include="DAModalidadIncidencia.cs" />
+    <Compile Include="DAModuloSistema.cs" />
+    <Compile Include="DANumeracion.cs" />
+    <Compile Include="DANumeracionOfi.cs" />
+    <Compile Include="DAObservationEst.cs" />
+    <Compile Include="DAObservationLic.cs" />
+    <Compile Include="DAOrigenModalidad.cs" />
+    <Compile Include="DAParametroBps.cs" />
+    <Compile Include="DACABECERA_MODULO.cs" />
+    <Compile Include="DACaracteristica.cs" />
+    <Compile Include="DADirecciones.cs" />
+    <Compile Include="DADivisiones.cs" />
+    <Compile Include="DADocumentoGral.cs" />
+    <Compile Include="DAEstablecimiento.cs" />
+    <Compile Include="DAMODULO.cs" />
+    <Compile Include="DAObservationBps.cs" />
+    <Compile Include="DAObservationGral.cs" />
+    <Compile Include="DAObservationOff.cs" />
+    <Compile Include="DAParametroGral.cs" />
+    <Compile Include="DAParametroLic.cs" />
+    <Compile Include="DAParametrosEst.cs" />
+    <Compile Include="DAParametrosOfi.cs" />
+    <Compile Include="DAPeriodoFrecuencia.cs" />
+    <Compile Include="DAProceso.cs" />
+    <Compile Include="DARangoMorosidad.cs" />
+    <Compile Include="DAREC_BANKS_BRANCH.cs" />
+    <Compile Include="DAREC_BANKS_GRAL.cs" />
+    <Compile Include="DAREC_BLOCKS.cs" />
+    <Compile Include="DAREC_BPS_BANKS_ACC.cs" />
+    <Compile Include="DAREC_BPS_QUALY.cs" />
+    <Compile Include="DAREC_CAPACITY_TYPE.cs" />
+    <Compile Include="DAREC_CHARACTERISTICS.cs" />
+    <Compile Include="DAREC_COLL_LEVEL.cs" />
+    <Compile Include="DAREC_DEBTORS_RANGE.cs" />
+    <Compile Include="DAREC_DOCUMENTS_GRAL.cs" />
+    <Compile Include="DAREC_DOCUMENT_TYPE.cs" />
+    <Compile Include="DAREC_ECON_ACTIVITIES.cs" />
+    <Compile Include="DAREC_ESTABLISHMENT_GRAL.cs" />
+    <Compile Include="DAREC_EST_SUBTYPE.cs" />
+    <Compile Include="DAREC_EST_TYPE.cs" />
+    <Compile Include="DAREC_LAWSUITE_ACTIVITIES_TYPE.cs" />
+    <Compile Include="DAREC_LAWSUITE_TYPE.cs" />
+    <Compile Include="DAREC_LIC_STAT.cs" />
+    <Compile Include="DAREC_LIC_TYPE.cs" />
+    <Compile Include="DAREC_MODALITY.cs" />
+    <Compile Include="DAREC_MOD_GROUP.cs" />
+    <Compile Include="DAREC_MOD_USAGE.cs" />
+    <Compile Include="DAREC_MOV_TYPE.cs" />
+    <Compile Include="DAREC_NUMBERING.cs" />
+    <Compile Include="DAREC_OFFICES.cs" />
+    <Compile Include="DAREC_PAYMENT_TYPE.cs" />
+    <Compile Include="DAREC_QUALIFY_CHAR.cs" />
+    <Compile Include="DAREC_QUALIFY_TYPE.cs" />
+    <Compile Include="DAREC_RATES_GRAL.cs" />
+    <Compile Include="DAREC_RATE_FREQUENCY.cs" />
+    <Compile Include="DAREC_RETURN_REASONS.cs" />
+    <Compile Include="DAREC_SECTIONS.cs" />
+    <Compile Include="DAREC_TAXES.cs" />
+    <Compile Include="DAREC_TAX_DIVISION.cs" />
+    <Compile Include="DAREC_TAX_ID.cs" />
+    <Compile Include="DAREC_UNLICENSE_REASONS.cs" />
+    <Compile Include="DAREC_MOD_IMPACT.cs" />
+    <Compile Include="DAREF_ADDRESS_TYPE.cs" />
+    <Compile Include="DAREF_CREATION_CLASS.cs" />
+    <Compile Include="DAREF_CURRENCY.cs" />
+    <Compile Include="DAREF_CURRENCY_VALUES.cs" />
+    <Compile Include="DAREF_DIVISIONES.cs" />
+    <Compile Include="DAREF_DIVISIONES_VALUES.cs" />
+    <Compile Include="DAREF_DIV_CHARAC.cs" />
+    <Compile Include="DAREF_DIV_STYPE_CHAR.cs" />
+    <Compile Include="DAREF_DIV_SUBTYPE.cs" />
+    <Compile Include="DAREF_DIV_TYPE.cs" />
+    <Compile Include="DAREF_ROLES.cs" />
+    <Compile Include="DAREF_SOCIETY_TYPE.cs" />
+    <Compile Include="DARequerimientoDinero.cs" />
+    <Compile Include="DAROLES.cs" />
+    <Compile Include="DAROLES_PERMISOS.cs" />
+    <Compile Include="DARutas.cs" />
+    <Compile Include="DAShow.cs" />
+    <Compile Include="DAShowArtista.cs" />
+    <Compile Include="DASociedad.cs" />
+    <Compile Include="DASocioNegocio.cs" />
+    <Compile Include="DASocioNegocioBanco.cs" />
+    <Compile Include="DASocioNegocioOficina.cs" />
+    <Compile Include="DATarifaPlantilla.cs" />
+    <Compile Include="DATarifaPlantillaCaracteristica.cs" />
+    <Compile Include="DATarifaPlantillaSeccion.cs" />
+    <Compile Include="DATarifaPlantillaValor.cs" />
+    <Compile Include="DATarifaPlantillaVariable.cs" />
+    <Compile Include="DATarifaRegla.cs" />
+    <Compile Include="DATarifaReglaData.cs" />
+    <Compile Include="DATarifaReglaValor.cs" />
+    <Compile Include="DATelefono.cs" />
+    <Compile Include="DATelefonoBps.cs" />
+    <Compile Include="DATerritorio.cs" />
+    <Compile Include="DATipoCalificador.cs" />
+    <Compile Include="DATipoCorrelativo.cs" />
+    <Compile Include="DATipoCorreo.cs" />
+    <Compile Include="DATipoDato.cs" />
+    <Compile Include="DATipoDerecho.cs" />
+    <Compile Include="DATipoDescuento.cs" />
+    <Compile Include="DATipoenvioFactura.cs" />
+    <Compile Include="DATipoEstado.cs" />
+    <Compile Include="DATipoGasto.cs" />
+    <Compile Include="DATipoNumerador.cs" />
+    <Compile Include="DATipoObjeto.cs" />
+    <Compile Include="DATipoObservacion.cs" />
+    <Compile Include="DATipoPago.cs" />
+    <Compile Include="DATipoParametro.cs" />
+    <Compile Include="DATipoProceso.cs" />
+    <Compile Include="DATipoTelefono.cs" />
+    <Compile Include="DATipoUsorepertorio.cs" />
+    <Compile Include="DATransicionesEstado.cs" />
+    <Compile Include="DATrasladoAgentesRecaudo.cs" />
+    <Compile Include="DAUbigeo.cs" />
+    <Compile Include="DAUit.cs" />
+    <Compile Include="DAUsorepertorio.cs" />
+    <Compile Include="DAUsuarioAsociacion.cs" />
+    <Compile Include="DAUsuarioDerecho.cs" />
+    <Compile Include="DAUsuarioEmpleado.cs" />
+    <Compile Include="DAUsuarioProveedor.cs" />
+    <Compile Include="DAUsuarioRecaudador.cs" />
+    <Compile Include="DAUSUARIOS.cs" />
+    <Compile Include="DAValormusica.cs" />
+    <Compile Include="DA_WORKF_ACTIONS.cs" />
+    <Compile Include="DA_WORKF_ACTIONS_MAPPINGS.cs" />
+    <Compile Include="DA_WORKF_ACTION_TYPES.cs" />
+    <Compile Include="DA_WORKF_AGENTS.cs" />
+    <Compile Include="DA_WORKF_CLIENTS.cs" />
+    <Compile Include="DA_WORKF_DATA_TYPES.cs" />
+    <Compile Include="DA_WORKF_EVENTS.cs" />
+    <Compile Include="DA_WORKF_OBJECTS.cs" />
+    <Compile Include="DA_WORKF_OBJECTS_TYPE.cs" />
+    <Compile Include="DA_WORKF_PARAMETERS.cs" />
+    <Compile Include="DA_WORKF_RADIO.cs" />
+    <Compile Include="DA_WORKF_STATES.cs" />
+    <Compile Include="DA_WORKF_STATES_WORKFLOW.cs" />
+    <Compile Include="DA_WORKF_STATE_TYPE.cs" />
+    <Compile Include="DA_WORKF_TRACES.cs" />
+    <Compile Include="DA_WORKF_TRANSITIONS.cs" />
+    <Compile Include="DA_WORKF_WORKFLOWS.cs" />
+    <Compile Include="DA_WORK_AGENTS_ACTION.cs" />
+    <Compile Include="Empadronamiento\DADetalleEmpadronamiento.cs" />
+    <Compile Include="Empadronamiento\DAMatrizEmpadronamiento.cs" />
+    <Compile Include="FacturacionElectronica\DACabeceraFactura.cs" />
+    <Compile Include="FacturacionElectronica\DADatoAdicional.cs" />
+    <Compile Include="FacturacionElectronica\DADescuentoRecargo.cs" />
+    <Compile Include="FacturacionElectronica\DADetalleFactura.cs" />
+    <Compile Include="FacturacionElectronica\DAExtras.cs" />
+    <Compile Include="FacturacionElectronica\DAReferencia.cs" />
+    <Compile Include="FacturacionElectronica\DASunat.cs" />
+    <Compile Include="FacturacionElectronica\DATipoNotaCredito.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DARoles_Usuarios.cs" />
+    <Compile Include="Reporte\DARegistroVenta.cs" />
+    <Compile Include="Reporte\DARegistroVentaNC.cs" />
+    <Compile Include="Reporte\DAReporeRecaudacionSedes.cs" />
+    <Compile Include="Reporte\DAReporte.cs" />
+    <Compile Include="Reporte\DAReporteArtistaDetallado.cs" />
+    <Compile Include="Reporte\DAReporteComprobantesBancarios.cs" />
+    <Compile Include="Reporte\DAReporteComprobantexAutor.cs" />
+    <Compile Include="Reporte\DAReporteDistribucion.cs" />
+    <Compile Include="Reporte\DAReporteEstadoCuenta.cs" />
+    <Compile Include="Reporte\DAReporteFacturaCancelada.cs" />
+    <Compile Include="Reporte\DAReporteFacturaxCobrar.cs" />
+    <Compile Include="Reporte\DAReporteInformeControl.cs" />
+    <Compile Include="Reporte\DAReporteListarUsuario.cs" />
+    <Compile Include="Reporte\DAReporteResumenFacturacionMensual.cs" />
+    <Compile Include="Reporte\DAREPORTE_CAJA.cs" />
+    <Compile Include="Reporte\DAREPORTE_DEPOSITO_BANCO.cs" />
+    <Compile Include="Reporte\DAREPORTE_DE_EMPRADRONAMIENTO.cs" />
+    <Compile Include="Reporte\DAREPORTE_DE_LICENCIAS_NUEVAS.cs" />
+    <Compile Include="Reporte\DA_BecsEspeciales.cs" />
+    <Compile Include="Reporte\DA_LICENCIA_X_ARTISTA.cs" />
+    <Compile Include="Reporte\DA_ReporteEstablecimiento.cs" />
+    <Compile Include="Reporte\DA_Reporte_Bec_Inactiva.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GlobalVars\GlobalVars.csproj">
+      <Project>{164aef80-cbfe-41cf-a42a-fa5eebef6104}</Project>
+      <Name>GlobalVars</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGRDA.Entities\SGRDA.Entities.csproj">
+      <Project>{1c410e8f-ced0-4f59-a3c5-7d8c0b7a980a}</Project>
+      <Name>SGRDA.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

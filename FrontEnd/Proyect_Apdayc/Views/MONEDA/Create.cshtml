@@ -1,0 +1,232 @@
+﻿@model SGRDA.Entities.BEREF_CURRENCY
+
+@{
+    ViewBag.Title = "APDAYC :: MONEDAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" />
+
+<script>
+
+    $(function () {
+        $(".alert-link").hide();
+        $("#message").hide();
+        $("#message1").hide();
+
+
+        //$("#btnRegresar").on("click", function () {
+
+        //    location.href = "../MONEDA/";
+        //    alert("rr");
+        //});
+    });
+</script>
+
+<style type="text/css">
+    textarea {
+        resize: none;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "MONEDA", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+        
+
+@*@Html.ActionLink("MONEDA", "Index", new { }, new { style = "text-decoration:none;" })*@
+
+
+       
+     
+    <br />
+         
+    <center>
+        <table border="0" style=" width:98%;" id='FiltroTabla' cellspacing="2" cellpadding="2">
+            <tr>
+                <td colspan="4"   class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" >
+                    <table border="0" style=" width:100%;">
+                        <tr>
+                            <td>
+                                <div id='divTituloPerfil' style="  text-align:left">
+                                 Monedas - Nuevo
+                                     </div>
+
+                            </td>
+                            <td>
+                    
+                     <div style="float:right;">
+                        <div class="botonLink"  style="width:80px;">
+                        <a href="@Url.Action("../MONEDA/", "MONEDA")"   >
+                            <div style=" color:#000; font-weight:200; margin-top:3px; margin-left:5px;">Volver
+                            <img src="@Url.Content("~/Images/botones/back.png")"  width="24"  />
+                                </div>
+                        </a>
+                            </div>
+                             &nbsp;
+                               <button id="btnSave"  class="boton">
+                                 <span style=" color:#000; font-weight:200;">Grabar </span> 
+                                  <img src="@Url.Content("~/Images/botones/save.png")" width="24" />
+                               </button> 
+
+                     </div>    
+                </td>
+                </tr>
+                </table>
+                </td>
+
+            </tr>
+             <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+                 </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.CUR_ALPHA)  :</td>
+                <td> @Html.TextBoxFor(model => model.CUR_ALPHA, htmlAttributes: new { id = "CUR_ALPHA", style = "width:60px;", maxLength = "3" })
+
+              @*  &nbsp;<br />@Html.ValidationMessageFor(model => model.CUR_ALPHA) *@
+
+                </td>
+
+            @*</tr>
+              <tr>*@
+                <td>@Html.LabelFor(model => model.CUR_DESC)  :</td>
+                <td>
+                      @Html.TextBoxFor(model => model.CUR_DESC, htmlAttributes: new { id = "CUR_DESC", style = "width:200px;", maxLength = "40" })
+
+                @*&nbsp;<br /> @Html.ValidationMessageFor(model => model.CUR_DESC)*@
+
+                </td>
+            
+            </tr>
+
+             <tr>
+                <td>@Html.LabelFor(model => model.CUR_NUM)  :</td>
+                <td>
+                    
+                @Html.TextBoxFor(model => model.CUR_NUM, htmlAttributes: new { id = "CUR_NUM", style = "width:60px;", onkeydown = "return ValidateNumber(event);", maxLength = "3" })
+                @*&nbsp;<br />@Html.ValidationMessageFor(model => model.CUR_NUM)*@
+                
+                </td>
+
+            @*</tr>
+             <tr>*@
+                <td>  @Html.LabelFor(model => model.UNIT_MAJOR):</td>
+                <td>
+                    
+                  @Html.TextBoxFor(model => model.UNIT_MAJOR, htmlAttributes: new { id = "UNIT_MAJOR", style = "width:200px;", maxLength = "30" })
+                    @*&nbsp;<br />@Html.ValidationMessageFor(model => model.UNIT_MAJOR)*@
+                
+                </td>
+
+            </tr>
+
+
+             <tr>
+                <td>    @Html.LabelFor(model => model.UNIT_MINOR) :</td>
+                <td>
+                    
+                        @Html.TextBoxFor(model => model.UNIT_MINOR, htmlAttributes: new { id = "UNIT_MINOR", style = "width:200px;", maxLength = "30" })
+           @* @Html.ValidationMessageFor(model => model.UNIT_MINOR)*@
+                
+                </td>
+
+            @*</tr>
+             <tr>*@
+                <td>   @Html.LabelFor(model => model.DECIMALS):</td>
+                <td>
+                    
+                   @Html.TextBoxFor(model => model.DECIMALS, htmlAttributes: new { id = "DECIMALS", style = "width:40;", onkeydown = "return ValidateNumber(event);", maxLength = "2" })
+                   @*@Html.ValidationMessageFor(model => model.DECIMALS)*@
+                
+                </td>
+
+            </tr>
+            <tr>
+                <td>   @Html.LabelFor(model => model.FORMAT) :</td>
+                <td>
+                      @Html.TextBoxFor(model => model.FORMAT, htmlAttributes: new { id = "FORMAT", style = "width:100px;", maxLength = "15" })
+            @*@Html.ValidationMessageFor(model => model.FORMAT)*@
+                        
+                </td>
+
+            @*</tr>
+             <tr>*@
+                <td>    </td>
+                <td>
+                    
+                    
+                
+                </td>
+
+            </tr>
+              <tr>
+                <td colspan="4" style=" height:10px;" ></td>
+            <tr>
+
+        </table>
+ </center>
+ 
+        
+    <br />
+    <center>
+    <div id="message1" style=" width:98%;  text-align:left;">
+        <div class="@TempData["class1"]">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+        </center>
+}
+
+<script type="text/ecmascript">
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+        })
+    };
+
+    if ('@TempData["flag"]' == "0") {
+        alert("Ingrese todos los datos.");
+        if ('@TempData["msg"]' != "") {
+            $(function () {
+                $("#message").show();
+                $(".alert-link").show();
+
+            })
+        };
+        if ('@TempData["class1"]' != "") {
+            $(function () {
+                $("#message1").show();
+
+
+            })
+        };
+    }
+
+    if ('@TempData["flag"]' == "1") {
+        alert("Grabado corectamente.");
+        location.href = "../MONEDA/";
+    }
+</script>
+
+<script type="text/javascript">
+    function ValidateNumber(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>
+
+<br />
+
+<div id="message">
+    <div class="@TempData["class"]">
+        <a id="lnk" href="#" class="alert-link">OK! </a>@TempData["msg"]
+    </div>
+</div>
+

@@ -1,0 +1,169 @@
+﻿@model SGRDA.Entities.USUARIOS
+@{
+    Layout = null;
+ }
+
+<!DOCTYPE html>
+<html>
+<head>
+   <title>APDAYC .::. SGRDA - Login</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css"  />
+
+    <style>
+           .menuTop {
+            text-align: center;
+            -moz-box-shadow: 0 -1px #5FACEB, 0 3px 0 #2a74b1,0 6px 4px #999999;
+            -webkit-box-shadow: 0 -1px #5FACEB, 0 3px 0 #2a74b1,0 6px 4px #999999;
+            box-shadow: 0 -1px #5FACEB, 0 3px 0 #2a74b1,0 6px 4px #999999;
+            background-color: #2b86ca;
+            background-image: -o-linear-gradient(-90deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            background-image: -moz-linear-gradient(-90deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            background-image: linear-gradient(180deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            background-image: -webkit-linear-gradient(-90deg,rgba(44,160,202,0),rgba(0,0,0,0.13));
+            border-width: 0 0 2px 0;
+            border-style: solid;
+            border-color: #5396cd;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr=#002CA0CA,endColorstr=#20000000);
+            /*margin-top: -30px;*/
+             height:45px;
+            vertical-align:middle;
+            color:white;
+        }
+        body {
+       
+        font-family:Verdana;
+        background-color: #2b86ca !important;
+        }
+        #tblogin td {
+         left:200px;
+         margin-left:300px;
+        
+        }
+    </style>
+</head>
+
+<script>
+        $(function () {
+            $(".alert-link").hide();
+            $("#message").hide();
+            $("#message1").hide();
+        });
+</script>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary(true)
+          
+    <body>
+       <center><br /><br /><br /><br /> 
+          <font style="text-align:center; font-size:24px; font-weight:bold; color:white;">
+              L&RICS (Licenses and Rights Collecting System)
+          </font>
+       <br /><br /> <div id="contenedor">
+      @*  <label style="color:white;">Please log in to your account. This website is protected by 256-bit SSL security</label>
+     *@      
+            <div id="Centrado">
+                  <form name="frm" method="post" action="Index.cshtml" >
+                <table id="tblogin" style=" background-image:url('Content/img/login.png'); width:749px; height:320px;" border="0">
+                    <tr>
+                        <td style=" width:50%;"></td>
+                        <td style="margin-left:200px;">
+                         
+                        </td>
+                    </tr>
+                     <tr>
+                          <td style=" width:50%;"></td>
+                        <td> Usuario:<br />
+                              <input type="text" id="user" name="user" size="15" style="border:groove">
+                                        @Html.ValidationMessageFor(model => model.USUA_VUSUARIO_RED_USUARIO)
+                        </td>
+
+                    </tr>
+                    @* <tr>
+                          <td style=" width:50%;"></td>
+                        <td>
+                        
+                        </td>
+                    </tr>*@
+                     <tr>
+                          <td style=" width:50%;"></td>
+                        <td>
+                              Contraseña:<br />
+                           <input type="password" id="pwd" name="pwd" size="15" style="border:groove">
+                                                                 @Html.ValidationMessageFor(model => model.USUA_VPASSWORD_USUARIO)
+
+                        </td>
+
+                    </tr>
+                     <tr>
+                          <td style=" width:50%;"></td>
+                        <td>
+                       <button type="submit" > <b> Ingresar</b> 
+                           <img src="Content/img/key.png"   border="0"></button>
+
+ </td>
+
+                    </tr>
+                     <tr> <td style=" width:50%;"></td>
+                        <td>
+                        <div id="message1">
+                                                           <div class="@TempData["class1"]">
+                                                              @Html.ValidationSummary()
+                                                           </div>
+                                                        </div>
+                     </td>
+
+                    </tr>
+                    <tr> <td style=" width:50%;"></td>
+                                                            <td align="right" valign="top" class="form">
+                                                                <a href="javascript:olvidasteclave();" style="font-size:11px;display:none;">¿Olvidaste tu Contraseña?</a>
+                                                            </td>
+                                                            
+                                                            
+                                                        </tr>
+                </table>
+  <br />
+                        <div class="menuTop"  style="width:749px;">
+                            2014 APDAYC &copy; Todos los Derechos Reservados <br/>
+Av Petit Thouars 5038 Miraflores |
+soporte@apdayc.org.pe |
+Lima - Perú  
+                            
+                        </div>
+                  
+</form>
+
+
+
+            
+             </div>        
+        </div>
+           </center>
+</body>
+}
+</html>
+
+
+
+<script type="text/ecmascript">
+
+    if ('@TempData["msg"]' != "") {
+        $(function () {
+            $("#message").show();
+            $(".alert-link").show();
+
+        })
+    };
+    if ('@TempData["class1"]' != "") {
+        $(function () {
+            $("#message1").show();
+        })
+    };
+</script>
+

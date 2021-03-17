@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "APDAYC :: Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Valor unitario de la música</title>
+
+
+    <link href="~/Scripts/Extensiones/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+    <link href="~/Style/SRGDA.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Extensiones/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/Mantenimientos/mantenimiento.valor.musica.nuevo.js")"></script>
+    <script src="@Url.Content("~/Scripts/SGRDA/generales.js")"></script>
+
+</head>
+<body>
+    <div title="Nuevo valor música">
+        <table width='100%' border="0" cellspacing='0' cellpadding='0'>
+            <tr>
+                <td style="vertical-align: bottom">
+                    <input type="hidden" id="hidCodigoOri" />
+                    <input type="hidden" id="hidCodigoDes" />
+                    <input id="hidOpcionEdit" type="hidden" />                    
+                    <input id="hidCodigo" type="hidden" />
+                    <div id='divTituloPerfil'>Nuevo - Valor unitario de la música</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                           <table width='98%' border="0"  id='FiltroTablaPop'>
+                                <tr>
+                                    <td colspan="4" style="text-align: right;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                            
+                                                       <button id='btnDescartar' class="boton" name='btnDescartar'>
+                                                            Volver 
+                                                        <img src="@Url.Content("~/Images/botones/back.png")" width="24px" /></button>
+                                        &nbsp;
+                                                        <button id='btnNuevo' class="boton" name='btnNuevo'>
+                                                            Nuevo 
+                                                        <img src="@Url.Content("~/Images/botones/neo.png")" width="24px" /></button>
+                                        &nbsp;
+                                                        <button id='btnGrabar' class="boton" name='btnGrabar'>
+                                                            Grabar 
+                                                        <img src="@Url.Content("~/Images/botones/save.png")" width="24px" /></button>                                        
+                                    
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td></td>        
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <table border="0"> 
+                                            <tr>
+                                                <td style="padding-left:10px">Valor del VUM :</td>
+                                                <td style="padding-right:36%"> 
+                                                    <input type="text" id="txtVum" class="requerido"/>  
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:10px">Fecha Vigencia :</td>
+                                                <td> 
+                                                   <input type="text" id="txtFecha" class="requerido"/> 
+                                                </td>
+                                            </tr>
+                                        </table>
+                                </td>    
+                                </tr>
+                            </table>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center">
+                    <div id='aviso'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

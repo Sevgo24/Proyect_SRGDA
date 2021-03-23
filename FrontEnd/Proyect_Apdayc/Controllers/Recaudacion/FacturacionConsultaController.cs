@@ -1769,17 +1769,17 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                     shtml.Append("<thead><tr>");
                     shtml.Append("<th class=" + clase + " style='width:20px'></th>");
                     shtml.Append("<th class=" + clase + " style='width:3px'></th>");
-                    shtml.Append("<th class=" + clase + " style='width:60px;'>Id</th>");
+                    shtml.Append("<th class=" + clase + " style='width:60px;'>Cód. Lic.</th>");
                     shtml.Append("<th class=" + clase + " style='width:0px; display:none'>FacturaId</th>");
                     shtml.Append("<th class=" + clase + " style='width:0px; display:none'>DetalleId</th>");
                     shtml.Append("<th class=" + clase + " style='width:350px;'>Licencia</th>");
                     shtml.Append("<th class=" + clase + " style='width:350px;'>Establecimiento</th>");
-                    shtml.Append("<th class=" + clase + " style='width:80px;'>Periodo</th>");
-                    shtml.Append("<th class=" + clase + " style='width:30px;'>Base</th>");
-                    shtml.Append("<th class=" + clase + " style='width:30px;'>Impuesto</th>");
+                    //shtml.Append("<th class=" + clase + " style='width:80px;'>Periodo</th>");
+                    //shtml.Append("<th class=" + clase + " style='width:30px;'>Base</th>");
+                    //shtml.Append("<th class=" + clase + " style='width:30px;'>Impuesto</th>");
                     shtml.Append("<th class=" + clase + " style='width:30px;'>Neto</th>");
-                    shtml.Append("<th class=" + clase + " style='width:30px;'>Base Cobrado</th>");
-                    shtml.Append("<th class=" + clase + " style='width:30px;'>Imp Cobrado</th>");
+                    //shtml.Append("<th class=" + clase + " style='width:30px;'>Base Cobrado</th>");
+                    //shtml.Append("<th class=" + clase + " style='width:30px;'>Imp Cobrado</th>");
                     shtml.Append("<th class=" + clase + " style='width:30px;'>Neto Cobrado</th>");
                     shtml.Append("<th class=" + clase + " style='width:30px;'>Pendiente</th>");
                     shtml.Append("<th class=" + clase + " style='width:20px;'>NOTA C</th>");
@@ -1795,18 +1795,18 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                             shtml.Append("</td>");
 
                             shtml.AppendFormat("<td onchange='return Habilitar({1});' style='text-align:center;width:25px'><input type='checkbox' id='{0}'/></td>", "chkFact" + item.Id, item.Id);
-                            shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0});' style='cursor:pointer;' class='idPl_Invoice'>{0}</td>", item.Id);
+                            shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0});' style='cursor:pointer;' >{0}</td>", item.codLicencia);
                             shtml.AppendFormat("<td style='display:none'><input type='text' id='txtFacturaId_{0}' value={1} style='width: 0px; text-align:center' readonly='true'></input></td>", item.Id, item.codFactura);
                             shtml.AppendFormat("<td style='display:none'><input type='text' id='txtDetalleId_{0}' value={1} style='width: 0px; text-align:center' readonly='true'></input></td>", item.Id, item.Id);
                             shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;'>{0}</td>", item.NombreLicencia, item.Id);
                             shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;'>{0}</td>", item.NombreEstablecimiento, item.Id);
-                            shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer; text-align:center;'>{0}</td>", item.Periodo, item.Id);
+                            //shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer; text-align:center;'>{0}</td>", item.Periodo, item.Id);
 
-                            shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumB'>{0}</td>", item.valorBase, item.Id);
-                            shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumI'>{0}</td>", item.valorImpuesto, item.Id);
+                            //shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumB'>{0}</td>", item.valorBase, item.Id);
+                            //shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumI'>{0}</td>", item.valorImpuesto, item.Id);
                             shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumN'>{0}</td>", item.valorNeto, item.Id);
-                            shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumBC'>{0}</td>", item.BaseCobrado, item.Id);
-                            shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumIC'>{0}</td>", item.ImpuestoCobrado, item.Id);
+                            //shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumBC'>{0}</td>", item.BaseCobrado, item.Id);
+                            //shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumIC'>{0}</td>", item.ImpuestoCobrado, item.Id);
                             shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumNC'>{0}</td>", item.NetoCobrado, item.Id);
                             shtml.AppendFormat("<td onclick='return obtenerIdDetalle({0},{1});' style='cursor:pointer;' class='sumP'>{0}</td>", item.Pendiente, item.Id);
                             //shtml.AppendFormat("<td style='text-align:center;'><input type='text' id='txtValorNotaCredito_{0}' value={1} style='width: 60px; text-align:right;' disabled='disabled' name='valor_{0}' class='elm' onkeyup='return obtenerValor({0},{2});'></input></td>", item.Id, "0", item.Pendiente);

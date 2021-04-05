@@ -332,6 +332,10 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                                 if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_ANULADO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_ANULADO);
                                 if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_OTRO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_OTRO);
                             }
+                            else
+                            {
+                                shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='black'> {0} </font></td>", "", item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); 
+                            }
 
                         }
 
@@ -610,7 +614,10 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                                 if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_ANULADO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_ANULADO);
                                 if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_OTRO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_OTRO);
                             }
-
+                            else
+                            {
+                                shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='black'> {0} </font></td>", "", item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO);
+                            }
                         }
 
                         ////ESTADO SUNAT 

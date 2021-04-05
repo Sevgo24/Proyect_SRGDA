@@ -953,7 +953,109 @@ namespace SGRDA.DA
             }
             return lista;
         }
+        public List<BEFacturaDetalle> DetalleFacturaNotaCredito2(string owner, decimal Id, string anio, string mes, decimal idLic)
+        {
+            Database db = new DatabaseProviderFactory().Create("conexion");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDAS_DET_INVOICE_NOTACREDITO2");
+            db.AddInParameter(oDbCommand, "@OWNER", DbType.String, owner);
+            db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, Id);
+            db.AddInParameter(oDbCommand, "@MES", DbType.String, mes);
+            db.AddInParameter(oDbCommand, "@ANIO", DbType.String, anio);
+            db.AddInParameter(oDbCommand, "@LIC_ID_F", DbType.Decimal, idLic);
+            BEFacturaDetalle item = null;
+            List<BEFacturaDetalle> lista = new List<BEFacturaDetalle>();
 
+            using (IDataReader dr = db.ExecuteReader(oDbCommand))
+            {
+                while (dr.Read())
+                {
+                    item = new BEFacturaDetalle();
+                    if (!dr.IsDBNull(dr.GetOrdinal("INV_ID")))
+                        item.INV_ID = dr.GetDecimal(dr.GetOrdinal("INV_ID"));
+                    //if (!dr.IsDBNull(dr.GetOrdinal("INVL_ID")))
+                    //    item.INVL_ID = dr.GetDecimal(dr.GetOrdinal("INVL_ID"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("LIC_ID")))
+                        item.LIC_ID = dr.GetDecimal(dr.GetOrdinal("LIC_ID"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("LIC_NAME")))
+                        item.LIC_NAME = dr.GetString(dr.GetOrdinal("LIC_NAME"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("EST_NAME")))
+                        item.EST_NAME = dr.GetString(dr.GetOrdinal("EST_NAME"));
+                    //if (!dr.IsDBNull(dr.GetOrdinal("PERIODO")))
+                    //    item.PERIODO = dr.GetString(dr.GetOrdinal("PERIODO"));
+                    //if (!dr.IsDBNull(dr.GetOrdinal("REC_DATE")))
+                    //    item.REC_DATE = dr.GetString(dr.GetOrdinal("REC_DATE"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_BASE")))
+                        item.INVL_BASE = dr.GetDecimal(dr.GetOrdinal("INVL_BASE"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_TAXES")))
+                        item.INVL_TAXES = dr.GetDecimal(dr.GetOrdinal("INVL_TAXES"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_NET")))
+                        item.INVL_NET = dr.GetDecimal(dr.GetOrdinal("INVL_NET"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_COLLECTB")))
+                        item.INVL_COLLECTB = dr.GetDecimal(dr.GetOrdinal("INVL_COLLECTB"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_COLLECTT")))
+                        item.INVL_COLLECTT = dr.GetDecimal(dr.GetOrdinal("INVL_COLLECTT"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_COLLECTN")))
+                        item.INVL_COLLECTN = dr.GetDecimal(dr.GetOrdinal("INVL_COLLECTN"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INV_BALANCE")))
+                        item.INVL_BALANCE = dr.GetDecimal(dr.GetOrdinal("INV_BALANCE"));
+                    lista.Add(item);
+                }
+            }
+            return lista;
+        }
+        public List<BEFacturaDetalle> DetalleFacturaNotaCredito2Periodo(string owner, decimal Id, string anio, string mes, decimal idLic)
+        {
+            Database db = new DatabaseProviderFactory().Create("conexion");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDAS_DET_INVOICE_NOTACREDITO2_PERIODOS");
+            db.AddInParameter(oDbCommand, "@OWNER", DbType.String, owner);
+            db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, Id);
+            db.AddInParameter(oDbCommand, "@MES", DbType.String, mes);
+            db.AddInParameter(oDbCommand, "@ANIO", DbType.String, anio);
+            db.AddInParameter(oDbCommand, "@LIC_ID_F", DbType.Decimal, idLic);
+            BEFacturaDetalle item = null;
+            List<BEFacturaDetalle> lista = new List<BEFacturaDetalle>();
+
+            using (IDataReader dr = db.ExecuteReader(oDbCommand))
+            {
+                while (dr.Read())
+                {
+                    item = new BEFacturaDetalle();
+                    if (!dr.IsDBNull(dr.GetOrdinal("INV_ID")))
+                        item.INV_ID = dr.GetDecimal(dr.GetOrdinal("INV_ID"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_ID")))
+                        item.INVL_ID = dr.GetDecimal(dr.GetOrdinal("INVL_ID"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("LIC_ID")))
+                        item.LIC_ID = dr.GetDecimal(dr.GetOrdinal("LIC_ID"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("LIC_NAME")))
+                        item.LIC_NAME = dr.GetString(dr.GetOrdinal("LIC_NAME"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("EST_NAME")))
+                        item.EST_NAME = dr.GetString(dr.GetOrdinal("EST_NAME"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("PERIODO")))
+                        item.PERIODO = dr.GetString(dr.GetOrdinal("PERIODO"));
+                    //if (!dr.IsDBNull(dr.GetOrdinal("REC_DATE")))
+                    //    item.REC_DATE = dr.GetString(dr.GetOrdinal("REC_DATE"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_BASE")))
+                        item.INVL_BASE = dr.GetDecimal(dr.GetOrdinal("INVL_BASE"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_TAXES")))
+                        item.INVL_TAXES = dr.GetDecimal(dr.GetOrdinal("INVL_TAXES"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_NET")))
+                        item.INVL_NET = dr.GetDecimal(dr.GetOrdinal("INVL_NET"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_COLLECTB")))
+                        item.INVL_COLLECTB = dr.GetDecimal(dr.GetOrdinal("INVL_COLLECTB"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_COLLECTT")))
+                        item.INVL_COLLECTT = dr.GetDecimal(dr.GetOrdinal("INVL_COLLECTT"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_COLLECTN")))
+                        item.INVL_COLLECTN = dr.GetDecimal(dr.GetOrdinal("INVL_COLLECTN"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("INVL_BALANCE")))
+                        item.INVL_BALANCE = dr.GetDecimal(dr.GetOrdinal("INVL_BALANCE"));
+                    if (!dr.IsDBNull(dr.GetOrdinal("LIC_YEAR")))
+                        item.LIC_YEAR = dr.GetDecimal(dr.GetOrdinal("LIC_YEAR"));
+                    lista.Add(item);
+                    
+                }
+            }
+            return lista;
+        }
         public List<BERecibo> ListarRecibosFactura(string owner, decimal IdFactura)
         {
             Database db = new DatabaseProviderFactory().Create("conexion");

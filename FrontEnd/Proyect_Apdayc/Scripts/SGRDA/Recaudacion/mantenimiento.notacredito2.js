@@ -14,18 +14,27 @@ $(function () {
     mvInitDevolucion({ container: "ContenedormvDevolucion", idButtonToSearch: "", idDivMV: "mvDevolucion", event: "", idLabelToSearch: "" });
 
     $("#btnBuscarDemo2").on("click", function () {
-        var estadoRequeridos = ValidarRequeridos();
+      
         var idMoneda = $('#ddlMoneda').val();
         //if (idMoneda != '0')
         ConsultaDocumento2();
     });
+    $("#btnLimpiar2").on("click", function () {
+        $("#grid2").html('');
+        limpiarControles2();
+    });
     $("#btnLimpiarNC").on("click", function () {
-        var estadoRequeridos = ValidarRequeridos();
+      
         limpiarTipoNotaCredito();
     });
+
     $("#ValidarNC").on("click", function () {
-        var estadoRequeridos = ValidarRequeridos();
+        
         ValidarNCredito();
+    });
+    $("#FiltrarNC").on("click", function () {
+        var idSel = $("#hidId2").val()
+        loadDataDetalloFactura2(idSel);
     });
     $("#btnNotaCredito2").on("click", function () {
         limpiarNotaCredito();
@@ -51,8 +60,60 @@ $(function () {
             
         }
     });
+    $('#chkdetalladoNC').click(function () {
+        if ($('#chkdetalladoNC').is(':checked')) {
+            $('#TipoNCI').val('');
+            //$('#TipoNCI').prop('readonly', false);
+            $('#TipoNCI').prop('disabled', true);
+            //al Selecccionar si el monto cobrado es 0 entonces obtener el valor del monto Neto
+            $("#gridDetalleFactura2").css("display", "inline");
+            $("#gridDetalleFacturaFiltro").css("display", "inline");
+            
+            //ActivartodoslosCheckbox();
+
+        } else {
+            $('#TipoNCI').text = '';
+            $('#TipoNCI').attr('disabled', false);
+            $("#gridDetalleFactura2").css("display", "none");
+            $("#gridDetalleFacturaFiltro").css("display", "none");
+            //DesactivartodoslosCheckBox();
+
+        }
+    });
     
 });
+function limpiarControles2() {
+    $("#hidCorrelativo").val(0);
+    $("#lbCorrelativo").html('Seleccione una serie.');
+    $("#lbCorrelativo").css('color', 'black');
+    $("#hidEdicionEnt").val(0);
+    $("#lbResponsable").html('Seleccione un socio.');
+    $("#hidSubDivision").val(0);
+    $("#lbSubDivision").html('Seleccione una subdivisión.');
+    loadTipoFactura('ddlTipoDocumento', 0);
+
+    $("#txtNumFact").val('');
+    $("#hidGrupo").val(0);
+    $("#lbGrupo").html('Seleccione un grupo facturación.');
+    //$("#hidOficina").val(0);
+    //$("#lbOficina").html('Seleccione una Oficina.');
+    $("#txtIdFact").val('');
+
+    $('#dllTipoLicencia').val(0);
+    $('#ddlMoneda').val('PEN');
+    $("#ddlEstado").val(0);
+    $("#hidEdicionEntAGE").val(0);
+    $("#lbAgente").html('Seleccione un Agente.');
+    $("#txtNumLic").val('');
+    //$('#ddlFormapago').val(0);
+    $("#hidSerie").val('');
+    $("#hidActual").val(0);
+
+    $("#chkNoAnu").prop('checked', false);
+    $("#chkNoImp").prop('checked', false);
+    $("#grid2").html('');
+    $("#CantidadRegistros").html('0');
+}
 var mvInitNotaCredito2 = function (parametro) {
     var idContenedor = parametro.container;
     var btnEvento = parametro.idButtonToSearch;
@@ -120,10 +181,10 @@ var mvInitNotaCredito2 = function (parametro) {
     //elemento += '<td style="width:80px">Fecha Emisión </td> <td><input type="text" id="txtFechaE" disabled="disabled"></td>';
     //elemento += '</tr>';
     //Check box para aplicar el monto total .
-    //elemento += '<tr>';
-    //elemento += '<td style="width:10px; text-align:right;"> <input type="checkbox" id="chkmontonc2" value="0"></td>';
-    //elemento += '<td>Monto Total<input type="text" id="txtmontoNC2" readonly=true style="width:70px"></td>';
-    //elemento += '<tr/>';
+    elemento += '<tr>';
+    elemento += '<td style="width:10px; text-align:right;"> <input type="checkbox" id="chkdetalladoNC" value="0"></td>';
+    elemento += '<td>Habilitar detallado</td>';
+    elemento += '<tr/>';
   
     //------------------------------------
     elemento += '<tr>';
@@ -131,14 +192,27 @@ var mvInitNotaCredito2 = function (parametro) {
     elemento += '<div id="divMensajeError" style=" width: 100% ; vertical-align: middle; text-align:right"></div>';
     elemento += '</td>';
     elemento += '</tr>';
-
     elemento += '</tr>';
     elemento += '</table>';
     elemento += '</div>';
     elemento += '</td>';
+
     elemento += '<table  border="0" style="border-collapse: collapse;">';
     elemento += '<tr>';
-    elemento += '<td colspan="10"><div id="gridDetalleFactura2"></div></td>';
+    elemento += '<td colspan="10"><div style="display: none;" id="gridDetalleFacturaFiltro">';
+    elemento += '<table>';
+    elemento += '<tr>';
+    elemento += '<td style="width:40px">Mes </td> <td><input type="text" id="mesNC" style="width:100px" ></td>';
+    elemento += '<td style="width:40px">Año </td> <td><input type="text" id="anioNC" style="width:123px"></td>';
+    elemento += '<td style="width:40px">Licencia </td> <td><input type="text" id="licenciaNC" style="width:123px" ></td>';
+    elemento += '<td style="width:100px"><button id="FiltrarNC" class="boton" name="ValidarNC">Filtrar<img <img src="../Images/botones/buscar.png" width="24px" /></button></td>';
+
+    elemento += '</tr>';
+    elemento += '</table>';
+    elemento += '</div></td>';
+    elemento += '</tr>';
+    elemento += '<tr>';
+    elemento += '<td colspan="10"><div style="display: none;" id="gridDetalleFactura2"></div></td>';
     elemento += '</tr>';
     elemento += '</table>';
 
@@ -462,20 +536,26 @@ function calcularTotalPendiente2() {
     });
 }
 function loadDataDetalloFactura2(id) {
-    loadDataGridTmpDet2('../FacturacionConsulta/ListarDetalleFactura2', "#gridDetalleFactura2", id);
+    var mes = $('#mesNC').val();
+    var anio = $('#anioNC').val();
+    var lic = $('#licenciaNC').val();
+    var licencia = 0;
+    if (lic != "") licencia = lic;
+    loadDataGridTmpDet2('../FacturacionConsulta/ListarDetalleFactura2', "#gridDetalleFactura2", id, mes,anio,licencia);
 }
 
-function loadDataGridTmpDet2(Controller, idGrilla, id) {
+function loadDataGridTmpDet2(Controller, idGrilla, id, mes, anio, idLic) {
     $.ajax({
-        type: 'POST', data: { Id: id }, url: Controller, beforeSend: function () { },
+        type: 'POST', data: { invId: id, mes: mes, anio: anio, idLic: idLic}, url: Controller, beforeSend: function () { },
         success: function (response) {
             var dato = response;
             validarRedirect(dato);
             if (dato.result == 1) {
+                $(idGrilla).html('');
                 $(idGrilla).html(dato.message);
                 //calcularTotalBase2();
                 //calcularTotalImpuesto2();
-                calcularTotalNeto2();
+                //calcularTotalNeto2();
                 //calcularTotalBaseCobrado2();
                 //calcularTotalImpuestoCobrado2();
                 //calcularTotalNetoCobrado2();
@@ -514,7 +594,7 @@ function ObtenerDetalleFactura2(idSel) {
             var dato = response;
             validarRedirect(dato);
             if (dato.result == 1) {
-                //loadDataDetalloFactura2(idSel);
+                loadDataDetalloFactura2(idSel);
                 loadValorNeto(idSel);
                 
             } else if (dato.result == 0) {
@@ -551,6 +631,9 @@ function limpiarTipoNotaCredito() {
     $("#TipoNCI").val('');
     $("#txtObservacion2").val('');
     $("#gridResumenNC").html('');
+    $("#chkdetalladoNC").prop("checked", false);
+    $("#gridDetalleFactura2").css("display", "none");
+    $("#gridDetalleFacturaFiltro").css("display", "none");
 };
 function ValidarNCredito() {
     var hidId2 = $("#hidId2").val();
@@ -565,14 +648,49 @@ function ValidarNCredito() {
     var ddlTipoNotaCredito2 = $("#ddlTipoNotaCredito2").val();
     var txtObservacion2 = $("#txtObservacion2").val();
     var textoTipoSunat = $("#ddlTipoNotaCredito2").find('option:selected').text();
+    var detalladoEstado = false;
+    if ($('chkdetalladoNC').is(':checked')) { detalladoEstado = true; }
     
     loadResumenNC(hidId2, ddlTipoNC2, TipoNCI, txtFechaE2, textSerieNC2, txtCorrelativoNC2, txtNeto2, txtSerie2, txtNumero2, ddlTipoNotaCredito2, txtObservacion2, textoTipoSunat);
 };
+function detalladoResultado() {
+    var detalleFactura = [];
+    var contador = 0;
+
+    $('#tblDetalleFactura2 tr').each(function () {
+        var idLic = $(this).find(".idLic").html();//ID FACTURA
+
+        if (!isNaN(idLic) && idLic != null) {
+            //$("#chkFact" + id_invl).prop("checked", true);
+            //var montoPendienteDet = parseFloat($(this).find("td").eq(numPenDet).html());
+            $('#FiltroTabla_' + idLic + ' tr').each(function () {
+                var id = parseFloat($(this).find("td").eq(2).html());
+                if (!isNaN(id)) {
+                    if ($('#chkFact' + id).is(':checked')) {
+                        detalleFactura[contador] = {
+                            Id: $('#txtDetalleId_' + id).val(),
+                            codFactura: $('#txtFacturaId_' + id).val(),
+                            ValorNotaCredito: $('#txtValorNotaCredito_' + id).val(),
+                            Motivo: Obs,
+                            TipoNotaCredito: IdNota,
+                        };
+                        contador += 1;
+                    }
+                }
+            });
+            
+        }
+    })
+   
+}
 function loadResumenNC(hidId, TipoNC, TextNC, FechaEmision, SerieNC, CorreelativoNC, MontoNeto, txtSerie2, txtNumero2, ddlTipoNotaCredito2, txtObservacion2, textoTipoSunat) {
+
+    var neto = new Number(MontoNeto);
+    var monto = new Number(TextNC);
     var elemento = '<div id="divResumen" style="text-align:center;"> ';
     elemento += '<table border=0 style=" width:200%; border:0px;">';
     elemento += '<tr>';
-    if (TipoNC == 1 && MontoNeto >= TextNC && TextNC != "" && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
+    if (TipoNC == 1 && neto >= monto && TextNC != "" && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
         elemento += '<td style="font-size:15px;">Se va emitir una Nota de Crédito con Serie NC ' + SerieNC + ' con Referencial ' + CorreelativoNC + '</td>';
         elemento += '</tr>';
         elemento += '<tr>';
@@ -593,7 +711,7 @@ function loadResumenNC(hidId, TipoNC, TextNC, FechaEmision, SerieNC, Correelativ
     }
     else
     {
-        if (TipoNC == 2 && (TextNC >= 0 && 100 >= TextNC) && TextNC != "" && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
+        if (TipoNC == 2 && (monto >= 0 && 100 >= monto) && monto != "" && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
 
             elemento += '<td style="font-size:15px;">Se va emitir una Nota de Crédito con Serie NC ' + SerieNC + ' con Referencial ' + CorreelativoNC + '</td>';
             elemento += '</tr>';
@@ -639,8 +757,9 @@ function Guardar2() {
     var txtNumero2 = $("#txtNumero2").val();
     var ddlTipoNotaCredito2 = $("#ddlTipoNotaCredito2").val();
     var txtObservacion2 = $("#txtObservacion2").val();
-
-    if (((ddlTipoNC2 == 1 && txtNeto2 >= TipoNCI && TipoNCI != "") || (ddlTipoNC2 == 2 && (TipoNCI >= 0 && 100 >= TipoNCI) && TipoNCI != "")) && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "")
+    var neto = new Number(txtNeto2);
+    var monto = new Number(TipoNCI);
+    if (((ddlTipoNC2 == 1 && neto >= monto && monto != "") || (ddlTipoNC2 == 2 && (monto >= 0 && 100 >= TipoNCI) && TipoNCI != "")) && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "")
     {
         $.ajax({
             data: { idFactura: hidId2, fechaEmision: txtFechaE2, TipoNC: ddlTipoNC2, TextoTipoNC: TipoNCI, TipoSunat: ddlTipoNotaCredito2, Observacion: txtObservacion2, serieNC: textSerieNC2},
@@ -667,3 +786,74 @@ function Guardar2() {
     }
 
 };
+function ActivarCheckCabecera(idLic,pendienteCab) {
+    
+    //si Pendiente es 0 entonces Quiere decir que Ya se cobro todo el neto 
+
+    var numPenDet = 6;
+
+    //$("#txtValorNotaCredito_" + id).prop('disabled', false);
+    //$("#txtValorNotaCredito_" + id).val(pendienteCab);
+            
+   
+    if ($("#chkFact" + idLic).prop("checked")) {
+        $('#FiltroTabla_' + idLic + ' tr').each(function () {
+            var id_invl = $(this).find(".idLic").html();//ID FACTURA
+
+            if (!isNaN(id_invl) && id_invl != null) {
+                $("#chkFact" + id_invl).prop("checked", true);
+                var montoPendienteDet = parseFloat($(this).find("td").eq(numPenDet).html());
+                Habilitar2(idLic, id_invl, montoPendienteDet);
+            }
+        })
+    } else {
+        $('#FiltroTabla_' + idLic + ' tr').each(function () {
+            var id_invl = $(this).find(".idLic").html();//ID FACTURA
+
+            if (!isNaN(id_invl) && id_invl != null) {
+                $("#chkFact" + id_invl).prop("checked", false);
+                //var montoPendienteDet = parseFloat($(this).find("td").eq(numPenDet).html());
+                Habilitar2(idLic, id_invl, 0);
+            }
+        })
+    }
+    Habilitar2(idLic, 0, pendienteCab);
+    
+   
+};
+function Habilitar2(idlic, idinvl,pendiente) {
+    if (idinvl == 0) {
+        if ($("#chkFact" + idlic).prop("checked")) {
+            $("#txtValorNotaCredito_" + idlic).removeAttr('disabled');
+            $("#txtValorNotaCredito_" + idlic).val(pendiente);
+        }
+        else {
+            $("#txtValorNotaCredito_" + idlic).attr('disabled', 'disabled');
+            $("#txtValorNotaCredito_" + idlic).val('');
+        }
+    }
+    else {
+        if ($("#chkFact" + idinvl).prop("checked")) {
+
+            var notaPendienteDet = Number( $("#txtValorNotaCredito_" + idinvl).val());
+            var notaPendienteCab = Number($("#txtValorNotaCredito_" + idlic).val());
+            if ($("#chkFact" + idlic).prop("checked") && (pendiente != "")) {
+
+                $("#txtValorNotaCredito_" + idlic).val(notaPendienteCab + pendiente);
+            }
+            $("#txtValorNotaCredito_" + idinvl).removeAttr('disabled');
+            $("#txtValorNotaCredito_" + idinvl).val(pendiente);
+        }
+        else {
+            var notaPendienteDet = Number($("#txtValorNotaCredito_" + idinvl).val());
+            var notaPendienteCab = Number($("#txtValorNotaCredito_" + idlic).val());
+            if ($("#chkFact" + idlic).prop("checked") && (notaPendienteCab != "" && notaPendienteCab > 0 )) {
+                
+                $("#txtValorNotaCredito_" + idlic).val(notaPendienteCab - pendiente);
+            }
+            $("#txtValorNotaCredito_" + idinvl).attr('disabled', 'disabled');
+            $("#txtValorNotaCredito_" + idinvl).val('');
+        }
+    }
+   
+}

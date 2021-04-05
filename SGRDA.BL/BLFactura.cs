@@ -2108,6 +2108,14 @@ namespace SGRDA.BL
             FacturaDetalle.Recibos = new DAFactura().ListarRecibosFactura(owner, Id);
             return FacturaDetalle;
         }
+        public List<BEFacturaDetalle> DetalleFacturaNotaCredito2(string owner,decimal invId, string mes, string anio, decimal idLic)
+        {
+            return new DAFactura().DetalleFacturaNotaCredito2(owner, invId,anio,mes,idLic);
+        }
+        public List<BEFacturaDetalle> DetalleFacturaNotaCredito2Periodo(string owner, decimal invId, string mes, string anio, decimal idLic)
+        {
+            return new DAFactura().DetalleFacturaNotaCredito2Periodo(owner, invId, anio, mes, idLic);
+        }
 
         public List<BEFacturaConsulta> ListarTipoFactura(string owner)
         {

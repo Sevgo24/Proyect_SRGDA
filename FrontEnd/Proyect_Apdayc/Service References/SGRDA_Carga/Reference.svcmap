@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://apdayc.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://pruebas.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CustomerETDLoadASP.disco" MetadataType="Disco" ID="0a897bbb-5902-4a9d-890e-9cab0a302d65" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx?disco" />
-    <MetadataFile FileName="CustomerETDLoadASP1.wsdl" MetadataType="Wsdl" ID="0256650c-1c2a-4096-af91-560a9559c459" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx?wsdl" />
+    <MetadataFile FileName="CustomerETDLoadASP.wsdl" MetadataType="Wsdl" ID="9f9f219e-b89c-4dc5-99be-0f75999b0a8b" SourceId="1" SourceUrl="http://pruebas.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx?wsdl" />
+    <MetadataFile FileName="CustomerETDLoadASP1.disco" MetadataType="Disco" ID="d853412a-2904-4084-8452-bc572e967f62" SourceId="1" SourceUrl="http://pruebas.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -46,5 +46,7 @@ namespace SGRDA.Entities.FacturaElectronica
         public int EsManual { get; set; }
         public string HoraEmision { get; set; }
         public string CodigoLocal { get; set; }
+        public string FormaPago { get; set; }
+        public decimal MontoNetoPendPago { get; set; }
     }
 }

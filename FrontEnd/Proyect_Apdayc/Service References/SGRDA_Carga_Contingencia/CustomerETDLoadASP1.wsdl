@@ -182,6 +182,11 @@
           <s:element minOccurs="0" maxOccurs="1" name="DirllegProvincia" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="DirllegDepart" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="DirllegDistrito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CicloFactIni" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CicloFactFin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoCanalFac" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FormaPago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoNetoPendPago" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfImptoReten">
@@ -232,6 +237,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="MntDetra" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PorcentajeDetra" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NomEmbHidro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MedioPagoDetraccion" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfDetalle">
@@ -274,6 +280,85 @@
           <s:element minOccurs="0" maxOccurs="1" name="DetMBaseCargoDescuento" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MontoBaseImp" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MontoBaseIsc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoOtrosTributos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTipoOtrosTributos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoOtrosTributos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoBaseOtrosTributos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TasaOtrosTributos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTributoBolsaPlastica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoTributoBolsaPlastica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoUnitarioBolsaPlastica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CantidadBolsaPlastica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LeyenPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RUTPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoRucPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RznSocPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImpTotal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndTipoComision" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndInstFinanciera" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetallesParticipe" type="tns:ArrayOfDetalleParticipe" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetallesBanco" type="tns:ArrayOfDetalleAdquiriente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDetalleParticipe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleParticipe" nillable="true" type="tns:DetalleParticipe" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleParticipe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NroLinDet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NroLinDetParticipe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnmdItemPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QtyItemPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NmbItemPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrcItemSinIgvPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoItemPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoIscPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTipoIscPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoIscPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoBaseImpPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImpuestoIgvPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndExePart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTipoIgvPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImpTotItemPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescuentosParticipe" type="tns:ArrayOfDescuentoDAE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDescuentoDAE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DescuentoDAE" nillable="true" type="tns:DescuentoDAE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DescuentoDAE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NroLinDet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NroLinDetParticipe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndCargoDescuento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MBaseCargoDescuento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoCargoDescuento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FactorCargoDescuento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoCargoDescuento" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDetalleAdquiriente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DetalleAdquiriente" nillable="true" type="tns:DetalleAdquiriente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DetalleAdquiriente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NroLinDet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumOrden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RUTBcoEmisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoRutBcoEmisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NomBcoEmisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComisBcoEmisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoMonComis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImpuestoIgvBco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoBaseImpBco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTipoIgvPart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImpTotItemBco" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="DescuentosRecargosyOtros">
@@ -292,6 +377,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="TransportesCarga" type="tns:ArrayOfTransporteCarga" />
           <s:element minOccurs="0" maxOccurs="1" name="TramosCarga" type="tns:ArrayOfTramoCarga" />
           <s:element minOccurs="0" maxOccurs="1" name="Vehiculos" type="tns:ArrayOfVehiculo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pagos" type="tns:ArrayOfPago" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfDescuentos">
@@ -554,6 +640,18 @@
           <s:element minOccurs="0" maxOccurs="1" name="NroLinTramo" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="ArrayOfPago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Pago" nillable="true" type="tns:Pago" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Pago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Cuota" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MontoCuota" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaVencCuota" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="putCustomerETDLoadResponse">
         <s:complexType>
           <s:sequence>
@@ -650,10 +748,10 @@
   </wsdl:binding>
   <wsdl:service name="CustomerETDLoadASP">
     <wsdl:port name="CustomerETDLoadASPSoap" binding="tns:CustomerETDLoadASPSoap">
-      <soap:address location="http://apdayc.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" />
+      <soap:address location="http://pruebas.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" />
     </wsdl:port>
     <wsdl:port name="CustomerETDLoadASPSoap12" binding="tns:CustomerETDLoadASPSoap12">
-      <soap12:address location="http://apdayc.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" />
+      <soap12:address location="http://pruebas.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

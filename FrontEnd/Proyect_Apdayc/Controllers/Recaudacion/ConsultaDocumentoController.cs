@@ -779,7 +779,8 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                 var MSG_SUNAT = "";
                 var cant_anulado = 0;
 
-                if (GlobalVars.Global.FE == true)
+                //if (GlobalVars.Global.FE == true)
+                if (true)
                 {
                     #region  MASIVO
                     if (ReglaValor.Count > 0 && ReglaValor.Count > 3 && ReglaValor != null)
@@ -1031,7 +1032,8 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                 var cant_anulado = Variables.Cero;
                 List<BECabeceraFactura> vCabecera = new List<BECabeceraFactura>();
 
-                if (GlobalVars.Global.FE == true)
+                //if (GlobalVars.Global.FE == true)
+                if (true)
                 {
                         var vExtras = new BLExtras().ListarExtras(GlobalVars.Global.OWNER, Variables.Cero);
                         vCabecera = new BLFactura().ListaCabezeraMasivaSunatEmiMensualLocTrans(fechaInicio,fechaFin,Oficina);

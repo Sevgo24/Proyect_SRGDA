@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Egsp0qVSHc9GaYsHQlkP8kJ0/mA=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="QJVhUXPY6MjRjpDHLDLCNjMLvA4=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="WssCargaBajasSoap1">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WssCargaBajasSoap" contract="SGRDA_Bajas.WssCargaBajasSoap" bindingType="basicHttpBinding" address="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx" bindingConfiguration="WssCargaBajasSoap1">
+    <endpoint name="WssCargaBajasSoap" contract="SGRDA_Bajas.WssCargaBajasSoap" bindingType="basicHttpBinding" address="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx" bindingConfiguration="WssCargaBajasSoap1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://104.210.37.198/wssCargaBajas/cargaBajas.asmx</serializedValue>
+          <serializedValue>http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

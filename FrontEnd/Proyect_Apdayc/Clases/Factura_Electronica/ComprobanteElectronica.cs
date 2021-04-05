@@ -127,6 +127,10 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             //Campos para Facturacion UBL 2.1
             obj_CamposHead.FechVencFact = vCabecera.FirstOrDefault().FChVen; // Verdadera Fecha Vencimiento
 
+            //nuevos campos 
+            obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+            obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+
             obj_Encabezado.camposEncabezado = obj_CamposHead;
 
 
@@ -384,8 +388,6 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
         #region FACTURACION MASIVA
 
-        //public string EnvioComprobanteElectronicoMasivo(decimal idfactura)
-        //{
         public string EnvioComprobanteElectronicoMasivo(decimal idfactura, decimal serie, decimal dir)
         {
             string mensaje = "";
@@ -449,6 +451,11 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 obj_CamposHead.MntTotal = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
                 total = vCabecera.FirstOrDefault().MntTotal;
                 obj_CamposHead.TipoOper = vCabecera.FirstOrDefault().TipoOper;
+                //Campos nuevos
+                obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+                obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+
+
                 obj_Encabezado.camposEncabezado = obj_CamposHead;
 
                 //===================================Detalle=================================================//
@@ -754,6 +761,12 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     //-------------------------------
                     total = vCabecera.FirstOrDefault().MntTotal;
                     //obj_CamposHead.TipoOper = vCabecera.FirstOrDefault().TipoOper;
+
+                    //CAMPOS NUEVOS
+                    obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+                    obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+
+
                     obj_Encabezado.camposEncabezado = obj_CamposHead;
 
                     //===================================Detalle=================================================//
@@ -1342,6 +1355,9 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             //-------------------------------
             obj_CamposHead.TipoOperacion = vCabecera.FirstOrDefault().TipoOper;
 
+            //--campos nuevos
+            obj_CamposHead.FormaPago = Convert.ToString(vCabecera.FirstOrDefault().FormaPago).ToString();
+            obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",",".").ToString();
 
             total = vCabecera.FirstOrDefault().MntTotal;
             //obj_CamposHead.TipoOper = vCabecera.FirstOrDefault().TipoOper;
@@ -1578,7 +1594,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
         public string AnularDocumento(decimal id, string motivo)
         {
-            Int64 Ruc;
+            //Int64 Ruc;
+            var Ruc = string.Empty;
             ArrayOfBajas ArrayBajas = new ArrayOfBajas();
             bajas obj_Bajas = new bajas();
             SGRDA_Bajas.WssCargaBajasSoapClient obj_servicio = new WssCargaBajasSoapClient();
@@ -1602,7 +1619,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             }
 
             ArrayBajas.Add(obj_Bajas);
-            Ruc = Convert.ToInt64(vBajas.FirstOrDefault().RUTEmisor);
+            //Ruc = Convert.ToInt64(vBajas.FirstOrDefault().RUTEmisor);
+            Ruc = vBajas.FirstOrDefault().RUTEmisor;
 
             var Resultado = obj_servicio.cargaBajas(Ruc, ArrayBajas);
 
@@ -1612,7 +1630,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
         public string AnularDocumentoMasivo(List<BECabeceraFactura> listacabezera, string motivo)
         {
-            Int64 Ruc;
+            //Int64 Ruc;
+            var Ruc = string.Empty;
             ArrayOfBajas ArrayBajas = new ArrayOfBajas();
             bajas obj_Bajas = new bajas();
             SGRDA_Bajas.WssCargaBajasSoapClient obj_servicio = new WssCargaBajasSoapClient();
@@ -1636,7 +1655,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             }
 
             ArrayBajas.Add(obj_Bajas);
-            Ruc = Convert.ToInt64(vBajas.FirstOrDefault().RUTEmisor);
+            //Ruc = Convert.ToInt64(vBajas.FirstOrDefault().RUTEmisor);
+            Ruc = vBajas.FirstOrDefault().RUTEmisor;
 
             var Resultado = obj_servicio.cargaBajas(Ruc, ArrayBajas);
 

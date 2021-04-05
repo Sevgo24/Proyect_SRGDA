@@ -856,6 +856,21 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DirllegDistrito1Field;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CicloFactIniField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CicloFactFinField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoCanalFacField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FormaPagoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoNetoPendPagoField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -2348,6 +2363,71 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=114)]
+        public string CicloFactIni {
+            get {
+                return this.CicloFactIniField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CicloFactIniField, value) != true)) {
+                    this.CicloFactIniField = value;
+                    this.RaisePropertyChanged("CicloFactIni");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=115)]
+        public string CicloFactFin {
+            get {
+                return this.CicloFactFinField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CicloFactFinField, value) != true)) {
+                    this.CicloFactFinField = value;
+                    this.RaisePropertyChanged("CicloFactFin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=116)]
+        public string TipoCanalFac {
+            get {
+                return this.TipoCanalFacField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoCanalFacField, value) != true)) {
+                    this.TipoCanalFacField = value;
+                    this.RaisePropertyChanged("TipoCanalFac");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=117)]
+        public string FormaPago {
+            get {
+                return this.FormaPagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FormaPagoField, value) != true)) {
+                    this.FormaPagoField = value;
+                    this.RaisePropertyChanged("FormaPago");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=118)]
+        public string MontoNetoPendPago {
+            get {
+                return this.MontoNetoPendPagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoNetoPendPagoField, value) != true)) {
+                    this.MontoNetoPendPagoField = value;
+                    this.RaisePropertyChanged("MontoNetoPendPago");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -2569,6 +2649,9 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NomEmbHidroField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MedioPagoDetraccionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -2918,6 +3001,19 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=26)]
+        public string MedioPagoDetraccion {
+            get {
+                return this.MedioPagoDetraccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MedioPagoDetraccionField, value) != true)) {
+                    this.MedioPagoDetraccionField = value;
+                    this.RaisePropertyChanged("MedioPagoDetraccion");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -3064,6 +3160,60 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MontoBaseIscField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoOtrosTributosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoTipoOtrosTributosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoOtrosTributosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoBaseOtrosTributosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TasaOtrosTributosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoTributoBolsaPlasticaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoTributoBolsaPlasticaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoUnitarioBolsaPlasticaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CantidadBolsaPlasticaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LeyenPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RUTPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoRucPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RznSocPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImpTotalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IndTipoComisionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IndInstFinancieraField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Proyect_Apdayc.SGRDA_Carga_Contingencia.DetalleParticipe[] DetallesParticipeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Proyect_Apdayc.SGRDA_Carga_Contingencia.DetalleAdquiriente[] DetallesBancoField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -3439,6 +3589,871 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=28)]
+        public string CodigoOtrosTributos {
+            get {
+                return this.CodigoOtrosTributosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoOtrosTributosField, value) != true)) {
+                    this.CodigoOtrosTributosField = value;
+                    this.RaisePropertyChanged("CodigoOtrosTributos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=29)]
+        public string CodigoTipoOtrosTributos {
+            get {
+                return this.CodigoTipoOtrosTributosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoTipoOtrosTributosField, value) != true)) {
+                    this.CodigoTipoOtrosTributosField = value;
+                    this.RaisePropertyChanged("CodigoTipoOtrosTributos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=30)]
+        public string MontoOtrosTributos {
+            get {
+                return this.MontoOtrosTributosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoOtrosTributosField, value) != true)) {
+                    this.MontoOtrosTributosField = value;
+                    this.RaisePropertyChanged("MontoOtrosTributos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=31)]
+        public string MontoBaseOtrosTributos {
+            get {
+                return this.MontoBaseOtrosTributosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoBaseOtrosTributosField, value) != true)) {
+                    this.MontoBaseOtrosTributosField = value;
+                    this.RaisePropertyChanged("MontoBaseOtrosTributos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=32)]
+        public string TasaOtrosTributos {
+            get {
+                return this.TasaOtrosTributosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TasaOtrosTributosField, value) != true)) {
+                    this.TasaOtrosTributosField = value;
+                    this.RaisePropertyChanged("TasaOtrosTributos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=33)]
+        public string CodigoTributoBolsaPlastica {
+            get {
+                return this.CodigoTributoBolsaPlasticaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoTributoBolsaPlasticaField, value) != true)) {
+                    this.CodigoTributoBolsaPlasticaField = value;
+                    this.RaisePropertyChanged("CodigoTributoBolsaPlastica");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=34)]
+        public string MontoTributoBolsaPlastica {
+            get {
+                return this.MontoTributoBolsaPlasticaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoTributoBolsaPlasticaField, value) != true)) {
+                    this.MontoTributoBolsaPlasticaField = value;
+                    this.RaisePropertyChanged("MontoTributoBolsaPlastica");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=35)]
+        public string MontoUnitarioBolsaPlastica {
+            get {
+                return this.MontoUnitarioBolsaPlasticaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoUnitarioBolsaPlasticaField, value) != true)) {
+                    this.MontoUnitarioBolsaPlasticaField = value;
+                    this.RaisePropertyChanged("MontoUnitarioBolsaPlastica");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=36)]
+        public string CantidadBolsaPlastica {
+            get {
+                return this.CantidadBolsaPlasticaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CantidadBolsaPlasticaField, value) != true)) {
+                    this.CantidadBolsaPlasticaField = value;
+                    this.RaisePropertyChanged("CantidadBolsaPlastica");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=37)]
+        public string LeyenPart {
+            get {
+                return this.LeyenPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LeyenPartField, value) != true)) {
+                    this.LeyenPartField = value;
+                    this.RaisePropertyChanged("LeyenPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=38)]
+        public string RUTPart {
+            get {
+                return this.RUTPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RUTPartField, value) != true)) {
+                    this.RUTPartField = value;
+                    this.RaisePropertyChanged("RUTPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=39)]
+        public string TipoRucPart {
+            get {
+                return this.TipoRucPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoRucPartField, value) != true)) {
+                    this.TipoRucPartField = value;
+                    this.RaisePropertyChanged("TipoRucPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=40)]
+        public string RznSocPart {
+            get {
+                return this.RznSocPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RznSocPartField, value) != true)) {
+                    this.RznSocPartField = value;
+                    this.RaisePropertyChanged("RznSocPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=41)]
+        public string ImpTotal {
+            get {
+                return this.ImpTotalField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImpTotalField, value) != true)) {
+                    this.ImpTotalField = value;
+                    this.RaisePropertyChanged("ImpTotal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=42)]
+        public string IndTipoComision {
+            get {
+                return this.IndTipoComisionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IndTipoComisionField, value) != true)) {
+                    this.IndTipoComisionField = value;
+                    this.RaisePropertyChanged("IndTipoComision");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=43)]
+        public string IndInstFinanciera {
+            get {
+                return this.IndInstFinancieraField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IndInstFinancieraField, value) != true)) {
+                    this.IndInstFinancieraField = value;
+                    this.RaisePropertyChanged("IndInstFinanciera");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=44)]
+        public Proyect_Apdayc.SGRDA_Carga_Contingencia.DetalleParticipe[] DetallesParticipe {
+            get {
+                return this.DetallesParticipeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DetallesParticipeField, value) != true)) {
+                    this.DetallesParticipeField = value;
+                    this.RaisePropertyChanged("DetallesParticipe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=45)]
+        public Proyect_Apdayc.SGRDA_Carga_Contingencia.DetalleAdquiriente[] DetallesBanco {
+            get {
+                return this.DetallesBancoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DetallesBancoField, value) != true)) {
+                    this.DetallesBancoField = value;
+                    this.RaisePropertyChanged("DetallesBanco");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DetalleParticipe", Namespace="http://www.dbnet.cl")]
+    [System.SerializableAttribute()]
+    public partial class DetalleParticipe : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NroLinDetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NroLinDetParticipeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UnmdItemPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string QtyItemPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NmbItemPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PrcItemSinIgvPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoItemPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoIscPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoTipoIscPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoIscPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoBaseImpPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImpuestoIgvPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IndExePartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoTipoIgvPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImpTotItemPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Proyect_Apdayc.SGRDA_Carga_Contingencia.DescuentoDAE[] DescuentosParticipeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string NroLinDet {
+            get {
+                return this.NroLinDetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NroLinDetField, value) != true)) {
+                    this.NroLinDetField = value;
+                    this.RaisePropertyChanged("NroLinDet");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string NroLinDetParticipe {
+            get {
+                return this.NroLinDetParticipeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NroLinDetParticipeField, value) != true)) {
+                    this.NroLinDetParticipeField = value;
+                    this.RaisePropertyChanged("NroLinDetParticipe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string UnmdItemPart {
+            get {
+                return this.UnmdItemPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UnmdItemPartField, value) != true)) {
+                    this.UnmdItemPartField = value;
+                    this.RaisePropertyChanged("UnmdItemPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string QtyItemPart {
+            get {
+                return this.QtyItemPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QtyItemPartField, value) != true)) {
+                    this.QtyItemPartField = value;
+                    this.RaisePropertyChanged("QtyItemPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string NmbItemPart {
+            get {
+                return this.NmbItemPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NmbItemPartField, value) != true)) {
+                    this.NmbItemPartField = value;
+                    this.RaisePropertyChanged("NmbItemPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string PrcItemSinIgvPart {
+            get {
+                return this.PrcItemSinIgvPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrcItemSinIgvPartField, value) != true)) {
+                    this.PrcItemSinIgvPartField = value;
+                    this.RaisePropertyChanged("PrcItemSinIgvPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string MontoItemPart {
+            get {
+                return this.MontoItemPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoItemPartField, value) != true)) {
+                    this.MontoItemPartField = value;
+                    this.RaisePropertyChanged("MontoItemPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string MontoIscPart {
+            get {
+                return this.MontoIscPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoIscPartField, value) != true)) {
+                    this.MontoIscPartField = value;
+                    this.RaisePropertyChanged("MontoIscPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
+        public string CodigoTipoIscPart {
+            get {
+                return this.CodigoTipoIscPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoTipoIscPartField, value) != true)) {
+                    this.CodigoTipoIscPartField = value;
+                    this.RaisePropertyChanged("CodigoTipoIscPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=9)]
+        public string CodigoIscPart {
+            get {
+                return this.CodigoIscPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoIscPartField, value) != true)) {
+                    this.CodigoIscPartField = value;
+                    this.RaisePropertyChanged("CodigoIscPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=10)]
+        public string MontoBaseImpPart {
+            get {
+                return this.MontoBaseImpPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoBaseImpPartField, value) != true)) {
+                    this.MontoBaseImpPartField = value;
+                    this.RaisePropertyChanged("MontoBaseImpPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=11)]
+        public string ImpuestoIgvPart {
+            get {
+                return this.ImpuestoIgvPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImpuestoIgvPartField, value) != true)) {
+                    this.ImpuestoIgvPartField = value;
+                    this.RaisePropertyChanged("ImpuestoIgvPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=12)]
+        public string IndExePart {
+            get {
+                return this.IndExePartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IndExePartField, value) != true)) {
+                    this.IndExePartField = value;
+                    this.RaisePropertyChanged("IndExePart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=13)]
+        public string CodigoTipoIgvPart {
+            get {
+                return this.CodigoTipoIgvPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoTipoIgvPartField, value) != true)) {
+                    this.CodigoTipoIgvPartField = value;
+                    this.RaisePropertyChanged("CodigoTipoIgvPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=14)]
+        public string ImpTotItemPart {
+            get {
+                return this.ImpTotItemPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImpTotItemPartField, value) != true)) {
+                    this.ImpTotItemPartField = value;
+                    this.RaisePropertyChanged("ImpTotItemPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=15)]
+        public Proyect_Apdayc.SGRDA_Carga_Contingencia.DescuentoDAE[] DescuentosParticipe {
+            get {
+                return this.DescuentosParticipeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescuentosParticipeField, value) != true)) {
+                    this.DescuentosParticipeField = value;
+                    this.RaisePropertyChanged("DescuentosParticipe");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DetalleAdquiriente", Namespace="http://www.dbnet.cl")]
+    [System.SerializableAttribute()]
+    public partial class DetalleAdquiriente : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NroLinDetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumOrdenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RUTBcoEmisorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoRutBcoEmisorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NomBcoEmisorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ComisBcoEmisorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoMonComisField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImpuestoIgvBcoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoBaseImpBcoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoTipoIgvPartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImpTotItemBcoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string NroLinDet {
+            get {
+                return this.NroLinDetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NroLinDetField, value) != true)) {
+                    this.NroLinDetField = value;
+                    this.RaisePropertyChanged("NroLinDet");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string NumOrden {
+            get {
+                return this.NumOrdenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumOrdenField, value) != true)) {
+                    this.NumOrdenField = value;
+                    this.RaisePropertyChanged("NumOrden");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string RUTBcoEmisor {
+            get {
+                return this.RUTBcoEmisorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RUTBcoEmisorField, value) != true)) {
+                    this.RUTBcoEmisorField = value;
+                    this.RaisePropertyChanged("RUTBcoEmisor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string TipoRutBcoEmisor {
+            get {
+                return this.TipoRutBcoEmisorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoRutBcoEmisorField, value) != true)) {
+                    this.TipoRutBcoEmisorField = value;
+                    this.RaisePropertyChanged("TipoRutBcoEmisor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string NomBcoEmisor {
+            get {
+                return this.NomBcoEmisorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomBcoEmisorField, value) != true)) {
+                    this.NomBcoEmisorField = value;
+                    this.RaisePropertyChanged("NomBcoEmisor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string ComisBcoEmisor {
+            get {
+                return this.ComisBcoEmisorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ComisBcoEmisorField, value) != true)) {
+                    this.ComisBcoEmisorField = value;
+                    this.RaisePropertyChanged("ComisBcoEmisor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string TipoMonComis {
+            get {
+                return this.TipoMonComisField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoMonComisField, value) != true)) {
+                    this.TipoMonComisField = value;
+                    this.RaisePropertyChanged("TipoMonComis");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string ImpuestoIgvBco {
+            get {
+                return this.ImpuestoIgvBcoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImpuestoIgvBcoField, value) != true)) {
+                    this.ImpuestoIgvBcoField = value;
+                    this.RaisePropertyChanged("ImpuestoIgvBco");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
+        public string MontoBaseImpBco {
+            get {
+                return this.MontoBaseImpBcoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoBaseImpBcoField, value) != true)) {
+                    this.MontoBaseImpBcoField = value;
+                    this.RaisePropertyChanged("MontoBaseImpBco");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=9)]
+        public string CodigoTipoIgvPart {
+            get {
+                return this.CodigoTipoIgvPartField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoTipoIgvPartField, value) != true)) {
+                    this.CodigoTipoIgvPartField = value;
+                    this.RaisePropertyChanged("CodigoTipoIgvPart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=10)]
+        public string ImpTotItemBco {
+            get {
+                return this.ImpTotItemBcoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImpTotItemBcoField, value) != true)) {
+                    this.ImpTotItemBcoField = value;
+                    this.RaisePropertyChanged("ImpTotItemBco");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DescuentoDAE", Namespace="http://www.dbnet.cl")]
+    [System.SerializableAttribute()]
+    public partial class DescuentoDAE : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NroLinDetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NroLinDetParticipeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IndCargoDescuentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MBaseCargoDescuentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoCargoDescuentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FactorCargoDescuentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoCargoDescuentoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string NroLinDet {
+            get {
+                return this.NroLinDetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NroLinDetField, value) != true)) {
+                    this.NroLinDetField = value;
+                    this.RaisePropertyChanged("NroLinDet");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string NroLinDetParticipe {
+            get {
+                return this.NroLinDetParticipeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NroLinDetParticipeField, value) != true)) {
+                    this.NroLinDetParticipeField = value;
+                    this.RaisePropertyChanged("NroLinDetParticipe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string IndCargoDescuento {
+            get {
+                return this.IndCargoDescuentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IndCargoDescuentoField, value) != true)) {
+                    this.IndCargoDescuentoField = value;
+                    this.RaisePropertyChanged("IndCargoDescuento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string MBaseCargoDescuento {
+            get {
+                return this.MBaseCargoDescuentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MBaseCargoDescuentoField, value) != true)) {
+                    this.MBaseCargoDescuentoField = value;
+                    this.RaisePropertyChanged("MBaseCargoDescuento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string CodigoCargoDescuento {
+            get {
+                return this.CodigoCargoDescuentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoCargoDescuentoField, value) != true)) {
+                    this.CodigoCargoDescuentoField = value;
+                    this.RaisePropertyChanged("CodigoCargoDescuento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string FactorCargoDescuento {
+            get {
+                return this.FactorCargoDescuentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FactorCargoDescuentoField, value) != true)) {
+                    this.FactorCargoDescuentoField = value;
+                    this.RaisePropertyChanged("FactorCargoDescuento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string MontoCargoDescuento {
+            get {
+                return this.MontoCargoDescuentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoCargoDescuentoField, value) != true)) {
+                    this.MontoCargoDescuentoField = value;
+                    this.RaisePropertyChanged("MontoCargoDescuento");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -3499,6 +4514,9 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Proyect_Apdayc.SGRDA_Carga_Contingencia.Vehiculo[] VehiculosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Proyect_Apdayc.SGRDA_Carga_Contingencia.Pago[] PagosField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -3688,6 +4706,19 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
                 if ((object.ReferenceEquals(this.VehiculosField, value) != true)) {
                     this.VehiculosField = value;
                     this.RaisePropertyChanged("Vehiculos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=14)]
+        public Proyect_Apdayc.SGRDA_Carga_Contingencia.Pago[] Pagos {
+            get {
+                return this.PagosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PagosField, value) != true)) {
+                    this.PagosField = value;
+                    this.RaisePropertyChanged("Pagos");
                 }
             }
         }
@@ -6353,6 +7384,83 @@ namespace Proyect_Apdayc.SGRDA_Carga_Contingencia {
                 if ((object.ReferenceEquals(this.NroLinTramoField, value) != true)) {
                     this.NroLinTramoField = value;
                     this.RaisePropertyChanged("NroLinTramo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Pago", Namespace="http://www.dbnet.cl")]
+    [System.SerializableAttribute()]
+    public partial class Pago : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CuotaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MontoCuotaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FechaVencCuotaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Cuota {
+            get {
+                return this.CuotaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CuotaField, value) != true)) {
+                    this.CuotaField = value;
+                    this.RaisePropertyChanged("Cuota");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string MontoCuota {
+            get {
+                return this.MontoCuotaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MontoCuotaField, value) != true)) {
+                    this.MontoCuotaField = value;
+                    this.RaisePropertyChanged("MontoCuota");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string FechaVencCuota {
+            get {
+                return this.FechaVencCuotaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FechaVencCuotaField, value) != true)) {
+                    this.FechaVencCuotaField = value;
+                    this.RaisePropertyChanged("FechaVencCuota");
                 }
             }
         }

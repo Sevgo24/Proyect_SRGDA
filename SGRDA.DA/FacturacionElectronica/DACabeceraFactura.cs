@@ -19,7 +19,8 @@ namespace SGRDA.DA.FacturacionElectronica
 
         public List<BECabeceraFactura> ListarCabeceraFactura(string owner, decimal IdFactura)
         {
-            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB");
+            //DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_PRUEBASUNAT");
             db.AddInParameter(oDbCommand, "@OWNER", DbType.String, owner);
             db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, IdFactura);
             //db.ExecuteNonQuery(oDbCommand);
@@ -58,6 +59,8 @@ namespace SGRDA.DA.FacturacionElectronica
                     // Agregar Campos Facturacion UBL 2.1
                     factura.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                     factura.CodigoLocal = "0000";
+                    factura.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                    factura.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
 
 
                     lista.Add(factura);
@@ -68,7 +71,8 @@ namespace SGRDA.DA.FacturacionElectronica
 
         public List<BECabeceraFactura> ListarCabeceraFacturaEmision(decimal IdFactura, decimal serie, decimal dir)
         {
-            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB");
+            //DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_PRUEBASUNAT");
             db.AddInParameter(oDbCommand, "@OWNER", DbType.String, GlobalVars.Global.OWNER);
             db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, IdFactura);
             db.AddInParameter(oDbCommand, "@NMR_ID", DbType.Decimal, serie);
@@ -106,6 +110,8 @@ namespace SGRDA.DA.FacturacionElectronica
                     factura.MntTotal = dr.GetDecimal(dr.GetOrdinal("MntTotal"));
                     factura.TipoOper = dr.GetString(dr.GetOrdinal("TipoOper"));
                     factura.OficinaRecaudo = dr.GetString(dr.GetOrdinal("OficinaRecaudo"));
+                    factura.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                    factura.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                     lista.Add(factura);
                 }
             }
@@ -158,7 +164,8 @@ namespace SGRDA.DA.FacturacionElectronica
 
         public List<BECabeceraFactura> ListarCabeceraFacturaNc(string owner, decimal IdFactura)
         {
-            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_NC");
+            //DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_NC");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_NC_PRUEBASUNAT");
             db.AddInParameter(oDbCommand, "@OWNER", DbType.String, owner);
             db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, IdFactura);
             db.ExecuteNonQuery(oDbCommand);
@@ -199,6 +206,8 @@ namespace SGRDA.DA.FacturacionElectronica
                     factura.Id_Ref = dr.GetDecimal(dr.GetOrdinal("Id_Ref"));
                     factura.CodigoLocal = "0000";
                     factura.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
+                    factura.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                    factura.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                     lista.Add(factura);
                 }
             }

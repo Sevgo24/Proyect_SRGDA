@@ -1744,7 +1744,7 @@
       <DependentUpon>DS_REC_SEGUIMIENTO_LOCALES.xsd</DependentUpon>
     </Content>
     <Content Include="Scripts\SGRDA\Recaudacion\mantenimiento.notacredito2.js" />
-    <None Include="Service References\SGRDA_Bajas\cargaBajas.disco" />
+    <None Include="Service References\SGRDA_Bajas\cargaBajas1.disco" />
     <Content Include="Service References\SGRDA_Bajas\Proyect_Apdayc.SGRDA_Bajas.cargaBajasResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1787,7 +1787,7 @@
     <Content Include="Reportes\Dataset\DS_REP_USU_MOROSOS.xss">
       <DependentUpon>DS_REP_USU_MOROSOS.xsd</DependentUpon>
     </Content>
-    <None Include="Service References\SGRDA_Bajas\cargaBajas.wsdl" />
+    <None Include="Service References\SGRDA_Bajas\cargaBajas1.wsdl" />
     <None Include="Service References\SGRDA_Carga\configuration91.svcinfo" />
     <None Include="Service References\SGRDA_Carga\configuration.svcinfo" />
     <None Include="Service References\SGRDA_Bajas\configuration91.svcinfo" />
@@ -1796,7 +1796,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\SGRDA_Carga\CustomerETDLoadASP.disco" />
+    <None Include="Service References\SGRDA_Carga\CustomerETDLoadASP1.disco" />
     <Content Include="Service References\SGRDA_Carga\Proyect_Apdayc.SGRDA_Carga.Mensaje.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1806,12 +1806,12 @@
     <Content Include="Service References\SGRDA_Carga\Proyect_Apdayc.SGRDA_Carga.putCustomerETDLoadXMLResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\SGRDA_Carga\CustomerETDLoadASP1.wsdl" />
+    <None Include="Service References\SGRDA_Carga\CustomerETDLoadASP.wsdl" />
     <None Include="Service References\SGRDA_Carga\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\SGRDA_Carga_Contingencia\CustomerETDLoadASP.disco" />
+    <None Include="Service References\SGRDA_Carga_Contingencia\CustomerETDLoadASP1.disco" />
     <Content Include="Service References\SGRDA_Carga_Contingencia\Proyect_Apdayc.SGRDA_Carga_Contingencia.Mensaje.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1821,7 +1821,7 @@
     <Content Include="Service References\SGRDA_Carga_Contingencia\Proyect_Apdayc.SGRDA_Carga_Contingencia.putCustomerETDLoadXMLResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\SGRDA_Carga_Contingencia\CustomerETDLoadASP.wsdl" />
+    <None Include="Service References\SGRDA_Carga_Contingencia\CustomerETDLoadASP1.wsdl" />
     <None Include="Service References\SGRDA_Estado\configuration91.svcinfo" />
     <None Include="Service References\SGRDA_Estado\configuration.svcinfo" />
     <None Include="Service References\SGRDA_Estado\ConsultaEstado.wsdl" />

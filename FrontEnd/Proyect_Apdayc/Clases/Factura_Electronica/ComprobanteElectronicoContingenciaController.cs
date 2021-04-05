@@ -119,6 +119,10 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 //Campos para Facturacion UBL 2.1
                 obj_CamposHead.FechVencFact = vCabecera.FirstOrDefault().FChVen; // Verdadera Fecha Vencimiento
 
+                //Campos nuevos
+                obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+                obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+
                 obj_Encabezado.camposEncabezado = obj_CamposHead;
 
                 //===================================Detalle=================================================//

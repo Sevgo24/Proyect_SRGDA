@@ -45,6 +45,9 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
         private string Motiv_AnulField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string tipo_refeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Tipo_REEMField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -129,6 +132,19 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string tipo_refe {
+            get {
+                return this.tipo_refeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.tipo_refeField, value) != true)) {
+                    this.tipo_refeField = value;
+                    this.RaisePropertyChanged("tipo_refe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public string Tipo_REEM {
             get {
                 return this.Tipo_REEMField;
@@ -141,7 +157,7 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
         public string Serie_REEM {
             get {
                 return this.Serie_REEMField;
@@ -154,7 +170,7 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
         public string Foli_REEM {
             get {
                 return this.Foli_REEMField;
@@ -258,7 +274,7 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.dbnet.cl", ConfigurationName="SGRDA_Bajas.WssCargaBajasSoap")]
     public interface WssCargaBajasSoap {
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento ArchivoBajas del espacio de nombres http://www.dbnet.cl no está marcado para aceptar valores nil.
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento RUC del espacio de nombres http://www.dbnet.cl no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.dbnet.cl/cargaBajas", ReplyAction="*")]
         Proyect_Apdayc.SGRDA_Bajas.cargaBajasResponse cargaBajas(Proyect_Apdayc.SGRDA_Bajas.cargaBajasRequest request);
         
@@ -289,8 +305,8 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.dbnet.cl")]
     public partial class cargaBajasRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public double RUC;
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string RUC;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
         public Proyect_Apdayc.SGRDA_Bajas.ArrayOfBajas ArchivoBajas;
@@ -298,7 +314,7 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
         public cargaBajasRequestBody() {
         }
         
-        public cargaBajasRequestBody(double RUC, Proyect_Apdayc.SGRDA_Bajas.ArrayOfBajas ArchivoBajas) {
+        public cargaBajasRequestBody(string RUC, Proyect_Apdayc.SGRDA_Bajas.ArrayOfBajas ArchivoBajas) {
             this.RUC = RUC;
             this.ArchivoBajas = ArchivoBajas;
         }
@@ -370,7 +386,7 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
             return base.Channel.cargaBajas(request);
         }
         
-        public Proyect_Apdayc.SGRDA_Bajas.Mensaje cargaBajas(double RUC, Proyect_Apdayc.SGRDA_Bajas.ArrayOfBajas ArchivoBajas) {
+        public Proyect_Apdayc.SGRDA_Bajas.Mensaje cargaBajas(string RUC, Proyect_Apdayc.SGRDA_Bajas.ArrayOfBajas ArchivoBajas) {
             Proyect_Apdayc.SGRDA_Bajas.cargaBajasRequest inValue = new Proyect_Apdayc.SGRDA_Bajas.cargaBajasRequest();
             inValue.Body = new Proyect_Apdayc.SGRDA_Bajas.cargaBajasRequestBody();
             inValue.Body.RUC = RUC;
@@ -384,7 +400,7 @@ namespace Proyect_Apdayc.SGRDA_Bajas {
             return base.Channel.cargaBajasAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Bajas.cargaBajasResponse> cargaBajasAsync(double RUC, Proyect_Apdayc.SGRDA_Bajas.ArrayOfBajas ArchivoBajas) {
+        public System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Bajas.cargaBajasResponse> cargaBajasAsync(string RUC, Proyect_Apdayc.SGRDA_Bajas.ArrayOfBajas ArchivoBajas) {
             Proyect_Apdayc.SGRDA_Bajas.cargaBajasRequest inValue = new Proyect_Apdayc.SGRDA_Bajas.cargaBajasRequest();
             inValue.Body = new Proyect_Apdayc.SGRDA_Bajas.cargaBajasRequestBody();
             inValue.Body.RUC = RUC;

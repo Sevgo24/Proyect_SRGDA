@@ -1459,7 +1459,7 @@ namespace SGRDA.DA
         {
             List<BECabeceraFactura> lista = new List<BECabeceraFactura>();
             BECabeceraFactura item = null;
-            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_MASIVA"))
+            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_MASIVA_PRUEBASUNAT"))
             {
                 oDataBase.AddInParameter(cm, "@OWNER", DbType.String, owner);
                 oDataBase.AddInParameter(cm, "@lstXml", DbType.Xml, xml);
@@ -1499,16 +1499,14 @@ namespace SGRDA.DA
                         item.EsManual = dr.GetInt32(dr.GetOrdinal("EsManual"));
                         item.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                         item.CodigoLocal = "0000";
+                        item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                        item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                         lista.Add(item);
                     }
                 }
             }
             return lista;
         }
-
-
-
-
 
         public List<BEDetalleFactura> ListaDetalleaMasivaSunat(string owner, string xml)
         {
@@ -1652,7 +1650,8 @@ namespace SGRDA.DA
         {
             List<BECabeceraFactura> lista = new List<BECabeceraFactura>();
             BECabeceraFactura item = null;
-            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CABEZERA_MASIVA_LOC_TRANS"))
+            //using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CABEZERA_MASIVA_LOC_TRANS"))
+            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CABEZERA_MASIVA_LOC_TRANS_PRUEBASUNAT"))
             {
                 oDataBase.AddInParameter(cm, "@FECHAINICIO", DbType.DateTime, fechaInicio);
                 oDataBase.AddInParameter(cm, "@FECHAFIN", DbType.DateTime, fechaFin);
@@ -1692,6 +1691,8 @@ namespace SGRDA.DA
                         item.OficinaRecaudo = dr.GetString(dr.GetOrdinal("OficinaRecaudo"));
                         item.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                         item.CodigoLocal = "0000";
+                        item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                        item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                         lista.Add(item);
                     }
                 }

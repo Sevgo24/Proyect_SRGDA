@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.dbnet.cl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.dbnet.cl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.dbnet.cl" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.dbnet.cl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://www.dbnet.cl">
       <s:element name="cargaBajas">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RUC" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUC" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ArchivoBajas" type="tns:ArrayOfBajas" />
           </s:sequence>
         </s:complexType>
@@ -22,6 +22,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="Foli_Inte" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Fech_Emis" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Motiv_Anul" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_refe" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Tipo_REEM" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Serie_REEM" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Foli_REEM" type="s:string" />
@@ -81,10 +82,10 @@
   </wsdl:binding>
   <wsdl:service name="WssCargaBajas">
     <wsdl:port name="WssCargaBajasSoap" binding="tns:WssCargaBajasSoap">
-      <soap:address location="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx" />
+      <soap:address location="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx" />
     </wsdl:port>
     <wsdl:port name="WssCargaBajasSoap12" binding="tns:WssCargaBajasSoap12">
-      <soap12:address location="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx" />
+      <soap12:address location="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

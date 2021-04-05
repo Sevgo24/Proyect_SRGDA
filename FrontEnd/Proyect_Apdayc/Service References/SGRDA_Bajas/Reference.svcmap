@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="cargaBajas.disco" MetadataType="Disco" ID="987a2889-f50b-449b-a010-b60f9201bb6a" SourceId="1" SourceUrl="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx?disco" />
-    <MetadataFile FileName="cargaBajas.wsdl" MetadataType="Wsdl" ID="2a6c88f5-89dc-4531-9d5a-4b5d44a051e9" SourceId="1" SourceUrl="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx?wsdl" />
+    <MetadataFile FileName="cargaBajas1.wsdl" MetadataType="Wsdl" ID="f0e5329c-285d-4c64-a980-ec9b0f994cd8" SourceId="1" SourceUrl="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx?wsdl" />
+    <MetadataFile FileName="cargaBajas1.disco" MetadataType="Disco" ID="92c7f07d-938f-46df-b29f-eee259eeeae2" SourceId="1" SourceUrl="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

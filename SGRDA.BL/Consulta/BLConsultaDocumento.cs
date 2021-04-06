@@ -68,10 +68,7 @@ namespace SGRDA.BL.Consulta
         {
             return new DAConsultaDocumento().ValidaDocumentoCobro(INV_ID);
         }
-        public int GuardarNuevaNotaCredito(BENotaCredito dato)
-        {
-            return new DAFactura().GuardarNuevaNotaCredito(dato);
-        }
+       
         public int Valida_Fecha_Factura_Para_NC(int INV_ID)
         {
             return new DAConsultaDocumento().Valida_Fecha_Factura_Para_NC(INV_ID);

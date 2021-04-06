@@ -649,9 +649,18 @@ function ValidarNCredito() {
     var txtObservacion2 = $("#txtObservacion2").val();
     var textoTipoSunat = $("#ddlTipoNotaCredito2").find('option:selected').text();
     var detalladoEstado = false;
-    if ($('chkdetalladoNC').is(':checked')) { detalladoEstado = true; }
+    var detalleInvl = null;
+    var montoTotalDetallado = 0;
+    if ($('#chkdetalladoNC').is(':checked')) {
+        detalladoEstado = true;
+        detalleInvl = detalladoResultado();
+        for (var i = 0; i < detalleInvl.length; i++) {
+            montoTotalDetallado = montoTotalDetallado + Number(detalleInvl[i].ValorNotaCredito);
+        }
+
+    }
     
-    loadResumenNC(hidId2, ddlTipoNC2, TipoNCI, txtFechaE2, textSerieNC2, txtCorrelativoNC2, txtNeto2, txtSerie2, txtNumero2, ddlTipoNotaCredito2, txtObservacion2, textoTipoSunat);
+    loadResumenNC(hidId2, ddlTipoNC2, TipoNCI, txtFechaE2, textSerieNC2, txtCorrelativoNC2, txtNeto2, txtSerie2, txtNumero2, ddlTipoNotaCredito2, txtObservacion2, textoTipoSunat, detalladoEstado, detalleInvl, montoTotalDetallado);
 };
 function detalladoResultado() {
     var detalleFactura = [];
@@ -668,11 +677,9 @@ function detalladoResultado() {
                 if (!isNaN(id)) {
                     if ($('#chkFact' + id).is(':checked')) {
                         detalleFactura[contador] = {
-                            Id: $('#txtDetalleId_' + id).val(),
-                            codFactura: $('#txtFacturaId_' + id).val(),
-                            ValorNotaCredito: $('#txtValorNotaCredito_' + id).val(),
-                            Motivo: Obs,
-                            TipoNotaCredito: IdNota,
+                            Id: id.toString(),                        
+                            ValorNotaCredito: $('#txtValorNotaCredito_' + id).val().toString()
+                         
                         };
                         contador += 1;
                     }
@@ -681,16 +688,22 @@ function detalladoResultado() {
             
         }
     })
-   
+    return detalleFactura;
 }
-function loadResumenNC(hidId, TipoNC, TextNC, FechaEmision, SerieNC, CorreelativoNC, MontoNeto, txtSerie2, txtNumero2, ddlTipoNotaCredito2, txtObservacion2, textoTipoSunat) {
+function loadResumenNC(hidId, TipoNC, TextNC, FechaEmision, SerieNC, CorreelativoNC, MontoNeto, txtSerie2, txtNumero2, ddlTipoNotaCredito2, txtObservacion2, textoTipoSunat, detalladoEstado, detalleInvl, montoTotalDetallado) {
 
     var neto = new Number(MontoNeto);
-    var monto = new Number(TextNC);
+    var monto = 0;
+    if (!detalladoEstado) {
+        monto= new Number(TextNC);
+    } else {
+        monto = new Number(montoTotalDetallado);
+    }
+    
     var elemento = '<div id="divResumen" style="text-align:center;"> ';
     elemento += '<table border=0 style=" width:200%; border:0px;">';
     elemento += '<tr>';
-    if (TipoNC == 1 && neto >= monto && TextNC != "" && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
+    if (TipoNC == 1 && neto >= monto && monto != 0 && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
         elemento += '<td style="font-size:15px;">Se va emitir una Nota de Crédito con Serie NC ' + SerieNC + ' con Referencial ' + CorreelativoNC + '</td>';
         elemento += '</tr>';
         elemento += '<tr>';
@@ -702,7 +715,7 @@ function loadResumenNC(hidId, TipoNC, TextNC, FechaEmision, SerieNC, Correelativ
         elemento += '</tr>';
 
         elemento += '<tr>';
-        elemento += '<td style="font-size:15px;">Por el Monto de <strong>S/.' + TextNC + '</strong> del monto total S/.' + MontoNeto + '</td>';
+        elemento += '<td style="font-size:15px;">Por el Monto de <strong>S/.' + monto + '</strong> del monto total S/.' + MontoNeto + '</td>';
         elemento += '</tr>';     
    
         elemento += '</table>';
@@ -711,7 +724,7 @@ function loadResumenNC(hidId, TipoNC, TextNC, FechaEmision, SerieNC, Correelativ
     }
     else
     {
-        if (TipoNC == 2 && (monto >= 0 && 100 >= monto) && monto != "" && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
+        if (TipoNC == 2 && (monto >= 0 && 100 >= monto) && monto != 0 && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "") {
 
             elemento += '<td style="font-size:15px;">Se va emitir una Nota de Crédito con Serie NC ' + SerieNC + ' con Referencial ' + CorreelativoNC + '</td>';
             elemento += '</tr>';
@@ -724,7 +737,7 @@ function loadResumenNC(hidId, TipoNC, TextNC, FechaEmision, SerieNC, Correelativ
             elemento += '</tr>';
 
             elemento += '<tr>';
-            elemento += '<td style="font-size:15px;">Por el Porcentaje de <strong>' + TextNC + '%</strong> del monto total S/.' + MontoNeto + '</td>';
+            elemento += '<td style="font-size:15px;">Por el Porcentaje de <strong>' + monto + '%</strong> del monto total S/.' + MontoNeto + '</td>';
             elemento += '</tr>';
             elemento += '</table>';
             elemento += '</div>';
@@ -757,14 +770,52 @@ function Guardar2() {
     var txtNumero2 = $("#txtNumero2").val();
     var ddlTipoNotaCredito2 = $("#ddlTipoNotaCredito2").val();
     var txtObservacion2 = $("#txtObservacion2").val();
+    var detalladoEstado = false;
+    var detalleInvl = null;
+    var montoTotalDetallado = 0;
+    if ($('#chkdetalladoNC').is(':checked')) {
+        detalladoEstado = true;
+        detalleInvl = detalladoResultado();
+        for (var i = 0; i < detalleInvl.length; i++) {
+            montoTotalDetallado = montoTotalDetallado + Number(detalleInvl[i].ValorNotaCredito);
+        }
+
+    }
+   
+   
+
+
     var neto = new Number(txtNeto2);
-    var monto = new Number(TipoNCI);
-    if (((ddlTipoNC2 == 1 && neto >= monto && monto != "") || (ddlTipoNC2 == 2 && (monto >= 0 && 100 >= TipoNCI) && TipoNCI != "")) && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "")
+    var monto = 0;
+    if (!detalladoEstado) {
+        monto = new Number(TipoNCI);
+    } else {
+        monto = new Number(montoTotalDetallado);
+    }
+
+    var datos = {
+        'idFactura': hidId2,
+        'fechaEmision': txtFechaE2,
+        'TipoNC': ddlTipoNC2,
+        'TextoTipoNC': monto.toString(),
+        'TipoSunat': ddlTipoNotaCredito2,
+        'Observacion': txtObservacion2,
+        'serieNC': textSerieNC2,
+        'detalladoEstado': detalladoEstado,
+        'detalleFactura': detalleInvl,
+        
+    }
+    var detalleFactura = JSON.stringify(datos);
+    if (((ddlTipoNC2 == 1 && neto >= monto && monto != "") || (ddlTipoNC2 == 2 && (monto >= 0 && 100 >= monto) && monto != 0)) && ddlTipoNotaCredito2 != 0 && txtObservacion2 != "")
     {
         $.ajax({
-            data: { idFactura: hidId2, fechaEmision: txtFechaE2, TipoNC: ddlTipoNC2, TextoTipoNC: TipoNCI, TipoSunat: ddlTipoNotaCredito2, Observacion: txtObservacion2, serieNC: textSerieNC2},
-            url: '../ConsultaDocumento/GuardarNC2',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
             type: 'POST',
+            data: detalleFactura,
+            url: '../ConsultaDocumento/GuardarNC2',
+         
+            async: false,
             beforeSend: function () { },
             success: function (response) {
                 var dato = response;

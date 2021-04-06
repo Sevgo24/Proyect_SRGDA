@@ -606,7 +606,7 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                         else
                         {
                             if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1) // NC - DEVOLUCION
-                                shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId2({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.NC_DEVOLUCION, item.INV_ID, penddiente);
+                                shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId2({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.NC_DEVOLUCION, item.INV_ID, penddiente, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO);
                             else if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 0)
                             {
                                 if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_ANULACION) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_ANULACION);
@@ -723,7 +723,7 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                 //retorno.Code = listar.Count;
                 //retorno.result = 1;
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
                 //retorno.message = ex.Message;
                 //retorno.result = 0;
@@ -1379,46 +1379,60 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
             return Json(retorno, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GuardarNC2(decimal idFactura, DateTime fechaEmision, int TipoNC, decimal TextoTipoNC,string TipoSunat,string Observacion, string serieNC)
+        public JsonResult GuardarNC2(decimal idFactura, DateTime fechaEmision, int TipoNC, decimal TextoTipoNC,string TipoSunat,string Observacion, string serieNC, Boolean detalladoEstado, List<DTODetalleNC> detalleFactura)
         {
             Resultado retorno = new Resultado();
-            
+
             try
             {
-                if (!isLogout(ref retorno))
+                BENotaCredito bENotaCredito = new BENotaCredito();
+                BLFactura bl = new BLFactura();
+                bENotaCredito.facturaId = idFactura;
+                bENotaCredito.fechaEmision = fechaEmision;
+                bENotaCredito.tipoNC = TipoNC;
+                bENotaCredito.textoTipoNC = TextoTipoNC;
+                bENotaCredito.TipoSunat = TipoSunat;
+                bENotaCredito.Observacion = Observacion;
+                bENotaCredito.UsuarioCreacion = UsuarioActual;
+                int result = 0;
+                if (!detalladoEstado)
                 {
-                    BENotaCredito bENotaCredito = new BENotaCredito();
-                    BLConsultaDocumento bl = new BLConsultaDocumento();
-                    bENotaCredito.facturaId = idFactura;
-                    bENotaCredito.fechaEmision = fechaEmision;
-                    bENotaCredito.tipoNC = TipoNC;
-                    bENotaCredito.textoTipoNC = TextoTipoNC;
-                    bENotaCredito.TipoSunat = TipoSunat;
-                    bENotaCredito.Observacion = Observacion;
-                    bENotaCredito.UsuarioCreacion = UsuarioActual;
-
-                    int result = bl.GuardarNuevaNotaCredito(bENotaCredito);
-                    if (GlobalVars.Global.FE == true)
+                    result = bl.GuardarNuevaNotaCredito(bENotaCredito);
+                }
+                else
+                {
+                    int resulDet = 0;
+                    result = bl.GuardarNuevaNotaCreditoCAB(bENotaCredito);
+                    foreach (var item in detalleFactura) 
                     {
-                        MSG_SUNAT = FE.EnvioNotaCredito(result);
-                    }
-                    var vCabecera = new BLCabeceraFactura().ListarCabeceraFacturaNc(GlobalVars.Global.OWNER, result);
-                    decimal Id = vCabecera.FirstOrDefault().Id_Ref;
-                    var vReferencia = new BLReferencia().ListarRefFactura(GlobalVars.Global.OWNER, Id);
-                    string vReferenciaId = vReferencia.FirstOrDefault().FolioRef;
-                    if (result >= 1)
-                    {
-                        retorno.result = 1;
-                        retorno.message = "Se guardó la Nota de Crédito satisfactoriamente con Serie Nc "+ serieNC+" y referencial "+ vReferenciaId + " "+ MSG_SUNAT;
-                    }
-                    else
-                    {
-                        retorno.result = 0;
-                        retorno.message = "No se puedo emtimir la Nota de crédito";
-
-                        //}
+                        BENotaCredito bENotaCreditoDET = new BENotaCredito();
+                        bENotaCreditoDET.facturaId = result;
+                        bENotaCreditoDET.facturaDetId = item.Id;
+                        bENotaCreditoDET.UsuarioCreacion = UsuarioActual;
+                        bENotaCreditoDET.textoTipoNC = item.ValorNotaCredito;
+                        resulDet = bl.GuardarNuevaNotaCreditoDET(bENotaCreditoDET);
                     }
                 }
+               
+                if (GlobalVars.Global.FE == true)
+                {
+                    MSG_SUNAT = FE.EnvioNotaCredito(result);
+                }
+                var vCabecera = new BLCabeceraFactura().ListarCabeceraFacturaNc(GlobalVars.Global.OWNER, result);
+                decimal Id = vCabecera.FirstOrDefault().Id_Ref;
+                var vReferencia = new BLReferencia().ListarRefFactura(GlobalVars.Global.OWNER, Id);
+                string vReferenciaId = vReferencia.FirstOrDefault().FolioRef;
+                if (result >= 1)
+                {
+                    retorno.result = 1;
+                    retorno.message = "Se guardó la Nota de Crédito satisfactoriamente con Serie Nc " + serieNC + " y referencial " + vReferenciaId + " " + MSG_SUNAT;
+                }
+                else
+                {
+                    retorno.result = 0;
+                    retorno.message = "No se puedo emtimir la Nota de crédito";
+                }
+
             }
             catch (Exception ex)
             {

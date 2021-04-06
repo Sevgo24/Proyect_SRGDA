@@ -203,6 +203,7 @@
     <Compile Include="Clases\DTO\DTODescuentoSocio.cs" />
     <Compile Include="Clases\DTO\DTODetalleGasto.cs" />
     <Compile Include="Clases\DTO\DTODetalleMetodoPago.cs" />
+    <Compile Include="Clases\DTO\DTODetalleNC.cs" />
     <Compile Include="Clases\DTO\DTODifusion.cs" />
     <Compile Include="Clases\DTO\DTODireccion.cs" />
     <Compile Include="Clases\DTO\DTODivisiones.cs" />

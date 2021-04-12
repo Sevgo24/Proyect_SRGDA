@@ -63,8 +63,11 @@ $(function () {
     $('#chkdetalladoNC').click(function () {
         if ($('#chkdetalladoNC').is(':checked')) {
             $('#TipoNCI').val('');
+            $('#ddlTipoNC2').val(1);
+            
             //$('#TipoNCI').prop('readonly', false);
             $('#TipoNCI').prop('disabled', true);
+            $('#ddlTipoNC2').prop('disabled', true);
             //al Selecccionar si el monto cobrado es 0 entonces obtener el valor del monto Neto
             $("#gridDetalleFactura2").css("display", "inline");
             $("#gridDetalleFacturaFiltro").css("display", "inline");
@@ -74,6 +77,7 @@ $(function () {
         } else {
             $('#TipoNCI').text = '';
             $('#TipoNCI').attr('disabled', false);
+            $('#ddlTipoNC2').attr('disabled', false);
             $("#gridDetalleFactura2").css("display", "none");
             $("#gridDetalleFacturaFiltro").css("display", "none");
             //DesactivartodoslosCheckBox();
@@ -632,6 +636,8 @@ function limpiarTipoNotaCredito() {
     $("#txtObservacion2").val('');
     $("#gridResumenNC").html('');
     $("#chkdetalladoNC").prop("checked", false);
+    $('#TipoNCI').attr('disabled', false);
+    $('#ddlTipoNC2').attr('disabled', false);
     $("#gridDetalleFactura2").css("display", "none");
     $("#gridDetalleFacturaFiltro").css("display", "none");
 };
@@ -781,9 +787,6 @@ function Guardar2() {
         }
 
     }
-   
-   
-
 
     var neto = new Number(txtNeto2);
     var monto = 0;

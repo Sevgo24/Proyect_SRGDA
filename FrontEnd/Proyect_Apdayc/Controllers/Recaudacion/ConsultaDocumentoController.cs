@@ -1418,10 +1418,8 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                 {
                     MSG_SUNAT = FE.EnvioNotaCredito(result);
                 }
-                var vCabecera = new BLCabeceraFactura().ListarCabeceraFacturaNc(GlobalVars.Global.OWNER, result);
-                decimal Id = vCabecera.FirstOrDefault().Id_Ref;
-                var vReferencia = new BLReferencia().ListarRefFactura(GlobalVars.Global.OWNER, Id);
-                string vReferenciaId = vReferencia.FirstOrDefault().FolioRef;
+
+                string vReferenciaId = new BLReferencia().ConsultaCorrelativoNC(GlobalVars.Global.OWNER, result);
                 if (result >= 1)
                 {
                     retorno.result = 1;

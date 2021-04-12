@@ -39,5 +39,15 @@ namespace SGRDA.DA.FacturacionElectronica
             }
             return lista;
         }
+        public string ConsultaCorrelativoNC(string owner, decimal IdFactura)
+        {
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_CONSULTA_CORRELATIVO");
+            db.AddInParameter(oDbCommand, "@OWNER", DbType.String, owner);
+            db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, IdFactura);
+            db.ExecuteNonQuery(oDbCommand);
+            string resultado = Convert.ToString(db.ExecuteScalar(oDbCommand));
+
+            return resultado;
+        }
     }
 }

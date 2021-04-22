@@ -17,5 +17,10 @@ namespace SGRDA.BL.FacturaElectronica
             var listar = new DAReferencia().ListarRefFactura(owner, idfactura);
             return listar;
         }
+        public string ConsultaCorrelativoNC(string owner, decimal idfactura)
+        {
+            var result = new DAReferencia().ConsultaCorrelativoNC(owner, idfactura);
+            return result;
+        }
     }
 }

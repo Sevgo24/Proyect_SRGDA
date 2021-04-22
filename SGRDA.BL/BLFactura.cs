@@ -2126,7 +2126,18 @@ namespace SGRDA.BL
         {
             return new DAFactura().ActualizarReferenciaNotaCreditoFactura(owner, idFact, idFactNew, user);
         }
-
+        public int GuardarNuevaNotaCredito(BENotaCredito dato)
+        {
+            return new DAFactura().GuardarNuevaNotaCredito(dato);
+        }
+        public int GuardarNuevaNotaCreditoCAB(BENotaCredito dato)
+        {
+            return new DAFactura().GuardarNuevaNotaCreditoCAB(dato);
+        }
+        public int GuardarNuevaNotaCreditoDET(BENotaCredito dato)
+        {
+            return new DAFactura().GuardarNuevaNotaCreditoDET(dato);
+        }
         public int InsertarNotaCredito(BEFactura enFat, List<BEFacturaDetalle> enDetFact, string user, decimal idFact)
         {
             int code = 0;

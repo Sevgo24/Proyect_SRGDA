@@ -9,6 +9,7 @@ namespace SGRDA.Entities
     public class BENotaCredito
     {
         public decimal facturaId { set; get; }
+        public decimal facturaDetId { set; get; }
         public DateTime fechaEmision { set; get; }
         public int tipoNC { set; get; }
         public decimal textoTipoNC { set; get; }

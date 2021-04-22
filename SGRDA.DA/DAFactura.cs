@@ -836,6 +836,31 @@ namespace SGRDA.DA
             int r = Convert.ToInt32( db.ExecuteScalar(oDbCommand));
             return r;
         }
+        public int GuardarNuevaNotaCreditoCAB(BENotaCredito factura)
+        {
+            Database db = new DatabaseProviderFactory().Create("conexion");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASI_NEW_NC_CAB");
+            db.AddInParameter(oDbCommand, "@INV_ID_F", DbType.Decimal, factura.facturaId);
+            db.AddInParameter(oDbCommand, "@TIPO_NC", DbType.Int32, factura.tipoNC);
+            db.AddInParameter(oDbCommand, "@MONT_PORC", DbType.Decimal, factura.textoTipoNC);
+            db.AddInParameter(oDbCommand, "@FECHA_EMI_NC", DbType.DateTime, factura.fechaEmision);
+            db.AddInParameter(oDbCommand, "@TIPO_NC_SUNAT", DbType.String, factura.TipoSunat);
+            db.AddInParameter(oDbCommand, "@RAZON", DbType.String, factura.Observacion);
+            db.AddInParameter(oDbCommand, "@USER_CREAT", DbType.String, factura.UsuarioCreacion.ToUpper());
+            int r = Convert.ToInt32(db.ExecuteScalar(oDbCommand));
+            return r;
+        }
+        public int GuardarNuevaNotaCreditoDET(BENotaCredito factura)
+        {
+            Database db = new DatabaseProviderFactory().Create("conexion");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASI_NEW_NC_DET");
+            db.AddInParameter(oDbCommand, "@INV_ID_F", DbType.Decimal, factura.facturaId);
+            db.AddInParameter(oDbCommand, "@INVL_ID_F", DbType.Decimal, factura.facturaDetId);
+            db.AddInParameter(oDbCommand, "@MONT_PORC", DbType.Decimal, factura.textoTipoNC);
+            db.AddInParameter(oDbCommand, "@USER_CREAT", DbType.String, factura.UsuarioCreacion.ToUpper());
+            int r = Convert.ToInt32(db.ExecuteScalar(oDbCommand));
+            return r;
+        }
         public BEFactura Aplica_Nota_Credito(decimal INV_ID, string USU, string TIP_NOT_CRE, string OBSERV, decimal SERIE)
         {
             BEFactura item = null;

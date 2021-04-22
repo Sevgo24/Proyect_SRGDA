@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="ZTY72tlFAvMl8+wXP4ZK8rku5Uo=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="0gokbUE9DQ4Zz7ISLEuGa0vBtrM=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="CustomerETDLoadASPSoap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="CustomerETDLoadASPSoap" contract="SGRDA_Carga.CustomerETDLoadASPSoap" bindingType="basicHttpBinding" address="http://pruebas.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" bindingConfiguration="CustomerETDLoadASPSoap">
+    <endpoint name="CustomerETDLoadASPSoap" contract="SGRDA_Carga.CustomerETDLoadASPSoap" bindingType="basicHttpBinding" address="http://apdayc.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx" bindingConfiguration="CustomerETDLoadASPSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://pruebas.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx</serializedValue>
+          <serializedValue>http://apdayc.ecomprobantes.pe/wssCustomerETDLoadBDUBL21/CustomerETDLoadASP.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

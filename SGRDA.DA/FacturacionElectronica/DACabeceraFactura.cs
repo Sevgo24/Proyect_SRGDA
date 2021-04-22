@@ -71,8 +71,8 @@ namespace SGRDA.DA.FacturacionElectronica
 
         public List<BECabeceraFactura> ListarCabeceraFacturaEmision(decimal IdFactura, decimal serie, decimal dir)
         {
-            //DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB");
-            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_PRUEBASUNAT");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB");
+            //DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_PRUEBASUNAT");
             db.AddInParameter(oDbCommand, "@OWNER", DbType.String, GlobalVars.Global.OWNER);
             db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, IdFactura);
             db.AddInParameter(oDbCommand, "@NMR_ID", DbType.Decimal, serie);
@@ -164,8 +164,8 @@ namespace SGRDA.DA.FacturacionElectronica
 
         public List<BECabeceraFactura> ListarCabeceraFacturaNc(string owner, decimal IdFactura)
         {
-           // DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_NC");
-           DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_NC_PRUEBASUNAT");
+            DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_NC");
+           //DbCommand oDbCommand = db.GetStoredProcCommand("SGRDASS_INTERFAZ_FACTURACION_CAB_NC_PRUEBASUNAT");
             db.AddInParameter(oDbCommand, "@OWNER", DbType.String, owner);
             db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, IdFactura);
             db.ExecuteNonQuery(oDbCommand);

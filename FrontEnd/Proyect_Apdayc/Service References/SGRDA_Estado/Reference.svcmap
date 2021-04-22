@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://pruebas.ecomprobantes.pe/wssConsultaEstadoSuc/ConsultaEstado.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ConsultaEstado1.wsdl" MetadataType="Wsdl" ID="8748ef81-4ec1-4077-aa4e-4168a366fc0d" SourceId="1" SourceUrl="http://pruebas.ecomprobantes.pe/wssConsultaEstadoSuc/ConsultaEstado.asmx?wsdl" />
-    <MetadataFile FileName="ConsultaEstado.disco" MetadataType="Disco" ID="1e75a4a3-e10e-429f-818a-9cd25c951b93" SourceId="1" SourceUrl="http://pruebas.ecomprobantes.pe/wssConsultaEstadoSuc/ConsultaEstado.asmx?disco" />
+    <MetadataFile FileName="ConsultaEstado2.wsdl" MetadataType="Wsdl" ID="a864dfcc-6352-45e3-b89a-898a3524b55c" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx?wsdl" />
+    <MetadataFile FileName="ConsultaEstado2.disco" MetadataType="Disco" ID="f77b38e3-3381-4faa-bb60-4df48a1ce751" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -82,10 +82,10 @@
   </wsdl:binding>
   <wsdl:service name="WssCargaBajas">
     <wsdl:port name="WssCargaBajasSoap" binding="tns:WssCargaBajasSoap">
-      <soap:address location="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx" />
+      <soap:address location="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx" />
     </wsdl:port>
     <wsdl:port name="WssCargaBajasSoap12" binding="tns:WssCargaBajasSoap12">
-      <soap12:address location="http://pruebas.ecomprobantes.pe/wssCargaBajas/cargaBajas.asmx" />
+      <soap12:address location="http://104.210.37.198/wssCargaBajas/cargaBajas.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -128,8 +128,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             obj_CamposHead.FechVencFact = vCabecera.FirstOrDefault().FChVen; // Verdadera Fecha Vencimiento
 
             //nuevos campos 
-            obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
-            obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+            //obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+            //obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
 
             obj_Encabezado.camposEncabezado = obj_CamposHead;
 
@@ -452,8 +452,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 total = vCabecera.FirstOrDefault().MntTotal;
                 obj_CamposHead.TipoOper = vCabecera.FirstOrDefault().TipoOper;
                 //Campos nuevos
-                obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
-                obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+                //obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+                //obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
 
 
                 obj_Encabezado.camposEncabezado = obj_CamposHead;
@@ -763,8 +763,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     //obj_CamposHead.TipoOper = vCabecera.FirstOrDefault().TipoOper;
 
                     //CAMPOS NUEVOS
-                    obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
-                    obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+                    //obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+                    //obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
 
 
                     obj_Encabezado.camposEncabezado = obj_CamposHead;
@@ -1356,8 +1356,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             obj_CamposHead.TipoOperacion = vCabecera.FirstOrDefault().TipoOper;
 
             //--campos nuevos
-            obj_CamposHead.FormaPago = Convert.ToString(vCabecera.FirstOrDefault().FormaPago).ToString();
-            obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",",".").ToString();
+            //obj_CamposHead.FormaPago = Convert.ToString(vCabecera.FirstOrDefault().FormaPago).ToString();
+            //obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
 
             total = vCabecera.FirstOrDefault().MntTotal;
             //obj_CamposHead.TipoOper = vCabecera.FirstOrDefault().TipoOper;

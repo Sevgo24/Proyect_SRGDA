@@ -1586,7 +1586,8 @@ namespace SGRDA.DA
         {
             List<BECabeceraFactura> lista = new List<BECabeceraFactura>();
             BECabeceraFactura item = null;
-            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_MASIVA_PRUEBASUNAT"))
+            //using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_MASIVA_PRUEBASUNAT"))
+            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CAB_MASIVA"))
             {
                 oDataBase.AddInParameter(cm, "@OWNER", DbType.String, owner);
                 oDataBase.AddInParameter(cm, "@lstXml", DbType.Xml, xml);
@@ -1777,8 +1778,8 @@ namespace SGRDA.DA
         {
             List<BECabeceraFactura> lista = new List<BECabeceraFactura>();
             BECabeceraFactura item = null;
-            //using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CABEZERA_MASIVA_LOC_TRANS"))
-            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CABEZERA_MASIVA_LOC_TRANS_PRUEBASUNAT"))
+            using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CABEZERA_MASIVA_LOC_TRANS"))
+            //using (DbCommand cm = oDataBase.GetStoredProcCommand("SGRDASS_INTERFAZ_EMISION_CABEZERA_MASIVA_LOC_TRANS_PRUEBASUNAT"))
             {
                 oDataBase.AddInParameter(cm, "@FECHAINICIO", DbType.DateTime, fechaInicio);
                 oDataBase.AddInParameter(cm, "@FECHAFIN", DbType.DateTime, fechaFin);

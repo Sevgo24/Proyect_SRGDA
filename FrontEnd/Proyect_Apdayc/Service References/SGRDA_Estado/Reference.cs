@@ -15,187 +15,19 @@ namespace Proyect_Apdayc.SGRDA_Estado {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.dbnet.cl", ConfigurationName="SGRDA_Estado.Service1Soap")]
     public interface Service1Soap {
         
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento ruc del espacio de nombres http://www.dbnet.cl no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.dbnet.cl/ConsultaEstado", ReplyAction="*")]
-        Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponse ConsultaEstado(Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest request);
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string ConsultaEstado(string ruc, int tipo_docu, int foli_inte, string serie_inte);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.dbnet.cl/ConsultaEstado", ReplyAction="*")]
-        System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponse> ConsultaEstadoAsync(Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest request);
-        
-        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento ruc del espacio de nombres http://www.dbnet.cl no está marcado para aceptar valores nil.
-        [System.ServiceModel.OperationContractAttribute(Action="http://www.dbnet.cl/ActualizaEstadoDoc", ReplyAction="*")]
-        Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponse ActualizaEstadoDoc(Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest request);
+        System.Threading.Tasks.Task<string> ConsultaEstadoAsync(string ruc, int tipo_docu, int foli_inte, string serie_inte);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.dbnet.cl/ActualizaEstadoDoc", ReplyAction="*")]
-        System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponse> ActualizaEstadoDocAsync(Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class ConsultaEstadoRequest {
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int ActualizaEstadoDoc(string ruc, int CodiEmpr, int tipo_docu, int foli_inte, string serie_inte, string Estado);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="ConsultaEstado", Namespace="http://www.dbnet.cl", Order=0)]
-        public Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequestBody Body;
-        
-        public ConsultaEstadoRequest() {
-        }
-        
-        public ConsultaEstadoRequest(Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.dbnet.cl")]
-    public partial class ConsultaEstadoRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string ruc;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-        public int tipo_docu;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-        public int foli_inte;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string serie_inte;
-        
-        public ConsultaEstadoRequestBody() {
-        }
-        
-        public ConsultaEstadoRequestBody(string ruc, int tipo_docu, int foli_inte, string serie_inte) {
-            this.ruc = ruc;
-            this.tipo_docu = tipo_docu;
-            this.foli_inte = foli_inte;
-            this.serie_inte = serie_inte;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class ConsultaEstadoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="ConsultaEstadoResponse", Namespace="http://www.dbnet.cl", Order=0)]
-        public Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponseBody Body;
-        
-        public ConsultaEstadoResponse() {
-        }
-        
-        public ConsultaEstadoResponse(Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.dbnet.cl")]
-    public partial class ConsultaEstadoResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string ConsultaEstadoResult;
-        
-        public ConsultaEstadoResponseBody() {
-        }
-        
-        public ConsultaEstadoResponseBody(string ConsultaEstadoResult) {
-            this.ConsultaEstadoResult = ConsultaEstadoResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class ActualizaEstadoDocRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="ActualizaEstadoDoc", Namespace="http://www.dbnet.cl", Order=0)]
-        public Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequestBody Body;
-        
-        public ActualizaEstadoDocRequest() {
-        }
-        
-        public ActualizaEstadoDocRequest(Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.dbnet.cl")]
-    public partial class ActualizaEstadoDocRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string ruc;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-        public int CodiEmpr;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-        public int tipo_docu;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-        public int foli_inte;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
-        public string serie_inte;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
-        public string Estado;
-        
-        public ActualizaEstadoDocRequestBody() {
-        }
-        
-        public ActualizaEstadoDocRequestBody(string ruc, int CodiEmpr, int tipo_docu, int foli_inte, string serie_inte, string Estado) {
-            this.ruc = ruc;
-            this.CodiEmpr = CodiEmpr;
-            this.tipo_docu = tipo_docu;
-            this.foli_inte = foli_inte;
-            this.serie_inte = serie_inte;
-            this.Estado = Estado;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class ActualizaEstadoDocResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="ActualizaEstadoDocResponse", Namespace="http://www.dbnet.cl", Order=0)]
-        public Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponseBody Body;
-        
-        public ActualizaEstadoDocResponse() {
-        }
-        
-        public ActualizaEstadoDocResponse(Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.dbnet.cl")]
-    public partial class ActualizaEstadoDocResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public int ActualizaEstadoDocResult;
-        
-        public ActualizaEstadoDocResponseBody() {
-        }
-        
-        public ActualizaEstadoDocResponseBody(int ActualizaEstadoDocResult) {
-            this.ActualizaEstadoDocResult = ActualizaEstadoDocResult;
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.dbnet.cl/ActualizaEstadoDoc", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> ActualizaEstadoDocAsync(string ruc, int CodiEmpr, int tipo_docu, int foli_inte, string serie_inte, string Estado);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -225,70 +57,20 @@ namespace Proyect_Apdayc.SGRDA_Estado {
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponse Proyect_Apdayc.SGRDA_Estado.Service1Soap.ConsultaEstado(Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest request) {
-            return base.Channel.ConsultaEstado(request);
-        }
-        
         public string ConsultaEstado(string ruc, int tipo_docu, int foli_inte, string serie_inte) {
-            Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest inValue = new Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest();
-            inValue.Body = new Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequestBody();
-            inValue.Body.ruc = ruc;
-            inValue.Body.tipo_docu = tipo_docu;
-            inValue.Body.foli_inte = foli_inte;
-            inValue.Body.serie_inte = serie_inte;
-            Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponse retVal = ((Proyect_Apdayc.SGRDA_Estado.Service1Soap)(this)).ConsultaEstado(inValue);
-            return retVal.Body.ConsultaEstadoResult;
+            return base.Channel.ConsultaEstado(ruc, tipo_docu, foli_inte, serie_inte);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponse> Proyect_Apdayc.SGRDA_Estado.Service1Soap.ConsultaEstadoAsync(Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest request) {
-            return base.Channel.ConsultaEstadoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoResponse> ConsultaEstadoAsync(string ruc, int tipo_docu, int foli_inte, string serie_inte) {
-            Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest inValue = new Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequest();
-            inValue.Body = new Proyect_Apdayc.SGRDA_Estado.ConsultaEstadoRequestBody();
-            inValue.Body.ruc = ruc;
-            inValue.Body.tipo_docu = tipo_docu;
-            inValue.Body.foli_inte = foli_inte;
-            inValue.Body.serie_inte = serie_inte;
-            return ((Proyect_Apdayc.SGRDA_Estado.Service1Soap)(this)).ConsultaEstadoAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponse Proyect_Apdayc.SGRDA_Estado.Service1Soap.ActualizaEstadoDoc(Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest request) {
-            return base.Channel.ActualizaEstadoDoc(request);
+        public System.Threading.Tasks.Task<string> ConsultaEstadoAsync(string ruc, int tipo_docu, int foli_inte, string serie_inte) {
+            return base.Channel.ConsultaEstadoAsync(ruc, tipo_docu, foli_inte, serie_inte);
         }
         
         public int ActualizaEstadoDoc(string ruc, int CodiEmpr, int tipo_docu, int foli_inte, string serie_inte, string Estado) {
-            Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest inValue = new Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest();
-            inValue.Body = new Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequestBody();
-            inValue.Body.ruc = ruc;
-            inValue.Body.CodiEmpr = CodiEmpr;
-            inValue.Body.tipo_docu = tipo_docu;
-            inValue.Body.foli_inte = foli_inte;
-            inValue.Body.serie_inte = serie_inte;
-            inValue.Body.Estado = Estado;
-            Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponse retVal = ((Proyect_Apdayc.SGRDA_Estado.Service1Soap)(this)).ActualizaEstadoDoc(inValue);
-            return retVal.Body.ActualizaEstadoDocResult;
+            return base.Channel.ActualizaEstadoDoc(ruc, CodiEmpr, tipo_docu, foli_inte, serie_inte, Estado);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponse> Proyect_Apdayc.SGRDA_Estado.Service1Soap.ActualizaEstadoDocAsync(Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest request) {
-            return base.Channel.ActualizaEstadoDocAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocResponse> ActualizaEstadoDocAsync(string ruc, int CodiEmpr, int tipo_docu, int foli_inte, string serie_inte, string Estado) {
-            Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest inValue = new Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequest();
-            inValue.Body = new Proyect_Apdayc.SGRDA_Estado.ActualizaEstadoDocRequestBody();
-            inValue.Body.ruc = ruc;
-            inValue.Body.CodiEmpr = CodiEmpr;
-            inValue.Body.tipo_docu = tipo_docu;
-            inValue.Body.foli_inte = foli_inte;
-            inValue.Body.serie_inte = serie_inte;
-            inValue.Body.Estado = Estado;
-            return ((Proyect_Apdayc.SGRDA_Estado.Service1Soap)(this)).ActualizaEstadoDocAsync(inValue);
+        public System.Threading.Tasks.Task<int> ActualizaEstadoDocAsync(string ruc, int CodiEmpr, int tipo_docu, int foli_inte, string serie_inte, string Estado) {
+            return base.Channel.ActualizaEstadoDocAsync(ruc, CodiEmpr, tipo_docu, foli_inte, serie_inte, Estado);
         }
     }
 }

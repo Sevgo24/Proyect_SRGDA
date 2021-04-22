@@ -781,7 +781,7 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
 
 
                 //    if (!isLogout(ref retorno))
-                // {
+                // {9
 
                 var MSG_SUNAT = "";
                 var cant_anulado = 0;

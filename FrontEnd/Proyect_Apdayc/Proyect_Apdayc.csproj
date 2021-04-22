@@ -1436,6 +1436,7 @@
     <Content Include="Reportes\Dataset\DsDeposito.xsc">
       <DependentUpon>DsDeposito.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Reportes\Dataset\DsDeposito.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

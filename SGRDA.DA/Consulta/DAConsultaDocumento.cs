@@ -102,9 +102,9 @@ namespace SGRDA.DA.Consulta
                             if (!dr.IsDBNull(dr.GetOrdinal("BPS_MOTH_SURNAME")))
                                 factura.SOCIO += " " + dr.GetString(dr.GetOrdinal("BPS_MOTH_SURNAME")).ToString();
                         }
-
-
-
+                        if (!dr.IsDBNull(dr.GetOrdinal("INV_F1_NC_F2")))
+                            factura.INV_F1_NC_F2 = dr.GetDecimal(dr.GetOrdinal("INV_F1_NC_F2"));
+                        
                         if (!dr.IsDBNull(dr.GetOrdinal("CUR_DESC")))
                             factura.MONEDA = dr.GetString(dr.GetOrdinal("CUR_DESC"));
                         if (!dr.IsDBNull(dr.GetOrdinal("INV_NET")))

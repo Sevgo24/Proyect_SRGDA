@@ -234,6 +234,7 @@ namespace Proyect_Apdayc.Clases
             public const string COBRANZA_DUDOSA = "PROV. COBRANZA DUDOSA";//12
 
             public const string NC_DEVOLUCION= "NC  - Devolución";//7
+            public const string NC_F1_F2 = "NC  - F1,F2";//7
             public const string NC_ANULACION = "NC - Anulación";//7
             public const string NC_DESCUENTO = "NC - Descuento";//7
             public const string NC_ANULADO = "NC - Anulada";//7

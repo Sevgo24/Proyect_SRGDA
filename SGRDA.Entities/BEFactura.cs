@@ -65,6 +65,7 @@ namespace SGRDA.Entities
         public string CUR_DESC { get; set; }
         public string TAXN_NAME { get; set; }
         public bool INV_MANUAL { get; set; }
+        public decimal INV_F1_NC_F2 { get; set; }
         /// <summary>
         /// Facturacion Masiva
         /// </summary>

@@ -681,7 +681,9 @@ function detalladoResultado() {
             $('#FiltroTabla_' + idLic + ' tr').each(function () {
                 var id = parseFloat($(this).find("td").eq(2).html());
                 if (!isNaN(id)) {
-                    if ($('#chkFact' + id).is(':checked')) {
+                    var montoPendienteDete =  new Number(parseFloat($(this).find("td").eq(6).html()));
+                    var notaval = new Number($('#txtValorNotaCredito_' + id).val());
+                    if ($('#chkFact' + id).is(':checked') && montoPendienteDete >= notaval) {
                         detalleFactura[contador] = {
                             Id: id.toString(),                        
                             ValorNotaCredito: $('#txtValorNotaCredito_' + id).val().toString()

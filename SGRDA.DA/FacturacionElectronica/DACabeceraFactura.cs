@@ -59,8 +59,8 @@ namespace SGRDA.DA.FacturacionElectronica
                     // Agregar Campos Facturacion UBL 2.1
                     factura.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                     factura.CodigoLocal = "0000";
-                    factura.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
-                    factura.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
+                    //factura.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                    //factura.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
 
 
                     lista.Add(factura);

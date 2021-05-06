@@ -670,23 +670,40 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                         {
                             switch (item.EST_FACT)
                             {
-                                case 4: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='black'> {0} </font></td>", Constantes.EstadoFactura.ANULADA, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC); break;
-                                case 2: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.CANCELADO, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC); break;
-                                case 1: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.CANCELADA_PARCIAL, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC); break;
-                                case 3: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='red'> {0} </font></td>", Constantes.EstadoFactura.PENDIENTE_PAGO, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC); break;
-                                default: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='black'> {0} </font></td>", Constantes.EstadoFactura.ANULADA, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC); break;
+                                case 4: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='black'> {0} </font></td>", Constantes.EstadoFactura.ANULADA, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                case 2: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.CANCELADO, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                case 1: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.CANCELADA_PARCIAL, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                case 3: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='red'> {0} </font></td>", Constantes.EstadoFactura.PENDIENTE_PAGO, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                //case 5: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='red'> {0} </font></td>", Constantes.EstadoFactura.SOLICITUD_Nota_Credito, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                //case 6: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='red'> {0} </font></td>", Constantes.EstadoFactura.SOLICITUD_QUIEBRA, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                case 11: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font></td>", Constantes.EstadoFactura.COBRANZA_DUDOSA, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                case 12: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='red'> {0} </font></td>", Constantes.EstadoFactura.CASTIGO, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
+                                default: shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='black'> {0} </font></td>", Constantes.EstadoFactura.ANULADA, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO); break;
                             }
                         }
                         else
                         {
-                            if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1) // NC - DEVOLUCION
-                                shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.NC_DEVOLUCION, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC);
-                            else if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 0)
+
+                            if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1 && item.INV_F1_NC_F2 == 1)
                             {
-                                if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_ANULACION) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_ANULACION);
-                                if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_DESCUENTO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_DESCUENTO);
-                                if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_ANULADO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_ANULADO);
-                                if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_OTRO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_OTRO);
+                                shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.NC_F1_F2, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC);
+
+                            }
+                            else
+                            {
+                                if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1) // NC - DEVOLUCION
+                                    shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.NC_DEVOLUCION, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC);
+                                else if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 0)
+                                {
+                                    if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_ANULACION) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_ANULACION);
+                                    if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_DESCUENTO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_DESCUENTO);
+                                    if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_ANULADO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_ANULADO);
+                                    if (item.EST_FACT == 2 && item.INV_STATUS_NC == Constantes.EstadosFacturaValor.NC_OTRO) shtml.AppendFormat("<td style='cursor:pointer;'  style='text-align:right; width:150px; padding-right:10px'> <font color='blue'> {0} </font> </td>", Constantes.EstadoFactura.NC_OTRO);
+                                }
+                                else
+                                {
+                                    shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3},{4},{5});' style='text-align:right; width:150px; padding-right:10px'> <font color='black'> {0} </font></td>", "", item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC, item.INV_QUIEBRA, item.INV_NOTA_CREDITO);
+                                }
                             }
                         }
 

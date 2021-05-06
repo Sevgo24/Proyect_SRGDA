@@ -1721,9 +1721,11 @@ namespace SGRDA.DA
             Database db = new DatabaseProviderFactory().Create("conexion");
 
             int r = 0;
-            using (DbCommand oDbCommand = oDataBase.GetStoredProcCommand("SGRASU_ANULA_NC_ELECTRONICA"))
+            //using (DbCommand oDbCommand = oDataBase.GetStoredProcCommand("SGRASU_ANULA_NC_ELECTRONICA"))
+            using (DbCommand oDbCommand = oDataBase.GetStoredProcCommand("SGRDASD_ANULAR_NC_NEW"))
             {
-                db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, INV_ID);
+                //db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, INV_ID);
+                db.AddInParameter(oDbCommand, "@INV_ID_NC", DbType.Decimal, INV_ID);
                 db.AddInParameter(oDbCommand, "@observacion", DbType.String, observacion);
 
                 r = Convert.ToInt32(db.ExecuteNonQuery(oDbCommand));

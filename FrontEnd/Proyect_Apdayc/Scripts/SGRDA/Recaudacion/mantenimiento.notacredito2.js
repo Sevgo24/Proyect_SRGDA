@@ -382,7 +382,7 @@ function abrirNC(pendiente)
             $("#ddlTipoNotaCredito2").prop('disabled', false);
             if (pendiente == 0) {
                 loadTipoNotaCredito('ddlTipoNotaCredito2', 06);
-                $("#ddlTipoNotaCredito2").prop('disabled', true);
+                //$("#ddlTipoNotaCredito2").prop('disabled', true);
             }
             else {
                 loadTipoNotaCredito('ddlTipoNotaCredito2', 0);

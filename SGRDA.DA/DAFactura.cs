@@ -1627,8 +1627,8 @@ namespace SGRDA.DA
                         item.EsManual = dr.GetInt32(dr.GetOrdinal("EsManual"));
                         item.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                         item.CodigoLocal = "0000";
-                        item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
-                        item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
+                        //item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                        //item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                         lista.Add(item);
                     }
                 }
@@ -1821,8 +1821,8 @@ namespace SGRDA.DA
                         item.OficinaRecaudo = dr.GetString(dr.GetOrdinal("OficinaRecaudo"));
                         item.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                         item.CodigoLocal = "0000";
-                        item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
-                        item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
+                        //item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                        //item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                         lista.Add(item);
                     }
                 }

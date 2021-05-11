@@ -793,66 +793,66 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                 var MSG_SUNAT = "";
                 var cant_anulado = 0;
 
-                //if (GlobalVars.Global.FE == true)
-                if (true)
+                if (GlobalVars.Global.FE == true)
+                //if (true)
                 {
-                    //#region  MASIVO
-                    //if (ReglaValor.Count > 0 && ReglaValor.Count > 3 && ReglaValor != null)
-                    //{
-                    //    var vExtras = new BLExtras().ListarExtras(GlobalVars.Global.OWNER, 0);
-                    //    List<BECabeceraFactura> vCabecera = new BLFactura().ListaCabezeraMasivaSunat(GlobalVars.Global.OWNER, ReglaValor);
-                    //    List<BEDetalleFactura> vDetalle = new BLFactura().ListaDetalleaMasivaSunat(GlobalVars.Global.OWNER, ReglaValor); 
-                    //    List<BEDescuentoRecargo> vDescuento = new BLDescuentoRecargo().ListarDescuentoFactura(GlobalVars.Global.OWNER, 0);
+                    #region  MASIVO
+                    if (ReglaValor.Count > 0 && ReglaValor.Count > 3 && ReglaValor != null)
+                    {
+                        var vExtras = new BLExtras().ListarExtras(GlobalVars.Global.OWNER, 0);
+                        List<BECabeceraFactura> vCabecera = new BLFactura().ListaCabezeraMasivaSunat(GlobalVars.Global.OWNER, ReglaValor);
+                        List<BEDetalleFactura> vDetalle = new BLFactura().ListaDetalleaMasivaSunat(GlobalVars.Global.OWNER, ReglaValor);
+                        List<BEDescuentoRecargo> vDescuento = new BLDescuentoRecargo().ListarDescuentoFactura(GlobalVars.Global.OWNER, 0);
 
-                    //    foreach (var s in vCabecera)
-                    //    {
-
-
-                    //        #region Consulta y vuelve a Actualizar Estado SUNAT
-
-                    //        var RespuestaConsultaSunat = FE.ConsultaEstado(s.INV_ID);
-
-                    //        if (RespuestaConsultaSunat.Contains("NBD")) // SI NO EXISTE EN LA SUITE
-                    //        {
-                    //            List<BECabeceraFactura> vCabeceraIndividual = vCabecera.Where(x => x.INV_ID == s.INV_ID).ToList();
-                    //            List<BEDetalleFactura> vDetalleIndividual = vDetalle.Where(x => x.INV_ID == s.INV_ID).ToList();
-
-                    //            MSG_SUNAT = FE.EnvioComprobanteElectronicoMasivoAct(vExtras, vCabeceraIndividual, vDetalleIndividual, vDescuento);
-
-                    //            if (MSG_SUNAT == Constantes.Mensaje_Sunat.MSG_DOK_SUNAT)
-                    //                cant_anulado += 1;
-
-                    //            //if (MSG_SUNAT == Constantes.Mensaje_Sunat.MSG_EXISTE_SUNAT)
-                    //            //{
-                    //            //    FE.ActualizarEstadoSunat(s.INV_ID, Constantes.Mensaje_Sunat.MSG_SUNAT_DOK, Constantes.Mensaje_Sunat.MSG_ACEPTADO);
-                    //            //    cant_anulado += 1;
-                    //            //}
+                        foreach (var s in vCabecera)
+                        {
 
 
-                    //            vCabeceraIndividual = new List<BECabeceraFactura>();
-                    //            vDetalleIndividual = new List<BEDetalleFactura>();
-                    //            //una vez enviado a SUNAT SE vuelve a consultar
-                    //            RespuestaConsultaSunat = FE.ConsultaEstado(s.INV_ID);
-                    //        }
-                    //        else
-                    //        {
-                    //            if (RespuestaConsultaSunat.Contains("DOK"))
-                    //                cant_anulado += Variables.Uno;
-                    //        }
+                            #region Consulta y vuelve a Actualizar Estado SUNAT
+
+                            var RespuestaConsultaSunat = FE.ConsultaEstado(s.INV_ID);
+
+                            if (RespuestaConsultaSunat.Contains("NBD")) // SI NO EXISTE EN LA SUITE
+                            {
+                                List<BECabeceraFactura> vCabeceraIndividual = vCabecera.Where(x => x.INV_ID == s.INV_ID).ToList();
+                                List<BEDetalleFactura> vDetalleIndividual = vDetalle.Where(x => x.INV_ID == s.INV_ID).ToList();
+
+                                MSG_SUNAT = FE.EnvioComprobanteElectronicoMasivoAct(vExtras, vCabeceraIndividual, vDetalleIndividual, vDescuento);
+
+                                if (MSG_SUNAT == Constantes.Mensaje_Sunat.MSG_DOK_SUNAT)
+                                    cant_anulado += 1;
+
+                                //if (MSG_SUNAT == Constantes.Mensaje_Sunat.MSG_EXISTE_SUNAT)
+                                //{
+                                //    FE.ActualizarEstadoSunat(s.INV_ID, Constantes.Mensaje_Sunat.MSG_SUNAT_DOK, Constantes.Mensaje_Sunat.MSG_ACEPTADO);
+                                //    cant_anulado += 1;
+                                //}
 
 
-                    //        EvaluaConsultaSunat(s.INV_ID, RespuestaConsultaSunat);
-                    //    }
-                    //        #endregion
+                                vCabeceraIndividual = new List<BECabeceraFactura>();
+                                vDetalleIndividual = new List<BEDetalleFactura>();
+                                //una vez enviado a SUNAT SE vuelve a consultar
+                                RespuestaConsultaSunat = FE.ConsultaEstado(s.INV_ID);
+                            }
+                            else
+                            {
+                                if (RespuestaConsultaSunat.Contains("DOK"))
+                                    cant_anulado += Variables.Uno;
+                            }
 
-                    //        //    TotalNoEmitidas += 1;
 
-                        
-                    //}
-                    //#endregion
+                            EvaluaConsultaSunat(s.INV_ID, RespuestaConsultaSunat);
+                        }
+                        #endregion
+
+                        //    TotalNoEmitidas += 1;
+
+
+                    }
+                    #endregion
                     #region INDIVIDUAL FA BO NOTAS DE CREDITO
-                       // else if (ReglaValor.Count > 0 && ReglaValor.Count <= 3 && ReglaValor != null)
-                    if (ReglaValor.Count > 0 && ReglaValor != null)
+                     else if (ReglaValor.Count > 0 && ReglaValor.Count <= 3 && ReglaValor != null)
+                    //if (ReglaValor.Count > 0 && ReglaValor != null)
                     {
 
                         foreach (var item in ReglaValor)

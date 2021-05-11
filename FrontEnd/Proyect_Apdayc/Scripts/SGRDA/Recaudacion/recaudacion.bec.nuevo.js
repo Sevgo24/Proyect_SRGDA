@@ -314,7 +314,7 @@ $(function () {
 
 //XXX CABECERA XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 var grabarBEC = function () {
-    $('#<').hide();
+    //$('#<').hide();
 
     var idMultiRecibo = $('#lblMRecId').html() != '' ? $('#lblMRecId').html() : 0;
     var valTipo = $('input[name=Tipo]:checked').val();

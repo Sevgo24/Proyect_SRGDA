@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8d2a6f62-6dd0-4e10-8ccb-097c47459f95" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2e4288a0-f047-4bdb-a0ea-02bb23658431" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ConsultaEstado2.wsdl" MetadataType="Wsdl" ID="a864dfcc-6352-45e3-b89a-898a3524b55c" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx?wsdl" />
-    <MetadataFile FileName="ConsultaEstado2.disco" MetadataType="Disco" ID="f77b38e3-3381-4faa-bb60-4df48a1ce751" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx?disco" />
+    <MetadataFile FileName="ConsultaEstado.wsdl" MetadataType="Wsdl" ID="3a6cc677-753e-4068-ba7f-d6b096a22640" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx?wsdl" />
+    <MetadataFile FileName="ConsultaEstado.disco" MetadataType="Disco" ID="7f09e552-c67a-4a70-b9a7-eb58f5803b51" SourceId="1" SourceUrl="http://apdayc.ecomprobantes.pe/WssConsultaEstado/ConsultaEstado.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

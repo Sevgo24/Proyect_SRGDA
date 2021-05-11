@@ -382,7 +382,7 @@ function abrirNC(pendiente)
             $("#ddlTipoNotaCredito2").prop('disabled', false);
             if (pendiente == 0) {
                 loadTipoNotaCredito('ddlTipoNotaCredito2', 06);
-                $("#ddlTipoNotaCredito2").prop('disabled', true);
+                //$("#ddlTipoNotaCredito2").prop('disabled', true);
             }
             else {
                 loadTipoNotaCredito('ddlTipoNotaCredito2', 0);
@@ -681,7 +681,9 @@ function detalladoResultado() {
             $('#FiltroTabla_' + idLic + ' tr').each(function () {
                 var id = parseFloat($(this).find("td").eq(2).html());
                 if (!isNaN(id)) {
-                    if ($('#chkFact' + id).is(':checked')) {
+                    var montoPendienteDete =  new Number(parseFloat($(this).find("td").eq(6).html()));
+                    var notaval = new Number($('#txtValorNotaCredito_' + id).val());
+                    if ($('#chkFact' + id).is(':checked') && montoPendienteDete >= notaval) {
                         detalleFactura[contador] = {
                             Id: id.toString(),                        
                             ValorNotaCredito: $('#txtValorNotaCredito_' + id).val().toString()

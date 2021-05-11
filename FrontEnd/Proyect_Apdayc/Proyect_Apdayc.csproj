@@ -1824,15 +1824,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\SGRDA_Carga_Contingencia\CustomerETDLoadASP.wsdl" />
-    <None Include="Service References\SGRDA_Estado\configuration91.svcinfo" />
-    <None Include="Service References\SGRDA_Estado\configuration.svcinfo" />
     <None Include="Service References\SGRDA_Estado\ConsultaEstado.wsdl" />
-    <None Include="Service References\SGRDA_Estado\ConsultaEstado2.disco" />
-    <None Include="Service References\SGRDA_Estado\ConsultaEstado2.wsdl" />
-    <None Include="Service References\SGRDA_Estado\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\SGRDA_PDF\configuration91.svcinfo" />
     <None Include="Service References\SGRDA_PDF\configuration.svcinfo" />
     <None Include="Service References\SGRDA_Carga_Contingencia\configuration91.svcinfo" />
@@ -1842,7 +1834,13 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\SGRDA_PDF\consultaDocumentosPeru.disco" />
-    <None Include="Service References\SGRDA_Estado\ConsultaEstado1.disco" />
+    <None Include="Service References\SGRDA_Estado\ConsultaEstado.disco" />
+    <None Include="Service References\SGRDA_Estado\configuration91.svcinfo" />
+    <None Include="Service References\SGRDA_Estado\configuration.svcinfo" />
+    <None Include="Service References\SGRDA_Estado\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\SGRDA_PDF\Proyect_Apdayc.SGRDA_PDF.ArrayOfString.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

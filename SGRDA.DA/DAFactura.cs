@@ -1627,8 +1627,8 @@ namespace SGRDA.DA
                         item.EsManual = dr.GetInt32(dr.GetOrdinal("EsManual"));
                         item.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                         item.CodigoLocal = "0000";
-                        item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
-                        item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
+                        //item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                        //item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                         lista.Add(item);
                     }
                 }
@@ -1721,9 +1721,11 @@ namespace SGRDA.DA
             Database db = new DatabaseProviderFactory().Create("conexion");
 
             int r = 0;
-            using (DbCommand oDbCommand = oDataBase.GetStoredProcCommand("SGRASU_ANULA_NC_ELECTRONICA"))
+            //using (DbCommand oDbCommand = oDataBase.GetStoredProcCommand("SGRASU_ANULA_NC_ELECTRONICA"))
+            using (DbCommand oDbCommand = oDataBase.GetStoredProcCommand("SGRDASD_ANULAR_NC_NEW"))
             {
-                db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, INV_ID);
+                //db.AddInParameter(oDbCommand, "@INV_ID", DbType.Decimal, INV_ID);
+                db.AddInParameter(oDbCommand, "@INV_ID_NC", DbType.Decimal, INV_ID);
                 db.AddInParameter(oDbCommand, "@observacion", DbType.String, observacion);
 
                 r = Convert.ToInt32(db.ExecuteNonQuery(oDbCommand));
@@ -1819,8 +1821,8 @@ namespace SGRDA.DA
                         item.OficinaRecaudo = dr.GetString(dr.GetOrdinal("OficinaRecaudo"));
                         item.HoraEmision = dr.GetString(dr.GetOrdinal("FChEmis")).Substring(11, 8);
                         item.CodigoLocal = "0000";
-                        item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
-                        item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
+                        //item.FormaPago = dr.GetString(dr.GetOrdinal("FormaPago"));
+                        //item.MontoNetoPendPago = dr.GetDecimal(dr.GetOrdinal("MontoNetoPendPago"));
                         lista.Add(item);
                     }
                 }

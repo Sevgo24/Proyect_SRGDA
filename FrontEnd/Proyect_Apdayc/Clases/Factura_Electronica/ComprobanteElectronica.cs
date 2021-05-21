@@ -70,6 +70,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             DatosAdicionales obj_DatosAdicionales6 = new DatosAdicionales();
             DatosAdicionales obj_DatosAdicionales7 = new DatosAdicionales();
             DatosAdicionales obj_DatosAdicionales8 = new DatosAdicionales();
+            Pago obj_DatosPagos1 = new Pago();
 
             //=============================CABECERA=========================================================//
             decimal total = 0;
@@ -104,7 +105,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
             obj_CamposHead.DirRecep = vCabecera.FirstOrDefault().DirRecep;
 
-            obj_CamposHead.MntNeto = Convert.ToString(vCabecera.FirstOrDefault().MntNeto).Replace(",", ".").ToString();
+            obj_CamposHead.MntNeto = Convert.ToString(vCabecera.FirstOrDefault().MntNeto).Replace(",", ".").ToString(); 
             obj_CamposHead.MntExe = Convert.ToString(vCabecera.FirstOrDefault().MntExe).Replace(",", ".").ToString();
             obj_CamposHead.MntExo = Convert.ToString(vCabecera.FirstOrDefault().MntExo).Replace(",", ".").ToString();
             obj_CamposHead.MntTotal = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
@@ -112,7 +113,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             ////// Agregar Campos Facturacion UBL 2.1
             obj_CamposHead.HoraEmision = vCabecera.FirstOrDefault().HoraEmision;
 
-            obj_CamposHead.MntRedondeo = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+            obj_CamposHead.MntRedondeo = "0.00";//Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
             obj_CamposHead.CodigoLocalAnexo = vCabecera.FirstOrDefault().CodigoLocal;
 
             //-------------------------------
@@ -155,6 +156,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 obj_Detalle.PrcItem = Convert.ToString(item.PrcItem).Replace(",", ".").ToString();
                 obj_Detalle.PrcItemSinIgv = Convert.ToString(item.PrcItemSinIgv).Replace(",", ".").ToString();
                 obj_Detalle.MontoItem = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
+                obj_Detalle.MontoBaseImp = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
 
                 //Campos Descuento
                 if (item.DescuentoMonto > 0)
@@ -183,7 +185,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 }
 
 
-                obj_Detalle.TasaIgv = "18";
+                obj_Detalle.TasaIgv = "0.00";
                 obj_Detalle.ImpuestoIgv = "0.00";
 
                 lst_Detalle.SetValue(obj_Detalle, int_Posicion);
@@ -312,6 +314,19 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             DatosAdicionales[] Listar_Adicional = { Adicional, Adicional2, Adicional3, Adicional4, Adicional5, Adicional6, Adicional7, Adicional8 };
             obj_DescuentosRecargosyOtros.DatosAdicionales = Listar_Adicional;
 
+            //Datos de Pagos- para cuotas normativa 193
+            obj_DatosPagos1 = new Pago();
+            obj_DatosPagos1.Cuota = "1";
+            obj_DatosPagos1.MontoCuota = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+            obj_DatosPagos1.FechaVencCuota = vCabecera.FirstOrDefault().FChVen;
+
+            Pago Pago1 = new Pago();
+            Pago1 = obj_DatosPagos1;
+
+            Pago[] Listar_Pagos = { Pago1 };
+
+            obj_DescuentosRecargosyOtros.Pagos = Listar_Pagos;
+
             //Descuentos desc = new Descuentos();
             //desc.NroLinDR = "1";
             //desc.TpoMov = "D";
@@ -336,11 +351,11 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
             //x.Serialize(a, obj_Encabezado);
             //a.Close();
 
-            //string XMLCabecera = "";
-            //XMLCabecera = SGRDA.Utility.Util.SerializarEntity(obj_Encabezado);
+            string XMLCabecera = "";
+            XMLCabecera = SGRDA.Utility.Util.SerializarEntity(obj_Encabezado);
 
-            //string Listar_Detalles = "";
-            //Listar_Detalles = SGRDA.Utility.Util.SerializarEntity(Listar_Detalle);
+            string Listar_Detalles = "";
+            Listar_Detalles = SGRDA.Utility.Util.SerializarEntity(Listar_Detalle);
 
 
             var obj_ResultadoMensaje = WS.putCustomerETDLoad(obj_Extras, obj_Encabezado, Listar_Detalle, obj_DescuentosRecargosyOtros);
@@ -431,6 +446,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 DatosAdicionales obj_DatosAdicionales6 = new DatosAdicionales();
                 DatosAdicionales obj_DatosAdicionales7 = new DatosAdicionales();
                 DatosAdicionales obj_DatosAdicionales8 = new DatosAdicionales();
+                Pago obj_DatosPagos1 = new Pago();
 
                 //=============================CABECERA=========================================================//
                 decimal total = 0;
@@ -450,7 +466,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 obj_CamposHead.RznSocRecep = vCabecera.FirstOrDefault().RznSocRecep;
                 obj_CamposHead.DirRecep = vCabecera.FirstOrDefault().DirRecep;
                 obj_CamposHead.MntNeto = Convert.ToString(vCabecera.FirstOrDefault().MntNeto).Replace(",", ".").ToString();
-                obj_CamposHead.MntExe = Convert.ToString(vCabecera.FirstOrDefault().MntExe).Replace(",", ".").ToString();
+                obj_CamposHead.MntExe = Convert.ToString(vCabecera.FirstOrDefault().MntExe).Replace(",", ".").ToString(); 
                 obj_CamposHead.MntExo = Convert.ToString(vCabecera.FirstOrDefault().MntExo).Replace(",", ".").ToString();
                 obj_CamposHead.MntTotal = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
                 total = vCabecera.FirstOrDefault().MntTotal;
@@ -462,8 +478,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
                     obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
                 }
-                
 
+                obj_CamposHead.MntRedondeo = "0.00";
 
                 obj_Encabezado.camposEncabezado = obj_CamposHead;
 
@@ -485,6 +501,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     obj_Detalle.DescuentoMonto = Convert.ToString(item.DescuentoMonto).Replace(",", ".").ToString();
                     obj_Detalle.PrcItemSinIgv = Convert.ToString(item.PrcItemSinIgv).Replace(",", ".").ToString();
                     obj_Detalle.MontoItem = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
+                    obj_Detalle.MontoBaseImp = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
 
 
 
@@ -624,6 +641,19 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 DatosAdicionales[] Listar_Adicional = { Adicional, Adicional2, Adicional3, Adicional4, Adicional5, Adicional6, Adicional7, Adicional8 };
                 obj_DescuentosRecargosyOtros.DatosAdicionales = Listar_Adicional;
 
+                //Datos de Pagos- para cuotas normativa 193
+                obj_DatosPagos1 = new Pago();
+                obj_DatosPagos1.Cuota = "1";
+                obj_DatosPagos1.MontoCuota = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+                obj_DatosPagos1.FechaVencCuota = vCabecera.FirstOrDefault().FChVen;
+
+                Pago Pago1 = new Pago();
+                Pago1 = obj_DatosPagos1;
+
+                Pago[] Listar_Pagos = { Pago1 };
+
+                obj_DescuentosRecargosyOtros.Pagos = Listar_Pagos;
+
                 //===========================================================================================================================
                 //string ruc = vCabecera.FirstOrDefault().RUTEmisor;
                 //int tipo_docu = Convert.ToInt32(vCabecera.FirstOrDefault().TipoDTE);
@@ -732,6 +762,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     DatosAdicionales obj_DatosAdicionales6 = new DatosAdicionales();
                     DatosAdicionales obj_DatosAdicionales7 = new DatosAdicionales();
                     DatosAdicionales obj_DatosAdicionales8 = new DatosAdicionales();
+                    Pago obj_DatosPagos1 = new Pago();
 
                     //=============================CABECERA=========================================================//
                     decimal total = 0;
@@ -754,8 +785,8 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     obj_CamposHead.RznSocRecep = vCabecera.FirstOrDefault().RznSocRecep;
 
                     obj_CamposHead.DirRecep = vCabecera.FirstOrDefault().DirRecep;
-                    obj_CamposHead.MntNeto = Convert.ToString(vCabecera.FirstOrDefault().MntNeto).Replace(",", ".").ToString();
-                    obj_CamposHead.MntExe = Convert.ToString(vCabecera.FirstOrDefault().MntExe).Replace(",", ".").ToString();
+                    obj_CamposHead.MntExe = Convert.ToString(vCabecera.FirstOrDefault().MntExe).Replace(",", ".").ToString(); 
+                    obj_CamposHead.MntNeto= Convert.ToString(vCabecera.FirstOrDefault().MntNeto).Replace(",", ".").ToString();
                     obj_CamposHead.MntExo = Convert.ToString(vCabecera.FirstOrDefault().MntExo).Replace(",", ".").ToString();
                     obj_CamposHead.MntTotal = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
 
@@ -765,7 +796,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     //obj_CamposHead.TipoOper = "0101";
                     ////// Agregar Campos Facturacion UBL 2.1
                     obj_CamposHead.HoraEmision = vCabecera.FirstOrDefault().HoraEmision; //ubl2.1
-                    obj_CamposHead.MntRedondeo = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+                    obj_CamposHead.MntRedondeo = "0.00";
                     obj_CamposHead.CodigoLocalAnexo = vCabecera.FirstOrDefault().CodigoLocal;
                     //-------------------------------
                     total = vCabecera.FirstOrDefault().MntTotal;
@@ -799,7 +830,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
                         obj_Detalle.PrcItemSinIgv = Convert.ToString(item.PrcItemSinIgv).Replace(",", ".").ToString();
                         obj_Detalle.MontoItem = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
-
+                        obj_Detalle.MontoBaseImp = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
                         //Campos Descuento
                         if (item.DescuentoMonto > 0)
                         {
@@ -813,7 +844,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
                         obj_Detalle.IndExe = "30";
                         obj_Detalle.CodigoTipoIgv = "9998";
-                        obj_Detalle.TasaIgv = "18";
+                        obj_Detalle.TasaIgv = "0.00";
                         obj_Detalle.ImpuestoIgv = "0.00";
 
                         lst_Detalle.SetValue(obj_Detalle, int_Posicion);
@@ -936,6 +967,19 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     DatosAdicionales[] Listar_Adicional = { Adicional, Adicional2, Adicional3, Adicional4, Adicional5, Adicional6, Adicional7, Adicional8 };
                     obj_DescuentosRecargosyOtros.DatosAdicionales = Listar_Adicional;
 
+                    //Datos de Pagos- para cuotas normativa 193
+                    obj_DatosPagos1 = new Pago();
+                    obj_DatosPagos1.Cuota = "1";
+                    obj_DatosPagos1.MontoCuota = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+                    obj_DatosPagos1.FechaVencCuota = vCabecera.FirstOrDefault().FChVen;
+
+                    Pago Pago1 = new Pago();
+                    Pago1 = obj_DatosPagos1;
+
+                    Pago[] Listar_Pagos = { Pago1 };
+
+                    obj_DescuentosRecargosyOtros.Pagos = Listar_Pagos;
+
                     //===========================================================================================================================
                     //string ruc = vCabecera.FirstOrDefault().RUTEmisor;
                     //int tipo_docu = Convert.ToInt32(vCabecera.FirstOrDefault().TipoDTE);
@@ -1045,7 +1089,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 DatosAdicionales obj_DatosAdicionales6 = new DatosAdicionales();
                 DatosAdicionales obj_DatosAdicionales7 = new DatosAdicionales();
                 DatosAdicionales obj_DatosAdicionales8 = new DatosAdicionales();
-
+                Pago obj_DatosPagos1 = new Pago();
                 //=============================CABECERA=========================================================//
                 decimal total = 0;
                 obj_CamposHead.TipoDTE = vCabecera.FirstOrDefault().TipoDTE;
@@ -1089,6 +1133,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                     obj_Detalle.DescuentoMonto = Convert.ToString(item.DescuentoMonto).Replace(",", ".").ToString();
                     obj_Detalle.PrcItemSinIgv = Convert.ToString(item.PrcItemSinIgv).Replace(",", ".").ToString();
                     obj_Detalle.MontoItem = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
+                    obj_Detalle.MontoBaseImp = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
 
                     //Campos Descuento
                     if (item.DescuentoMonto > 0)
@@ -1224,6 +1269,19 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
                 DatosAdicionales[] Listar_Adicional = { Adicional, Adicional2, Adicional3, Adicional4, Adicional5, Adicional6, Adicional7, Adicional8 };
                 obj_DescuentosRecargosyOtros.DatosAdicionales = Listar_Adicional;
+
+                //Datos de Pagos- para cuotas normativa 193
+                obj_DatosPagos1 = new Pago();
+                obj_DatosPagos1.Cuota = "1";
+                obj_DatosPagos1.MontoCuota = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+                obj_DatosPagos1.FechaVencCuota = vCabecera.FirstOrDefault().FChVen;
+
+                Pago Pago1 = new Pago();
+                Pago1 = obj_DatosPagos1;
+
+                Pago[] Listar_Pagos = { Pago1 };
+
+                obj_DescuentosRecargosyOtros.Pagos = Listar_Pagos;
 
                 //===========================================================================================================================
                 //string ruc = vCabecera.FirstOrDefault().RUTEmisor;
@@ -1406,9 +1464,10 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 obj_Detalle.PrcItem = Convert.ToString(item.PrcItem).Replace(",", ".").ToString();
                 obj_Detalle.PrcItemSinIgv = Convert.ToString(item.PrcItemSinIgv).Replace(",", ".").ToString();
                 obj_Detalle.MontoItem = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
+                obj_Detalle.MontoBaseImp = Convert.ToString(item.MontoItem).Replace(",", ".").ToString();
                 obj_Detalle.IndExe = "30";
                 obj_Detalle.CodigoTipoIgv = "9998";
-                obj_Detalle.TasaIgv = "18";
+                obj_Detalle.TasaIgv = "0.00";
                 obj_Detalle.ImpuestoIgv = "0.00";
 
 

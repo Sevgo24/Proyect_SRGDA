@@ -62,6 +62,7 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 DatosAdicionales obj_DatosAdicionales6 = new DatosAdicionales();
                 DatosAdicionales obj_DatosAdicionales7 = new DatosAdicionales();
                 DatosAdicionales obj_DatosAdicionales8 = new DatosAdicionales();
+                Pago obj_DatosPagos1 = new Pago(); 
 
                 //=============================CABECERA=========================================================//
                 decimal total = 0;
@@ -96,15 +97,15 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
                 obj_CamposHead.DirRecep = vCabecera.FirstOrDefault().DirRecep;
 
-                obj_CamposHead.MntNeto = Convert.ToString(vCabecera.FirstOrDefault().MntNeto).Replace(",", ".").ToString();
-                obj_CamposHead.MntExe = Convert.ToString(vCabecera.FirstOrDefault().MntExe).Replace(",", ".").ToString();
+                obj_CamposHead.MntNeto = Convert.ToString(vCabecera.FirstOrDefault().MntExe).Replace(",", ".").ToString(); 
+                obj_CamposHead.MntExe = Convert.ToString(vCabecera.FirstOrDefault().MntNeto).Replace(",", ".").ToString();
                 obj_CamposHead.MntExo = Convert.ToString(vCabecera.FirstOrDefault().MntExo).Replace(",", ".").ToString();
                 obj_CamposHead.MntTotal = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
 
                 ////// Agregar Campos Facturacion UBL 2.1
                 obj_CamposHead.HoraEmision = vCabecera.FirstOrDefault().HoraEmision;
 
-                obj_CamposHead.MntRedondeo = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+                obj_CamposHead.MntRedondeo = "0.00";//Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
                 obj_CamposHead.CodigoLocalAnexo = vCabecera.FirstOrDefault().CodigoLocal;
 
                 //-------------------------------
@@ -120,8 +121,12 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
                 obj_CamposHead.FechVencFact = vCabecera.FirstOrDefault().FChVen; // Verdadera Fecha Vencimiento
 
                 //Campos nuevos
-                obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
-                obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+                if (vCabecera.FirstOrDefault().TipoDTE != "03")
+                {
+                    //nuevos campos 
+                    obj_CamposHead.FormaPago = vCabecera.FirstOrDefault().FormaPago;
+                    obj_CamposHead.MontoNetoPendPago = Convert.ToString(vCabecera.FirstOrDefault().MontoNetoPendPago).Replace(",", ".").ToString();
+                }
 
                 obj_Encabezado.camposEncabezado = obj_CamposHead;
 
@@ -268,6 +273,19 @@ namespace Proyect_Apdayc.Clases.Factura_Electronica
 
                 DatosAdicionales[] Listar_Adicional = { Adicional, Adicional2, Adicional3, Adicional4, Adicional5, Adicional6, Adicional7, Adicional8 };
                 obj_DescuentosRecargosyOtros.DatosAdicionales = Listar_Adicional;
+
+                //Datos de Pagos- para cuotas normativa 193
+                obj_DatosPagos1 = new Pago();
+                obj_DatosPagos1.Cuota = "1";
+                obj_DatosPagos1.MontoCuota = Convert.ToString(vCabecera.FirstOrDefault().MntTotal).Replace(",", ".").ToString();
+                obj_DatosPagos1.FechaVencCuota = vCabecera.FirstOrDefault().FChVen;
+
+                Pago Pago1 = new Pago();
+                Pago1 = obj_DatosPagos1;
+
+                Pago[] Listar_Pagos = { Pago1 };
+
+                obj_DescuentosRecargosyOtros.Pagos = Listar_Pagos;
 
                 //===========================================================================================================================
                 //string ruc = vCabecera.FirstOrDefault().RUTEmisor;

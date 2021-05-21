@@ -209,7 +209,7 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                         }
                         else
                         {
-                            if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1 && item.INV_F1_NC_F2 == 1)
+                            if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1 && item.INV_F1_NC_F2 != 0)
                             {
                                 shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.NC_F1_F2, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC);
 
@@ -697,7 +697,7 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                         else
                         {
 
-                            if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1 && item.INV_F1_NC_F2 == 1)
+                            if (item.EST_FACT == 2 && item.INV_IND_NC_TOTAL == 1 && item.INV_F1_NC_F2 != 0)
                             {
                                 shtml.AppendFormat("<td style='cursor:pointer;' onclick='return obtenerId({1},{2},{3});' style='text-align:right; width:150px; padding-right:10px'> <font color='green'> {0} </font> </td>", Constantes.EstadoFactura.NC_F1_F2, item.INV_ID, item.INV_NULL == null ? 0 : 1, habNC);
 

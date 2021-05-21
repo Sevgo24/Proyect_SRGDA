@@ -941,7 +941,7 @@ function grabar() {
         if (estadoIdSocio) {
             //var estado = validarGrabarAsociados();
             //if (estado) {
-            if ($("#CodigoUbigeoLAT").val() != '' & $("#CodigoUbigeoLAT").val()!='') {
+            //if ($("#CodigoUbigeoLAT").val() != '' & $("#CodigoUbigeoLAT").val()!='') {
                 if (respuestaEstModif != "3") {
                     var idEst = 0;
                     if (K_ACCION_ACTUAL === K_ACCION.Modificacion) idEst = $("#hidCodigoEST").val();
@@ -976,12 +976,14 @@ function grabar() {
                             }
                         }
                     });
-                } else {
+                }
+                else {
                     alert("EL ESTABLECIMIENTO NO PUEDE SER MODIFICADO DEBIDO A QUE YA FUE VALIDADO");
                 }
-            } else {
-                alert("POR FAVOR DE INGRESAR LA DIRECCION EN LA PESTAÑA GEOREFERENCIACION | GOOGLE MAPS");
-            }
+            //}
+            //else {
+            //    alert("POR FAVOR DE INGRESAR LA DIRECCION EN LA PESTAÑA GEOREFERENCIACION | GOOGLE MAPS");
+            //}
             //};
         }
         else {

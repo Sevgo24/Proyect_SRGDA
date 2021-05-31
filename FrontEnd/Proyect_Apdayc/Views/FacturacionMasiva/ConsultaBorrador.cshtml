@@ -59,26 +59,26 @@
             <tr>
                 <td colspan="10">
                     <center>
-                        <table style="width:100%; padding-left:30px" id="FiltroTabla"  border="0">
+                        <table style="width:100%; padding-left:30px" id="FiltroTabla" border="0">
                             <tr><td></td></tr>
                             <tr>
-                                 <td>
+                                <td>
                                     Serie:
                                 </td>
-                               <td>
-                                       <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;"  alt="Búsqueda de Serie" title="Búsqueda de Serie"/>
-                                            <input type="hidden" id="hidCorrelativo" value="0"/> 
-                                            <input type="hidden" id="hidSerie" value="0"/> 
-                                            <input type="hidden" id="hidActual" value="0"/> 
-                                            <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie" >
-                                                Seleccione una Serie.
-                                            </label>   
-                                   
+                                <td>
+                                    <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarCorrelativo" style="cursor:pointer;" alt="Búsqueda de Serie" title="Búsqueda de Serie" />
+                                    <input type="hidden" id="hidCorrelativo" value="0" />
+                                    <input type="hidden" id="hidSerie" value="0" />
+                                    <input type="hidden" id="hidActual" value="0" />
+                                    <label id="lbCorrelativo" style="cursor: pointer; font-weight:bold;" alt="Búsqueda de Serie" title="Búsqueda de Serie">
+                                        Seleccione una Serie.
+                                    </label>
+
                                 </td>
                                 <td>
                                     Tipo de Pago :
                                 </td>
-                               <td>
+                                <td>
                                     <select id="ddlFormapago"></select>
                                 </td>
                             </tr>
@@ -87,38 +87,38 @@
                                     Fecha Inicial :
                                 </td>
                                 <td>
-                                    <input type="text" id="txtFecInicial" readonly="false" class="requerido"/>
+                                    <input type="text" id="txtFecInicial" readonly="false" class="requerido" />
                                 </td>
                                 <td>
                                     Fecha Final :
                                 </td>
-                                <td >
-                                   <input type="text" id="txtFecFinal" readonly="false" class="requerido"/>
+                                <td>
+                                    <input type="text" id="txtFecFinal" readonly="false" class="requerido" />
                                 </td>
-                               <td>
+                                <td>
                                     Moneda:
                                 </td>
-                               <td>
-                                   <select id="ddlMoneda" class="requeridoLst"></select>
-                               </td>
-                            </tr>                                                           
-                                   
-                             <tr>
+                                <td>
+                                    <select id="ddlMoneda" class="requeridoLst"></select>
+                                </td>
+                            </tr>
+
+                            <tr>
                                 <td style="width:120px">
                                     Socio de Negocio :
                                 </td>
-                               <td>
+                                <td>
                                     <table border="0" style="border-collapse: collapse;" title="Socio de Negocio">
                                         <tr>
                                             <td>
-                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"/>
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscarBS" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio" />
                                             </td>
                                             <td colspan="6">
-                                                <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"> Seleccione un socio.</label>                                
+                                                <label id="lbResponsable" style="cursor: pointer;" alt="Búsqueda de Socio" title="Búsqueda de Socio"> Seleccione un socio.</label>
                                             </td>
                                             <td>
                                                 <input type="hidden" id="hidAccionMvEnt" />
-                                                <input type="hidden" id="hidEdicionEnt" value="0"/>
+                                                <input type="hidden" id="hidEdicionEnt" value="0" />
                                             </td>
                                         </tr>
                                     </table>
@@ -126,29 +126,38 @@
                                 <td style="width:140px">
                                     Grupo de Facturación:
                                 </td>
-                               <td>
-                                   <input type="hidden" id="hidGrupo" value="0" />
-                                     <table border="0" style="border-collapse: collapse;">
+                                <td>
+                                    <input type="hidden" id="hidGrupo" value="0" />
+                                    <table border="0" style="border-collapse: collapse;">
                                         <tr>
                                             <td>
-                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo Facturación" title="Búsqueda de Grupo Facturación"/>
+                                                <img src="@Url.Content("~/Images/botones/buscar.png")" id="btnBuscaGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo Facturación" title="Búsqueda de Grupo Facturación" />
                                             </td>
                                             <td colspan="6">
                                                 <label id="lbGrupo" style="cursor: pointer;" alt="Búsqueda de Grupo Facturacióm" title="Búsqueda de Grupo facturación">Seleccione un grupo facturación.</label>
                                             </td>
                                         </tr>
                                     </table>
-                               </td>
-                                 <td style="width:100px">
+                                </td>
+                                <td style="width:100px">
                                     Tipo Licencia:
                                 </td>
-                               <td>
-                                    <select id="dllTipoLicencia" ></select>
-                               </td>
-                                 
-                            </tr>    
-                                  
-                        @*<tr><td><br /></td></tr>*@
+                                <td>
+                                    <select id="dllTipoLicencia"></select>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="chkDetalleReporte" /> Glosa :
+                                </td>
+                                <td colspan="10" style="vertical-align:text-top">
+                                    &nbsp&nbsp&nbsp
+                                    <textarea id="txtDetalleReporte" maxlength="2048" rows="1" cols="60"></textarea>
+                                </td>
+                            </tr>
+</tr>
 
                         </table>
                     </center>

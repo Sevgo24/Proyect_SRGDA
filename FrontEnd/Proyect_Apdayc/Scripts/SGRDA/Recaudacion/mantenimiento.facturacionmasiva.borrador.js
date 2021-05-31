@@ -96,6 +96,15 @@ $(function () {
 
 
     });
+
+    $('#chkDetalleReporte').change(function () {
+        if (this.checked) {
+            $('#txtDetalleReporte').show();
+
+        } else {
+            $('#txtDetalleReporte').hide();
+        }
+    });
 });
 
 //****************************  FUNCIONES ****************************
@@ -162,6 +171,11 @@ function obtenerFacturasBorradorSeleccionadas() {
     var idCorrelativo = $("#hidCorrelativo").val();
     var actualCorrelativo = $("#hidActual").val();
 
+    var detalleReporte = '';
+    if ($('#chkDetalleReporte').is(":checked")) {
+        detalleReporte = $('#txtDetalleReporte').val();
+    }
+
     $('#tblFacturaMasiva tr').each(function () {
         var id = $(this).find(".IDCell").html();
         var ident = $(this).find(".IDENTIFICADORCell").html();
@@ -170,7 +184,7 @@ function obtenerFacturasBorradorSeleccionadas() {
             if ($('#chkFact' + id).is(':checked')) {
                 actual = contador;
                 ReglaValor[contador] = {
-                    C: id + '-' + idCorrelativo
+                    C: id + '#' + idCorrelativo + '#' + detalleReporte
                     //INV_ID: id,
                     //INV_NMR: idCorrelativo,
                     //INV_NUMBER: actual
@@ -181,7 +195,6 @@ function obtenerFacturasBorradorSeleccionadas() {
     });
 
     var ReglaValor = JSON.stringify({ 'ReglaValor': ReglaValor });
-
     if (contador > 0) {
         //if (contador < 401) {
         $.ajax({
@@ -358,6 +371,9 @@ function limpiar() {
     $("#hidSerie").val(0);
     $("#hidActual").val(0);
     $("#grid").html('');
+    $('#chkDetalleReporte').prop('checked', false);
+    $('#txtDetalleReporte').val('');
+    $('#txtDetalleReporte').hide();
     loadMonedas('ddlMoneda', 'PEN');
 }
 

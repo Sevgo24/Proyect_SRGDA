@@ -1444,6 +1444,7 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
         public JsonResult ObtenerFacturasBorradorSeleccionadas(List<BEFactura> ReglaValor)
         {
             Resultado retorno = new Resultado();
+            var detalleReporteV = string.Empty;
             try
             #region Nuevo
             {
@@ -1453,9 +1454,10 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                 foreach (var item in ReglaValor)
                 {
                     bfactura = new BEFactura();
-                    string[] separador = item.C.Split('-');
+                    string[] separador = item.C.Split('#');
                     bfactura.INV_ID = Convert.ToDecimal(separador[0]);
                     bfactura.INV_NMR = Convert.ToDecimal(separador[1]);
+                    detalleReporteV = separador[2];
                     bfactura.INV_NUMBER = contador;
                     contador += 1;
                     bListafacturasSel.Add(bfactura);
@@ -1520,6 +1522,11 @@ namespace Proyect_Apdayc.Controllers.Recaudacion
                     entCabFacBorrador.INV_MANUAL = false;
                     entCabFacBorrador.INV_DATE = FechaSistema;
                     entCabFacBorrador.OFF_ID = off_id;
+                    if (!string.IsNullOrEmpty(detalleReporteV))
+                    {
+                        entCabFacBorrador.INV_REPORT_STATUS = true;
+                        entCabFacBorrador.INV_REPORT_DETAILS = detalleReporteV.ToUpper();
+                    }
                     ListaSelCabFactBorrador.Add(entCabFacBorrador);
 
                     #region ENVIO A LA SUITE
